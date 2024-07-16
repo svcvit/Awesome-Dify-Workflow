@@ -27,7 +27,7 @@
 - **translation_workflow.yml** 使用吴恩达提出 Agentic Workflow 制作的翻译工具，录入`输入语言`、`目标语言`、`国家`、`原始文本` 4 个参数，提供更细致的翻译结果，按照[translation-agent](https://github.com/andrewyng/translation-agent) 原版提示词制作，一字未改。
 
 ## 工具
-- **SEO Slug Generator.yml** 给自己的博文生成 url slug，参考来源于宝玉的 twitter
+- **SEO Slug Generator.yml** 给自己的博文生成 url slug，参考来源于宝玉的 [twitter](https://x.com/dotey/status/1801280536125608265)
 
 ## 代码
 - **Python Coding Prompt.yml** 通过聊天对话方式生成 Python 代码，Prompt 来自 [Sonnet 3.5 for Coding 😍 - System Prompt](https://www.reddit.com/r/ClaudeAI/comments/1dwra38/sonnet_35_for_coding_system_prompt/)
