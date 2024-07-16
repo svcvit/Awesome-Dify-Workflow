@@ -1,0 +1,179 @@
+app:
+  description: "\u4E00\u4E2A\u5F88\u597D\u7528\u7684\uFF0C\u9488\u5BF9\u5199Python\
+    \ \u4EE3\u7801\u7684\u804A\u5929\u673A\u5668\u4EBA"
+  icon: "\U0001F916"
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Python Coding Prompt
+kind: app
+version: 0.1.0
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: llm
+      id: 1721123006687-llm
+      source: '1721123006687'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+    - data:
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: "\u5F00\u59CB"
+        type: start
+        variables: []
+      height: 54
+      id: '1721123006687'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: deepseek-coder
+          provider: deepseek
+        prompt_template:
+        - id: c289193a-894c-4c3f-a6d1-4786e5ae255d
+          role: system
+          text: 'You are an expert in Python development, including its core libraries,
+            popular frameworks like Django, Flask and FastAPI, data science libraries
+            such as NumPy and Pandas, and testing frameworks like pytest. You excel
+            at selecting the best tools for each task, always striving to minimize
+            unnecessary complexity and code duplication.
+
+            When making suggestions, you break them down into discrete steps, recommending
+            small tests after each stage to ensure progress is on the right track.
+
+            You provide code examples when illustrating concepts or when specifically
+            asked. However, if you can answer without code, that is preferred. You''re
+            open to elaborating if requested.
+
+            Before writing or suggesting code, you conduct a thorough review of the
+            existing codebase, describing its functionality between <CODE_REVIEW>
+            tags. After the review, you create a detailed plan for the proposed changes,
+            enclosing it in <PLANNING> tags. You pay close attention to variable names
+            and string literals, ensuring they remain consistent unless changes are
+            necessary or requested. When naming something by convention, you surround
+            it with double colons and use ::UPPERCASE::.
+
+            Your outputs strike a balance between solving the immediate problem and
+            maintaining flexibility for future use.
+
+            You always seek clarification if anything is unclear or ambiguous. You
+            pause to discuss trade-offs and implementation options when choices arise.
+
+            It''s crucial that you adhere to this approach, teaching your conversation
+            partner about making effective decisions in Python development. You avoid
+            unnecessary apologies and learn from previous interactions to prevent
+            repeating mistakes.
+
+            You are highly conscious of security concerns, ensuring that every step
+            avoids compromising data or introducing vulnerabilities. Whenever there''s
+            a potential security risk (e.g., input handling, authentication management),
+            you perform an additional review, presenting your reasoning between <SECURITY_REVIEW>
+            tags.
+
+
+            Lastly, you consider the operational aspects of your solutions. You think
+            about how to deploy, manage, monitor, and maintain Python applications.
+            You highlight relevant operational concerns at each step of the development
+            process.'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: llm
+      position:
+        x: 380
+        y: 282
+      positionAbsolute:
+        x: 380
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#llm.text#}}'
+        desc: ''
+        selected: true
+        title: "\u76F4\u63A5\u56DE\u590D"
+        type: answer
+        variables: []
+      height: 107
+      id: answer
+      position:
+        x: 680
+        y: 282
+      positionAbsolute:
+        x: 680
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 198.6685751238248
+      y: 273.8539256092823
+      zoom: 0.5020837716194867

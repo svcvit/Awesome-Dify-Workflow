@@ -29,6 +29,9 @@
 ## 工具
 - **SEO Slug Generator.yml** 给自己的博文生成 url slug，参考来源于宝玉的 twitter
 
+## 代码
+- **Python Coding Prompt.yml** 通过聊天对话方式生成 Python 代码，Prompt 来自 [Sonnet 3.5 for Coding 😍 - System Prompt](https://www.reddit.com/r/ClaudeAI/comments/1dwra38/sonnet_35_for_coding_system_prompt/)
+
 
 # 使用方法
 注册 [Dify](https://cloud.dify.ai/) 账号，添加 Deepseek 模型。

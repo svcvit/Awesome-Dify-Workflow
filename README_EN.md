@@ -32,6 +32,9 @@ Refer to the descriptions of each yml file below to locate the Workflow you need
 ## Tools
 - **SEO Slug Generator.yml** Creates URL slugs for your blog posts, inspired by Baoyu's Twitter.
 
+## Code
+- **Python Coding Prompt.yml** Facilitates the generation of Python code via interactive chat sessions, utilizing the prompt sourced from [Sonnet 3.5 for Coding - System Prompt](https://www.reddit.com/r/ClaudeAI/comments/1dwra38/sonnet_35_for_coding_system_prompt/)
+
 # Usage
 Register for a [Dify](https://cloud.dify.ai/) account and add the Deepseek model.
 
