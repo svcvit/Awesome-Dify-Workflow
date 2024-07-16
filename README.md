@@ -1,4 +1,10 @@
 # Awesome-Dify-Workflow
+
+<p align="center">
+  <a href="./README_EN.md"><img alt="README in English" src="https://img.shields.io/badge/English-d9d9d9"></a>
+  <a href="./README.md"><img alt="简体中文版自述文件" src="https://img.shields.io/badge/简体中文-d9d9d9"></a>
+</p>
+
 分享一些好用的 Dify 工作流程，自用、学习两相宜，请使用 Dify 0.6.14 及以上版本导入。
 
 所有的 Workflow 基本都可以 **免费** 使用，不需要对接第三方平台 API，模型使用 Deepseek，主要是因为便宜，注册即送 500 万 Token。
