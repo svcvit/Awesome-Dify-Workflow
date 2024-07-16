@@ -1,6 +1,8 @@
 # Awesome-Dify-Workflow
 分享一些好用的 Dify 工作流程，方便大家开箱即用，更多 Workflow 收集整理中。
 
+![snap](./snapshots/Xnip2024-07-16_13-21-13.jpg)
+
 # 目录
 
 ## 翻译
