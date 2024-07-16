@@ -1,0 +1,457 @@
+app:
+  description: "\u4F7F\u7528\u5434\u6069\u8FBE\u63D0\u51FA Agentic Workflow \u5236\
+    \u4F5C\u7684\u7FFB\u8BD1\u5DE5\u5177"
+  icon: "\U0001F916"
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: translation_workflow
+kind: app
+version: 0.1.0
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1721117927142-source-1721117961155-target
+      source: '1721117927142'
+      sourceHandle: source
+      target: '1721117961155'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: if-else
+      id: 1721117961155-source-1721118545228-target
+      source: '1721117961155'
+      sourceHandle: source
+      target: '1721118545228'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1721118545228-true-1721118559807-target
+      source: '1721118545228'
+      sourceHandle: 'true'
+      target: '1721118559807'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1721118545228-false-1721118668192-target
+      source: '1721118545228'
+      sourceHandle: 'false'
+      target: '1721118668192'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1721118559807-source-1721118847307-target
+      selected: false
+      source: '1721118559807'
+      sourceHandle: source
+      target: '1721118847307'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1721118668192-source-1721118847307-target
+      selected: false
+      source: '1721118668192'
+      sourceHandle: source
+      target: '1721118847307'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: variable-aggregator
+        targetType: llm
+      id: 1721118847307-source-1721118907775-target
+      selected: false
+      source: '1721118847307'
+      sourceHandle: source
+      target: '1721118907775'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1721118907775-source-1721119092752-target
+      selected: false
+      source: '1721118907775'
+      sourceHandle: source
+      target: '1721119092752'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: "\u5F00\u59CB"
+        type: start
+        variables:
+        - label: target_lang
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: target_lang
+        - label: source_text
+          max_length: 50000
+          options: []
+          required: true
+          type: paragraph
+          variable: source_text
+        - label: source_lang
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: source_lang
+        - label: country
+          max_length: 48
+          options: []
+          required: false
+          type: text-input
+          variable: country
+      height: 168
+      id: '1721117927142'
+      position:
+        x: 30
+        y: 284
+      positionAbsolute:
+        x: 30
+        y: 284
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 1
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: 435bb086-612d-4abd-b8da-f47951aa07bf
+          role: system
+          text: 'You are an expert linguist, specializing in translation from {{#1721117927142.source_text#}}
+            to {{#1721117927142.target_lang#}}
+
+
+
+
+
+            '
+        - id: d8e0d38d-a194-4cf5-a58e-1389bb60ae5b
+          role: user
+          text: "This is an {{#1721117927142.source_lang#}} to {{#1721117927142.target_lang#}}\
+            \ translation, please provide the {{#1721117927142.target_lang#}} translation\
+            \ for this text. \nDo not provide any explanations or text apart from\
+            \ the translation.\n\n{{#1721117927142.source_text#}}\n"
+        selected: false
+        title: TRANSLATION
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1721117961155'
+      position:
+        x: 334
+        y: 284
+      positionAbsolute:
+        x: 334
+        y: 284
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: dceacba0-86e7-4953-be84-50e30f163f22
+            value: ''
+            varType: string
+            variable_selector:
+            - '1721117927142'
+            - country
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: COUNTRY IS NULL
+        type: if-else
+      height: 126
+      id: '1721118545228'
+      position:
+        x: 638
+        y: 284
+      positionAbsolute:
+        x: 638
+        y: 284
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 1
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: dd43a177-3aad-4995-9dfc-dbc49e01e929
+          role: system
+          text: "Your task is to carefully read a source text and a translation from\
+            \ {{#1721117927142.source_lang#}} to {{#1721117927142.target_lang#}},\
+            \ and then give constructive criticisms and helpful suggestions to improve\
+            \ the translation. \\\n\n\nThe source text and initial translation, delimited\
+            \ by XML tags <SOURCE_TEXT></SOURCE_TEXT> and <TRANSLATION></TRANSLATION>,\
+            \ are as follows:\n<SOURCE_TEXT>\n{{#1721117927142.source_text#}}\n</SOURCE_TEXT>\n\
+            <TRANSLATION>\n{{#1721117961155.text#}}\n</TRANSLATION>\nWhen writing\
+            \ suggestions, pay attention to whether there are ways to improve the\
+            \ translation's \n(i) accuracy (by correcting errors of addition, mistranslation,\
+            \ omission, or untranslated text),\n(ii) fluency (by applying {{#1721117927142.target_lang#}}\
+            \ grammar, spelling and punctuation rules, and ensuring there are no unnecessary\
+            \ repetitions),\n\n(iii) style (by ensuring the translations reflect the\
+            \ style of the source text and take into account any cultural context),\n\
+            (iv) terminology (by ensuring terminology use is consistent and reflects\
+            \ the source text domain; and by only ensuring you use equivalent idioms\
+            \ {{#1721117927142.target_lang#}}).\nWrite a list of specific, helpful\
+            \ and constructive suggestions for improving the translation.\nEach suggestion\
+            \ should address one specific part of the translation.\nOutput only the\
+            \ suggestions and nothing else."
+        selected: false
+        title: EXPERT_SUGGESTIONS
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1721118559807'
+      position:
+        x: 942
+        y: 284
+      positionAbsolute:
+        x: 942
+        y: 284
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: 425fe1c4-0719-499e-9b33-939444aabc8e
+          role: system
+          text: "Your task is to carefully read a source text and a translation from\
+            \ {{#1721117927142.source_lang#}} to {{#1721117927142.target_lang#}},\
+            \ and then give constructive criticism and helpful suggestions to improve\
+            \ the translation. \nThe final style and tone of the translation should\
+            \ match the style of {{#1721117927142.target_lang#}} colloquially spoken\
+            \ in {{#1721117927142.country#}}.\n\nThe source text and initial translation,\
+            \ delimited by XML tags <SOURCE_TEXT></SOURCE_TEXT> and <TRANSLATION></TRANSLATION>,\
+            \ are as follows:\n<SOURCE_TEXT>\n{{#1721117927142.source_text#}}\n</SOURCE_TEXT>\n\
+            <TRANSLATION>\n{{#1721117961155.text#}}\n</TRANSLATION>\nWhen writing\
+            \ suggestions, pay attention to whether there are ways to improve the\
+            \ translation's \n(i) accuracy (by correcting errors of addition, mistranslation,\
+            \ omission, or untranslated text),\n(ii) fluency (by applying {{#1721117927142.target_lang#}}\
+            \ grammar, spelling and punctuation rules, and ensuring there are no unnecessary\
+            \ repetitions),\n(iii) style (by ensuring the translations reflect the\
+            \ style of the source text and take into account any cultural context),\n\
+            (iv) terminology (by ensuring terminology use is consistent and reflects\
+            \ the source text domain; and by only ensuring you use equivalent idioms\
+            \ {{#1721117927142.target_lang#}}).\nWrite a list of specific, helpful\
+            \ and constructive suggestions for improving the translation.\nEach suggestion\
+            \ should address one specific part of the translation.\nOutput only the\
+            \ suggestions and nothing else."
+        selected: false
+        title: EXPERT_SUGGESTIONS_WITH_COUNTRY
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1721118668192'
+      position:
+        x: 942
+        y: 422
+      positionAbsolute:
+        x: 942
+        y: 422
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        output_type: string
+        selected: false
+        title: SUGGESTIONS
+        type: variable-aggregator
+        variables:
+        - - '1721118559807'
+          - text
+        - - '1721118668192'
+          - text
+      height: 139
+      id: '1721118847307'
+      position:
+        x: 1246
+        y: 284
+      positionAbsolute:
+        x: 1246
+        y: 284
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: fafa6cf7-e44b-4025-8ce2-5f01bb48aaf6
+          role: system
+          text: You are an expert linguist, specializing in translation editing from
+            {{#1721117927142.source_lang#}} to {{#1721117927142.target_lang#}}."
+        - id: 63f2fb6a-26ec-40ba-80bf-1c92db7a7baa
+          role: user
+          text: "Your task is to carefully read, then edit, a translation from {{#1721117927142.source_lang#}}\
+            \ to {{#1721117927142.target_lang#}}, taking into\n\naccount a list of\
+            \ expert suggestions and constructive criticisms.\nThe source text, the\
+            \ initial translation, and the expert linguist suggestions are delimited\
+            \ by XML tags <SOURCE_TEXT></SOURCE_TEXT>, <TRANSLATION></TRANSLATION>\
+            \ and <EXPERT_SUGGESTIONS></EXPERT_SUGGESTIONS> \nas follows:\n<SOURCE_TEXT>\n\
+            {{#1721117927142.source_text#}}\n</SOURCE_TEXT>\n<TRANSLATION>\n{{#1721117961155.text#}}\n\
+            </TRANSLATION>\n<EXPERT_SUGGESTIONS>\n{{#1721118847307.output#}}\n</EXPERT_SUGGESTIONS>\n\
+            Please take into account the expert suggestions when editing the translation.\
+            \ Edit the translation by ensuring:\n(i) accuracy (by correcting errors\
+            \ of addition, mistranslation, omission, or untranslated text),\n(ii)\
+            \ fluency (by applying {target_lang} grammar, spelling and punctuation\
+            \ rules and ensuring there are no unnecessary repetitions), \n(iii) style\
+            \ (by ensuring the translations reflect the style of the source text)\n\
+            (iv) terminology (inappropriate for context, inconsistent use), or\n(v)\
+            \ other errors.\nOutput only the new translation and nothing else."
+        selected: false
+        title: IMPORVE_TRANSLATE
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1721118907775'
+      position:
+        x: 1550
+        y: 284
+      positionAbsolute:
+        x: 1550
+        y: 284
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1721118907775'
+          - text
+          variable: output
+        selected: false
+        title: "\u7ED3\u675F"
+        type: end
+      height: 90
+      id: '1721119092752'
+      position:
+        x: 1854
+        y: 284
+      positionAbsolute:
+        x: 1854
+        y: 284
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.7

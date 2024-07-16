@@ -12,11 +12,12 @@
 你可以参考下面每个 yml 的描述，找到你需要的 Workflow，然后在 DSL 文件夹中找到对应的文件，复制文件的 URL，导入自己的 Dify 账号即可。
 
 ## 翻译
-- `中译英.yml` 通过宝玉的 Prompt，直译->反思->意译，将中文翻译成高质量的英文。
-- `DuckDuckGo翻译+LLM二次翻译.yml` 与三步翻译类似，但是把第一步的直译变成传统翻译引擎翻译，节省 Token，提高翻译效率，同时提高翻译质量。
+- **中译英.yml** 通过宝玉的 Prompt，直译->反思->意译，将中文翻译成高质量的英文。
+- **DuckDuckGo 翻译+LLM 二次翻译.yml** 与三步翻译类似，但是把第一步的直译变成传统翻译引擎翻译，节省 Token，提高翻译效率，同时提高翻译质量。
+- **translation_workflow.yml** 使用吴恩达提出 Agentic Workflow 制作的翻译工具，录入`输入语言`、`目标语言`、`国家`、`原始文本` 4 个参数，提供更细致的翻译结果。
 
 ## 工具
-- `SEO Slug Generator.yml` 给自己的博文生成 url slug，参考来源于宝玉的 twitter
+- **SEO Slug Generator.yml** 给自己的博文生成 url slug，参考来源于宝玉的 twitter
 
 
 # 用法
