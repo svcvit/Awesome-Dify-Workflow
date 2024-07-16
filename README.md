@@ -1,13 +1,17 @@
 # Awesome-Dify-Workflow
-分享一些好用的 Dify 工作流程，方便大家开箱即用，这里所有的 Workflow 基本都可以 **免费** 使用，不需要对接第三方平台 API，模型使用 Deepseek，主要是因为便宜，注册即送 500 万 Token。
-更多 Workflow 收集整理中。
+分享一些好用的 Dify 工作流程，自用、学习两相宜，请使用 Dify 0.6.14 及以上版本导入。
+
+所有的 Workflow 基本都可以 **免费** 使用，不需要对接第三方平台 API，模型使用 Deepseek，主要是因为便宜，注册即送 500 万 Token。
+
+更多 Workflow 收集整理中……
 
 ## 参考截图
+所有 DSL 都为工作流模式，可以方便的发布为工具后，嵌入 ChatBot 流程。工作流会包含基础的输入、条件判断、变量聚合器、输出等内容。
 
-![snap](./snapshots/Xnip2024-07-16_13-42-06.jpg)
+![snap](./snapshots/Xnip2024-07-16_16-58-05.jpg)
 
 
-# 目录
+# DSL 目录
 
 你可以参考下面每个 yml 的描述，找到你需要的 Workflow，然后在 DSL 文件夹中找到对应的文件，复制文件的 URL，导入自己的 Dify 账号即可。
 
@@ -20,7 +24,7 @@
 - **SEO Slug Generator.yml** 给自己的博文生成 url slug，参考来源于宝玉的 twitter
 
 
-# 用法
+# 使用方法
 注册 [Dify](https://cloud.dify.ai/) 账号，添加 Deepseek 模型。
 
 ![snap](./snapshots/Xnip2024-07-16_13-17-53.jpg)
