@@ -1,0 +1,155 @@
+app:
+  description: This GPT will convert input titles or content into SEO-friendly English
+    URL slugs. The slugs will clearly convey the original meaning while being concise
+    and not exceeding 60 characters. If the input content is too long, the GPT will
+    first condense it into an English phrase within 60 characters before generating
+    the slug. If the title is too short, the GPT will prompt the user to input a longer
+    title. Special characters in the input will be directly removed.
+  icon: "\U0001F916"
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: SEO Slug Generator
+kind: app
+version: 0.1.0
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1721110595591-source-1721110597868-target
+      source: '1721110595591'
+      sourceHandle: source
+      target: '1721110597868'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1721110597868-source-1721110634700-target
+      source: '1721110597868'
+      sourceHandle: source
+      target: '1721110634700'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: title
+          max_length: 200
+          options: []
+          required: true
+          type: paragraph
+          variable: title
+      height: 90
+      id: '1721110595591'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 1
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: 05b774ea-be9e-4220-adf5-6578df3fee19
+          role: system
+          text: This GPT will convert input titles or content into SEO-friendly English
+            URL slugs. The slugs will clearly convey the original meaning while being
+            concise and not exceeding 60 characters. If the input content is too long,
+            the GPT will first condense it into an English phrase within 60 characters
+            before generating the slug. If the title is too short, the GPT will prompt
+            the user to input a longer title. Special characters in the input will
+            be directly removed.
+        - id: 553e6337-9310-4400-8c2a-29fe6fec7c50
+          role: user
+          text: '{{#1721110595591.title#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1721110597868'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1721110597868'
+          - text
+          variable: output
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: '1721110634700'
+      position:
+        x: 688
+        y: 282
+      positionAbsolute:
+        x: 688
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 0
+      y: 0
+      zoom: 1
