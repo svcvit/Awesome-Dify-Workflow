@@ -1,7 +1,8 @@
 # Awesome-Dify-Workflow
-分享一些好用的 Dify 工作流程，方便大家开箱即用，更多 Workflow 收集整理中。
+分享一些好用的 Dify 工作流程，方便大家开箱即用，这里所有的 Workflow 基本都可以 **免费** 使用，不需要对接第三方平台 API，模型使用 Deepseek，主要是因为便宜，注册即送 500 万 Token。
+更多 Workflow 收集整理中。
 
-![snap](./snapshots/Xnip2024-07-16_13-21-13.jpg)
+## 参考截图
 
 ![snap](./snapshots/Xnip2024-07-16_13-42-06.jpg)
 
@@ -15,7 +16,7 @@
 - `DuckDuckGo翻译+LLM二次翻译.yml` 与三步翻译类似，但是把第一步的直译变成传统翻译引擎翻译，节省 Token，提高翻译效率，同时提高翻译质量。
 
 ## 工具
-- `SEO Slug Generator.yml` 给自己的博文生成 url slug，参考来源于宝玉的 X
+- `SEO Slug Generator.yml` 给自己的博文生成 url slug，参考来源于宝玉的 twitter
 
 
 # 用法
