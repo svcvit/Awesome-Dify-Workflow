@@ -1,0 +1,1147 @@
+app:
+  description: "\u8F93\u5165\u4E00\u4E2A\u7F51\u9875\u5B9E\u73B0\u6587\u7AE0\u5185\
+    \u5BB9\u7684\u4EFF\u5199\u548C\u6539\u5199"
+  icon: "\U0001F916"
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: "\u6587\u7AE0\u4EFF\u5199-\u5355\u56FE/\u591A\u56FE\u81EA\u52A8\u642D\u914D"
+kind: app
+version: 0.1.0
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: tool
+      id: 1718957126125-source-1718967141318-target
+      source: '1718957126125'
+      sourceHandle: source
+      target: '1718967141318'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 1719040099490-false-17190386712500-target
+      source: '1719040099490'
+      sourceHandle: 'false'
+      target: '17190386712500'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: iteration
+      id: 1719046777534-source-1719046938333-target
+      source: '1719046777534'
+      sourceHandle: source
+      target: '1719046938333'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: llm
+      id: 17190386712500-source-1719040452162-target
+      source: '17190386712500'
+      sourceHandle: source
+      target: '1719040452162'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1719046938333'
+        sourceType: code
+        targetType: tool
+      id: 1719051705186-source-1719052020538-target
+      source: '1719051705186'
+      sourceHandle: source
+      target: '1719052020538'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1719046938333'
+        sourceType: tool
+        targetType: llm
+      id: 1719052020538-source-1719052032351-target
+      source: '1719052020538'
+      sourceHandle: source
+      target: '1719052032351'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: template-transform
+      id: 1719046938333-source-1719054341069-target
+      source: '1719046938333'
+      sourceHandle: source
+      target: '1719054341069'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: end
+      id: 1719054341069-source-1719047399639-target
+      source: '1719054341069'
+      sourceHandle: source
+      target: '1719047399639'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 1719040099490-true-17190400701430-target
+      source: '1719040099490'
+      sourceHandle: 'true'
+      target: '17190400701430'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: if-else
+      id: 17190400701430-source-1719057591382-target
+      source: '17190400701430'
+      sourceHandle: source
+      target: '1719057591382'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: tool
+      id: 1719057591382-true-1719057860526-target
+      source: '1719057591382'
+      sourceHandle: 'true'
+      target: '1719057860526'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1719057860526-source-1719057705571-target
+      source: '1719057860526'
+      sourceHandle: source
+      target: '1719057705571'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1719057705571-source-1719058363432-target
+      source: '1719057705571'
+      sourceHandle: source
+      target: '1719058363432'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1719040452162-source-1719043735320-target
+      source: '1719040452162'
+      sourceHandle: source
+      target: '1719043735320'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: code
+      id: 1718967141318-source-1719061181576-target
+      source: '1718967141318'
+      sourceHandle: source
+      target: '1719061181576'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1719061181576-source-1719061373860-target
+      source: '1719061181576'
+      sourceHandle: source
+      target: '1719061373860'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1719061373860-false-1719040099490-target
+      source: '1719061373860'
+      sourceHandle: 'false'
+      target: '1719040099490'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: template-transform
+      id: 1719061373860-true-1719061473923-target
+      source: '1719061373860'
+      sourceHandle: 'true'
+      target: '1719061473923'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: end
+      id: 1719061473923-source-1719061487614-target
+      source: '1719061473923'
+      sourceHandle: source
+      target: '1719061487614'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: code
+      id: 1719057591382-false-1719062922068-target
+      source: '1719057591382'
+      sourceHandle: 'false'
+      target: '1719062922068'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: parameter-extractor
+      id: 1719062922068-source-1719046777534-target
+      source: '1719062922068'
+      sourceHandle: source
+      target: '1719046777534'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: "\u5F00\u59CB"
+        type: start
+        variables:
+        - label: "\u76EE\u6807\u6587\u7AE0\u94FE\u63A5"
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: url
+        - label: "\u662F\u5426\u53BB\u9664\u56FE\u7247"
+          max_length: 48
+          options: []
+          required: true
+          type: number
+          variable: clean_img
+        - label: "\u5355\u56FE\u4EFF\u5199"
+          max_length: 48
+          options: []
+          required: true
+          type: number
+          variable: single_img
+      height: 142
+      id: '1718957126125'
+      position:
+        x: 30
+        y: 271
+      positionAbsolute:
+        x: 30
+        y: 271
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: 0ad29728-5209-4afe-bc96-daff03091c42
+        provider_name: "\u672C\u5730\u722C\u866B"
+        provider_type: workflow
+        selected: false
+        title: "\u672C\u5730\u722C\u866B"
+        tool_configurations: {}
+        tool_label: "\u672C\u5730\u722C\u866B"
+        tool_name: localScrape
+        tool_parameters:
+          need_llm:
+            type: constant
+            value: '0'
+          url:
+            type: mixed
+            value: '{{#1718957126125.url#}}'
+        type: tool
+      height: 54
+      id: '1718967141318'
+      position:
+        x: 334
+        y: 271
+      positionAbsolute:
+        x: 334
+        y: 271
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: "\u8BF7\u5BF9\u4EE5\u4E0B\u7F51\u9875\u5185\u5BB9\u8FDB\u884C\
+          \u6E05\u6D17\uFF0C\u5E76\u62BD\u53D6\u7F51\u9875\u4E2D\u7684\u6587\u7AE0\
+          \u5185\u5BB9\u4FE1\u606F\u3002\u8BF7\u907F\u514D\u5305\u542B\u6587\u7AE0\
+          \u5185\u5BB9\u65E0\u5173\u7684\u4FE1\u606F\uFF0C\u4F8B\u5982\uFF1Ahtml\u6807\
+          \u7B7E\u3001\u9875\u5934\u3001\u9875\u5C3E\u3002\u8BF7\u5BF9\u6E05\u6D17\
+          \u540E\u7684\u4FE1\u606F\u8FDB\u884Cmarkdown\u7684\u683C\u5F0F\u8F93\u51FA\
+          \u3002\u8BF7\u5BF9\u62BD\u53D6\u7684\u5B8C\u6574\u6B63\u6587\u8FDB\u884C\
+          \u667A\u80FD\u5206\u6BB5\u5E76\u4FDD\u7559\u539F\u6587\u7684\u914D\u56FE\
+          \u4FE1\u606F\u3002\n\n\n### \u7EA6\u675F\u6761\u4EF6\n1.\u6587\u672C\u4FE1\
+          \u606F\u4E2D\u5982\u679C\u6709\u660E\u663E\u7684\u6807\u9898\u4FE1\u606F\
+          \u8BF7\u76F4\u63A5\u62BD\u53D6\uFF0C\u4E0D\u9700\u8981\u81EA\u5B9A\u4E49\
+          \u751F\u6210\u6216\u52A0\u5DE5\n2.\u6587\u672C\u7684\u6B63\u6587\u5185\u5BB9\
+          \u8BF7\u5C0A\u91CD\u539F\u672C\u63CF\u8FF0\u62BD\u53D6\uFF0C\u4E0D\u9700\
+          \u8981\u81EA\u5B9A\u4E49\u751F\u6210\u6216\u52A0\u5DE5\n3.\u5173\u952E\u8BCD\
+          \u5C06\u7528\u4F5C\u56FE\u7247\u591A\u6A21\u6001\u68C0\u7D22\uFF0C\u8BF7\
+          \u4E0D\u8981\u5305\u542B\u65E0\u610F\u4E49\u7684\u8BCD\u7EC4\u6216\u77ED\
+          \u8BED\u3002\n4.\u8BF7\u5B8C\u6574\u62BD\u53D6\u539F\u6587\u5185\u5BB9\uFF0C\
+          \u5E76\u4FDD\u6301\u6BB5\u843D\u6392\u7248\n5.\u8BF7\u8FC7\u6EE4\u7248\u6743\
+          \u4FE1\u606F\u3001\u7F16\u8F91\u3001\u4F5C\u8005\u3001\u6765\u6E90\u3001\
+          \u8F6C\u8F7D\u4EE5\u53CA\u4E0E\u539F\u6587\u5185\u5BB9\u65E0\u5173\u7684\
+          \u4FE1\u606F\n\n\n### \u6293\u53D6\u5185\u5BB9\u5982\u4E0B\uFF1A\n```\n\
+          {{#1718967141318.text#}}\n```"
+        model:
+          completion_params:
+            temperature: 1
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        parameters:
+        - description: "\u539F\u6587\u6807\u9898"
+          name: title
+          required: true
+          type: string
+        - description: "\u539F\u6587\u5B8C\u6574\u5185\u5BB9"
+          name: content
+          required: false
+          type: string
+        - description: "\u5173\u952E\u8BCD\u4FE1\u606F"
+          name: keywords
+          required: true
+          type: string
+        query:
+        - '1718967141318'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: "\u7559\u56FE-\u539F\u6587\u5185\u5BB9\u62BD\u53D6"
+        type: parameter-extractor
+        variables: []
+      height: 98
+      id: '17190386712500'
+      position:
+        x: 1550
+        y: 249
+      positionAbsolute:
+        x: 1550
+        y: 249
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: "\u8BF7\u5BF9\u4EE5\u4E0B\u7F51\u9875\u5185\u5BB9\u8FDB\u884C\
+          \u6E05\u6D17\uFF0C\u5E76\u62BD\u53D6\u7F51\u9875\u4E2D\u7684\u6587\u7AE0\
+          \u5185\u5BB9\u4FE1\u606F\u3002\u8BF7\u907F\u514D\u5305\u542B\u6587\u7AE0\
+          \u5185\u5BB9\u65E0\u5173\u7684\u4FE1\u606F\uFF0C\u4F8B\u5982\uFF1Ahtml\u6807\
+          \u7B7E\u3001\u9875\u5934\u3001\u9875\u5C3E\u3002\u8BF7\u5BF9\u6E05\u6D17\
+          \u540E\u7684\u4FE1\u606F\u8FDB\u884Cmarkdown\u7684\u683C\u5F0F\u8F93\u51FA\
+          \u3002\n\n\n### \u7EA6\u675F\u6761\u4EF6\n1.\u6587\u672C\u4FE1\u606F\u4E2D\
+          \u5982\u679C\u6709\u660E\u663E\u7684\u6807\u9898\u4FE1\u606F\u8BF7\u76F4\
+          \u63A5\u62BD\u53D6\uFF0C\u4E0D\u9700\u8981\u81EA\u5B9A\u4E49\u751F\u6210\
+          \u6216\u52A0\u5DE5\n2.\u6587\u672C\u7684\u6B63\u6587\u5185\u5BB9\u8BF7\u5C0A\
+          \u91CD\u539F\u672C\u63CF\u8FF0\u62BD\u53D6\uFF0C\u4E0D\u9700\u8981\u81EA\
+          \u5B9A\u4E49\u751F\u6210\u6216\u52A0\u5DE5\n3.\u5173\u952E\u8BCD\u5C06\u7528\
+          \u4F5C\u56FE\u7247\u591A\u6A21\u6001\u68C0\u7D22\uFF0C\u8BF7\u4E0D\u8981\
+          \u5305\u542B\u65E0\u610F\u4E49\u7684\u8BCD\u7EC4\u6216\u77ED\u8BED\u3002\
+          \n4.\u8BF7\u5B8C\u6574\u62BD\u53D6\u539F\u6587\u5185\u5BB9\uFF0C\u5E76\u4FDD\
+          \u6301\u6BB5\u843D\u6392\u7248\n5.\u8BF7\u8FC7\u6EE4\u7248\u6743\u4FE1\u606F\
+          \u3001\u7F16\u8F91\u3001\u4F5C\u8005\u3001\u6765\u6E90\u3001\u8F6C\u8F7D\
+          \u4EE5\u53CA\u4E0E\u539F\u6587\u5185\u5BB9\u65E0\u5173\u7684\u4FE1\u606F\
+          \n\n\n### \u6293\u53D6\u5185\u5BB9\u5982\u4E0B\uFF1A\n```\n{{#1718967141318.text#}}\n\
+          ```"
+        model:
+          completion_params:
+            temperature: 1
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        parameters:
+        - description: "\u539F\u6587\u6807\u9898"
+          name: title
+          required: true
+          type: string
+        - description: "\u539F\u6587\u5B8C\u6574\u5185\u5BB9"
+          name: content
+          required: false
+          type: string
+        - description: "\u5173\u952E\u8BCD\u4FE1\u606F"
+          name: keywords
+          required: true
+          type: string
+        query:
+        - '1718967141318'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: "\u4E0D\u7559\u56FE-\u539F\u6587\u5185\u5BB9\u62BD\u53D6"
+        type: parameter-extractor
+        variables: []
+      height: 98
+      id: '17190400701430'
+      position:
+        x: 1550
+        y: 401
+      positionAbsolute:
+        x: 1550
+        y: 401
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: '1719040112719'
+            value: '1'
+            variable_selector:
+            - '1718957126125'
+            - clean_img
+          logical_operator: and
+        conditions:
+        - comparison_operator: '='
+          id: '1719040112719'
+          value: '1'
+          variable_selector:
+          - '1718957126125'
+          - clean_img
+        desc: ''
+        logical_operator: and
+        selected: false
+        title: "\u662F\u5426\u6E05\u9664\u56FE\u7247"
+        type: if-else
+      height: 126
+      id: '1719040099490'
+      position:
+        x: 1246
+        y: 235
+      positionAbsolute:
+        x: 1246
+        y: 235
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 1.2
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: 3a68067f-0b11-42aa-9511-bc98a9abc7b3
+          role: system
+          text: "\u4F60\u662F\u4E00\u4F4D\u4E13\u4E1A\u7684\u6587\u5B57\u5DE5\u4F5C\
+            \u8005\uFF0C\u4F60\u53EF\u4EE5\u80DC\u4EFB\u5404\u79CD\u9886\u57DF\u7684\
+            \u6587\u7AE0\u4EFF\u5199\uFF0C\u8BF7\u4F60\u5BF9\u4EE5\u4E0B\u63D0\u4F9B\
+            \u7684\u53C2\u8003\u6587\u7AE0\u8FDB\u884C\u4EFF\u5199\u5E76\u6392\u7248\
+            \u3002\n\n### \u6392\u7248\u548C\u4EFF\u5199\u9700\u6C42\n1.\u8BF7\u786E\
+            \u4FDD\u751F\u6210\u7684\u6587\u7AE0\u7B26\u5408\u7F16\u8F91\u89C4\u8303\
+            \uFF0C\u4E0D\u8981\u5305\u542B\u660E\u663E\u7684\u6807\u9898\u3001\u6B63\
+            \u6587\u3001\u7ED3\u8BBA\u7B49\u5B57\u773C\n2.\u8BF7\u5C3D\u53EF\u80FD\
+            \u9075\u5FAA\u6587\u672C\u63CF\u8FF0\u7684\u5BA2\u89C2\u4E8B\u5B9E\u4FE1\
+            \u606F\uFF0C\u4E0D\u8981\u80E1\u7F16\u4E71\u9020\n3.\u8BF7\u4E0D\u8981\
+            \u5305\u542B\uFF1A\u201D\u9996\u5148\u201C\uFF0C\u201D\u5176\u6B21\u201C\
+            \uFF0C\u201D\u518D\u6B21\u201C\uFF0C\u201D\u603B\u7684\u6765\u8BF4\u201C\
+            \u7B49\u6BB5\u843D\u8854\u63A5\u8BCD\uFF0C\u5C3D\u91CF\u786E\u4FDD\u884C\
+            \u6587\u901A\u987A\u81EA\u7136\u3002\n4.\u8BF7\u9075\u5FAA\u6587\u672C\
+            \u5185\u5BB9\u7684\u5199\u4F5C\u98CE\u683C\u548C\u7528\u8BCD\u3002\n5.\u8BF7\
+            \u786E\u8BA4\u6392\u7248\u4FE1\u606F\u7B26\u5408markdown\u89C4\u8303\u3002\
+            \n6.\u8BF7\u4E0D\u8981\u6DFB\u52A0\u6587\u7AE0\u4EE5\u5916\u7684\u591A\
+            \u4F59\u4FE1\u606F\uFF0C\u5982\u843D\u6B3E\u3001\u51FA\u5904\u3001\u6765\
+            \u6E90\u3001\u53D1\u5E03\u65F6\u95F4\u3001\u4F5C\u8005\u3001\u7F16\u8F91\
+            \u7B49\u3002\n7.\u8BF7\u4FDD\u7559\u539F\u6587\u56FE\u7247\u6392\u7248\
+            \u5E76\u4EE5markdown\u683C\u5F0F\u8F93\u51FA\n\n### \u53C2\u8003\u6587\
+            \u7AE0\u5185\u5BB9\uFF1A\n- \u6807\u9898\uFF1A{{#17190386712500.title#}}\n\
+            - \u5185\u5BB9\uFF1A{{#17190386712500.content#}}\n\n\n\n"
+        selected: false
+        title: "\u4EFF\u5199"
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1719040452162'
+      position:
+        x: 1854
+        y: 285
+      positionAbsolute:
+        x: 1854
+        y: 285
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1719040452162'
+          - text
+          variable: answer
+        selected: false
+        title: "\u7ED3\u675F"
+        type: end
+      height: 90
+      id: '1719043735320'
+      position:
+        x: 2158
+        y: 253
+      positionAbsolute:
+        x: 2158
+        y: 253
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: "\u8BF7\u5206\u6790\u6587\u7AE0\u7684\u5185\u5BB9\u7ED3\u6784\
+          \uFF0C\u5C06\u6587\u672C\u5212\u5206\u4E3A\u4E00\u4E2A\u6216\u591A\u4E2A\
+          \u8BED\u4E49\u5B8C\u6574\u7684\u7AE0\u8282\uFF0C\u6BCF\u4E2A\u7AE0\u8282\
+          \u4E0D\u5C11\u4E8E400\u5B57\u3002\u5E76\u4E3A\u6BCF\u4E2A\u7AE0\u8282\u751F\
+          \u6210\u82E5\u5E72\u4E2A\u7528\u4E8E\u68C0\u7D22\u56FE\u7247\u7684\u5173\
+          \u952E\u8BCD\u6216\u63CF\u8FF0\uFF0C\u591A\u4E2A\u5173\u952E\u8BCD\u4F7F\
+          \u7528\u9017\u53F7\u8FDB\u884C\u5206\u5272\u3002\u8F93\u51FA\u7ED3\u6784\
+          \u4E3Ajson\nExample:{\n    \"sections\": [\n        {\n           \u201D\
+          keywords\u201C: \u201D\u5173\u952E\u8BCD\u6216\u63CF\u8FF0\u5B57\u7B26\u4E32\
+          \u201C,\n           \u201Dsection\u201C: \"\u7AE0\u8282\u5185\u5BB91\"\n\
+          \        },\n        {\n           \u201Dkeywords\u201C: \u201D\u5173\u952E\
+          \u8BCD\u6216\u63CF\u8FF0\u5B57\u7B26\u4E32\u201C,\n           \u201Dsection\u201C\
+          : \"\u7AE0\u8282\u5185\u5BB92\"\n        },\n         {\n           \u201D\
+          keywords\u201C: \u201D\u5173\u952E\u8BCD\u6216\u63CF\u8FF0\u5B57\u7B26\u4E32\
+          \u201C,\n           \u201Dsection\u201C: \"\u7AE0\u8282\u5185\u5BB92\"\n\
+          \        }\n    ]\n}\n"
+        model:
+          completion_params:
+            temperature: 1
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        parameters:
+        - description: "\u591A\u4E2A\u6587\u7AE0\u6BB5\u843D"
+          name: sections
+          required: true
+          type: array[object]
+        query:
+        - '17190400701430'
+        - content
+        reasoning_mode: prompt
+        selected: false
+        title: "\u6BB5\u843D\u62C6\u5206-\u5173\u952E\u8BCD\u751F\u6210"
+        type: parameter-extractor
+        variables: []
+      height: 98
+      id: '1719046777534'
+      position:
+        x: 2462
+        y: 423
+      positionAbsolute:
+        x: 2462
+        y: 423
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        height: 202
+        iterator_selector:
+        - '1719046777534'
+        - sections
+        output_selector:
+        - '1719052032351'
+        - text
+        output_type: array[string]
+        selected: false
+        startNodeType: code
+        start_node_id: '1719051705186'
+        title: "\u8FED\u4EE3"
+        type: iteration
+        width: 982
+      height: 202
+      id: '1719046938333'
+      position:
+        x: 2766
+        y: 367
+      positionAbsolute:
+        x: 2766
+        y: 367
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 982
+      zIndex: 1
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1719054341069'
+          - output
+          variable: answer
+        selected: false
+        title: "\u7ED3\u675F 2"
+        type: end
+      height: 90
+      id: '1719047399639'
+      position:
+        x: 4112
+        y: 423
+      positionAbsolute:
+        x: 4112
+        y: 423
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(item: dict) -> dict:\n    return {\n        \"keywords\"\
+          : item[\"keywords\"],\n        \"section\":  item[\"section\"]\n    }\n"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        isIterationStart: true
+        iteration_id: '1719046938333'
+        outputs:
+          keywords:
+            children: null
+            type: string
+          section:
+            children: null
+            type: string
+        selected: false
+        title: "\u5B57\u6BB5\u62C6\u5206"
+        type: code
+        variables:
+        - value_selector:
+          - '1719046938333'
+          - item
+          variable: item
+      extent: parent
+      height: 54
+      id: '1719051705186'
+      parentId: '1719046938333'
+      position:
+        x: 117
+        y: 85
+      positionAbsolute:
+        x: 2883
+        y: 452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1001
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1719046938333'
+        provider_id: 2ebe9c1d-46ef-4735-93f1-e901de242584
+        provider_name: imageSearch
+        provider_type: workflow
+        selected: false
+        title: imageSearch
+        tool_configurations: {}
+        tool_label: imageSearch
+        tool_name: imageSearch
+        tool_parameters:
+          n:
+            type: constant
+            value: '2'
+          need_llm:
+            type: constant
+            value: '0'
+          q:
+            type: mixed
+            value: '{{#1719051705186.keywords#}}'
+        type: tool
+      extent: parent
+      height: 54
+      id: '1719052020538'
+      parentId: '1719046938333'
+      position:
+        x: 420
+        y: 86.99999997125929
+      positionAbsolute:
+        x: 3186
+        y: 453.9999999712593
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        iteration_id: '1719046938333'
+        model:
+          completion_params:
+            temperature: 1
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: 45685446-9f81-49aa-afd6-cbe5ed5d85a7
+          role: system
+          text: "\u4F60\u662F\u4E00\u4F4D\u4E13\u4E1A\u7684\u6587\u5B57\u5DE5\u4F5C\
+            \u8005\uFF0C\u4F60\u53EF\u4EE5\u80DC\u4EFB\u5404\u79CD\u9886\u57DF\u7684\
+            \u6587\u7AE0\u4EFF\u5199\uFF0C\u8BF7\u4F60\u5BF9\u4EE5\u4E0B\u63D0\u4F9B\
+            \u7684\u53C2\u8003\u6587\u7AE0\u8FDB\u884C\u4EFF\u5199\u5E76\u6392\u7248\
+            \u3002\n\n### \u7EA6\u675F\u6761\u4EF6\n1.\u8BF7\u786E\u4FDD\u751F\u6210\
+            \u7684\u6587\u7AE0\u7B26\u5408\u7F16\u8F91\u89C4\u8303\uFF0C\u4E0D\u8981\
+            \u5305\u542B\u660E\u663E\u7684\u6807\u9898\u3001\u6B63\u6587\u3001\u7ED3\
+            \u8BBA\u7B49\u5B57\u773C\n2.\u8BF7\u5206\u6790\u8BE5\u6BB5\u843D\u662F\
+            \u5426\u9700\u8981\u914D\u56FE\uFF0C\u5982\u679C\u9700\u8981\u8BF7\u8F93\
+            \u51FA\u4EFF\u5199\u540E\u7684\u6BB5\u843D\u540E\u63A5\u914D\u56FE\u4FE1\
+            \u606F,\u5982\u679C\u662F\u5355\u6BB5\u843D\u8BF7\u5C06\u914D\u56FE\u653E\
+            \u7F6E\u4F59\u6BB5\u843D\u524D\uFF0C\u914D\u56FE\u4FE1\u606F\u53EA\u9700\
+            \u8981\u8F93\u51FAmarkdown\u683C\u5F0F\u7684\u56FE\u7247\n3.\u8BF7\u5C3D\
+            \u53EF\u80FD\u9075\u5FAA\u6587\u672C\u63CF\u8FF0\u7684\u5BA2\u89C2\u4E8B\
+            \u5B9E\u4FE1\u606F\uFF0C\u4E0D\u8981\u80E1\u7F16\u4E71\u9020\n4.\u8BF7\
+            \u9075\u5FAA\u6587\u672C\u5185\u5BB9\u7684\u5199\u4F5C\u98CE\u683C\u548C\
+            \u7528\u8BCD\uFF0C\u8F93\u51FA\u7684\u6BB5\u843D\u8BF7\u5C3D\u91CF\u786E\
+            \u4FDD\u884C\u6587\u901A\u987A\u81EA\u7136\n5.\u8BF7\u786E\u8BA4\u6392\
+            \u7248\u4FE1\u606F\u7B26\u5408markdown\u89C4\u8303\u3002\n6.\u8BF7\u4E0D\
+            \u8981\u6DFB\u52A0\u6587\u7AE0\u4EE5\u5916\u7684\u591A\u4F59\u4FE1\u606F\
+            \uFF0C\u5982\u843D\u6B3E\u3001\u51FA\u5904\u3001\u6765\u6E90\u3001\u53D1\
+            \u5E03\u65F6\u95F4\u3001\u4F5C\u8005\u3001\u7F16\u8F91\u7B49\u3002\n###\
+            \ \u53C2\u8003\u6587\u7AE0\u5185\u5BB9\uFF1A\n- \u6807\u9898\uFF1A{{#17190400701430.title#}}\n\
+            \n\n- \u56FE\u7247\uFF1A{{#1719052020538.text#}}\n\n\n\n- \u662F\u5426\
+            \u5355\u6BB5\u843D\uFF1A{{#1719062922068.single_section#}}\n\n\n- \u5185\
+            \u5BB9\uFF1A{{#1719051705186.section#}}\n\n\n\n\n\n\n\n"
+        selected: false
+        title: "\u4EFF\u5199\u914D\u56FE"
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      extent: parent
+      height: 98
+      id: '1719052032351'
+      parentId: '1719046938333'
+      position:
+        x: 723
+        y: 85
+      positionAbsolute:
+        x: 3489
+        y: 452
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        selected: false
+        template: "{% for section in output %}\r\n\r\n{{ section }}\r\n\r\n----------------------------------\r\
+          \n\r\n{% endfor %}"
+        title: "\u8F93\u51FA\u5B8C\u6574\u6587\u7AE0"
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1719046938333'
+          - output
+          variable: output
+      height: 54
+      id: '1719054341069'
+      position:
+        x: 3808
+        y: 423
+      positionAbsolute:
+        x: 3808
+        y: 423
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: '1719057625965'
+            value: '1'
+            variable_selector:
+            - '1718957126125'
+            - single_img
+          logical_operator: and
+        conditions:
+        - comparison_operator: '='
+          id: '1719057625965'
+          value: '1'
+          variable_selector:
+          - '1718957126125'
+          - single_img
+        desc: ''
+        logical_operator: and
+        selected: false
+        title: "\u662F\u5426\u5355\u56FE\u4EFF\u5199"
+        type: if-else
+      height: 126
+      id: '1719057591382'
+      position:
+        x: 1854
+        y: 423
+      positionAbsolute:
+        x: 1854
+        y: 423
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 1
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: 0c5cda37-c01f-4f95-9f34-dd4047e05cb3
+          role: system
+          text: "\u4F60\u662F\u4E00\u4F4D\u4E13\u4E1A\u7684\u6587\u5B57\u5DE5\u4F5C\
+            \u8005\uFF0C\u4F60\u53EF\u4EE5\u80DC\u4EFB\u5404\u79CD\u9886\u57DF\u7684\
+            \u6587\u7AE0\u4EFF\u5199\uFF0C\u8BF7\u4F60\u5BF9\u4EE5\u4E0B\u63D0\u4F9B\
+            \u7684\u53C2\u8003\u6587\u7AE0\u8FDB\u884C\u4EFF\u5199\u5E76\u6392\u7248\
+            \u3002\n### \u7EA6\u675F\u6761\u4EF6\n1.\u8BF7\u786E\u4FDD\u751F\u6210\
+            \u7684\u6587\u7AE0\u7B26\u5408\u7F16\u8F91\u89C4\u8303\uFF0C\u4E0D\u8981\
+            \u5305\u542B\u660E\u663E\u7684\u6807\u9898\u3001\u6B63\u6587\u3001\u7ED3\
+            \u8BBA\u7B49\u5B57\u773C\n2.\u8BF7\u9009\u62E9\u4E00\u5F20\u56FE\u7247\
+            \u4F5C\u4E3A\u6587\u7AE0\u7684\u5C01\u9762\u56FE\uFF0C\u914D\u56FE\u653E\
+            \u5728\u6B63\u6587\u5F00\u59CB\uFF0C\u4EE5markdown\u683C\u5F0F\u8F93\u51FA\
+            \n3.\u8BF7\u5C3D\u53EF\u80FD\u9075\u5FAA\u6587\u672C\u63CF\u8FF0\u7684\
+            \u5BA2\u89C2\u4E8B\u5B9E\u4FE1\u606F\uFF0C\u4E0D\u8981\u80E1\u7F16\u4E71\
+            \u9020\n4.\u8BF7\u9075\u5FAA\u6587\u672C\u5185\u5BB9\u7684\u5199\u4F5C\
+            \u98CE\u683C\u548C\u7528\u8BCD\uFF0C\u8F93\u51FA\u7684\u6BB5\u843D\u8BF7\
+            \u5C3D\u91CF\u786E\u4FDD\u884C\u6587\u901A\u987A\u81EA\u7136\n5.\u8BF7\
+            \u786E\u8BA4\u6392\u7248\u4FE1\u606F\u7B26\u5408markdown\u89C4\u8303\u3002\
+            \n6.\u8BF7\u4E0D\u8981\u6DFB\u52A0\u6587\u7AE0\u4EE5\u5916\u7684\u591A\
+            \u4F59\u4FE1\u606F\uFF0C\u5982\u843D\u6B3E\u3001\u51FA\u5904\u3001\u6765\
+            \u6E90\u3001\u53D1\u5E03\u65F6\u95F4\u3001\u4F5C\u8005\u3001\u7F16\u8F91\
+            \u7B49\n7.\u8BF7\u6CE8\u610F\u4F60\u4EFF\u5199\u7684\u8FD9\u7BC7\u6587\
+            \u7AE0\u4F1A\u6B63\u5F0F\u51FA\u7248\uFF0C\u8BF7\u9075\u5FAA\u5185\u5BB9\
+            \u7F16\u8F91\u89C4\u8303\uFF0C\u907F\u514D\u51FA\u73B0\u6587\u7AE0\u65E0\
+            \u5173\u7684\u5185\u5BB9\u548C\u8349\u7A3F\u3001\u6807\u6CE8\u7B49\u3002\
+            \n\n### \u53C2\u8003\u6587\u7AE0\u5185\u5BB9\uFF1A\n- \u6807\u9898\uFF1A\
+            {{#17190400701430.title#}}\n\n\n- \u56FE\u7247\uFF1A{{#1719057860526.text#}}\n\
+            \n\n\n- \u5185\u5BB9\uFF1A{{#17190400701430.content#}}\n\n\n\n\n### \u8F93\
+            \u51FA\u683C\u5F0F\n```\n\u6587\u7AE0\u6807\u9898\n\u5C01\u9762\u56FE\n\
+            \u4EFF\u5199\u5185\u5BB9\n```\n\n"
+        selected: false
+        title: "\u5355\u56FE\u4EFF\u5199\u914D\u56FE"
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1719057705571'
+      position:
+        x: 2462
+        y: 609
+      positionAbsolute:
+        x: 2462
+        y: 609
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: 2ebe9c1d-46ef-4735-93f1-e901de242584
+        provider_name: imageSearch
+        provider_type: workflow
+        selected: false
+        title: imageSearch
+        tool_configurations: {}
+        tool_label: imageSearch
+        tool_name: imageSearch
+        tool_parameters:
+          n:
+            type: constant
+            value: '1'
+          need_llm:
+            type: constant
+            value: '0'
+          q:
+            type: mixed
+            value: '{{#17190400701430.keywords#}}'
+        type: tool
+      height: 54
+      id: '1719057860526'
+      position:
+        x: 2158
+        y: 609
+      positionAbsolute:
+        x: 2158
+        y: 609
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1719057705571'
+          - text
+          variable: answer
+        selected: false
+        title: "\u7ED3\u675F 3"
+        type: end
+      height: 90
+      id: '1719058363432'
+      position:
+        x: 3135
+        y: 609
+      positionAbsolute:
+        x: 3135
+        y: 609
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(text: str) -> dict:\n    import json\n    data = json.loads(text)\n\
+          \    if len(data.get(\"content\", \"\")) <5:\n        return {\"crawl_empty\"\
+          : 1}\n    return {\"crawl_empty\": 0}\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          crawl_empty:
+            children: null
+            type: number
+        selected: false
+        title: "\u722C\u866B\u7ED3\u679C"
+        type: code
+        variables:
+        - value_selector:
+          - '1718967141318'
+          - text
+          variable: text
+      height: 54
+      id: '1719061181576'
+      position:
+        x: 638
+        y: 271
+      positionAbsolute:
+        x: 638
+        y: 271
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: '1719061385545'
+            value: '1'
+            variable_selector:
+            - '1719061181576'
+            - crawl_empty
+          logical_operator: and
+        conditions:
+        - comparison_operator: '='
+          id: '1719061385545'
+          value: '1'
+          variable_selector:
+          - '1719061181576'
+          - crawl_empty
+        desc: ''
+        logical_operator: and
+        selected: false
+        title: "\u722C\u53D6\u7ED3\u679C\u5224\u65AD"
+        type: if-else
+      height: 126
+      id: '1719061373860'
+      position:
+        x: 942
+        y: 271
+      positionAbsolute:
+        x: 942
+        y: 271
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: "\u62B1\u6B49\u7F51\u9875{{ url }}\u5185\u5BB9\u83B7\u53D6\u5931\
+          \u8D25\u4E86"
+        title: "\u6A21\u677F\u8F6C\u6362 2"
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1718957126125'
+          - url
+          variable: url
+      height: 54
+      id: '1719061473923'
+      position:
+        x: 1246
+        y: 539
+      positionAbsolute:
+        x: 1246
+        y: 539
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: "\u7ED3\u675F 4"
+        type: end
+      height: 54
+      id: '1719061487614'
+      position:
+        x: 1550
+        y: 539
+      positionAbsolute:
+        x: 1550
+        y: 539
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(content: str) -> dict:\n    if len(content) <= 400:\n  \
+          \      return {\"single_section\": \"\u662F\"}\n    return {\"single_section\"\
+          : \"\u5426\"}\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          single_section:
+            children: null
+            type: string
+        selected: false
+        title: "\u662F\u5426\u5355\u6BB5\u843D"
+        type: code
+        variables:
+        - value_selector:
+          - '17190400701430'
+          - content
+          variable: content
+      height: 54
+      id: '1719062922068'
+      position:
+        x: 2158
+        y: 423
+      positionAbsolute:
+        x: 2158
+        y: 423
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -1375
+      y: 86
+      zoom: 0.7
