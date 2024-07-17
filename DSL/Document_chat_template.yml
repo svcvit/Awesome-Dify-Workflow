@@ -1,0 +1,1138 @@
+app:
+  description: ''
+  icon: "\U0001F4D6"
+  icon_background: '#EFF1F5'
+  mode: workflow
+  name: document chat
+kind: app
+version: 0.1.0
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: template-transform
+      id: 1720795610192-false-1720795972410-target
+      source: '1720795610192'
+      sourceHandle: 'false'
+      target: '1720795972410'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: end
+      id: 1720795972410-source-1720795855124-target
+      source: '1720795972410'
+      sourceHandle: source
+      target: '1720795855124'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: question-classifier
+      id: 1720795610192-true-1720795163496-target
+      source: '1720795610192'
+      sourceHandle: 'true'
+      target: '1720795163496'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1720795163496-1-1720800425522-target
+      source: '1720795163496'
+      sourceHandle: '1'
+      target: '1720800425522'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: template-transform
+      id: 1720800425522-source-1720796109721-target
+      source: '1720800425522'
+      sourceHandle: source
+      target: '1720796109721'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1720795163496-2-1720800677771-target
+      source: '1720795163496'
+      sourceHandle: '2'
+      target: '1720800677771'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: template-transform
+      id: 1720800677771-source-1720796134308-target
+      source: '1720800677771'
+      sourceHandle: source
+      target: '1720796134308'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1720795163496-1720796069925-1720800734485-target
+      selected: false
+      source: '1720795163496'
+      sourceHandle: '1720796069925'
+      target: '1720800734485'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: template-transform
+      id: 1720800734485-source-1720796162653-target
+      selected: false
+      source: '1720800734485'
+      sourceHandle: source
+      target: '1720796162653'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1720796109721-source-1720801890321-target
+      source: '1720796109721'
+      sourceHandle: source
+      target: '1720801890321'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1720801890321-source-1720796099103-target
+      source: '1720801890321'
+      sourceHandle: source
+      target: '1720796099103'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1720796134308-source-1720802221378-target
+      source: '1720796134308'
+      sourceHandle: source
+      target: '1720802221378'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1720802221378-source-1720796150141-target
+      source: '1720802221378'
+      sourceHandle: source
+      target: '1720796150141'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1720796162653-source-1720802239924-target
+      selected: false
+      source: '1720796162653'
+      sourceHandle: source
+      target: '1720802239924'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1720802239924-source-1720796175251-target
+      selected: false
+      source: '1720802239924'
+      sourceHandle: source
+      target: '1720796175251'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: template-transform
+      id: 1720794829558-source-1720797295568-target
+      source: '1720794829558'
+      sourceHandle: source
+      target: '1720797295568'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1720797295568-source-1720795218540-target
+      source: '1720797295568'
+      sourceHandle: source
+      target: '1720795218540'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: if-else
+      id: 1720795218540-source-1720795610192-target
+      source: '1720795218540'
+      sourceHandle: source
+      target: '1720795610192'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1720795163496-1720839653345-1720839679262-target
+      source: '1720795163496'
+      sourceHandle: '1720839653345'
+      target: '1720839679262'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: template-transform
+      id: 1720839679262-source-1720839693289-target
+      source: '1720839679262'
+      sourceHandle: source
+      target: '1720839693289'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1720839693289-source-1720839738650-target
+      source: '1720839693289'
+      sourceHandle: source
+      target: '1720839738650'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1720839738650-source-1720839772247-target
+      source: '1720839738650'
+      sourceHandle: source
+      target: '1720839772247'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: input
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: input
+      height: 90
+      id: '1720794829558'
+      position:
+        x: 30
+        y: 263
+      positionAbsolute:
+        x: 30
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        classes:
+        - id: '1'
+          name: "\u5B89\u88C5"
+        - id: '2'
+          name: "\u63D0\u95EE"
+        - id: '1720796069925'
+          name: "\u67B6\u6784"
+        - id: '1720839653345'
+          name: "\u5176\u4ED6"
+        desc: ''
+        instruction: ''
+        instructions: ''
+        model:
+          completion_params:
+            frequency_penalty: 0.5
+            presence_penalty: 0.5
+            temperature: 0.2
+            top_p: 0.75
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        query_variable_selector:
+        - '1720795218540'
+        - text
+        selected: false
+        title: Question Classifier
+        topics: []
+        type: question-classifier
+      height: 264
+      id: '1720795163496'
+      position:
+        x: 1246
+        y: 357
+      positionAbsolute:
+        x: 1246
+        y: 357
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: 86a69d9b-93ca-4abb-8dd5-b4d06e9027fe
+          role: system
+          text: "\u4F60\u662F\u4E00\u4E2A\u610F\u56FE\u5206\u6790\u7CFB\u7EDF\u3002\
+            \u4F60\u4F1A\u6839\u636E\u7528\u6237\u7684\u95EE\u9898\u5BF9\u7528\u6237\
+            \u7684\u610F\u56FE\u8FDB\u884C\u5224\u65AD\u5206\u6790\u3002\n\u63D0\u793A\
+            \uFF1A\n\n\u63D0\u4F9B\u5C3D\u53EF\u80FD\u8BE6\u7EC6\u7684\u63CF\u8FF0\
+            \uFF0C\u5305\u62EC\u5173\u952E\u8BCD\u548C\u80CC\u666F\u4FE1\u606F\u3002\
+            \n\u8BF7\u4F7F\u7528\u6E05\u6670\u7684\u8BED\u8A00\u8868\u8FBE\u60A8\u7684\
+            \u9700\u6C42\uFF0C\u907F\u514D\u4F7F\u7528\u6A21\u7CCA\u6216\u542B\u7CCA\
+            \u4E0D\u6E05\u7684\u8BCD\u6C47\u3002\n\u5982\u679C\u6709\u7279\u5B9A\u7684\
+            \u95EE\u9898\u6216\u76EE\u6807\uFF0C\u8BF7\u5728\u8F93\u5165\u4E2D\u660E\
+            \u786E\u8BF4\u660E\u3002\n\n\u793A\u4F8B\u8F93\u51FA:\n```\n\u7CFB\u7EDF\
+            \uFF1A\u6839\u636E\u60A8\u7684\u8F93\u5165\uFF0C\u60A8\u60F3\u4E86\u89E3\
+            \u5982\u4F55\u5B89\u88C5dify\u3002\u4EE5\u4E0B\u662F\u5173\u4E8E\u4FE1\
+            \u7528\u5361\u7533\u8BF7\u7684\u4E00\u822C\u6D41\u7A0B\uFF1A\n1. \u67E5\
+            \u770B\u4E0D\u540C\u94F6\u884C\u6216\u91D1\u878D\u673A\u6784\u7684\u4FE1\
+            \u7528\u5361\u4EA7\u54C1\u3002\n2. \u51C6\u5907\u6240\u9700\u7684\u4E2A\
+            \u4EBA\u8EAB\u4EFD\u548C\u8D22\u52A1\u4FE1\u606F\u3002\n3. \u586B\u5199\
+            \u7533\u8BF7\u8868\u683C\u5E76\u63D0\u4EA4\u7533\u8BF7\u3002\n4. \u7B49\
+            \u5F85\u94F6\u884C\u5BA1\u6838\u5E76\u51B3\u5B9A\u662F\u5426\u6279\u51C6\
+            \u60A8\u7684\u7533\u8BF7\u3002\n\u5982\u679C\u60A8\u6709\u4EFB\u4F55\u5177\
+            \u4F53\u95EE\u9898\u6216\u9700\u8981\u66F4\u591A\u5E2E\u52A9\uFF0C\u8BF7\
+            \u7EE7\u7EED\u63D0\u4F9B\u76F8\u5173\u4FE1\u606F\u3002\n```"
+        - id: da00128d-8701-4050-8d1a-4f4dae29071c
+          role: user
+          text: "{{#1720797295568.output#}}\n\u8BF7\u7406\u89E3\u5E76\u5206\u6790\u610F\
+            \u56FE\uFF0C\u5224\u65AD\u7528\u6237\u7684\u95EE\u9898\u662F\u5426\u5C5E\
+            \u4E8Edify\u76F8\u5173\u7684\u95EE\u9898\uFF0C\u5982\u679C\u662F\uFF0C\
+            \u8F93\u51FA\u201C\u9700\u8981\u67E5\u8BE2\u6587\u6863\u201D\uFF0C\u5426\
+            \u5219\u8F93\u51FA\u201C\u8BE2\u95EE\u7ED3\u675F\u201D\uFF0C \u5E76\u63D0\
+            \u4F9B\u5173\u952E\u8BCD\u7528\u4E8E\u5206\u6790\u3002"
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1720795218540'
+      position:
+        x: 638
+        y: 263
+      positionAbsolute:
+        x: 638
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: '1720795612635'
+            value: "\u9700\u8981\u67E5\u8BE2"
+            variable_selector:
+            - '1720795218540'
+            - text
+          id: 'true'
+          logical_operator: and
+        conditions:
+        - comparison_operator: contains
+          id: '1720795612635'
+          value: "\u9700\u8981\u67E5\u8BE2"
+          variable_selector:
+          - '1720795218540'
+          - text
+        desc: ''
+        logical_operator: and
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 126
+      id: '1720795610192'
+      position:
+        x: 942
+        y: 263
+      positionAbsolute:
+        x: 942
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1720795972410'
+          - output
+          variable: output
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: '1720795855124'
+      position:
+        x: 1550
+        y: 263
+      positionAbsolute:
+        x: 1550
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: "\u4F60\u7684\u95EE\u9898 {{ arg1 }} \u4E0D\u5C5E\u4E8Edify\u6587\
+          \u6863\u7684\u76F8\u5173\u5185\u5BB9\uFF0C\u8BF7\u91CD\u65B0\u63D0\u95EE\
+          \u3002"
+        title: Template
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1720794829558'
+          - input
+          variable: arg1
+      height: 54
+      id: '1720795972410'
+      position:
+        x: 1246
+        y: 263
+      positionAbsolute:
+        x: 1246
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1720801890321'
+          - text
+          variable: output
+        selected: false
+        title: End 2
+        type: end
+      height: 90
+      id: '1720796099103'
+      position:
+        x: 2462
+        y: 462
+      positionAbsolute:
+        x: 2462
+        y: 462
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: "\u5C5E\u4E8E {{ arg1 }} \u7684\u95EE\u9898\n\u7ED3\u679C\uFF1A\n\
+          {{ arg2[0].content }}\n"
+        title: Template 2
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1720795163496'
+          - class_name
+          variable: arg1
+        - value_selector:
+          - '1720800425522'
+          - result
+          variable: arg2
+      height: 54
+      id: '1720796109721'
+      position:
+        x: 1854
+        y: 462
+      positionAbsolute:
+        x: 1854
+        y: 462
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: "\u5C5E\u4E8E {{ arg1 }} \u7684\u95EE\u9898\n\u7ED3\u679C\uFF1A\n\
+          {{ arg2[0].content }}"
+        title: Template 3
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1720795163496'
+          - class_name
+          variable: arg1
+        - value_selector:
+          - '1720800677771'
+          - result
+          variable: arg2
+      height: 54
+      id: '1720796134308'
+      position:
+        x: 1854
+        y: 600
+      positionAbsolute:
+        x: 1854
+        y: 600
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1720802221378'
+          - text
+          variable: output
+        selected: false
+        title: End 3
+        type: end
+      height: 90
+      id: '1720796150141'
+      position:
+        x: 2462
+        y: 600
+      positionAbsolute:
+        x: 2462
+        y: 600
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: "\u5C5E\u4E8E {{ arg1 }} \u7684\u95EE\u9898\n\u7ED3\u679C\uFF1A\n\
+          {{ arg2[0].content }}"
+        title: Template 4
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1720795163496'
+          - class_name
+          variable: arg1
+        - value_selector:
+          - '1720800734485'
+          - result
+          variable: arg2
+      height: 54
+      id: '1720796162653'
+      position:
+        x: 1854
+        y: 738
+      positionAbsolute:
+        x: 1854
+        y: 738
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1720802239924'
+          - text
+          variable: output
+        selected: false
+        title: End 4
+        type: end
+      height: 90
+      id: '1720796175251'
+      position:
+        x: 2462
+        y: 738
+      positionAbsolute:
+        x: 2462
+        y: 738
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: "\u7528\u6237\u7684\u95EE\u9898\u662F\uFF1A{{ arg1 }}"
+        title: "\u7528\u6237\u95EE\u9898"
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1720794829558'
+          - input
+          variable: arg1
+      height: 54
+      id: '1720797295568'
+      position:
+        x: 334
+        y: 263
+      positionAbsolute:
+        x: 334
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 8c4620fa-15d7-464f-9cb9-561f1a59eb3f
+        desc: ''
+        multiple_retrieval_config:
+          reranking_model:
+            model: rerank-english-v3.0
+            provider: cohere
+          top_k: 2
+        query_variable_selector:
+        - '1720794829558'
+        - input
+        retrieval_mode: single
+        selected: false
+        single_retrieval_config:
+          model:
+            completion_params: {}
+            mode: chat
+            name: gpt-3.5-turbo-0125
+            provider: openai
+        title: Knowledge Retrieval
+        type: knowledge-retrieval
+      height: 54
+      id: '1720800425522'
+      position:
+        x: 1550
+        y: 480
+      positionAbsolute:
+        x: 1550
+        y: 480
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 8c4620fa-15d7-464f-9cb9-561f1a59eb3f
+        desc: ''
+        multiple_retrieval_config:
+          reranking_model:
+            model: rerank-multilingual-v2.0
+            provider: cohere
+          score_threshold: null
+          top_k: 2
+        query_variable_selector:
+        - '1720794829558'
+        - input
+        retrieval_mode: multiple
+        selected: false
+        single_retrieval_config:
+          model:
+            completion_params: {}
+            mode: chat
+            name: gpt-3.5-turbo-0125
+            provider: openai
+        title: Knowledge Retrieval 2
+        type: knowledge-retrieval
+      height: 54
+      id: '1720800677771'
+      position:
+        x: 1550
+        y: 618
+      positionAbsolute:
+        x: 1550
+        y: 618
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 8c4620fa-15d7-464f-9cb9-561f1a59eb3f
+        desc: ''
+        query_variable_selector:
+        - '1720794829558'
+        - input
+        retrieval_mode: single
+        selected: false
+        single_retrieval_config:
+          model:
+            completion_params: {}
+            mode: chat
+            name: gpt-3.5-turbo-0125
+            provider: openai
+        title: Knowledge Retrieval 3
+        type: knowledge-retrieval
+      height: 54
+      id: '1720800734485'
+      position:
+        x: 1550
+        y: 756
+      positionAbsolute:
+        x: 1550
+        y: 756
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1720796109721'
+          - output
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: b66b041c-1284-42c9-9c6f-708dffa77a2f
+          role: system
+          text: 'Use the following context as your learned knowledge, inside <context></context>
+            XML tags.
+
+            <context>
+
+            {{#context#}}
+
+            </context>
+
+            When answer to user:
+
+            - If you don''t know, just say that you don''t know.
+
+            - If you don''t know when you are not sure, ask for clarification.
+
+            Avoid mentioning that you obtained the information from the context.
+
+            And answer according to the language of the user''s question.'
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1720801890321'
+      position:
+        x: 2158
+        y: 462
+      positionAbsolute:
+        x: 2158
+        y: 462
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1720796134308'
+          - output
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: b7ed2ea4-d71b-4855-9570-e2c5de4b81a6
+          role: system
+          text: 'Use the following context as your learned knowledge, inside <context></context>
+            XML tags.
+
+            <context>
+
+            {{#context#}}
+
+            </context>
+
+            When answer to user:
+
+            - If you don''t know, just say that you don''t know.
+
+            - If you don''t know when you are not sure, ask for clarification.
+
+            Avoid mentioning that you obtained the information from the context.
+
+            And answer according to the language of the user''s question.'
+        selected: false
+        title: LLM 3
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1720802221378'
+      position:
+        x: 2158
+        y: 600
+      positionAbsolute:
+        x: 2158
+        y: 600
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1720796162653'
+          - output
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: 7c67e1e8-5cb5-4b2a-9f54-0c1a828820df
+          role: system
+          text: 'Use the following context as your learned knowledge, inside <context></context>
+            XML tags.
+
+            <context>
+
+            {{#context#}}
+
+            </context>
+
+            When answer to user:
+
+            - If you don''t know, just say that you don''t know.
+
+            - If you don''t know when you are not sure, ask for clarification.
+
+            Avoid mentioning that you obtained the information from the context.
+
+            And answer according to the language of the user''s question.'
+        selected: false
+        title: LLM 4
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1720802239924'
+      position:
+        x: 2158
+        y: 738
+      positionAbsolute:
+        x: 2158
+        y: 738
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: winson
+        desc: ''
+        height: 196
+        selected: false
+        showAuthor: true
+        text: "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"\
+          mode\":\"normal\",\"style\":\"\",\"text\":\"\u6A21\u7248\u5316\u7528\u6237\
+          \u7684\u95EE\u9898\uFF0C\u5E76\u4EA4\u7531llm\u7406\u89E3\u5E76\u5224\u65AD\
+          \u662F\u5426\u5C5E\u4E8Edify \u76F8\u5173\u7684\u95EE\u9898\u3002\u5C5E\u4E8E\
+          \uFF0C\u5BF9\u95EE\u9898\u8FDB\u884C\u4E3B\u9898\u5206\u7C7B\uFF1B\u5426\
+          \uFF0C\u8FDB\u884C\u6A21\u7248\u56DE\u590D\",\"type\":\"text\",\"version\"\
+          :1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\"\
+          ,\"version\":1,\"textFormat\":0}],\"direction\":\"ltr\",\"format\":\"\"\
+          ,\"indent\":0,\"type\":\"root\",\"version\":1}}"
+        theme: blue
+        title: ''
+        type: ''
+        width: 242
+      height: 196
+      id: '1720839351323'
+      position:
+        x: 328.2857142857142
+        y: 348
+      positionAbsolute:
+        x: 328.2857142857142
+        y: 348
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 242
+    - data:
+        author: winson
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"\
+          mode\":\"normal\",\"style\":\"\",\"text\":\"\u5BF9\u95EE\u9898\u8FDB\u884C\
+          \u9002\u5F53\u7684\u5206\u7C7B\",\"type\":\"text\",\"version\":1}],\"direction\"\
+          :\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\"\
+          :1,\"textFormat\":0}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"\
+          type\":\"root\",\"version\":1}}"
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1720839594576'
+      position:
+        x: 1244
+        y: 718.5714285714287
+      positionAbsolute:
+        x: 1244
+        y: 718.5714285714287
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        dataset_ids:
+        - 8c4620fa-15d7-464f-9cb9-561f1a59eb3f
+        desc: ''
+        multiple_retrieval_config:
+          reranking_model:
+            model: rerank-english-v3.0
+            provider: cohere
+          top_k: 2
+        query_variable_selector:
+        - '1720794829558'
+        - input
+        retrieval_mode: multiple
+        selected: false
+        single_retrieval_config:
+          model:
+            completion_params: {}
+            mode: chat
+            name: gpt-3.5-turbo-0125
+            provider: openai
+        title: Knowledge Retrieval 4
+        type: knowledge-retrieval
+      height: 54
+      id: '1720839679262'
+      position:
+        x: 1550
+        y: 894
+      positionAbsolute:
+        x: 1550
+        y: 894
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: "\u5C5E\u4E8E {{ arg1 }} \u7684\u95EE\u9898\n\u7ED3\u679C\uFF1A\n\
+          {{ arg2[0].content }}"
+        title: Template 6
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1720795163496'
+          - class_name
+          variable: arg1
+        - value_selector:
+          - '1720839679262'
+          - result
+          variable: arg2
+      height: 54
+      id: '1720839693289'
+      position:
+        x: 1854
+        y: 876
+      positionAbsolute:
+        x: 1854
+        y: 876
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1720839693289'
+          - output
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: 20fb60b1-dced-48f1-bd29-6fdd0088d0f2
+          role: system
+          text: 'Use the following context as your learned knowledge, inside <context></context>
+            XML tags.
+
+            <context>
+
+            {{#context#}}
+
+            </context>
+
+            When answer to user:
+
+            - If you don''t know, just say that you don''t know.
+
+            - If you don''t know when you are not sure, ask for clarification.
+
+            Avoid mentioning that you obtained the information from the context.
+
+            And answer according to the language of the user''s question.'
+        selected: false
+        title: LLM 5
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1720839738650'
+      position:
+        x: 2158
+        y: 876
+      positionAbsolute:
+        x: 2158
+        y: 876
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1720839738650'
+          - text
+          variable: output
+        selected: false
+        title: End 5
+        type: end
+      height: 90
+      id: '1720839772247'
+      position:
+        x: 2462
+        y: 876
+      positionAbsolute:
+        x: 2462
+        y: 876
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -48.181013714669234
+      y: 223.50545029816072
+      zoom: 0.3378069338322775
