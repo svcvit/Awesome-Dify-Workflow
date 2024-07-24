@@ -32,6 +32,7 @@
 | `标题党创作.yml`                 | 一位爆款网文作家                                                                                          | [ghostviper](https://github.com/ghostviper/dify-workflow) |
 | `文章仿写-单图_多图自动搭配.yml` | 文章仿写                                                                                                  | [ghostviper](https://github.com/ghostviper/dify-workflow) |
 | `Text to Card Iteration.yml`     | 自动生成小红书这种卡片。                                                                                  | 🔥Dify Workflow-Agent 设计交流 @Arthur                    |
+| `Dify 运营一条龙.yml`     | 小红书、抖音、微博、B 站一条龙运营  ![](./snapshots/Xnip2024-07-24_16-34-29.jpg)   | [Dify 一键生成多尺寸 Cover 与全平台文案](https://www.youtube.com/watch?v=kCrQp8YZTsQ)                    |
 
 ## 聊天机器人
 
