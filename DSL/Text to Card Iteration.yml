@@ -1,0 +1,252 @@
+app:
+  description: ''
+  icon: "\U0001F916"
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: "\u6587\u5B57\u8F6C\u5361\u7247-\u8FED\u4EE3"
+kind: app
+version: 0.1.0
+workflow:
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: template-transform
+      id: 1721710272051-source-1721731659123-target
+      source: '1721710272051'
+      sourceHandle: source
+      target: '1721731659123'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: http-request
+      id: 1721731659123-source-1721710297246-target
+      source: '1721731659123'
+      sourceHandle: source
+      target: '1721710297246'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: parameter-extractor
+      id: 1721710297246-source-1721731782529-target
+      source: '1721710297246'
+      sourceHandle: source
+      target: '1721731782529'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: end
+      id: 1721731782529-source-1721710662921-target
+      source: '1721731782529'
+      sourceHandle: source
+      target: '1721710662921'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: "\u4F5C\u8005\u540D\u5B57"
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: author
+        - label: "\u6587\u672C\u5185\u5BB9"
+          max_length: null
+          options: []
+          required: true
+          type: paragraph
+          variable: body_text
+      height: 116
+      id: '1721710272051'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config:
+            api_key: 282856915996906898.lqe1hPL1OpFHfNAoMc1PdOToeximcTrw
+            header: X-API-Key
+            type: custom
+          type: api-key
+        body:
+          data: '{{#1721731659123.output#}}'
+          type: json
+        desc: ''
+        headers: Content-Type:application/json
+        method: post
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP Request
+        type: http-request
+        url: https://api.imgrender.cn/open/v1/pics
+        variables: []
+      height: 106
+      id: '1721710297246'
+      position:
+        x: 684
+        y: 282
+      positionAbsolute:
+        x: 684
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1721731782529'
+          - image_url
+          variable: image_url
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: '1721710662921'
+      position:
+        x: 1288
+        y: 282
+      positionAbsolute:
+        x: 1288
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: "{\n    \"width\": 300,\n    \"height\": 800,\n    \"backgroundColor\"\
+          : \"#E0E0E0\",\n    \"texts\":[\n        {\n            \"x\": 50,\n   \
+          \         \"y\": 80,\n            \"text\": \"{{ author }}\",\n        \
+          \    \"font\": \"SourceHanSansSC-Normal\",\n            \"fontSize\": 22,\n\
+          \            \"color\": \"#94C0FA\",\n            \"width\": 100,\n    \
+          \        \"textAlign\": \"left\"\n        },\n        {\n            \"\
+          x\": 50,\n            \"y\": 150,\n            \"text\": \"{{ body_text\
+          \ }}\",\n            \"font\": \"SourceHanSansSC-Bold\",\n            \"\
+          fontSize\": 36,\n            \"color\": \"#0069ED\",\n            \"width\"\
+          : 200,\n            \"textAlign\": \"left\"\n        }\n    ],\n    \"lines\"\
+          :[\n        {\n            \"startX\": 50,\n            \"startY\": 110,\n\
+          \            \"endX\": 250,\n            \"endY\": 110,\n            \"\
+          width\": 1,\n            \"color\": \"#A4BADF\",\n            \"zIndex\"\
+          : 1\n        },\n        {\n            \"startX\": 50,\n            \"\
+          startY\": 720,\n            \"endX\": 250,\n            \"endY\": 720,\n\
+          \            \"width\": 1,\n            \"color\": \"#A4BADF\",\n      \
+          \      \"zIndex\": 1\n        }\n    ]\n}\n"
+        title: Template
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1721710272051'
+          - author
+          variable: author
+        - value_selector:
+          - '1721710272051'
+          - body_text
+          variable: body_text
+      height: 54
+      id: '1721731659123'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: "\u63D0\u53D6URL\u7684\u503C"
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: doubao
+          provider: volcengine_maas
+        parameters:
+        - description: "\u63D0\u53D6\u751F\u6210\u7684\u56FE\u7247\u94FE\u63A5"
+          name: image_url
+          required: false
+          type: string
+        query:
+        - '1721710297246'
+        - body
+        reasoning_mode: prompt
+        selected: false
+        title: Parameter Extractor
+        type: parameter-extractor
+        variables: []
+      height: 98
+      id: '1721731782529'
+      position:
+        x: 988
+        y: 282
+      positionAbsolute:
+        x: 988
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 23.18893383868499
+      y: 43.248071890248184
+      zoom: 1.3019936639441951

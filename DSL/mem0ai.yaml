@@ -1,0 +1,32 @@
+identity: # 工具供应商的基本信息
+  author: tonori # 作者
+  name: mem0ai # 名称，唯一，不允许和其他供应商重名
+  label: # 标签，用于前端展示
+    en_US: mem0ai # 英文标签
+    zh_Hans: mem0ai # 中文标签
+  description: # 描述，用于前端展示
+    en_US: "Unofficial mem0ai provider for use in conjunction with https://github.com/tonori/mem0ai-api." # 英文描述
+    zh_Hans: "与 https://github.com/tonori/mem0ai-api 配合使用的非官方的 mem0ai provider. " # 中文描述
+  icon: logo.png # 图标，需要放置在当前模块的_assets文件夹下
+credentials_for_provider:
+  api_url:
+    type: text-input
+    required: true
+    label:
+      en_US: API URL
+      zh_Hans: API URL
+    placeholder:
+      en_US: "Please input your mem0ai API URL."
+      zh_Hans: "请输入你的 mem0ai API URL"
+    url: "https://github.com/tonori/mem0ai-api"
+
+  api_key:
+    type: secret-input
+    required: false
+    label:
+      en_US: API Key
+      zh_Hans: API Key
+    placeholder:
+      en_US: "Please input your mem0ai API Key."
+      zh_Hans: "请输入你的 mem0ai API Key"
+    url: "https://github.com/tonori/mem0ai-api"

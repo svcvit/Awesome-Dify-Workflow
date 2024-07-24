@@ -38,12 +38,14 @@
 | `搜索大师.yml`               | 通过 SearXNG 进行搜索，再通过 jina 获取搜索内容 | [Winson-030](https://github.com/Winson-030/dify-DSL)      |
 | `标题党创作.yml`               | 一位爆款网文作家 | [ghostviper](https://github.com/ghostviper/dify-workflow)      |
 | `文章仿写-单图_多图自动搭配.yml`       | 文章仿写 | [ghostviper](https://github.com/ghostviper/dify-workflow)      |
+| `Text to Card Iteration.yml`       | 自动生成小红书这种卡片。 | 🔥Dify Workflow-Agent 设计交流  @Arthur     |
 
 ## 聊天机器人
 
 | 文件                       | 描述                                            | 来源                                                      |
 | -------------------------- | ----------------------------------------------- | --------------------------------------------------------- |
 | `根据用户的意图进行回复.yml`     | 根据用户的聊天内容，进行意图判定，根据意图选择不同的工作流路径进行回复，再风格化聊天机器人话术  | 无 |
+| `mem0ai.yaml`     | 一个有记忆的聊天流程，需要搭配 mem0ai 使用，完整代码见来源链接  | [dify-plugin-mem0ai](https://github.com/tonori/dify-plugin-mem0ai) |
 
 ## 代码
 
