@@ -718,7 +718,7 @@ workflow:
         template: "    \"texts\": [\n        {\n            \"x\": 80,\n         \
           \   \"y\": 120,\n            \"text\": \"{{ content }}\",\n            \"\
           width\": 920,\n            \"font\": \"Alibaba-PuHuiTi-Heavy\",\n      \
-          \      \"fontSize\": \"{{ font_size }}\",\n            \"lineHeight\": 24,\n\
+          \      \"fontSize\": \"{{ font_size|float }}\",\n            \"lineHeight\": 24,\n\
           \            \"lineSpacing\": 1.3,\n            \"color\": \"{{ detail_color\
           \ }}\",\n            \"textAlign\": \"left\",\n            \"zIndex\": 1\n\
           \        },\n        {\n            \"x\": 540,\n            \"y\": 1240,\n\
@@ -2301,7 +2301,7 @@ workflow:
         template: "    \"texts\": [\n        {\n            \"x\": 240,\n        \
           \    \"y\": 220,\n            \"text\": \"{{ content }}\",\n           \
           \ \"width\": 1440,\n            \"font\": \"Alibaba-PuHuiTi-Heavy\",\n \
-          \           \"fontSize\": \"{{ font_size }}\",\n            \"lineHeight\"\
+          \           \"fontSize\": \"{{ font_size|float }}\",\n            \"lineHeight\"\
           : 24,\n            \"lineSpacing\": 1.3,\n            \"color\": \"{{ detail_color\
           \ }}\",\n            \"textAlign\": \"left\",\n            \"zIndex\": 1\n\
           \        },\n        {\n            \"x\": 960,\n            \"y\": 860,\n\
