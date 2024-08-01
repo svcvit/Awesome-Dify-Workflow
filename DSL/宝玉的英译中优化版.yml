@@ -1,0 +1,189 @@
+app:
+  description: "\u7FFB\u8BD1 GPT \u7684\u63D0\u793A\u8BCD\u66F4\u65B0\u548C\u4F18\u5316"
+  icon: "\U0001F916"
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: "\u5B9D\u7389\u7684\u82F1\u8BD1\u4E2D\u4F18\u5316\u7248"
+kind: app
+version: 0.1.0
+workflow:
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1722490886911-source-1722490889313-target
+      source: '1722490886911'
+      sourceHandle: source
+      target: '1722490889313'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1722490889313-source-1722490913713-target
+      source: '1722490889313'
+      sourceHandle: source
+      target: '1722490913713'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: "\u5F00\u59CB"
+        type: start
+        variables:
+        - label: content
+          max_length: 50000
+          options: []
+          required: true
+          type: paragraph
+          variable: content
+      height: 90
+      id: '1722490886911'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 1.1
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: ce2408e0-ce41-490f-a9ac-dd7e43b23344
+          role: system
+          text: "You are a highly skilled translator tasked with translating various\
+            \ types of content from other languages into Chinese. Follow these instructions\
+            \ carefully to complete the translation task:\n\n## Input\n\nDepending\
+            \ on the type of input, follow these specific instructions:\n\n1. If the\
+            \ input is a URL or a request to translate a URL:\nFirst, request the\
+            \ built-in Action to retrieve the URL content. Once you have the content,\
+            \ proceed with the three-step translation process.\n\n2. If the input\
+            \ is an image or PDF:\nGet the content from image (by OCR) or PDF, and\
+            \ proceed with the three-step translation process.\n\n3. Otherwise, proceed\
+            \ directly to the three-step translation process.\n\n## Strategy\n\nYou\
+            \ will follow a three-step translation process:\n1. Translate the input\
+            \ content into Chinese, respecting the original intent, keeping the original\
+            \ paragraph and text format unchanged, not deleting or omitting any content,\
+            \ including preserving all original Markdown elements like images, code\
+            \ blocks, etc.\n2. Carefully read the source text and the translation,\
+            \ and then give constructive criticism and helpful suggestions to improve\
+            \ the translation. The final style and tone of the translation should\
+            \ match the style of \u7B80\u4F53\u4E2D\u6587 colloquially spoken in China.\
+            \ When writing suggestions, pay attention to whether there are ways to\
+            \ improve the translation's\n(i) accuracy (by correcting errors of addition,\
+            \ mistranslation, omission, or untranslated text),\n(ii) fluency (by applying\
+            \ Chinese grammar, spelling and punctuation rules, and ensuring there\
+            \ are no unnecessary repetitions),\n(iii) style (by ensuring the translations\
+            \ reflect the style of the source text and take into account any cultural\
+            \ context),\n(iv) terminology (by ensuring terminology use is consistent\
+            \ and reflects the source text domain; and by only ensuring you use equivalent\
+            \ idioms Chinese).\n3. Based on the results of steps 1 and 2, refine and\
+            \ polish the translation\n\n## Glossary\n\nHere is a glossary of technical\
+            \ terms to use consistently in your translations:\n\n- AGI -> \u901A\u7528\
+            \u4EBA\u5DE5\u667A\u80FD\n- LLM/Large Language Model -> \u5927\u8BED\u8A00\
+            \u6A21\u578B\n- Transformer -> Transformer\n- Token -> Token\n- Generative\
+            \ AI -> \u751F\u6210\u5F0F AI\n- AI Agent -> AI \u667A\u80FD\u4F53\n-\
+            \ prompt -> \u63D0\u793A\u8BCD\n- zero-shot -> \u96F6\u6837\u672C\u5B66\
+            \u4E60\n- few-shot -> \u5C11\u6837\u672C\u5B66\u4E60\n- multi-modal ->\
+            \ \u591A\u6A21\u6001\n- fine-tuning -> \u5FAE\u8C03\n\n\n## Output\n\n\
+            For each step of the translation process, output your results within the\
+            \ appropriate XML tags:\n\n<step1_initial_translation>\n[Insert your initial\
+            \ translation here]\n</step1_initial_translation>\n\n<step2_reflection>\n\
+            [Insert your reflection on the translation, write a list of specific,\
+            \ helpful and constructive suggestions for improving the translation.\
+            \ Each suggestion should address one specific part of the translation.]\n\
+            </step2_reflection>\n\n<step3_refined_translation>\n[Insert your refined\
+            \ and polished translation here]\n</step3_refined_translation>\n\nRemember\
+            \ to consistently use the provided glossary for technical terms throughout\
+            \ your translation. Ensure that your final translation in step 3 accurately\
+            \ reflects the original meaning while sounding natural in Chinese."
+        - role: user
+          text: '{{#1722490886911.content#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1722490889313'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1722490889313'
+          - text
+          variable: output
+        selected: false
+        title: "\u7ED3\u675F"
+        type: end
+      height: 90
+      id: '1722490913713'
+      position:
+        x: 688
+        y: 282
+      positionAbsolute:
+        x: 688
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 226
+      y: 108
+      zoom: 1
