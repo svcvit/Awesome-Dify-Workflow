@@ -1,0 +1,1847 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 记忆测试
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 54d80fcb-a8be-43c7-8090-88e42237f341
+    name: p_info
+    value: ''
+    value_type: string
+  - description: ''
+    id: 94d887cc-1f01-4a80-8e70-c04b17e2f481
+    name: task
+    value: ''
+    value_type: string
+  - description: ''
+    id: d254ca69-7db2-432e-846f-7bd5ae90cb83
+    name: topic
+    value: ''
+    value_type: string
+  - description: SummaryMemory
+    id: 003603fe-9bce-4206-95b1-4e28f464c97e
+    name: mem
+    value: []
+    value_type: array[object]
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: true
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1726641382209-source-1726644698291-target
+      selected: false
+      source: '1726641382209'
+      sourceHandle: source
+      target: '1726644698291'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: code
+      id: 1726642645580-source-1726645701585-target
+      selected: false
+      source: '1726642645580'
+      sourceHandle: source
+      target: '1726645701585'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: code
+      id: 1726644948114-source-1726645701585-target
+      selected: false
+      source: '1726644948114'
+      sourceHandle: source
+      target: '1726645701585'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: code
+      id: 1726644963870-source-1726645701585-target
+      selected: false
+      source: '1726644963870'
+      sourceHandle: source
+      target: '1726645701585'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: code
+      id: 1726644974452-source-1726645701585-target
+      selected: false
+      source: '1726644974452'
+      sourceHandle: source
+      target: '1726645701585'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1726645343096-false-1726646928955-target
+      selected: false
+      source: '1726645343096'
+      sourceHandle: 'false'
+      target: '1726646928955'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1726646928955-true-1726647043239-target
+      selected: false
+      source: '1726646928955'
+      sourceHandle: 'true'
+      target: '1726647043239'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1726646928955-false-1726647065155-target
+      selected: false
+      source: '1726646928955'
+      sourceHandle: 'false'
+      target: '1726647065155'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: if-else
+      id: 1726647530848-source-1726647712433-target
+      selected: false
+      source: '1726647530848'
+      sourceHandle: source
+      target: '1726647712433'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1726647712433-true-1726647724686-target
+      selected: false
+      source: '1726647712433'
+      sourceHandle: 'true'
+      target: '1726647724686'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1726647712433-true-1726647765515-target
+      selected: false
+      source: '1726647712433'
+      sourceHandle: 'true'
+      target: '1726647765515'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1726647712433-true-1726647792734-target
+      selected: false
+      source: '1726647712433'
+      sourceHandle: 'true'
+      target: '1726647792734'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1726647724686-source-1726647815982-target
+      selected: false
+      source: '1726647724686'
+      sourceHandle: source
+      target: '1726647815982'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1726647765515-source-1726647815982-target
+      selected: false
+      source: '1726647765515'
+      sourceHandle: source
+      target: '1726647815982'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1726647792734-source-1726647815982-target
+      selected: false
+      source: '1726647792734'
+      sourceHandle: source
+      target: '1726647815982'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1726647815982-source-1726647831328-target
+      selected: false
+      source: '1726647815982'
+      sourceHandle: source
+      target: '1726647831328'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1726647712433-false-1726647861883-target
+      selected: false
+      source: '1726647712433'
+      sourceHandle: 'false'
+      target: '1726647861883'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1726644698291-source-1726648676648-target
+      source: '1726644698291'
+      sourceHandle: source
+      target: '1726648676648'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1726648676648-true-1726644974452-target
+      source: '1726648676648'
+      sourceHandle: 'true'
+      target: '1726644974452'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1726648676648-true-1726644963870-target
+      source: '1726648676648'
+      sourceHandle: 'true'
+      target: '1726644963870'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1726648676648-true-1726644948114-target
+      source: '1726648676648'
+      sourceHandle: 'true'
+      target: '1726644948114'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1726648676648-true-1726642645580-target
+      source: '1726648676648'
+      sourceHandle: 'true'
+      target: '1726642645580'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: code
+      id: 1726648676648-false-1726649035816-target
+      source: '1726648676648'
+      sourceHandle: 'false'
+      target: '1726649035816'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1726649044498-true-1726648763086-target
+      source: '1726649044498'
+      sourceHandle: 'true'
+      target: '1726648763086'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1726641382209-source-1726645343096-target
+      source: '1726641382209'
+      sourceHandle: source
+      target: '1726645343096'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: variable-aggregator
+        targetType: llm
+      id: 1726649891248-source-1726647530848-target
+      source: '1726649891248'
+      sourceHandle: source
+      target: '1726647530848'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1726647043239-source-1726649891248-target
+      source: '1726647043239'
+      sourceHandle: source
+      target: '1726649891248'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1726647065155-source-1726649891248-target
+      source: '1726647065155'
+      sourceHandle: source
+      target: '1726649891248'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: code
+      id: 1726645343096-true-1726714060257-target
+      source: '1726645343096'
+      sourceHandle: 'true'
+      target: '1726714060257'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1726714060257-source-1726714102029-target
+      source: '1726714060257'
+      sourceHandle: source
+      target: '1726714102029'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1726714102029-true-1726714126906-target
+      source: '1726714102029'
+      sourceHandle: 'true'
+      target: '1726714126906'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1726714102029-true-1726714203524-target
+      source: '1726714102029'
+      sourceHandle: 'true'
+      target: '1726714203524'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1726714102029-true-1726714210774-target
+      source: '1726714102029'
+      sourceHandle: 'true'
+      target: '1726714210774'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1726714126906-source-1726714238559-target
+      source: '1726714126906'
+      sourceHandle: source
+      target: '1726714238559'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1726714203524-source-1726714238559-target
+      source: '1726714203524'
+      sourceHandle: source
+      target: '1726714238559'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1726714210774-source-1726714238559-target
+      source: '1726714210774'
+      sourceHandle: source
+      target: '1726714238559'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1726714238559-source-1726714257723-target
+      source: '1726714238559'
+      sourceHandle: source
+      target: '1726714257723'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1726714102029-true-1726714400675-target
+      source: '1726714102029'
+      sourceHandle: 'true'
+      target: '1726714400675'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1726714102029-true-1726714547097-target
+      source: '1726714102029'
+      sourceHandle: 'true'
+      target: '1726714547097'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1726714400675-source-1726714238559-target
+      source: '1726714400675'
+      sourceHandle: source
+      target: '1726714238559'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1726714547097-source-1726714238559-target
+      source: '1726714547097'
+      sourceHandle: source
+      target: '1726714238559'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1726714102029-false-1726714853670-target
+      source: '1726714102029'
+      sourceHandle: 'false'
+      target: '1726714853670'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1726649035816-source-1726649044498-target
+      source: '1726649035816'
+      sourceHandle: source
+      target: '1726649044498'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 1726648763086-source-1726715181866-target
+      source: '1726648763086'
+      sourceHandle: source
+      target: '1726715181866'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: code
+      id: 1726715181866-source-1726715205152-target
+      source: '1726715181866'
+      sourceHandle: source
+      target: '1726715205152'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: assigner
+      id: 1726715205152-source-1726648705748-target
+      source: '1726715205152'
+      sourceHandle: source
+      target: '1726648705748'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1726641382209'
+      position:
+        x: 30
+        y: 266
+      positionAbsolute:
+        x: 30
+        y: 266
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - p_info
+        desc: ''
+        input_variable_selector:
+        - '1726644698291'
+        - p_info
+        selected: false
+        title: 长期记忆
+        type: assigner
+        write_mode: over-write
+      height: 132
+      id: '1726642645580'
+      position:
+        x: 942
+        y: 782
+      positionAbsolute:
+        x: 942
+        y: 782
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main():\n    return {\n        \"p_info\": '''{\n  \"基本信息\":\
+          \ {\n    \"姓名\": \"张三\",\n    \"性别\": \"男\",\n    \"年龄\": 45,\n    \"身高\"\
+          : 175,\n    \"体重\": 75,\n    \"手机号\": \"13800138000\"\n  },\n  \"疾病信息\"\
+          : {\n    \"现病史\": \"高血压\",\n    “确诊时间”: \"2021 年确诊高血压\",\n    \"疾病指标\":\"\
+          高压 180、低压 90\",\n    \"既往史\": [\"糖尿病\", \"慢性支气管炎\"],\n    \"家族史\": [\"心脏病\"\
+          , \"中风\"],\n    \"过敏史\": [\"青霉素\"],\n    \"近期不舒服\": [\"头痛\", \"胸闷\", \"\
+          视力模糊\"]\n  },\n  \"生活习惯\": {\n    \"运动\": \"每周 3 次跑步，每次 30 分钟\",\n    \"\
+          饮食\": \"低盐低脂饮食\",\n    \"睡眠\": \"每晚 7 小时\",\n    \"吸烟\": \"不吸烟\",\n    \"\
+          饮酒\": \"偶尔饮酒，每周 1-2 次\"\n  },\n  \"用药信息\": {\n    \"用药种类\": [\"洛伐他汀\", \"\
+          阿司匹林\"],\n    \"用药时长\": [\"洛伐他汀服用半年多\", \"阿司匹林半个月\"],\n    \"服药状态\": [\"\
+          洛伐他汀服用中\", \"阿司匹林服用中\"],\n    \"服用保健品\"：[\"脑白金\",\"阿胶\",\"枸杞\"]\n  },\n\
+          \  \"注意事项\": [\n    \"2024-1-28 反应最近有感冒，注意通风\",\n    \"2024-1-28 参加答题比赛\"\
+          \n  ]\n}''', \"task\": \"周一：提醒用药；周二：健康关爱；周五：实时热点\", \"topic\": '''台风席卷上海''',\
+          \ \"mem\": \"无\"\n    }\n"
+        code_language: python3
+        desc: 获取用户相关的信息
+        outputs:
+          mem:
+            children: null
+            type: string
+          p_info:
+            children: null
+            type: string
+          task:
+            children: null
+            type: string
+          topic:
+            children: null
+            type: string
+        selected: false
+        title: 获取用户信息
+        type: code
+        variables: []
+      height: 82
+      id: '1726644698291'
+      position:
+        x: 334
+        y: 266
+      positionAbsolute:
+        x: 334
+        y: 266
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - task
+        desc: ''
+        input_variable_selector:
+        - '1726644698291'
+        - task
+        selected: false
+        title: 本周任务
+        type: assigner
+        write_mode: over-write
+      height: 132
+      id: '1726644948114'
+      position:
+        x: 942
+        y: 610
+      positionAbsolute:
+        x: 942
+        y: 610
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - topic
+        desc: ''
+        input_variable_selector:
+        - '1726644698291'
+        - topic
+        selected: false
+        title: 可用话题
+        type: assigner
+        write_mode: over-write
+      height: 132
+      id: '1726644963870'
+      position:
+        x: 942
+        y: 438
+      positionAbsolute:
+        x: 942
+        y: 438
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - mem
+        desc: ''
+        input_variable_selector:
+        - '1726644698291'
+        - mem
+        selected: false
+        title: 短期记忆重置
+        type: assigner
+        write_mode: clear
+      height: 132
+      id: '1726644974452'
+      position:
+        x: 942
+        y: 266
+      positionAbsolute:
+        x: 942
+        y: 266
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: b1a44692-47c2-44e7-a82e-b5c18df52de6
+            value: 主动触达
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: and
+        desc: 早晚各一次，比较合适。
+        selected: false
+        title: 任务
+        type: if-else
+      height: 154
+      id: '1726645343096'
+      position:
+        x: 334
+        y: 1051.5
+      positionAbsolute:
+        x: 334
+        y: 1051.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main():\n    return {\n        \"result\": \"初始化完成\",\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 初始化完成
+        type: code
+        variables: []
+      height: 54
+      id: '1726645701585'
+      position:
+        x: 1246
+        y: 438
+      positionAbsolute:
+        x: 1246
+        y: 438
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: b24c1755-37c5-4f6d-8045-5d668d2662c8
+            value: isimage
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 图片
+        type: if-else
+      height: 126
+      id: '1726646928955'
+      position:
+        x: 638
+        y: 1087.5
+      positionAbsolute:
+        x: 638
+        y: 1087.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-vl-plus
+          provider: tongyi
+        prompt_template:
+        - id: 138e40da-5639-4510-a6c0-04628483769e
+          role: system
+          text: 你是一个线上健康管家，帮助慢病患者进行健康管理和日常的答疑。
+        selected: false
+        title: 图片回复
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1726647043239'
+      position:
+        x: 942
+        y: 1104.5
+      positionAbsolute:
+        x: 942
+        y: 1104.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: 220c85f2-4a35-4a8e-874e-6a033c3b6304
+          role: system
+          text: '你是一个线上健康管家，帮助慢病患者进行健康管理和日常的答疑。尽可能简单答复，如果涉及到医疗问题，请备注信息仅供参考，专业医疗建议请咨询医生。
+
+
+            '
+        - id: 1615a34c-9cfc-4eb7-96fe-205d708c1259
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: 主聊天流程
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726647065155'
+      position:
+        x: 942
+        y: 1242.5
+      positionAbsolute:
+        x: 942
+        y: 1242.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        output_type: string
+        selected: false
+        title: 变量聚合器 2
+        type: variable-aggregator
+        variables:
+        - - '1726647065155'
+          - text
+        - - '1726647043239'
+          - text
+      height: 139
+      id: '1726649891248'
+      position:
+        x: 1246
+        y: 1045
+      positionAbsolute:
+        x: 1246
+        y: 1045
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: 109877aa-ce80-4b01-ac75-53132d636468
+          role: system
+          text: '你是一个聊天内容质检员，你来评价回复内容是否合理。
+
+
+            要求如下：
+
+            1、文字不要超过50个字符
+
+            2、上下文不违和
+
+            3、患者看到内容，有回复意愿'
+        - id: 627a2d98-e8ca-4184-bd74-c20fb4afbf14
+          role: user
+          text: '这是用户发送的内容:
+
+            {{#sys.query#}}
+
+
+            这是计划回复的内容:
+
+            {{#1726649891248.output#}}'
+        selected: false
+        title: 是否需要CoT
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726647530848'
+      position:
+        x: 1550
+        y: 1087.5
+      positionAbsolute:
+        x: 1550
+        y: 1087.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 428bac97-13fb-4a3f-bad3-17a73f666974
+            value: 不合理
+            varType: string
+            variable_selector:
+            - '1726647530848'
+            - text
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支 3
+        type: if-else
+      height: 126
+      id: '1726647712433'
+      position:
+        x: 1854
+        y: 1082.5
+      positionAbsolute:
+        x: 1854
+        y: 1082.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: eed11a2f-9267-492e-b77a-c209786c344a
+          role: system
+          text: 你是一个线上健康管家，帮助慢病患者进行健康管理和日常的答疑。提示词待更新。
+        selected: false
+        title: 时间上的合理性
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726647724686'
+      position:
+        x: 2158
+        y: 1065.5
+      positionAbsolute:
+        x: 2158
+        y: 1065.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: b2bf3fb2-0049-442f-bc83-30b2555f72fa
+          role: system
+          text: 你是一个线上健康管家，帮助慢病患者进行健康管理和日常的答疑。提示词待更新。
+        selected: false
+        title: 内容上的合理性
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726647765515'
+      position:
+        x: 2158
+        y: 1203.5
+      positionAbsolute:
+        x: 2158
+        y: 1203.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: c4d9f651-f5aa-4a84-8b8e-06f34e1e63ef
+          role: system
+          text: 你是一个线上健康管家，帮助慢病患者进行健康管理和日常的答疑。提示词待更新。
+        selected: false
+        title: 上下文的内容
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726647792734'
+      position:
+        x: 2158
+        y: 1341.5
+      positionAbsolute:
+        x: 2158
+        y: 1341.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: bafd4830-8c3f-457a-8cd2-d913393b37a7
+          role: system
+          text: 你是一个线上健康管家，帮助慢病患者进行健康管理和日常的答疑。
+        selected: false
+        title: 重新输出回复
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726647815982'
+      position:
+        x: 2462
+        y: 1242.5
+      positionAbsolute:
+        x: 2462
+        y: 1242.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1726647815982.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 107
+      id: '1726647831328'
+      position:
+        x: 2766
+        y: 1225.5
+      positionAbsolute:
+        x: 2766
+        y: 1225.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1726649891248.output#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 107
+      id: '1726647861883'
+      position:
+        x: 2158
+        y: 1479.5
+      positionAbsolute:
+        x: 2158
+        y: 1479.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: ea362f54-05da-4d6a-9cbe-19da466be70e
+            numberVarType: constant
+            value: '1'
+            varType: number
+            variable_selector:
+            - sys
+            - dialogue_count
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 会话轮数
+        type: if-else
+      height: 126
+      id: '1726648676648'
+      position:
+        x: 638
+        y: 266
+      positionAbsolute:
+        x: 638
+        y: 266
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - mem
+        desc: ''
+        input_variable_selector:
+        - '1726715205152'
+        - result
+        selected: false
+        title: 短期记忆追加
+        type: assigner
+        write_mode: append
+      height: 132
+      id: '1726648705748'
+      position:
+        x: 2462
+        y: 915
+      positionAbsolute:
+        x: 2462
+        y: 915
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 20
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: a5833ce3-5dfd-4cc9-9eb3-d220a5495528
+          role: system
+          text: 请根据以下最近的对话内容，生成一个以用户消息为中心的总结。总结应重点关注用户的需求、偏好和问题，提取出用户发起的咨询或讨论的关键信息，例如健康咨询、产品偏好等。请确保总结简洁明了，以便后续使用。
+        selected: false
+        title: 记忆生成
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726648763086'
+      position:
+        x: 1550
+        y: 915
+      positionAbsolute:
+        x: 1550
+        y: 915
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(count):\n    if count%3==0:\n        return {\n        \
+          \    \"result\": 1,\n        }\n    else:\n        return {\n          \
+          \  \"result\": 0,\n        }\n\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: number
+        selected: false
+        title: 是否需要更新记忆
+        type: code
+        variables:
+        - value_selector:
+          - sys
+          - dialogue_count
+          variable: count
+      height: 54
+      id: '1726649035816'
+      position:
+        x: 942
+        y: 954
+      positionAbsolute:
+        x: 942
+        y: 954
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: 5a11111f-b17b-4d59-b1c7-08e4cba23855
+            value: '1'
+            varType: number
+            variable_selector:
+            - '1726649035816'
+            - result
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 分支
+        type: if-else
+      height: 126
+      id: '1726649044498'
+      position:
+        x: 1246
+        y: 879
+      positionAbsolute:
+        x: 1246
+        y: 879
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(arg1):\n    return {\n        \"result\": \"1\",\n    }\n"
+        code_language: python3
+        desc: 判定时机是否合适
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 该不该发
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - mem
+          variable: arg1
+      height: 82
+      id: '1726714060257'
+      position:
+        x: 638
+        y: 1399.5
+      positionAbsolute:
+        x: 638
+        y: 1399.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 3882bdc9-4df8-4b6e-85be-0b236d50b5aa
+            value: '1'
+            varType: string
+            variable_selector:
+            - '1726714060257'
+            - result
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 判定
+        type: if-else
+      height: 126
+      id: '1726714102029'
+      position:
+        x: 942
+        y: 1380.5
+      positionAbsolute:
+        x: 942
+        y: 1380.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: ba792116-023e-43f0-a780-ba53bdb1f882
+          role: system
+          text: '你是一个线上健康管家，帮助慢病患者进行健康管理和日常的答疑。尽可能简单答复，如果涉及到医疗问题，请备注信息仅供参考，专业医疗建议请咨询医生。
+
+
+            目前患者已经有2个小时没有互动了，请根据聊天记录和记忆内容，追问用户。忽略最后一条消息【主动触达】'
+        selected: false
+        title: 追问
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726714126906'
+      position:
+        x: 1246
+        y: 1355.5
+      positionAbsolute:
+        x: 1246
+        y: 1355.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: 35c098ea-aa72-4e54-a547-49718612fbbf
+          role: system
+          text: '你是一个线上健康管家，帮助慢病患者进行健康管理和日常的答疑。尽可能简单答复，如果涉及到医疗问题，请备注信息仅供参考，专业医疗建议请咨询医生。
+
+
+            目前患者已经有2个小时没有互动了，请根据聊天记录和记忆内容，从下面的话题中选择合适的内容，与用户进行互动。话题内容我会放在xml的标签<topic>中
+
+
+            <topic>
+
+            {{#conversation.topic#}}
+
+            </topic>'
+        selected: false
+        title: 找热点话题
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726714203524'
+      position:
+        x: 1246
+        y: 1493.5
+      positionAbsolute:
+        x: 1246
+        y: 1493.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: 38320469-f0b4-44e2-8666-d43733968ba4
+          role: system
+          text: '你是一个线上健康管家，帮助慢病患者进行健康管理和日常的答疑。尽可能简单答复，如果涉及到医疗问题，请备注信息仅供参考，专业医疗建议请咨询医生。
+
+
+            目前患者已经有2个小时没有互动了，请根据聊天记录和记忆内容，提醒用户及时购药。忽略最后一条消息【主动触达】'
+        selected: false
+        title: 购药任务
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726714210774'
+      position:
+        x: 1246
+        y: 1631.5
+      positionAbsolute:
+        x: 1246
+        y: 1631.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: b727b48f-2906-4c86-a9f7-d5b419de22c5
+          role: system
+          text: '你是一个聊天内容质检员，你来评价回复内容是否合理。从中挑选出最合适的内容，进行回复。我会把参考内容放在xml标签<reply>中
+
+
+            <reply>
+
+            - {{#1726714203524.text#}}
+
+            - {{#1726714210774.text#}}
+
+            - {{#1726714400675.text#}}
+
+            - {{#1726714547097.text#}}
+
+            </reply>'
+        selected: false
+        title: 综合评价
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726714238559'
+      position:
+        x: 1550
+        y: 1653.5
+      positionAbsolute:
+        x: 1550
+        y: 1653.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1726714238559.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 107
+      id: '1726714257723'
+      position:
+        x: 1854
+        y: 1658
+      positionAbsolute:
+        x: 1854
+        y: 1658
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: afaa0ad4-eff3-4d3f-a005-8d11cd0eb60c
+          role: system
+          text: '你是一个线上健康管家，帮助慢病患者进行健康管理和日常的答疑。尽可能简单答复，如果涉及到医疗问题，请备注信息仅供参考，专业医疗建议请咨询医生。
+
+
+            目前患者已经有2个小时没有互动了，请根据聊天记录和记忆内容，对用户进行主动关怀。忽略最后一条消息【主动触达】'
+        selected: false
+        title: 近期关怀
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726714400675'
+      position:
+        x: 1246
+        y: 1769.5
+      positionAbsolute:
+        x: 1246
+        y: 1769.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Doubao-Pro-32k
+          provider: volcengine_maas
+        prompt_template:
+        - id: af77a5d3-e57f-41cf-af11-695e7fa3de09
+          role: system
+          text: '你是一个线上健康管家，帮助慢病患者进行健康管理和日常的答疑。尽可能简单答复，如果涉及到医疗问题，请备注信息仅供参考，专业医疗建议请咨询医生。
+
+
+            目前患者已经有2个小时没有互动了，请根据聊天记录和记忆内容，与患者进行二次互动。忽略最后一条消息【主动触达】'
+        selected: false
+        title: 没话找话
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1726714547097'
+      position:
+        x: 1246
+        y: 1907.5
+      positionAbsolute:
+        x: 1246
+        y: 1907.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '###STOP###'
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 104
+      id: '1726714853670'
+      position:
+        x: 1246
+        y: 2045.5
+      positionAbsolute:
+        x: 1246
+        y: 2045.5
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: 获取当前时间
+        tool_configurations:
+          format: '%Y-%m-%d %H:%M:%S'
+          timezone: Asia/Shanghai
+        tool_label: 获取当前时间
+        tool_name: current_time
+        tool_parameters: {}
+        type: tool
+      height: 116
+      id: '1726715181866'
+      position:
+        x: 1854
+        y: 915
+      positionAbsolute:
+        x: 1854
+        y: 915
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(mem,datetime_now):\n    return {\n        \"result\": {f\"\
+          {datetime_now}\":mem},\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: object
+        selected: false
+        title: 组织记忆和时间
+        type: code
+        variables:
+        - value_selector:
+          - '1726648763086'
+          - text
+          variable: mem
+        - value_selector:
+          - '1726715181866'
+          - text
+          variable: datetime_now
+      height: 54
+      id: '1726715205152'
+      position:
+        x: 2158
+        y: 915
+      positionAbsolute:
+        x: 2158
+        y: 915
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: svcvit
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"通过API，获取用户的基本信息，本周触达任务","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1726715379676'
+      position:
+        x: 342.6983552120414
+        y: 374.69291670738494
+      positionAbsolute:
+        x: 342.6983552120414
+        y: 374.69291670738494
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    viewport:
+      x: 230.00181176605088
+      y: -65.86226923164628
+      zoom: 0.5077908174913034
