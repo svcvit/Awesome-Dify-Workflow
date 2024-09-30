@@ -1,0 +1,491 @@
+app:
+  description: 使用常规大语言模型模拟 o1 的思维链，具备更强的推理能力。
+  icon: 🍓
+  icon_background: '#D1E0FF'
+  mode: advanced-chat
+  name: llm→o1
+  use_icon_as_answer_icon: true
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: llm
+      id: 1727186697955-llm
+      selected: false
+      source: '1727186697955'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: llm-source-1727188958486-target
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: '1727188958486'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1727189041788'
+        sourceType: iteration-start
+        targetType: code
+      id: 1727189041788start-source-1727189052583-target
+      selected: false
+      source: 1727189041788start
+      sourceHandle: source
+      target: '1727189052583'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1727189041788'
+        sourceType: code
+        targetType: llm
+      id: 1727189052583-source-1727189055973-target
+      selected: false
+      source: '1727189052583'
+      sourceHandle: source
+      target: '1727189055973'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: template-transform
+      id: 1727189041788-source-1727189088392-target
+      selected: false
+      source: '1727189041788'
+      sourceHandle: source
+      target: '1727189088392'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1727189088392-source-1727189151263-target
+      selected: false
+      source: '1727189088392'
+      sourceHandle: source
+      target: '1727189151263'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1727189151263-source-answer-target
+      selected: false
+      source: '1727189151263'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: iteration
+      id: 1727188958486-source-1727189041788-target
+      selected: false
+      source: '1727188958486'
+      sourceHandle: source
+      target: '1727189041788'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1727186697955'
+      position:
+        x: -468.24076313347575
+        y: 267.1704432399898
+      positionAbsolute:
+        x: -468.24076313347575
+        y: 267.1704432399898
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        prompt_template:
+        - edition_type: basic
+          id: 0d040cf5-7c6e-4bdc-bf09-96a5c17bc3fa
+          role: system
+          text: 你是一个能够进行详细、逐步思考的AI助手。收到问题后，不要直接给出答案，而是通过分步推理将问题拆分出相应的解题步骤，只需给出步骤的名称和任务描述，不要自行解答，至少要保证有
+            3 个步骤。
+        selected: false
+        title: 任务拆解
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: llm
+      position:
+        x: -468.24076313347575
+        y: 378.7262570149305
+      positionAbsolute:
+        x: -468.24076313347575
+        y: 378.7262570149305
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '## 问题分析步骤
+
+          {{#1727189088392.output#}}
+
+
+          ##  最终解答
+
+          {{#1727189151263.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 141
+      id: answer
+      position:
+        x: 370.6430517887744
+        y: 488.1130054358871
+      positionAbsolute:
+        x: 370.6430517887744
+        y: 488.1130054358871
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: "提取内容中的步骤数组，示例如下： \n[ \n\t{ \n\t\t\"name\": \"步骤名称\", \n\t\t\"\
+          content\": \"任务描述\" \n\t}, \n\t{\n\t\t\"name\"：\"步骤名称\", \n\t\t\"content\"\
+          ：\"任务描述\"\n\t}, \n\t... \n]"
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        parameters:
+        - description: 提取内容中的步骤数组
+          name: steps
+          required: true
+          type: array[object]
+        query:
+        - llm
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 任务提取
+        type: parameter-extractor
+        variables: []
+      height: 98
+      id: '1727188958486'
+      position:
+        x: -468.24076313347575
+        y: 535.3490014915617
+      positionAbsolute:
+        x: -468.24076313347575
+        y: 535.3490014915617
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        height: 365
+        iterator_selector:
+        - '1727188958486'
+        - steps
+        output_selector:
+        - '1727189055973'
+        - text
+        output_type: array[string]
+        selected: false
+        start_node_id: 1727189041788start
+        title: 迭代任务
+        type: iteration
+        width: 416
+      height: 365
+      id: '1727189041788'
+      position:
+        x: -138.53115933482604
+        y: 267.1704432399898
+      positionAbsolute:
+        x: -138.53115933482604
+        y: 267.1704432399898
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 416
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 44
+      id: 1727189041788start
+      parentId: '1727189041788'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: -114.53115933482604
+        y: 335.1704432399898
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        code: "\ndef main(step) -> dict:\n    # 清洗得到只包含步骤名称和内容的字典\n    step_name =\
+          \ step['name']\n    step_content = step['content']\n    return {\n     \
+          \   'name': step_name,\n        'content': step_content\n    }\n"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        iteration_id: '1727189041788'
+        outputs:
+          content:
+            children: null
+            type: string
+          name:
+            children: null
+            type: string
+        selected: false
+        title: 解析任务
+        type: code
+        variables:
+        - value_selector:
+          - '1727189041788'
+          - item
+          variable: step
+      height: 54
+      id: '1727189052583'
+      parentId: '1727189041788'
+      position:
+        x: 95.12571749609936
+        y: 83.8283582426188
+      positionAbsolute:
+        x: -43.40544183872669
+        y: 350.99880148260866
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1727189041788'
+          - index
+        desc: ''
+        isInIteration: true
+        iteration_id: '1727189041788'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        prompt_template:
+        - edition_type: basic
+          id: 11ed350b-43a1-4b4b-a66f-c72e12615276
+          role: system
+          text: '## 问题
+
+            """{{#sys.query#}}"""
+
+
+            ## 任务背景
+
+            这是工作流中的一个环节，前面的工作流流程会将问题拆分出 N 个步骤。
+
+
+            ## 任务
+
+            根据问题拆分出的步骤，解答指定步骤的任务，本轮任务名称：{{#1727189052583.name#}}，任务描述：{{#1727189052583.content#}}
+
+
+            ## 初始化
+
+            不必回答整个问题，分析解答这个步骤的问题即可。
+
+
+            ## 输出
+
+            采用 Markdown 输出解答，示例如下：
+
+            - {{#1727189052583.name#}}：【步骤解答】'
+        selected: false
+        title: 执行任务
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1727189055973'
+      parentId: '1727189041788'
+      position:
+        x: 94.73421283035361
+        y: 225.97858189606833
+      positionAbsolute:
+        x: -43.79694650447243
+        y: 493.1490251360582
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ step_answer | join("\n")}}'
+        title: 合并结果
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1727189041788'
+          - output
+          variable: step_answer
+      height: 54
+      id: '1727189088392'
+      position:
+        x: 370.6430517887744
+        y: 267.1704432399898
+      positionAbsolute:
+        x: 370.6430517887744
+        y: 267.1704432399898
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        prompt_template:
+        - edition_type: basic
+          id: e6416010-f755-4c0b-9aa9-f3727bf28ca4
+          role: system
+          text: '## 原问题
+
+            """{{#sys.query#}}"""
+
+
+            ## 任务
+
+            检查原问题，并归纳以下分析（请注意可能会出错，发现错误请进行纠正），最后给出问题最终答案，答案言简意赅即可。
+
+            {{#1727189088392.output#}}'
+        selected: false
+        title: 归纳答案
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1727189151263'
+      position:
+        x: 370.6430517887744
+        y: 356.79597592747405
+      positionAbsolute:
+        x: 370.6430517887744
+        y: 356.79597592747405
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 21.432651797610276
+      y: -203.0067787013104
+      zoom: 1.2799680131746822
