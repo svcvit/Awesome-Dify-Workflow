@@ -33,7 +33,7 @@
 | `Text to Card Iteration.yml`     | 自动生成小红书这种卡片。                                                                                  | 🔥Dify Workflow-Agent 设计交流 @Arthur                    |
 | `Dify 运营一条龙.yml`     | 小红书、抖音、微博、B 站一条龙运营  ![](./snapshots/Xnip2024-07-24_16-34-29.jpg)   | [Dify 一键生成多尺寸 Cover 与全平台文案](https://www.youtube.com/watch?v=kCrQp8YZTsQ)                    |
 | `Jina Reader Jinja.yml`     | 一个基于 TavilySearch 和 Jina 的问答流程  ![](./snapshots/Xnip2024-07-29_14-43-54.jpg)   | 🔥Dify Workflow-Agent 设计交流群分享        |
-| `llm2o1.cn.yml`     | 任务拆解→提取步骤→迭代步骤执行→归纳总结→输出结果 ![](./snapshots/Xnip2024-09-30_09-44-00.jpg)   | 🔥Dify Workflow-Agent 设计交流群分享        |
+| `llm2o1.cn.yml`     | 任务拆解→提取步骤→迭代步骤执行→归纳总结→输出结果 ![](./snapshots/Xnip2024-09-30_09-44-00.jpg)   | [@okooo5km](https://x.com/okooo5km/status/1838801763778072862)  |
 
 ## 聊天机器人
 
@@ -41,7 +41,7 @@
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | `根据用户的意图进行回复.yml` | 根据用户的聊天内容，进行意图判定，根据意图选择不同的工作流路径进行回复，再风格化聊天机器人话术 ![](./snapshots/WechatIMG4894.jpg) | 无                                                                 |
 | `mem0ai`                     | 一个有记忆的聊天流程，完整代码见来源链接 ![mem0ai](./snapshots/WechatIMG6110.jpg)                                                 | [dify-plugin-mem0ai](https://github.com/tonori/dify-plugin-mem0ai) |
-| `记忆测试.yml`         | 添加短期记忆，CoT 思维链的示例，自动问答机器人也可以主动触达，根据上下文选择最佳回复 ![](./snapshots/Xnip2024-09-19_12-03-01.jpg)               | [@okooo5km](https://x.com/okooo5km/status/1838801763778072862) |
+| `记忆测试.yml`         | 添加短期记忆，CoT 思维链的示例，自动问答机器人也可以主动触达，根据上下文选择最佳回复 ![](./snapshots/Xnip2024-09-19_12-03-01.jpg)               | 来自微信 svcvit |
 
 ## 代码
 
