@@ -1,0 +1,585 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 全书翻译
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1711067409646-source-1717916867969-target
+      source: '1711067409646'
+      sourceHandle: source
+      target: '1717916867969'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1717916867969-source-1717916955547-target
+      source: '1717916867969'
+      sourceHandle: source
+      target: '1717916955547'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1717916955547'
+        sourceType: llm
+        targetType: llm
+      id: 1717916961837-source-1717916977413-target
+      source: '1717916961837'
+      sourceHandle: source
+      target: '1717916977413'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1717916955547'
+        sourceType: llm
+        targetType: llm
+      id: 1717916977413-source-1717916984996-target
+      source: '1717916977413'
+      sourceHandle: source
+      target: '1717916984996'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1717916955547'
+        sourceType: llm
+        targetType: llm
+      id: 1717916984996-source-1717916991709-target
+      source: '1717916984996'
+      sourceHandle: source
+      target: '1717916991709'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: template-transform
+      id: 1717916955547-source-1717917057450-target
+      source: '1717916955547'
+      sourceHandle: source
+      target: '1717917057450'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: end
+      id: 1717917057450-source-1711068257370-target
+      source: '1717917057450'
+      sourceHandle: source
+      target: '1711068257370'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1717916955547'
+        sourceType: iteration-start
+        targetType: llm
+      id: 1717916955547start0-source-1717916961837-target
+      source: 1717916955547start0
+      sourceHandle: source
+      target: '1717916961837'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 输入文本
+          max_length: null
+          options: []
+          required: true
+          type: paragraph
+          variable: input_text
+      dragging: false
+      height: 90
+      id: '1711067409646'
+      position:
+        x: 30
+        y: 301.5
+      positionAbsolute:
+        x: 30
+        y: 301.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1717917057450'
+          - output
+          variable: final
+        selected: false
+        title: 结束
+        type: end
+      height: 90
+      id: '1711068257370'
+      position:
+        x: 2289.851301645003
+        y: 301.5
+      positionAbsolute:
+        x: 2289.851301645003
+        y: 301.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(input_text: str) -> str:\n    token_limit = 1000\n    overlap\
+          \ = 100\n    chunk_size = int(token_limit * 6 * (4/3))\n\n        # Initialize\
+          \ variables\n    chunks = []\n    start_index = 0\n    text_length = len(input_text)\n\
+          \n    # Loop until the end of the text is reached\n    while start_index\
+          \ < text_length:\n        # If we are not at the beginning, adjust the start_index\
+          \ to ensure overlap\n        if start_index > 0:\n            start_index\
+          \ -= overlap\n\n        # Calculate end index for the current chunk\n  \
+          \      end_index = start_index + chunk_size\n        if end_index > text_length:\n\
+          \            end_index = text_length\n\n        # Add the current chunk\
+          \ to the list\n        chunks.append(input_text[start_index:end_index])\n\
+          \n        # Update the start_index for the next chunk\n        start_index\
+          \ += chunk_size\n\n    return {\n        \"chunks\": chunks,\n    }\n"
+        code_language: python3
+        dependencies: []
+        desc: 'token_limit = 1000
+
+          overlap = 100'
+        outputs:
+          chunks:
+            children: null
+            type: array[string]
+        selected: true
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1711067409646'
+          - input_text
+          variable: input_text
+      height: 98
+      id: '1717916867969'
+      position:
+        x: 336
+        y: 301.5
+      positionAbsolute:
+        x: 336
+        y: 301.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        height: 203
+        iterator_selector:
+        - '1717916867969'
+        - chunks
+        output_selector:
+        - '1717916991709'
+        - text
+        output_type: array[string]
+        selected: false
+        startNodeType: llm
+        start_node_id: 1717916955547start0
+        title: 迭代
+        type: iteration
+        width: 1289
+      height: 203
+      id: '1717916955547'
+      position:
+        x: 638
+        y: 301.5
+      positionAbsolute:
+        x: 638
+        y: 301.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 1289
+      zIndex: 1
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isIterationStart: true
+        iteration_id: '1717916955547'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        prompt_template:
+        - id: 7261280b-cb27-4f84-8363-b93e09246d16
+          role: system
+          text: "<任务> 识别用户输入的技术术语。请用示例中的格式展示翻译前后的技术术语对应关系。\n\n<输入文本> \n{{#1717916955547.item#}}\n\
+            \n<示例>\n| 英文 | 中文 |\n| --- | --- |\n| Prompt Engineering | 提示词工程 |\n|\
+            \ Text Generation  | 文本生成 |\n| Token  | Token |\n| Prompt  | 提示词 |\n|\
+            \ Meta Prompting  | 元提示 |\n| diffusion models  | 扩散模型 |\n| Agent  | 智能体\
+            \ |\n| Transformer  | Transformer |\n| Zero Shot  | 零样本 |\n| Few Shot\
+            \  | 少样本 |\n| chat window  | 聊天 |\n| context | 上下文 |\n| stock photo  |\
+            \ 图库照片 |\n\n\n<Technical Terms> "
+        selected: false
+        title: 识别专有名词
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      extent: parent
+      height: 98
+      id: '1717916961837'
+      parentId: '1717916955547'
+      position:
+        x: 117
+        y: 85
+      positionAbsolute:
+        x: 755
+        y: 386.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1001
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        iteration_id: '1717916955547'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        prompt_template:
+        - id: 05e03f0d-c1a9-43ab-b4c0-44b55049434d
+          role: system
+          text: "<任务> 您是一名精通简体中文的专业译者，特别是在将专业的学术论文转换为通俗易懂的科普文章方面有着非凡的能力。请协助我把下面的英文段落翻译成中文，使其风格与中文的科普文章相似。\n\
+            <限制> \n请根据英文内容直接翻译，维持原有的格式，不省略任何信息。\n<翻译前的原文> \n{{#1717916955547.item#}}\n\
+            <专有名词>\n{{#1717916961837.text#}}\n<直接翻译> "
+        selected: false
+        title: 直接翻译
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      extent: parent
+      height: 98
+      id: '1717916977413'
+      parentId: '1717916955547'
+      position:
+        x: 421
+        y: 85
+      positionAbsolute:
+        x: 1059
+        y: 386.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        iteration_id: '1717916955547'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        prompt_template:
+        - id: 9e6cc050-465e-4632-abc9-411acb255a95
+          role: system
+          text: '<任务>
+
+            根据直接翻译的结果，指出其具体存在的问题。需要提供精确描述，避免含糊其辞，并且无需增添原文中未包含的内容或格式。具体包括但不限于：
+
+            不符合中文的表达习惯，请明确指出哪里不合适句子结构笨拙，请指出具体位置，无需提供修改建议，我们将在后续的自由翻译中进行调整表达含糊不清，难以理解，如果可能，可以试图进行解释
+
+            - 关于⼈名的翻译。技术图书中的⼈名通常不翻译，但是⼀些众所 周知的⼈名需⽤中⽂（如乔布斯）。
+
+            - 关于书名的翻译。有中⽂版的图书，请⽤中⽂版书名；⽆中⽂版 的图书，直接⽤英⽂书名。
+
+            - 关于图表的翻译。表格中的表题、表字和注解等均需翻译。图题 需要翻译。界⾯截图不需要翻译图字。解释性图需要按照中英⽂ 对照格式给出图字翻译。
+
+            - 关于英⽂术语的表述。英⽂术语⾸次出现时，应该根据该术语的 流⾏情况，优先使⽤简写形式，并在其后使⽤括号加英⽂、中⽂ 全称注解，格式为（举例）：HTML（Hypertext
+            Markup Language，超⽂本标识语⾔）。然后在下⽂中直接使⽤简写形 式。当然，必要时也可以根据语境使⽤中、英⽂全称。
+
+            - 关于代码清单和代码⽚段。原书中包含的程序代码不要求译者录 ⼊，但应该使⽤“原书P99⻚代码1”（即原书第99⻚中的第⼀段代 码）的格式作出标注。同时，译者应该在有条件的情况下检核代
+            码的正确性，对发现的错误以译者注形式说明。程序代码中的注 释要求翻译，如果译稿中没有代码，则应该以⼀句英⽂（注释） ⼀句中⽂（注释）的形式给出注释。
+
+            - 关于标点符号。译稿中的标点符号要遵循中⽂表达习惯和中⽂标 点符号的使⽤习惯，不能照搬原⽂的标点符号。
+
+
+            <直接翻译>
+
+            {{#1717916977413.text#}}
+
+            <原文>
+
+            {{#1717916955547.item#}}
+
+            <术语>
+
+            {{#1717916961837.text#}}
+
+            <直接翻译的问题>'
+        selected: false
+        title: 识别问题
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      extent: parent
+      height: 98
+      id: '1717916984996'
+      parentId: '1717916955547'
+      position:
+        x: 725
+        y: 85
+      positionAbsolute:
+        x: 1363
+        y: 386.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        iteration_id: '1717916955547'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        prompt_template:
+        - id: 4d7ae758-2d7b-4404-ad9f-d6748ee64439
+          role: system
+          text: "<任务>基于初次直接翻译的成果及随后识别的各项问题，我们将进行一次重新翻译，旨在更准确地传达原文的意义。在这一过程中，我们将致力于确保内容既忠于原意，又更加贴近中文的表达方式，更容易被理解。在此过程中，我们将保持原有格式不变。\n\
+            <直接翻译> \n{{#1717916977413.text#}}\n<直接翻译的问题>\n{{#1717916984996.text#}}\n\
+            <原文>\n{{#1711067409646.input_text#}}\n<专有名词>\n{{#1717916961837.text#}}\n\
+            <意译> "
+        selected: false
+        title: 意译
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      extent: parent
+      height: 98
+      id: '1717916991709'
+      parentId: '1717916955547'
+      position:
+        x: 1029
+        y: 85
+      positionAbsolute:
+        x: 1667
+        y: 386.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: 聚合所有分段翻译
+        selected: false
+        template: '{{ translated_text | join('' '') }}'
+        title: 模板
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1717916955547'
+          - output
+          variable: translated_text
+      height: 82
+      id: '1717917057450'
+      position:
+        x: 1987
+        y: 301.5
+      positionAbsolute:
+        x: 1987
+        y: 301.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: Dify
+        desc: ''
+        height: 150
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"代码节点将
+          input_text 分成长度为 token_limit 的块。每个块相互重叠，以确保文本的一致性。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"代码节点输出一个由
+          input_texts 分段文本组成的数组 chunks。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 371
+      height: 150
+      id: '1718990593686'
+      position:
+        x: 259.3026056936437
+        y: 451.6924912936374
+      positionAbsolute:
+        x: 259.3026056936437
+        y: 451.6924912936374
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 371
+    - data:
+        author: Dify
+        desc: ''
+        height: 107
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"遍历代码节点输出的所有元素，并使用三步翻译工作流程翻译每个块。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 310
+      height: 107
+      id: '1718991836605'
+      position:
+        x: 762.0918010335982
+        y: 527.4456856855423
+      positionAbsolute:
+        x: 762.0918010335982
+        y: 527.4456856855423
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 310
+    - data:
+        author: Dify
+        desc: ''
+        height: 134
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"避免把
+          token_limit 设的过高，GPT-4o的性能在上下文长度较长时会下降。","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"start","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"建议使用不超过1000个token。","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: yellow
+        title: ''
+        type: ''
+        width: 355
+      height: 134
+      id: '1718991882984'
+      position:
+        x: 304.49115824454367
+        y: 148.4042994607805
+      positionAbsolute:
+        x: 304.49115824454367
+        y: 148.4042994607805
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 355
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1717916955547start0
+      parentId: '1717916955547'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 662
+        y: 369.5
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    viewport:
+      x: -185.07494932847726
+      y: 17.806553508850584
+      zoom: 0.8705505632961259

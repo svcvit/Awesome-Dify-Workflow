@@ -5,9 +5,9 @@
 所有的 Workflow 基本都可以 **免费** 使用，更多 Workflow 收集整理中……
 
 ## 分享群
-开了一个分享群，有兴趣可以加入。（2024/10/28 更新）
+开了一个分享群，有兴趣可以加入。（2024/10/30 更新）
 
-![](./snapshots/Xnip2024-10-28_10-06-16.jpg)
+![](./snapshots/Xnip2024-10-30_18-05-13.jpg)
 
 ## 参考截图
 
@@ -25,6 +25,7 @@
 | `DuckDuckGo 翻译+LLM 二次翻译.yml` | 与三步翻译类似，但是把第一步的直译变成传统翻译引擎翻译，节省 Token，提高翻译效率，同时提高翻译质量。 ![](./snapshots/Xnip2024-07-16_13-42-06.jpg)                 | 暂无                                                                |
 | `translation_workflow.yml`         | 使用吴恩达提出 Agentic Workflow 制作的翻译工具，录入`输入语言`、`目标语言`、`国家`、`原始文本` 4 个参数，提供更细致的翻译结果 ![snap](./snapshots/Xnip2024-07-16_16-58-05.jpg) | [translation-agent](https://github.com/andrewyng/translation-agent) |
 | `宝玉的英译中优化版.yml`         | 宝玉的科技文章翻译优化版本，主要优化了提示词和 xml 标签 ![snap](./snapshots/Xnip2024-08-01_13-47-25.jpg) | [翻译 GPT 的提示词更新和优化](https://baoyu.io/blog/prompt-engineering/translator-gpt-prompt-v2-1-improvement) |
+| `全书翻译.yml`         | DIFY 官方示例，切分长文本，再迭代器内翻译 ![snap](./snapshots/Xnip2024-10-30_18-02-24.jpg) | DIFY 官方探索内容 |
 
 ## 工具
 
