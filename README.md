@@ -36,8 +36,8 @@
 | `SEO Slug Generator.yml`         | 给自己的博文生成 url slug，参考来源于宝玉的 X ![](./snapshots/Xnip2024-07-24_13-06-35.jpg)   | [twitter](https://x.com/dotey/status/1801280536125608265) |
 | `Document_chat_template.yml`     | 一个通过知识库聊天的模版 ![](./snapshots/Xnip2024-07-24_13-08-49.jpg)                        | [Winson-030](https://github.com/Winson-030/dify-DSL)      |
 | `搜索大师.yml`                   | 通过 SearXNG 进行搜索，再通过 jina 获取搜索内容 ![](./snapshots/Xnip2024-07-24_13-07-55.jpg) | [Winson-030](https://github.com/Winson-030/dify-DSL)      |
-| `标题党创作.yml`                 | 一位爆款网文作家                                                                                          | [ghostviper](https://github.com/ghostviper/dify-workflow) |
-| `文章仿写-单图_多图自动搭配.yml` | 文章仿写                                                                                                  | [ghostviper](https://github.com/ghostviper/dify-workflow) |
+| `标题党创作.yml`                 | 一位爆款网文作家  ![](./snapshots/Xnip2024-10-31_17-45-53.jpg)       | [ghostviper](https://github.com/ghostviper/dify-workflow) |
+| `文章仿写-单图_多图自动搭配.yml` | 文章仿写   ![](./snapshots/Xnip2024-10-31_17-46-30.jpg)               | [ghostviper](https://github.com/ghostviper/dify-workflow) |
 | `Text to Card Iteration.yml`     | 自动生成小红书这种卡片。                                                                                  | 🔥Dify Workflow-Agent 设计交流 @Arthur                    |
 | `Dify 运营一条龙.yml`     | 小红书、抖音、微博、B 站一条龙运营  ![](./snapshots/Xnip2024-07-24_16-34-29.jpg)   | [Dify 一键生成多尺寸 Cover 与全平台文案](https://www.youtube.com/watch?v=kCrQp8YZTsQ)                    |
 | `Jina Reader Jinja.yml`     | 一个基于 TavilySearch 和 Jina 的问答流程  ![](./snapshots/Xnip2024-07-29_14-43-54.jpg)   | 🔥Dify Workflow-Agent 设计交流群分享        |
