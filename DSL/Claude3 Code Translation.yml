@@ -1,0 +1,693 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: Claude3 Code Translation
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1720505581749-source-1720506191043-target
+      selected: false
+      source: '1720505581749'
+      sourceHandle: source
+      target: '1720506191043'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1720508367130-source-1720580108806-target
+      selected: false
+      source: '1720508367130'
+      sourceHandle: source
+      target: '1720580108806'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: code
+      id: 1720580108806-source-1720580885073-target
+      selected: false
+      source: '1720580108806'
+      sourceHandle: source
+      target: '1720580885073'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: end
+      id: 1720580885073-source-1720582990256-target
+      selected: false
+      source: '1720580885073'
+      sourceHandle: source
+      target: '1720582990256'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 1720506191043-source-1723619551968-target
+      source: '1720506191043'
+      sourceHandle: source
+      target: '1723619551968'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: code
+      id: 1723619551968-source-1720508367130-target
+      source: '1723619551968'
+      sourceHandle: source
+      target: '1720508367130'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1720580108806'
+        sourceType: iteration-start
+        targetType: llm
+      id: 1720580108806start0-source-1720580171037-target
+      source: 1720580108806start0
+      sourceHandle: source
+      target: '1720580171037'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: 需要翻译的代码文件内容
+          max_length: 33024
+          options: []
+          required: true
+          type: paragraph
+          variable: code_to_translate
+        - label: 相关依赖库的代码内容
+          max_length: 33024
+          options: []
+          required: false
+          type: paragraph
+          variable: related_files_content
+        - label: 待翻译文件的文件名
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: code_file_name
+        - label: 源代码语言(例如Python)
+          max_length: 48
+          options:
+          - python
+          - java
+          required: true
+          type: select
+          variable: src_lang
+        - label: 目标编程语言（例如Java）
+          max_length: 48
+          options:
+          - java
+          - python
+          required: true
+          type: select
+          variable: dest_lang
+      height: 194
+      id: '1720505581749'
+      position:
+        x: 30
+        y: 301.5
+      positionAbsolute:
+        x: 30
+        y: 301.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            stop:
+            - '```'
+            temperature: 0.1
+          mode: chat
+          name: anthropic.claude-3-5-sonnet-20240620-v1:0
+          provider: bedrock
+        prompt_template:
+        - id: 2e5e4e13-2974-440b-9ee5-c015d9aae4ba
+          role: system
+          text: "# Role\n你接下来cosplay一个专业的程序猿，精通python java go 等多种语言。\n\n# Task\n你的任务是帮助我将项目的编程语言从{{#1720505581749.src_lang#}}翻译到{{#1720505581749.dest_lang#}}。但是由于输出长度限制，你需要分两次回复来生成完整的代码。\n\
+            \n第一次回复的目的是生成代码主体结构，但对于中的类、函数，你只需要给出对应的签名即可，不要给出具体实现。\n注意分析相关代码文件，并据此帮你识别内置依赖库和自定义依赖，在你的回复中，不要遗漏import对应的库。\n\
+            \n# 相关代码文件\n如下是可能与原始代码有关的文件(可能为空)。\n{{#1720505581749.related_files_content#}}\n\
+            \n# 输出格式\n\n## 第一次输出\n输出采用YAML格式，其中`type`的取值及定义如下: \n- `import`表示依赖包引入代码\n\
+            - `class`表示类定义，注意java只允许有一个顶层类(通常是与文件同名的类)是public的，其余顶层类不可以使用public修饰。\n\
+            - `function`表示函数定义，每个函数都有自己的签名\n- `literal`表示不包含在任何函数或类中的代码行，如果存在，则需要给出完整目标语言的代码。main\
+            \ 函数中的内容不要放在这里。\n\n### 限制\n- `type`的顺序需要严格按照目标翻译代码的嵌套关系及顺序排列，`type` 不可以为其他值，输出必须要满足YAML格式的有效性。\n\
+            - 生成的代码必须要符合目标语言{{#1720505581749.dest_lang#}}的语法规则，不要放错函数的位置。如果类中属性需要在此类外使用，则要定义相关的属性访问器。\n\
+            - `cls_attr` 中的 `need_public_getter` 表示是否需要生成public的getter方法，如果此属性被跨类访问，则必须为true。\n\
+            ### 第一次回复的结构示例\n```yaml\nout_file_name: <outfile.ext>\nthinking: | \n\
+            \  your thinking if any, better not exceeds 80 words.\n{dest_lang}:\n\
+            \    - type: import\n      codes: |\n        import java.util.ArrayList\n\
+            \        ...\n    - type: literal\n      codes: |\n        int a = 0;\n\
+            \        ...\n    - type: class\n      name: Main\n      signature: public\
+            \ static void main(String[] args) # 必须\n      attributes: # 必须，除非此类不包含任何属性\n\
+            \        - type: cls_attr\n          signature: private int a;\n     \
+            \     need_public_getter: true | false\n        - type: inst_attr\n  \
+            \        signature: String str;\n        - type: function\n          name:\
+            \ incr\n          signature: static int incr(int a, int b)\n        -\
+            \ type: function\n          name: main # this is required for the main\
+            \ class\n          signature: public static void main(String[] args) \n\
+            \        - type: class\n          name: Foo\n          signature: public\
+            \ class Foo\n        - ...\n    - ...\n```\n\n注意，你不需要给出任何解释，只需要给出代码主体即可。\n\
+            \n### 第一次回复的示例(python -> java)\n输入：\n- 文件名: dog.py\n```python\nimport\
+            \ time\n\ncurrent_time = time.time()\n\ndef my_func(a):\n    return a\
+            \ + 1\n\nclass Dog:\n    species = \"Canis familiaris\"\n\n    def __init__(self,\
+            \ name, age):\n        self.name = name\n        self.age = age\n\n  \
+            \  def description(self):\n        return self.name + \"is \" + self.age\
+            \ + \" years old\"\n\n    def speak(self, sound):\n        return self.name\
+            \ + \"says \" + sound\n\nmiles = Dog(\"Miles\", 4)\n\nprint(miles.description())\
+            \  # Output: Miles is 4 years old\n\nprint(\"Miles is a \" + miles.species)\
+            \  # Output: Miles is a Canis familiaris\n```\n\n输出：\n```yaml\nout_file_name:\
+            \ Dog.java\nthinking: | \n  your thinking ...\njava:\n    - type: import\n\
+            \      codes: |\n        import java.time.Instant;\n\n    - type: class\n\
+            \      name: Dog\n      signature: public class Dog\n      attributes:\n\
+            \        - type: cls_attr\n          signature: static String species\
+            \ = \"Canis familiaris\";\n          need_public_getter: false\n     \
+            \   - type: inst_attr\n          signature: String name;\n        - type:\
+            \ inst_attr\n          signature: Int age;\n        - type: function\n\
+            \          name: Dog\n          signature: Dog(String name, int age)\n\
+            \        - type: function\n          name: description\n          signature:\
+            \ String description()\n        - type: function\n          name: speak\n\
+            \          signature: String speak(String sound)\n        - type: function\n\
+            \          name: main\n          signature: public static void main(String[]\
+            \ args)\n```\n\n## 第二次输出\n在第二次输出中，我会让你输出一个或者多个特定的类或者函数的完整实现，直接给出代码即可，无需解释；且第一次生成结果中排在此类/函数之前的代码都已经生成了，你不要重复生成。\n\
+            你需要等到我的指令才能输出第二次响应。\n\n# 限制\n无论是第几次回复，你都要认真思考，不可以大意或者匆忙给出没有深思熟虑的代码。"
+        - id: 067b610f-6234-4f0d-bf20-9c7d86e7562d
+          role: user
+          text: '# 原始代码
+
+            - input_file_name: {{#1720505581749.code_file_name#}}
+
+
+            ```{{#1720505581749.src_lang#}}
+
+            {{#1720505581749.code_to_translate#}}
+
+            ```'
+        - id: e6ece9cd-4b04-42d6-870a-350a9cfcdcf6
+          role: assistant
+          text: '```yaml'
+        selected: false
+        title: LLM-生成目标代码签名
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: false
+      height: 98
+      id: '1720506191043'
+      position:
+        x: 334
+        y: 301.5
+      positionAbsolute:
+        x: 334
+        y: 301.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json\n\ndef extract_fn_cls(text: str, dest_lang:str) -> dict:\n\
+          \    resp = json.loads(text)['json']\n    out_file_name = resp['out_file_name']\n\
+          \    signatures = [\n        item['signature'] for item in resp[dest_lang]\
+          \ if item['type'] in ['function', 'class']\n    ]\n    return {\n      \
+          \  # \"out_file_name\": out_file_name,\n        \"resp\": resp,\n      \
+          \  \"signatures\": signatures,\n    }\n\ndef main(text:str, dest_lang:str):\n\
+          \    return extract_fn_cls(text, dest_lang)"
+        code_language: python3
+        desc: ''
+        outputs:
+          resp:
+            children: null
+            type: object
+          signatures:
+            children: null
+            type: array[string]
+        selected: false
+        title: Code - 抽取类/函数签名
+        type: code
+        variables:
+        - value_selector:
+          - '1723619551968'
+          - text
+          variable: text
+        - value_selector:
+          - '1720505581749'
+          - dest_lang
+          variable: dest_lang
+      height: 54
+      id: '1720508367130'
+      position:
+        x: 323.4908161111016
+        y: 530.2430558421229
+      positionAbsolute:
+        x: 323.4908161111016
+        y: 530.2430558421229
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        height: 203
+        iterator_selector:
+        - '1720508367130'
+        - signatures
+        output_selector:
+        - '1720580171037'
+        - text
+        output_type: array[string]
+        selected: false
+        startNodeType: llm
+        start_node_id: 1720580108806start0
+        title: Iteration - 生成每个函数/类的代码
+        type: iteration
+        width: 377
+      height: 203
+      id: '1720580108806'
+      position:
+        x: 273.57725260247616
+        y: 674.0749639522259
+      positionAbsolute:
+        x: 273.57725260247616
+        y: 674.0749639522259
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 377
+      zIndex: 1
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isIterationStart: true
+        iteration_id: '1720580108806'
+        model:
+          completion_params:
+            stop:
+            - '```'
+            temperature: 0.7
+          mode: chat
+          name: anthropic.claude-3-sonnet-20240229-v1:0
+          provider: bedrock
+        prompt_template:
+        - id: 4741625b-505f-462d-b851-9aef4eab5fcd
+          role: system
+          text: "# Role\n你接下来cosplay一个专业的程序猿，精通python java go 等多种语言。\n\n# Task\n你的任务是帮助我将项目的编程语言从{{#1720505581749.src_lang#}}翻译到{{#1720505581749.dest_lang#}}。但是由于输出长度限制，你需要分两次回复来生成完整的代码。\n\
+            \n第一次回复的目的是生成代码主体结构，但对于中的类、函数，你只需要给出对应的签名即可，不要给出具体实现。\n注意分析相关代码文件，并据此帮你识别内置依赖库和自定义依赖，在你的回复中，不要遗漏import对应的库。\n\
+            \n# 相关代码文件\n如下是可能与原始代码有关的文件(可能为空)。\n{{#1720505581749.related_files_content#}}\n\
+            \n# 输出格式\n\n## 第一次输出\n输出采用YAML格式，其中`type`的取值及定义如下: \n- `import`表示依赖包引入代码\n\
+            - `class`表示类定义，注意java只允许有一个顶层类(通常是与文件同名的类)是public的，其余顶层类不可以使用public修饰。\n\
+            - `function`表示函数定义，每个函数都有自己的签名\n- `literal`表示不包含在任何函数或类中的代码行，如果存在，则需要给出完整目标语言的代码。main\
+            \ 函数中的内容不要放在这里。\n\n### 限制\n- `type`的顺序需要严格按照目标翻译代码的嵌套关系及顺序排列，`type` 不可以为其他值，输出必须要满足YAML格式的有效性。\n\
+            - 生成的代码必须要符合目标语言{{#1720505581749.dest_lang#}}的语法规则，不要放错函数的位置。如果类中属性需要在此类外使用，则要定义相关的属性访问器。\n\
+            - `cls_attr` 中的 `need_public_getter` 表示是否需要生成public的getter方法，如果此属性被跨类访问，则必须为true。\n\
+            ### 第一次回复的结构示例\n```yaml\nout_file_name: <outfile.ext>\nthinking: | \n\
+            \  your thinking if any, better not exceeds 80 words.\n{dest_lang}:\n\
+            \    - type: import\n      codes: |\n        import java.util.ArrayList\n\
+            \        ...\n    - type: literal\n      codes: |\n        int a = 0;\n\
+            \        ...\n    - type: class\n      name: Main\n      signature: public\
+            \ static void main(String[] args) # 必须\n      attributes: # 必须，除非此类不包含任何属性\n\
+            \        - type: cls_attr\n          signature: private int a;\n     \
+            \     need_public_getter: true | false\n        - type: inst_attr\n  \
+            \        signature: String str;\n        - type: function\n          name:\
+            \ incr\n          signature: static int incr(int a, int b)\n        -\
+            \ type: function\n          name: main # this is required for the main\
+            \ class\n          signature: public static void main(String[] args) \n\
+            \        - type: class\n          name: Foo\n          signature: public\
+            \ class Foo\n        - ...\n    - ...\n```\n\n注意，你不需要给出任何解释，只需要给出代码主体即可。\n\
+            \n### 第一次回复的示例(python -> java)\n输入：\n- 文件名: dog.py\n```python\nimport\
+            \ time\n\ncurrent_time = time.time()\n\ndef my_func(a):\n    return a\
+            \ + 1\n\nclass Dog:\n    species = \"Canis familiaris\"\n\n    def __init__(self,\
+            \ name, age):\n        self.name = name\n        self.age = age\n\n  \
+            \  def description(self):\n        return self.name + \"is \" + self.age\
+            \ + \" years old\"\n\n    def speak(self, sound):\n        return self.name\
+            \ + \"says \" + sound\n\nmiles = Dog(\"Miles\", 4)\n\nprint(miles.description())\
+            \  # Output: Miles is 4 years old\n\nprint(\"Miles is a \" + miles.species)\
+            \  # Output: Miles is a Canis familiaris\n```\n\n输出：\n```yaml\nout_file_name:\
+            \ Dog.java\nthinking: | \n  your thinking ...\njava:\n    - type: import\n\
+            \      codes: |\n        import java.time.Instant;\n\n    - type: class\n\
+            \      name: Dog\n      signature: public class Dog\n      attributes:\n\
+            \        - type: cls_attr\n          signature: static String species\
+            \ = \"Canis familiaris\";\n          need_public_getter: false\n     \
+            \   - type: inst_attr\n          signature: String name;\n        - type:\
+            \ inst_attr\n          signature: Int age;\n        - type: function\n\
+            \          name: Dog\n          signature: Dog(String name, int age)\n\
+            \        - type: function\n          name: description\n          signature:\
+            \ String description()\n        - type: function\n          name: speak\n\
+            \          signature: String speak(String sound)\n        - type: function\n\
+            \          name: main\n          signature: public static void main(String[]\
+            \ args)\n```\n\n## 第二次输出\n在第二次输出中，我会让你输出一个或者多个特定的类或者函数的完整实现，直接给出代码即可，无需解释；且第一次生成结果中排在此类/函数之前的代码都已经生成了，你不要重复生成。\n\
+            你需要等到我的指令才能输出第二次响应。\n\n# 限制\n无论是第几次回复，你都要认真思考，不可以大意或者匆忙给出没有深思熟虑的代码。"
+        - id: d4bc0226-67ce-411e-a44d-d7154ed15ef2
+          role: user
+          text: '# 原始代码
+
+            - input_file_name: {{#1720505581749.code_file_name#}}
+
+
+
+            ```{{#1720505581749.src_lang#}}
+
+
+            {{#1720505581749.code_to_translate#}}
+
+            ```'
+        - id: e2e530d6-35f9-4588-b448-772cae738195
+          role: assistant
+          text: '```yaml
+
+            {{#1720506191043.text#}}
+
+            ```'
+        - id: 7c3b0f56-47cb-4bef-8e8b-abe44638fc83
+          role: user
+          text: 只需给出 {{#1720580108806.item#}} 的完整代码，不要重复引入依赖。直接给出代码内容，不要解释。
+        - id: 59bbf386-14a1-420b-98b4-c04e6bde9a23
+          role: assistant
+          text: '```{{#1720505581749.dest_lang#}}'
+        selected: false
+        title: LLM - 生成函数/类的代码
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      extent: parent
+      height: 98
+      id: '1720580171037'
+      parentId: '1720580108806'
+      position:
+        x: 117
+        y: 85
+      positionAbsolute:
+        x: 390.57725260247616
+        y: 759.0749639522259
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1001
+    - data:
+        code: "\ndef main(resp:dict, sig_impl: list[str], dest_lang:str) -> dict:\n\
+          \    sig_impl_idx = 0\n    for item in resp[dest_lang]:\n        _type =\
+          \ item['type']\n        if _type in ['function', 'class']:\n           \
+          \ item['codes'] = sig_impl[sig_impl_idx]\n            sig_impl_idx += 1\n\
+          \n    final_code = '\\n'.join([item['codes'] for item in resp[dest_lang]])\n\
+          \n    return {\n        \"final_code\": final_code,\n        \"resp\": resp,\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          final_code:
+            children: null
+            type: string
+          resp:
+            children: null
+            type: object
+        selected: false
+        title: Code - 合并翻译结果
+        type: code
+        variables:
+        - value_selector:
+          - '1720580108806'
+          - output
+          variable: sig_impl
+        - value_selector:
+          - '1720508367130'
+          - resp
+          variable: resp
+        - value_selector:
+          - '1720505581749'
+          - dest_lang
+          variable: dest_lang
+      height: 54
+      id: '1720580885073'
+      position:
+        x: 721.3762323479173
+        y: 653.6439149148473
+      positionAbsolute:
+        x: 721.3762323479173
+        y: 653.6439149148473
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: 输出翻译结果
+        outputs:
+        - value_selector:
+          - '1720580885073'
+          - final_code
+          variable: final_code
+        selected: false
+        title: End
+        type: end
+      height: 118
+      id: '1720582990256'
+      position:
+        x: 1032.9006749743028
+        y: 643.1096952379073
+      positionAbsolute:
+        x: 1032.9006749743028
+        y: 643.1096952379073
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: ybalbert
+        desc: ''
+        height: 714
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"示例参数：需要翻译的代码文件内容","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"import
+          requests","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"from
+          utils import Food","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"def
+          send_request():","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    response
+          = requests.get(\"https://www.example.com\")","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    print(response.status_code)","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"def
+          foo():","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    print(\"This
+          is foo\")","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    x
+          = 42","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    return
+          x","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"class
+          Bar:","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    def
+          __init__(self):","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"        self.value
+          = 0","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    def
+          increment(self):","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"        self.value
+          += 1","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"def
+          main():","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    f
+          = foo()","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    print(f)","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    b
+          = Bar()","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    b.increment()","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    print(b.value)","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    send_request()","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    Food().eat()","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"if
+          __name__ == \"__main__\":","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    main()","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 288
+      height: 714
+      id: '1720587427200'
+      position:
+        x: -549.7499726708537
+        y: 18.858251348773365
+      positionAbsolute:
+        x: -549.7499726708537
+        y: 18.858251348773365
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 288
+    - data:
+        author: ybalbert
+        desc: ''
+        height: 263
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"示例参数：相关依赖库代码内容","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"utils.py:","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"```","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"class
+          Food:","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    def
+          __init__(self) -> None:","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"        pass","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    def
+          eat(self):","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"        print(''eat'')","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    def
+          drink(self):","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"        print(''drink'')","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"```","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ' (1)'
+        type: ''
+        width: 252
+      height: 263
+      id: '17205874960550'
+      position:
+        x: -256.9200850883209
+        y: 18.858251348773365
+      positionAbsolute:
+        x: -256.9200850883209
+        y: 18.858251348773365
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 252
+    - data:
+        author: ybalbert
+        desc: ''
+        height: 133
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"示例参数：","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"-
+          待翻译文件名： main.py","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"-
+          源代码语言: python","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"-
+          目标编程语言： java","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: '  (2)'
+        type: ''
+        width: 258
+      height: 133
+      id: '17205875187340'
+      position:
+        x: -256.9200850883209
+        y: 292.1662801639156
+      positionAbsolute:
+        x: -256.9200850883209
+        y: 292.1662801639156
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 258
+    - data:
+        desc: ''
+        provider_id: aws
+        provider_name: aws
+        provider_type: builtin
+        selected: false
+        title: LambdaYamlToJson
+        tool_configurations:
+          aws_region: us-east-1
+          lambda_name: yaml_to_json
+        tool_label: LambdaYamlToJson
+        tool_name: lambda_yaml_to_json
+        tool_parameters:
+          yaml_content:
+            type: mixed
+            value: '{{#1720506191043.text#}}'
+        type: tool
+      height: 116
+      id: '1723619551968'
+      position:
+        x: 638.79375274346
+        y: 292.1662801639156
+      positionAbsolute:
+        x: 638.79375274346
+        y: 292.1662801639156
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1720580108806start0
+      parentId: '1720580108806'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 297.57725260247616
+        y: 742.0749639522259
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    viewport:
+      x: 518.0790142143585
+      y: 86.2896440650544
+      zoom: 0.78454243015184
