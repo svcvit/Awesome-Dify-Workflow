@@ -6,8 +6,10 @@
 
 ## 分享群
 开了一个分享群，有兴趣可以加入，如果你有关于 workflow 的问题也可以一起讨论。（2024/10/30 更新）
-
 ![](./snapshots/Xnip2024-10-30_18-05-13.jpg)
+
+## 模型
+如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用这个服务 [one-hub](https://one.coffbox.com/) 的服务。
 
 ## 参考截图
 
@@ -56,9 +58,10 @@
 | -------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `Python Coding Prompt.yml` | 通过聊天对话方式生成 Python 代码 | [Sonnet 3.5 for Coding 😍 - System Prompt](https://www.reddit.com/r/ClaudeAI/comments/1dwra38/sonnet_35_for_coding_system_prompt/) |
 
-# 使用方法
+## 使用方法
 
-注册 [Dify](https://cloud.dify.ai/) 账号，添加 Deepseek 模型。
+注册 [Dify](https://cloud.dify.ai/) 账号，添加模型。
+
 
 ![snap](./snapshots/Xnip2024-07-16_13-17-53.jpg)
 
