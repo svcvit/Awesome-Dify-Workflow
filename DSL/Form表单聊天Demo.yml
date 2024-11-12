@@ -1,0 +1,435 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Form表单聊天Demo
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.3
+workflow:
+  conversation_variables:
+  - description: ''
+    id: db80e372-91ed-4718-b55c-1808a968865e
+    name: user_token
+    value: ''
+    value_type: string
+  environment_variables:
+  - description: ''
+    id: c086ca90-39e9-44e8-b249-93124d45499a
+    name: login
+    value: 0
+    value_type: number
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: answer
+      id: 1730163641212-source-1731378296917-target
+      source: '1730163641212'
+      sourceHandle: source
+      target: '1731378296917'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1731378486318-source-1731378500668-target
+      source: '1731378486318'
+      sourceHandle: source
+      target: '1731378500668'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1729841263487-source-1731378918101-target
+      source: '1729841263487'
+      sourceHandle: source
+      target: '1731378918101'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1731378644337-source-1731379291700-target
+      source: '1731378644337'
+      sourceHandle: source
+      target: '1731379291700'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1731379291700-true-1731379076735-target
+      source: '1731379291700'
+      sourceHandle: 'true'
+      target: '1731379076735'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: answer
+      id: 1731379076735-source-1731379313752-target
+      source: '1731379076735'
+      sourceHandle: source
+      target: '1731379313752'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: template-transform
+      id: 1731379291700-false-1730163641212-target
+      source: '1731379291700'
+      sourceHandle: 'false'
+      target: '1730163641212'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: code
+      id: 1731378918101-true-1731378644337-target
+      source: '1731378918101'
+      sourceHandle: 'true'
+      target: '1731378644337'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1731378918101-false-1731378486318-target
+      source: '1731378918101'
+      sourceHandle: 'false'
+      target: '1731378486318'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: true
+        title: Start
+        type: start
+        variables: []
+      height: 54
+      id: '1729841263487'
+      position:
+        x: 31.51781925297405
+        y: 263
+      positionAbsolute:
+        x: 31.51781925297405
+        y: 263
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: "<form data-format=\"json\">\n  <label for=\"username\">Username:</label>\n\
+          \  <input type=\"text\" name=\"username\" />\n  <label for=\"password\"\
+          >Password:</label>\n  <input type=\"password\" name=\"password\" />\n  <button\
+          \ data-size=\"small\" data-variant=\"primary\">Login</button>\n</form>"
+        title: 登录表单
+        type: template-transform
+        variables: []
+      height: 54
+      id: '1730163641212'
+      position:
+        x: 1246
+        y: 598
+      positionAbsolute:
+        x: 1246
+        y: 598
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '初次使用，请登录员工账号和密码哦。
+
+
+          {{#1730163641212.output#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 119
+      id: '1731378296917'
+      position:
+        x: 1550
+        y: 557.5
+      positionAbsolute:
+        x: 1550
+        y: 557.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai_api_compatible
+        prompt_template:
+        - id: 216843e4-021e-4655-8d6f-b527e193a06b
+          role: system
+          text: 你是个聊天机器人
+        - role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1731378486318'
+      position:
+        x: 660.8571428571427
+        y: 203.21428571428572
+      positionAbsolute:
+        x: 660.8571428571427
+        y: 203.21428571428572
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1731378486318.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 103
+      id: '1731378500668'
+      position:
+        x: 984.8571428571429
+        y: 175.9285714285714
+      positionAbsolute:
+        x: 984.8571428571429
+        y: 175.9285714285714
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json,requests\n\ndef main(input_string):\n    try:\n       \
+          \ data = json.loads(input_string)\n        username = data['username']\n\
+          \        password = data['password']\n        #这里可以验证是否登录成功，返回user_token和status，假设username=svcvit为登录成功\n\
+          \        #response_data = requests.post(\"\")\n        if username == \"\
+          svcvit\":\n            return {\"is_login\":1,\"user_token\":\"user_token_test\"\
+          }\n        else:\n            return {\"is_login\":0,\"user_token\":\"\"\
+          }\n    except:\n        return {\"is_login\":0,\"user_token\":\"\"}\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          is_login:
+            children: null
+            type: number
+          user_token:
+            children: null
+            type: string
+        selected: false
+        title: 登录
+        type: code
+        variables:
+        - value_selector:
+          - sys
+          - query
+          variable: input_string
+      height: 54
+      id: '1731378644337'
+      position:
+        x: 638
+        y: 417.5
+      positionAbsolute:
+        x: 638
+        y: 417.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: c186fbe2-078d-4c96-b45b-cd1a3d22c1f6
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - user_token
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: user_token
+        type: if-else
+      height: 126
+      id: '1731378918101'
+      position:
+        x: 334
+        y: 263
+      positionAbsolute:
+        x: 334
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - user_token
+        desc: ''
+        input_variable_selector:
+        - '1731378644337'
+        - user_token
+        selected: false
+        title: 变量赋值
+        type: assigner
+        write_mode: over-write
+      height: 132
+      id: '1731379076735'
+      position:
+        x: 1246
+        y: 417.5
+      positionAbsolute:
+        x: 1246
+        y: 417.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: d53711d6-bf99-4a90-ba67-96de51cf3a62
+            value: '1'
+            varType: number
+            variable_selector:
+            - '1731378644337'
+            - is_login
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 是否登录成功
+        type: if-else
+      height: 126
+      id: '1731379291700'
+      position:
+        x: 942
+        y: 417.5
+      positionAbsolute:
+        x: 942
+        y: 417.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 登录成功，我们聊点什么？
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 100
+      id: '1731379313752'
+      position:
+        x: 1550
+        y: 417.5
+      positionAbsolute:
+        x: 1550
+        y: 417.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 232.47626346168283
+      y: 72.51296686754235
+      zoom: 0.6588399758670702
