@@ -1,0 +1,232 @@
+app:
+  description: 一个图表渲染的示例
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: chart_demo
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.3
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: http-request
+      id: 1731568135443-source-1731568176573-target
+      source: '1731568135443'
+      sourceHandle: source
+      target: '1731568176573'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: code
+      id: 1731568176573-source-1731568257888-target
+      source: '1731568176573'
+      sourceHandle: source
+      target: '1731568257888'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: answer
+      id: 1731568257888-source-answer-target
+      source: '1731568257888'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1731568135443'
+      position:
+        x: 30
+        y: 255
+      positionAbsolute:
+        x: 30
+        y: 255
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1731568257888.output#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 942
+        y: 255
+      positionAbsolute:
+        x: 942
+        y: 255
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 获取天气数据
+        type: http-request
+        url: https://weather.cma.cn/api/climate?stationid=58367
+        variables: []
+      height: 110
+      id: '1731568176573'
+      position:
+        x: 334
+        y: 255
+      positionAbsolute:
+        x: 334
+        y: 255
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json\n\ndef main(data):\n\n    weather_data = json.loads(data)\n\
+          \    # 提取月份和对应的数据\n    months = []\n    max_temps = []\n    min_temps =\
+          \ []\n    rainfall = []\n\n    for item in weather_data['data']['data']:\n\
+          \        months.append(f\"{item['month']}月\")\n        max_temps.append(item['maxTemp'])\n\
+          \        min_temps.append(item['minTemp'])\n        rainfall.append(item['rainfall'])\n\
+          \n    # 生成echarts配置\n    echarts_config = {\n        \"color\": ['#eb6877',\
+          \ '#0f91c4', '#46cbd4'],\n        \"title\": {\n            \"subtext\"\
+          : f\"{weather_data['data']['beginYear']}年-{weather_data['data']['endYear']}年月平均气温和降水\"\
+          ,\n            \"left\": 20\n        },\n        \"tooltip\": {\n      \
+          \      \"trigger\": \"axis\",\n            \"axisPointer\": {\n        \
+          \        \"type\": \"cross\"\n            }\n        },\n        \"legend\"\
+          : {\n            \"data\": [\"最高气温\", \"最低气温\", \"降水\"],\n            \"\
+          right\": 20\n        },\n        \"xAxis\": {\n            \"data\": months,\n\
+          \            \"axisLine\": {\n                \"onZero\": False\n      \
+          \      }\n        },\n        \"yAxis\": [\n            {\n            \
+          \    \"type\": \"value\",\n                \"name\": \"温度\",\n         \
+          \       \"position\": \"left\",\n                \"axisLabel\": {\n    \
+          \                \"formatter\": \"{value} ℃\"\n                }\n     \
+          \       },\n            {\n                \"type\": \"value\",\n      \
+          \          \"name\": \"降水量\",\n                \"min\": 0,\n           \
+          \     \"position\": \"right\",\n                \"axisLabel\": {\n     \
+          \               \"formatter\": \"{value} mm\"\n                }\n     \
+          \       }\n        ],\n        \"series\": [\n            {\n          \
+          \      \"name\": \"最高气温\",\n                \"type\": \"line\",\n      \
+          \          \"data\": max_temps,\n                \"yAxisIndex\": 0,\n  \
+          \              \"itemStyle\": {\n                    \"color\": \"#eae213\"\
+          \n                }\n            },\n            {\n                \"name\"\
+          : \"最低气温\",\n                \"type\": \"line\",\n                \"smooth\"\
+          : True,\n                \"data\": min_temps,\n                \"yAxisIndex\"\
+          : 0,\n                \"itemStyle\": {\n                    \"color\": \"\
+          #4bb2fa\"\n                }\n            },\n            {\n          \
+          \      \"name\": \"降水\",\n                \"type\": \"bar\",\n         \
+          \       \"smooth\": True,\n                \"data\": rainfall,\n       \
+          \         \"yAxisIndex\": 1,\n                \"itemStyle\": {\n       \
+          \             \"color\": \"#31e84f\"\n                }\n            }\n\
+          \        ]\n    }\n\n    # 生成输出文件\n    output = \"```echarts\\n\" + json.dumps(echarts_config,\
+          \ indent=2, ensure_ascii=False) + \"\\n```\"\n\n    return {\"output\":output}"
+        code_language: python3
+        desc: ''
+        outputs:
+          output:
+            children: null
+            type: string
+        selected: false
+        title: 组合数据
+        type: code
+        variables:
+        - value_selector:
+          - '1731568176573'
+          - body
+          variable: data
+      height: 54
+      id: '1731568257888'
+      position:
+        x: 638
+        y: 255
+      positionAbsolute:
+        x: 638
+        y: 255
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 71
+      y: -19
+      zoom: 0.7
