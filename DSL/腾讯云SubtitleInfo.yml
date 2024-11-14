@@ -1,0 +1,223 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: TC_Get
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.3
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1731555779402-source-1731555795064-target
+      source: '1731555779402'
+      sourceHandle: source
+      target: '1731555795064'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: end
+      id: 1731555795064-source-1731555960277-target
+      source: '1731555795064'
+      sourceHandle: source
+      target: '1731555960277'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: true
+        title: 开始
+        type: start
+        variables:
+        - label: file_ids
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: file_ids
+        - label: sub_appid
+          max_length: 48
+          options: []
+          required: true
+          type: number
+          variable: sub_appid
+      height: 116
+      id: '1731555779402'
+      position:
+        x: 30
+        y: 258
+      positionAbsolute:
+        x: 30
+        y: 258
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json\nimport time\nimport hmac\nimport hashlib\nimport requests\n\
+          import io\nfrom datetime import datetime\n\n# 腾讯云配置信息\nSECRET_ID = \"\"\n\
+          SECRET_KEY = \"\"\nSERVICE = \"vod\"\nHOST = \"vod.tencentcloudapi.com\"\
+          \nALGORITHM = \"TC3-HMAC-SHA256\"\nVERSION = \"2018-07-17\"\n\ndef _sign_string(key,\
+          \ msg):\n    return hmac.new(key, msg.encode('utf-8'), hashlib.sha256).digest()\n\
+          \ndef generate_signature(canonical_request, timestamp, date):\n    credential_scope\
+          \ = f\"{date}/{SERVICE}/tc3_request\"\n    hashed_canonical_request = hashlib.sha256(canonical_request.encode('utf-8')).hexdigest()\n\
+          \    str_to_sign = f\"{ALGORITHM}\\n{timestamp}\\n{credential_scope}\\n{hashed_canonical_request}\"\
+          \n    \n    secret_date = _sign_string((\"TC3\" + SECRET_KEY).encode('utf-8'),\
+          \ date)\n    secret_service = _sign_string(secret_date, SERVICE)\n    secret_signing\
+          \ = _sign_string(secret_service, \"tc3_request\")\n    signature = hmac.new(secret_signing,\
+          \ str_to_sign.encode('utf-8'), hashlib.sha256).hexdigest()\n    \n    return\
+          \ f\"{ALGORITHM} Credential={SECRET_ID}/{credential_scope}, SignedHeaders=content-type;host,\
+          \ Signature={signature}\"\n\ndef get_vtt_content(url: str) -> str:\n   \
+          \ try:\n        response = requests.get(url)\n        response.raise_for_status()\n\
+          \        content = io.StringIO(response.text)\n        return str(content.getvalue())\n\
+          \    except Exception as err:\n        print(f'获取内容失败: {err}, URL: {url}')\n\
+          \        return \"\"\n\ndef main(file_ids: str = '', sub_appid: int = 0):\n\
+          \    try:\n        timestamp = str(int(time.time()))\n        date = datetime.utcfromtimestamp(int(timestamp)).strftime('%Y-%m-%d')\n\
+          \n        payload = {\n            \"FileIds\": [file_ids],\n          \
+          \  \"SubAppId\": sub_appid\n        }\n        payload_str = json.dumps(payload)\n\
+          \n        headers = {\n            'Content-Type': 'application/json',\n\
+          \            'Host': HOST,\n            'X-TC-Action': 'DescribeMediaInfos',\n\
+          \            'X-TC-Version': VERSION,\n            'X-TC-Timestamp': timestamp,\n\
+          \        }\n\n        canonical_headers = f\"content-type:{headers['Content-Type']}\\\
+          nhost:{HOST}\\n\"\n        hashed_request_payload = hashlib.sha256(payload_str.encode('utf-8')).hexdigest()\n\
+          \        canonical_request = f\"POST\\n/\\n\\n{canonical_headers}\\ncontent-type;host\\\
+          n{hashed_request_payload}\"\n\n        headers['Authorization'] = generate_signature(canonical_request,\
+          \ timestamp, date)\n\n        response = requests.post(f\"https://{HOST}\"\
+          , data=payload_str, headers=headers)\n        result = response.json()\n\
+          \        \n        if 'Error' in result.get('Response', {}):\n         \
+          \   error_info = result['Response']['Error']\n            print(f\"API错误:\
+          \ {error_info.get('Code')} - {error_info.get('Message')}\")\n          \
+          \  return {\"status\":0,\"content\":\"\"}\n        \n        media_info\
+          \ = result['Response']['MediaInfoSet'][0]\n        if 'SubtitleInfo' in\
+          \ media_info and 'SubtitleSet' in media_info['SubtitleInfo']:\n        \
+          \    subtitle_sets = media_info['SubtitleInfo']['SubtitleSet']\n       \
+          \     print(f\"\\n找到 {len(subtitle_sets)} 个:\")\n            for subtitle\
+          \ in subtitle_sets:\n                print(f\"\\nID: {subtitle['Id']}\"\
+          )\n                print(f\"URL: {subtitle['Url']}\")\n                print(\"\
+          内容:\")\n                content = get_vtt_content(subtitle['Url'])\n   \
+          \             print(content)\n            return {\"status\":1,\"content\"\
+          :content}\n        else:\n            print(\"未找到信息\")\n            return\
+          \ {\"status\":0,\"content\":\"\"}\n\n    except Exception as err:\n    \
+          \    print(f\"获取信息失败: {err}\")\n        return {\"status\":0,\"content\"\
+          :\"\"}"
+        code_language: python3
+        desc: ''
+        outputs:
+          content:
+            children: null
+            type: string
+          status:
+            children: null
+            type: number
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1731555779402'
+          - file_ids
+          variable: file_ids
+        - value_selector:
+          - '1731555779402'
+          - sub_appid
+          variable: sub_appid
+      height: 54
+      id: '1731555795064'
+      position:
+        x: 334
+        y: 258
+      positionAbsolute:
+        x: 334
+        y: 258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1731555795064'
+          - status
+          variable: status
+        - value_selector:
+          - '1731555795064'
+          - content
+          variable: content
+        selected: false
+        title: 结束
+        type: end
+      height: 116
+      id: '1731555960277'
+      position:
+        x: 638
+        y: 258
+      positionAbsolute:
+        x: 638
+        y: 258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.7
