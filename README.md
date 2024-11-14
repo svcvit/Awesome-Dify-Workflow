@@ -11,7 +11,7 @@
 ![](./snapshots/Xnip2024-11-12_10-53-42.jpg)
 
 ## 模型
-如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用这个服务 [CoffBox](https://one.coffbox.com/) 的服务。
+如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用这个服务 [CoffBox](https://one.coffbox.com/) 的服务。配置方式参考 [如何在Dify中使用CoffBox的服务](https://blog.vcvit.me/2024/11/13/how-to-use-one-api-in-dify/)
 
 ## 参考截图
 
