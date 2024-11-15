@@ -1,0 +1,460 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: json_translate
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.3
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1731659178787-source-1731659181729-target
+      source: '1731659178787'
+      sourceHandle: source
+      target: '1731659181729'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1731659181729-source-1731659184426-target
+      source: '1731659181729'
+      sourceHandle: source
+      target: '1731659184426'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1731659184426'
+        sourceType: iteration-start
+        targetType: code
+      id: 1731659184426start-source-1731659360096-target
+      source: 1731659184426start
+      sourceHandle: source
+      target: '1731659360096'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1731659184426'
+        sourceType: code
+        targetType: tool
+      id: 1731659360096-source-1731659570395-target
+      source: '1731659360096'
+      sourceHandle: source
+      target: '1731659570395'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1731659184426'
+        sourceType: tool
+        targetType: code
+      id: 1731659570395-source-1731659778623-target
+      source: '1731659570395'
+      sourceHandle: source
+      target: '1731659778623'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: code
+      id: 1731659184426-source-1731659874585-target
+      source: '1731659184426'
+      sourceHandle: source
+      target: '1731659874585'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: end
+      id: 1731659874585-source-1731659992069-target
+      source: '1731659874585'
+      sourceHandle: source
+      target: '1731659992069'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: json_data
+          max_length: 10000
+          options: []
+          required: true
+          type: paragraph
+          variable: json_data
+      height: 90
+      id: '1731659178787'
+      position:
+        x: 30
+        y: 295.5
+      positionAbsolute:
+        x: 30
+        y: 295.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json\nimport re\n\ndef collect_translatable_text(json_data):\n\
+          \    translatable_items = []\n    \n    def is_translatable(value):\n  \
+          \      # 如果是数字类型，直接返回False\n        if isinstance(value, (int, float)):\n\
+          \            return False\n            \n        # 如果不是字符串，也返回False\n  \
+          \      if not isinstance(value, str):\n            return False\n      \
+          \  \n        text = str(value).strip()\n        if not text:\n         \
+          \   return False\n            \n        non_translatable_patterns = [\n\
+          \            r'^#[0-9A-Fa-f]{3,8}$',  # 颜色代码\n            r'^[\\d.]+$',\
+          \  # 纯数字\n            r'^[0-9a-fA-F-]{36}$',  # UUID\n            r'^https?://',\
+          \  # URL\n            r'^[\\d.:]+$',  # IP地址\n            r'^[\\d-]+$',\
+          \  # 日期中的数字和横线\n            r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$',\
+          \  # 邮箱\n        ]\n        \n        for pattern in non_translatable_patterns:\n\
+          \            if re.match(pattern, text):\n                return False\n\
+          \                \n        # 检查是否包含至少一个中文字符或字母\n        has_translatable_chars\
+          \ = bool(re.search(r'[\\u4e00-\\u9fff]|[a-zA-Z]', text))\n        return\
+          \ has_translatable_chars\n\n    def traverse(data, path=[]):\n        if\
+          \ isinstance(data, dict):\n            for key, value in data.items():\n\
+          \                # 将 key 转换为字符串\n                current_path = path + [str(key)]\n\
+          \                if isinstance(value, (dict, list)):\n                 \
+          \   traverse(value, current_path)\n                elif is_translatable(value):\n\
+          \                    translatable_items.append({\n                     \
+          \   'path': current_path,\n                        'text': value\n     \
+          \               })\n        elif isinstance(data, list):\n            for\
+          \ index, item in enumerate(data):\n                # 将索引转换为字符串\n       \
+          \         current_path = path + [str(index)]\n                if isinstance(item,\
+          \ (dict, list)):\n                    traverse(item, current_path)\n   \
+          \             elif is_translatable(item):\n                    translatable_items.append({\n\
+          \                        'path': current_path,\n                       \
+          \ 'text': item\n                    })\n\n    traverse(json_data)\n    return\
+          \ translatable_items\n\n\ndef main(json_data_string):\n    json_data = json.loads(json_data_string)\n\
+          \    items_to_translate = collect_translatable_text(json_data)\n    return\
+          \ {\"items_to_translate\":items_to_translate}"
+        code_language: python3
+        desc: ''
+        outputs:
+          items_to_translate:
+            children: null
+            type: array[object]
+        selected: false
+        title: 抽取
+        type: code
+        variables:
+        - value_selector:
+          - '1731659178787'
+          - json_data
+          variable: json_data_string
+      height: 54
+      id: '1731659181729'
+      position:
+        x: 334
+        y: 295.5
+      positionAbsolute:
+        x: 334
+        y: 295.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 191
+        is_parallel: false
+        iterator_selector:
+        - '1731659181729'
+        - items_to_translate
+        output_selector:
+        - '1731659778623'
+        - result
+        output_type: array[object]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1731659184426start
+        title: 迭代
+        type: iteration
+        width: 1027
+      height: 191
+      id: '1731659184426'
+      position:
+        x: 35.14285714285711
+        y: 448.3571428571429
+      positionAbsolute:
+        x: 35.14285714285711
+        y: 448.3571428571429
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 1027
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1731659184426start
+      parentId: '1731659184426'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 59.14285714285711
+        y: 516.3571428571429
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        code: "\ndef main(item):\n    return {\n        \"path\": item['path'],\n\
+          \        \"text\": item['text']\n    }\n"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        iteration_id: '1731659184426'
+        outputs:
+          path:
+            children: null
+            type: array[string]
+          text:
+            children: null
+            type: string
+        selected: false
+        title: 解析
+        type: code
+        variables:
+        - value_selector:
+          - '1731659184426'
+          - item
+          variable: item
+      height: 54
+      id: '1731659360096'
+      parentId: '1731659184426'
+      position:
+        x: 109
+        y: 68
+      positionAbsolute:
+        x: 144.1428571428571
+        y: 516.3571428571429
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1731659184426'
+        provider_id: google_translate
+        provider_name: google_translate
+        provider_type: builtin
+        selected: false
+        title: 翻译
+        tool_configurations:
+          dest: en
+        tool_label: 翻译
+        tool_name: translate
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1731659360096.text#}}'
+        type: tool
+      height: 90
+      id: '1731659570395'
+      parentId: '1731659184426'
+      position:
+        x: 413
+        y: 68
+      positionAbsolute:
+        x: 448.1428571428571
+        y: 516.3571428571429
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        code: "\ndef main(item,translated_text):\n    translated_item = item.copy()\n\
+          \    translated_item['translated_text'] = translated_text\n    return {\n\
+          \        \"result\": translated_item\n    }\n"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        iteration_id: '1731659184426'
+        outputs:
+          result:
+            children: null
+            type: object
+        selected: false
+        title: 合并
+        type: code
+        variables:
+        - value_selector:
+          - '1731659184426'
+          - item
+          variable: item
+        - value_selector:
+          - '1731659570395'
+          - text
+          variable: translated_text
+      height: 54
+      id: '1731659778623'
+      parentId: '1731659184426'
+      position:
+        x: 717
+        y: 67
+      positionAbsolute:
+        x: 752.1428571428571
+        y: 515.3571428571429
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        code: "import json\n\ndef update_json_with_translations(json_data, translated_items):\n\
+          \    \"\"\"\n    使用翻译后的内容更新原始JSON\n    \"\"\"\n    def set_value_at_path(data,\
+          \ path):\n        current = data\n        for i, key in enumerate(path[:-1]):\n\
+          \            # 判断当前层级是列表还是字典\n            if isinstance(current, list):\n\
+          \                # 将字符串索引转换回整数\n                current = current[int(key)]\n\
+          \            else:\n                current = current[key]\n        \n \
+          \       # 处理最后一个键\n        last_key = path[-1]\n        if isinstance(current,\
+          \ list):\n            return current, int(last_key)\n        return current,\
+          \ last_key\n\n    result = json.loads(json.dumps(json_data))  # 创建深拷贝\n\
+          \    for item in translated_items:\n        obj, final_key = set_value_at_path(result,\
+          \ item['path'])\n        obj[final_key] = item['translated_text']\n    return\
+          \ result\n\ndef main(json_data_string,translated_items):\n    json_data\
+          \ = json.loads(json_data_string)\n    updated_json = update_json_with_translations(json_data,\
+          \ translated_items)\n    return {\n        \"result\": json.dumps(updated_json,ensure_ascii=False,indent=2)\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 组装
+        type: code
+        variables:
+        - value_selector:
+          - '1731659184426'
+          - output
+          variable: translated_items
+        - value_selector:
+          - '1731659178787'
+          - json_data
+          variable: json_data_string
+      height: 54
+      id: '1731659874585'
+      position:
+        x: 1204.9999999999998
+        y: 295.5
+      positionAbsolute:
+        x: 1204.9999999999998
+        y: 295.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1731659874585'
+          - result
+          variable: updated_json
+        selected: false
+        title: 结束
+        type: end
+      height: 90
+      id: '1731659992069'
+      position:
+        x: 1197.5714285714287
+        y: 411.21428571428567
+      positionAbsolute:
+        x: 1197.5714285714287
+        y: 411.21428571428567
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 59.299999999999955
+      y: 71.65000000000009
+      zoom: 0.7
