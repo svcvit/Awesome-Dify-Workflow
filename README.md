@@ -8,7 +8,7 @@
 开了一个分享群，有兴趣可以加入，如果你有关于 workflow 的问题也可以一起讨论。（2024/11/12 更新）
 - 一号群超 200 了，加群主好友，备注 dify，拉你入群
 - 也可以直接扫二号群，目前人少一点
-![](./snapshots/Xnip2024-11-12_10-53-42.jpg)
+![](./snapshots/Xnip2024-11-18_14-02-24.jpg)
 
 ## 模型
 如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用这个服务 [CoffBox](https://one.coffbox.com/) 的服务。配置方式参考 [如何在Dify中使用CoffBox的服务](https://blog.vcvit.me/2024/11/13/how-to-use-one-api-in-dify/)
