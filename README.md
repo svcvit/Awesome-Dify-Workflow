@@ -52,6 +52,11 @@ A：我知道了，应该是我服务器挂了代理，但是dify是启在docker
 A：点击右上角，头像，设置，语言，先切换成其它语言，再切换成中文，即可。
 </details>
 
+<details>
+<summary>管理员密码忘记了怎么搞？</summary>
+A：执行下面的指令：docker exec -it docker-api-1 flask reset-password
+</details>
+
 ## 模型
 如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用这个服务 [CoffBox](https://one.coffbox.com/) 的服务。配置方式参考 [如何在Dify中使用CoffBox的服务](https://blog.vcvit.me/2024/11/13/how-to-use-one-api-in-dify/)
 
