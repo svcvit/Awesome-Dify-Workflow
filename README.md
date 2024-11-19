@@ -10,6 +10,42 @@
 - 也可以直接扫二号群，目前人少一点
 ![](./snapshots/Xnip2024-11-18_14-02-24.jpg)
 
+## 群里的常见问题
+这里总结了一些群里常见的问题，不定期更新，内容不会很多，希望对你有帮助。
+
+<details>
+<summary>dify 有没有国内的镜像源配置呀?</summary>
+A：我一般把所有image，前面的链接加上 dockerpull.com 
+<img src="./images/Xnip2024-11-19_10-14-02.jpg" alt="示例图片" width="400">
+</details>
+
+<details>
+<summary>拿到图片URL后能在聊天窗口显示吗，试了下markdown但什么都没显示出来。</summary>
+<img src="./images/image001.png" alt="示例图片" width="400">
+
+A：你的做法是对的，只是你的图片不支持跨域，所以没渲染出来
+</details>
+
+
+<details>
+<summary>请教一个问题，知识库上传大文件提出报错，修改配置文件后，还是无法上传大文件，如下是配置文件中修改上传文件地方；</summary>
+<img src="./images/002.png" alt="示例图片" width="400">
+
+A:nginx 也要改；在.env里面；搜 nginx，应该能找到
+</details>
+
+
+<details>
+<summary>知识库永久排队问题</summary>
+A：修改 .env 中的一段：LOG_FILE=/app/logs/server.log；重启容器
+</details>
+
+
+<details>
+<summary>DuckDuckGo 翻译 现在是不可用了吗</summary>
+A：我知道了，应该是我服务器挂了代理，但是dify是启在docker里面的，没挂。。。
+</details>
+
 ## 模型
 如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用这个服务 [CoffBox](https://one.coffbox.com/) 的服务。配置方式参考 [如何在Dify中使用CoffBox的服务](https://blog.vcvit.me/2024/11/13/how-to-use-one-api-in-dify/)
 
