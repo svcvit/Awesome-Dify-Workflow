@@ -19,6 +19,12 @@ A：我一般把所有image，前面的链接加上 dockerpull.com
 <img src="./images/Xnip2024-11-19_10-14-02.jpg" alt="示例图片" width="400">
 </details>
 
+
+<details>
+<summary>sandbox 如何安装pandas这些第三方库？</summary>
+A：打开 /docker/volumes/sandbox/dependencies/python-requirements.txt 填入需要安装的依赖，重启sandbox即可。
+</details>
+
 <details>
 <summary>拿到图片URL后能在聊天窗口显示吗，试了下markdown但什么都没显示出来。</summary>
 <img src="./images/image001.png" alt="示例图片" width="400">
@@ -67,6 +73,12 @@ A：执行下面的指令：docker exec -it docker-api-1 flask reset-password
 # DSL 目录
 
 你可以参考下面每个 yml 的描述，找到你需要的 Workflow，然后在 DSL 文件夹中找到对应的文件，复制文件的 URL，导入自己的 Dify 账号即可。
+
+## 2024-11-20更新
+
+| 文件                               | 描述                                                                                                                                                                           | 来源                                                                |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| `json-repair.yml`                       | 大模型输出的JSON格式不标准，少个引号，多个括号，通过这个流程修复为可解析的的JSON ![](./snapshots/Xnip2024-11-20_09-45-48.jpg)                                                      | 微信 @svcvit  |
 
 ## 2024-11-15更新
 
