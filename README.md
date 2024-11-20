@@ -15,8 +15,9 @@
 
 <details>
 <summary>dify 有没有国内的镜像源配置呀?</summary>
-A：我一般把所有image，前面的链接加上 dockerpull.com 
 <img src="./images/Xnip2024-11-19_10-14-02.jpg" alt="示例图片" width="400">
+
+A：我一般把所有image，前面的链接加上 dockerpull.com 
 </details>
 
 
