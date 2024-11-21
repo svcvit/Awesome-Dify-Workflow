@@ -1,0 +1,163 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: matplotlib
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.3
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1732083938374-source-1732083953925-target
+      source: '1732083938374'
+      sourceHandle: source
+      target: '1732083953925'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: answer
+      id: 1732083953925-source-answer-target
+      source: '1732083953925'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1732083938374'
+      position:
+        x: 30
+        y: 251.5
+      positionAbsolute:
+        x: 30
+        y: 251.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '![描述文本](data:image/png;base64,{{#1732083953925.result#}})
+
+          '
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 119
+      id: answer
+      position:
+        x: 638
+        y: 251.5
+      positionAbsolute:
+        x: 638
+        y: 251.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "from pathlib import Path\nPath.home = lambda: Path(\"/dependencies/home\"\
+          )\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport io\nimport\
+          \ base64\n\ndef generate_base64_plot():\n    # 数据准备\n    x = np.linspace(0,\
+          \ 10, 100)\n    y = np.sin(x)\n    \n    # 创建图形\n    plt.figure(figsize=(8,\
+          \ 6))  # 设置画布大小为 800x600 像素\n    plt.plot(x, y, label='Sine Wave', color='blue',\
+          \ linewidth=2)\n    \n    # 添加标题和标签\n    plt.title('Sine Wave Example',\
+          \ fontsize=16)\n    plt.xlabel('X-axis', fontsize=12)\n    plt.ylabel('Y-axis',\
+          \ fontsize=12)\n    \n    # 添加网格和图例\n    plt.grid(True, linestyle='--',\
+          \ alpha=0.6)\n    plt.legend(fontsize=12)\n    \n    # 使用内存缓冲区保存图片为Base64字符串\n\
+          \    buffer = io.BytesIO()\n    plt.savefig(buffer, format='png', dpi=100)\
+          \  # 使用 100 DPI 保存，确保像素为 800x600\n    buffer.seek(0)  # 将缓冲区指针回到起点\n   \
+          \ base64_str = base64.b64encode(buffer.read()).decode('utf-8')\n    buffer.close()\n\
+          \    plt.close()  # 关闭绘图对象，释放资源\n    \n    return base64_str\n\n\ndef main():\n\
+          \    base64_image = generate_base64_plot()\n    return {\"result\": base64_image}\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: true
+        title: 代码执行
+        type: code
+        variables: []
+      height: 54
+      id: '1732083953925'
+      position:
+        x: 334
+        y: 251.5
+      positionAbsolute:
+        x: 334
+        y: 251.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 120.00000000000006
+      y: 238.30000000000004
+      zoom: 0.7
