@@ -27,6 +27,11 @@ A：打开 /docker/volumes/sandbox/dependencies/python-requirements.txt 填入�
 </details>
 
 <details>
+<summary>sandbox 运行代码老报错，怎么搞</summary>
+A：<a herf="https://github.com/svcvit/dify-sandbox-py">https://github.com/svcvit/dify-sandbox-py</a> 这是我开发的另外一个简单版sandbox，有需要可以试试，去掉了权限。
+</details>
+
+<details>
 <summary>拿到图片URL后能在聊天窗口显示吗，试了下markdown但什么都没显示出来。</summary>
 <img src="./images/image001.png" alt="示例图片" width="400">
 
