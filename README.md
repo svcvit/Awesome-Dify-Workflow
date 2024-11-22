@@ -31,6 +31,14 @@ A：<a herf="https://github.com/svcvit/dify-sandbox-py">https://github.com/svcvi
 </details>
 
 <details>
+<summary>节点间传递string数据，提示超限制，如何处理</summary>
+A：修改 .env 中的一段：
+CODE_MAX_STRING_LENGTH: 1000000
+TEMPLATE_TRANSFORM_MAX_LENGTH: 1000000
+重启容器
+</details>
+
+<details>
 <summary>拿到图片URL后能在聊天窗口显示吗，试了下markdown但什么都没显示出来。</summary>
 <img src="./images/image001.png" alt="示例图片" width="400">
 
