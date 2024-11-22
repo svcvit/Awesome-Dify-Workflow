@@ -88,11 +88,12 @@ A：执行下面的指令：docker exec -it docker-api-1 flask reset-password
 
 你可以参考下面每个 yml 的描述，找到你需要的 Workflow，然后在 DSL 文件夹中找到对应的文件，复制文件的 URL，导入自己的 Dify 账号即可。
 
-## 2024-11-21更新
+## 2024-11-22更新
 
 | 文件                               | 描述                                                                                                                                                                           | 来源                                                                |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
 | `matplotlib.yml`                       | 使用matplotlib画图，将图片输出为base64，再通过回复渲染图片。注意，官方sandbox权限比较复杂，安装完matplotlib也无法使用，请使用[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)  ![](./snapshots/Xnip2024-11-21_09-35-09.jpg)                                                      | 微信 @svcvit  |
+| `jieba.yml`                       | jieba 分词示例，请使用[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)  ![](./snapshots/Xnip2024-11-22_13-44-07.jpg)                                                      | 微信 @svcvit  |
 
 
 ## 2024-11-20更新
