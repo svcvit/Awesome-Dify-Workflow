@@ -3,15 +3,15 @@
 [English](README_EN.md) | [中文](README.md)
 
 
-分享一些好用的 Dify 工作流程，自用、学习两相宜，请使用 Dify 0.12.0 及以上版本导入。已支持多 **任务并行** 、 **会话变量**、**表单**、**echart渲染** 相关特性。
+分享一些好用的 Dify 工作流程，自用、学习两相宜，请使用 Dify 0.13.0 及以上版本导入。已支持多 **任务并行**、**会话变量**、**表单**、**echart渲染** 相关特性。
 
 所有的 Workflow 基本都可以 **免费** 使用，更多 Workflow 收集整理中……
 
 ## 分享群
-开了一个分享群，有兴趣可以加入，如果你有关于 workflow 的问题也可以一起讨论。（2024/11/28 更新）
+开了一个分享群，有兴趣可以加入，如果你有关于 workflow 的问题也可以一起讨论。（2024/12/4 更新）
 - 主群都超200了，加群主好友，备注 dify，拉你入群。
 - 当然，也可以加新群，目前人少一点
-![](./snapshots/Xnip2024-11-28_09-42-07.jpg)
+![](./snapshots/Xnip2024-12-04_09-01-15.jpg)
 
 ## 群里的常见问题
 这里总结了一些群里常见的问题，不定期更新，内容不会很多，希望对你有帮助。
@@ -27,11 +27,6 @@ A：我一般把所有image，前面的链接加上 dockerpull.org
 <details>
 <summary>sandbox 如何安装pandas这些第三方库？</summary>
 A：打开 /docker/volumes/sandbox/dependencies/python-requirements.txt 填入需要安装的依赖，重启sandbox即可。
-</details>
-
-<details>
-<summary>sandbox 运行 numpy>2.0，matplotlib，scikit-learn 代码老报错，怎么搞</summary>
-A：<a herf="https://github.com/svcvit/dify-sandbox-py">https://github.com/svcvit/dify-sandbox-py</a> 这是我开发的另外一个简单版sandbox，有需要可以试试，去掉了权限。
 </details>
 
 <details>
@@ -65,6 +60,22 @@ A：修改 .env 中的一段：LOG_FILE=/app/logs/server.log；重启容器
 
 
 <details>
+<summary>在哪里可以自学Dify?</summary>
+A：可以参考 https://dify101.com
+</details>
+
+<details>
+<summary>Dify生成图表有什么好方案？</summary>
+A：Dify自带了一些绘图功能，包括柱状图、曲线图等。 也可以自己写一个Echarts插件，从数据库读取数据并画图。 
+</details>
+
+<details>
+<summary>Dify知识库上传PDF乱码怎么办？</summary>
+A： 可以使用工具将PDF转换成Markdown格式再上传。
+</details>
+
+
+<details>
 <summary>DuckDuckGo 翻译 现在是不可用了吗</summary>
 A：应该是服务器挂了代理，但是dify是启在docker里面的，没挂。
 </details>
@@ -79,6 +90,9 @@ A：点击右上角，头像，设置，语言，先切换成其它语言，再�
 <summary>管理员密码忘记了怎么搞？</summary>
 A：执行下面的指令：docker exec -it docker-api-1 flask reset-password
 </details>
+
+## sandbox
+sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，可以使用我开发的另外一个简单版[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)，这些依赖已经测试可以使用。
 
 ## 模型
 如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用我搭建的服务 [CoffBox](https://one.coffbox.com/) 的服务
