@@ -182,7 +182,7 @@ workflow:
         prompt_template:
         - id: 435bb086-612d-4abd-b8da-f47951aa07bf
           role: system
-          text: 'You are an expert linguist, specializing in translation from {{#1721117927142.source_text#}}
+          text: 'You are an expert linguist, specializing in translation from {{#1721117927142.source_lang#}}
             to {{#1721117927142.target_lang#}}
 
 
