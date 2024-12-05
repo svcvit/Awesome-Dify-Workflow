@@ -1,0 +1,241 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: File_read
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.4
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1733304372042-source-1733304400929-target
+      source: '1733304372042'
+      sourceHandle: source
+      target: '1733304400929'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: code
+      id: 1733304400929-source-1733308511344-target
+      source: '1733304400929'
+      sourceHandle: source
+      target: '1733308511344'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: end
+      id: 1733308511344-source-1733304425429-target
+      source: '1733308511344'
+      sourceHandle: source
+      target: '1733304425429'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          - image
+          - audio
+          - video
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: File
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: File
+      height: 90
+      id: '1733304372042'
+      position:
+        x: 30
+        y: 245
+      positionAbsolute:
+        x: 30
+        y: 245
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import os\nimport time\nfrom datetime import datetime, timedelta\n\n\
+          def main(filesize):\n    # 存储符合条件的文件列表\n    matched_files = []\n    \n \
+          \   # 获取当前时间\n    current_time = time.time()\n    \n    # 检查 upload_files\
+          \ 文件夹\n    upload_dir = '/upload_files'\n    \n    # 确保文件夹存在\n    if not\
+          \ os.path.exists(upload_dir):\n        return  {\"file_path\":\"None\"}\n\
+          \    \n    # 递归遍历文件夹中的所有文件\n    for root, dirs, files in os.walk(upload_dir):\n\
+          \        for filename in files:  # 只处理文件，忽略文件夹\n            file_path =\
+          \ os.path.join(root, filename)\n            \n            # 获取文件状态信息\n \
+          \           file_stat = os.stat(file_path)\n            \n            #\
+          \ 获取文件修改时间\n            file_mtime = file_stat.st_mtime\n            \n\
+          \            # 计算文件时间差（分钟）\n            time_diff = (current_time - file_mtime)\
+          \ / 60\n            \n            # 检查文件大小和修改时间是否符合条件\n            if  file_stat.st_size\
+          \ == filesize:\n                matched_files.append((file_path, file_mtime))\n\
+          \n    if matched_files:\n        # 按修改时间排序，取最新的文件\n        newest_file =\
+          \ max(matched_files, key=lambda x: x[1])\n        return {\"file_path\"\
+          :str(newest_file[0])}\n    else:\n        return {\"file_path\":\"None\"\
+          }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          file_path:
+            children: null
+            type: string
+        selected: false
+        title: 获取文件路径
+        type: code
+        variables:
+        - value_selector:
+          - '1733304372042'
+          - File
+          - size
+          variable: filesize
+      height: 54
+      id: '1733304400929'
+      position:
+        x: 334
+        y: 245
+      positionAbsolute:
+        x: 334
+        y: 245
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1733308511344'
+          - result
+          variable: output
+        selected: false
+        title: 结束
+        type: end
+      height: 90
+      id: '1733304425429'
+      position:
+        x: 942
+        y: 245
+      positionAbsolute:
+        x: 942
+        y: 245
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import pandas as pd\nfile_path = '{{file_path}}'\ndef main(file_path):\n\
+          \    try:\n        # 读取CSV文件\n        df = pd.read_csv(file_path)\n    \
+          \    \n        # 获取前5行数据作为样本\n        sample_df = df.head()\n        \n\
+          \        # 生成markdown表格\n        markdown = \"### 数据样本预览\\n\\n\"\n     \
+          \   \n        # 添加表头\n        headers = \"|\" + \"|\".join(str(col) for\
+          \ col in sample_df.columns) + \"|\"\n        separator = \"|\" + \"|\".join([\"\
+          ---\" for _ in sample_df.columns]) + \"|\"\n        \n        markdown +=\
+          \ headers + \"\\n\" + separator + \"\\n\"\n        \n        # 添加数据行\n \
+          \       for _, row in sample_df.iterrows():\n            markdown += \"\
+          |\" + \"|\".join(str(val) for val in row.values) + \"|\\n\"\n          \
+          \  \n        # 添加数据集信息\n        markdown += f\"\\n### 数据集信息\\n\"\n     \
+          \   markdown += f\"- 总行数: {len(df)}\\n\"\n        markdown += f\"- 总列数:\
+          \ {len(df.columns)}\\n\"\n        markdown += f\"- 列名: {', '.join(df.columns.tolist())}\\\
+          n\"\n        \n        return {\"result\": markdown}\n        \n    except\
+          \ Exception as e:\n        return {\"result\": f\"错误: {str(e)}\"}"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 读取csv
+        type: code
+        variables:
+        - value_selector:
+          - '1733304400929'
+          - file_path
+          variable: file_path
+      height: 54
+      id: '1733308511344'
+      position:
+        x: 638
+        y: 245
+      positionAbsolute:
+        x: 638
+        y: 245
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 91.70000000000005
+      y: -8.5
+      zoom: 0.7
