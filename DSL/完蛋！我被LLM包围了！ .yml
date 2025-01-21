@@ -1,0 +1,1729 @@
+app:
+  description: '你可以和大模型斗智斗勇，通过你的聪明才智，让大模型遵循你的指令，“老老实实”地回答问题。
+
+    通过本游戏对大型语言模型产生更深刻的理解。一起来感受玩“坏”大模型的乐趣吧！
+
+    目前总共有五个章节：对话之趣、数字游戏、巅峰挑战、无人之境、登堂入室。每个章节有多个关卡，试试看你能通过几个章节，可能你连第一章都无法通过。'
+  icon: video_game
+  icon_background: '#FBE8FF'
+  mode: advanced-chat
+  name: 完蛋！我被LLM包围了！
+  use_icon_as_answer_icon: true
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables:
+  - description: 问题类型，0：普通问题，1：回文问题，2：互惠问题
+    id: 025bffa8-5502-4639-b4c5-78e006217829
+    name: question_type
+    selector:
+    - conversation
+    - question_type
+    value: 0
+    value_type: number
+  - description: 游戏状态（pending\start\running\restart\success）
+    id: b380e461-c8e1-4d5f-be5f-439ddf84fc5a
+    name: status
+    selector:
+    - conversation
+    - status
+    value: pending
+    value_type: string
+  - description: 问题序号
+    id: 90d13fef-affa-4660-883f-00881df92f4c
+    name: question_id
+    selector:
+    - conversation
+    - question_id
+    value: 0
+    value_type: number
+  - description: 游戏关卡
+    id: d05c7f90-2e56-4296-9b91-4a481d44682e
+    name: game_level
+    selector:
+    - conversation
+    - game_level
+    value: 0
+    value_type: number
+  environment_variables:
+  - description: ''
+    id: 81051d42-e73b-4d85-8d5d-59eed29f488c
+    name: top_n
+    selector:
+    - env
+    - top_n
+    value: 50
+    value_type: number
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      - .MP4
+      - .MOV
+      - .MPEG
+      - .MPGA
+      allowed_file_types: []
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - remote_url
+        - local_file
+      number_limits: 3
+    opening_statement: '<center><font size=4>完蛋！我被LLM包围了！</font></center>
+
+      <div><font size=2>欢迎来玩 Dify 复刻版的 【完蛋！我被LLM包围了！】</font></div>
+
+      <div><font size=2>你将通过本游戏对大型语言模型产生更深刻的理解。</font></div>
+
+      <div><font size=2>在本游戏中，你需要构造一个提给大型语言模型的问题，使得它回复的答案符合要求。</font></div>'
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      configs: []
+      enabled: false
+      type: ''
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - '#开始'
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: start-source-1735183356205-target
+      selected: false
+      source: start
+      sourceHandle: source
+      target: '1735183356205'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1735183356205-true-1735183411877-target
+      selected: false
+      source: '1735183356205'
+      sourceHandle: 'true'
+      target: '1735183411877'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1735183356205-faa33c03-dbfd-4fc5-b85d-11d3a519e455-1735183489389-target
+      selected: false
+      source: '1735183356205'
+      sourceHandle: faa33c03-dbfd-4fc5-b85d-11d3a519e455
+      target: '1735183489389'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1735183233430-true-1735183663452-target
+      selected: false
+      source: '1735183233430'
+      sourceHandle: 'true'
+      target: '1735183663452'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1735183233430-false-1735195760496-target
+      selected: false
+      source: '1735183233430'
+      sourceHandle: 'false'
+      target: '1735195760496'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1735197213688-true-1735197253934-target
+      selected: false
+      source: '1735197213688'
+      sourceHandle: 'true'
+      target: '1735197253934'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1735195760496-source-1735198227518-target
+      selected: false
+      source: '1735195760496'
+      sourceHandle: source
+      target: '1735198227518'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1735183233430-false-1735198861231-target
+      selected: false
+      source: '1735183233430'
+      sourceHandle: 'false'
+      target: '1735198861231'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1735198964742-source-1735199090032-target
+      selected: false
+      source: '1735198964742'
+      sourceHandle: source
+      target: '1735199090032'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: code
+      id: 1735199090032-source-1735195133945-target
+      selected: false
+      source: '1735199090032'
+      sourceHandle: source
+      target: '1735195133945'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: code
+      id: 1735198861231-true-1735199302294-target
+      selected: false
+      source: '1735198861231'
+      sourceHandle: 'true'
+      target: '1735199302294'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: llm
+      id: 1735199302294-source-1735198964742-target
+      selected: false
+      source: '1735199302294'
+      sourceHandle: source
+      target: '1735198964742'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1735183233430-9ca767d9-54ea-407e-a0a3-a8dc3e55e118-1735200055854-target
+      selected: false
+      source: '1735183233430'
+      sourceHandle: 9ca767d9-54ea-407e-a0a3-a8dc3e55e118
+      target: '1735200055854'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: answer
+      id: 1735197253934-source-1735192250756-target
+      selected: false
+      source: '1735197253934'
+      sourceHandle: source
+      target: '1735192250756'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: answer
+      id: 1735199727654-source-1735192250756-target
+      selected: false
+      source: '1735199727654'
+      sourceHandle: source
+      target: '1735192250756'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1735201048213-true-1735197213688-target
+      selected: false
+      source: '1735201048213'
+      sourceHandle: 'true'
+      target: '1735197213688'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1735201048213-ef6ca92c-8822-4f18-b219-ae4bae7698a0-1735199809830-target
+      selected: false
+      source: '1735201048213'
+      sourceHandle: ef6ca92c-8822-4f18-b219-ae4bae7698a0
+      target: '1735199809830'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1735201048213-false-1735192250756-target
+      selected: false
+      source: '1735201048213'
+      sourceHandle: 'false'
+      target: '1735192250756'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: assigner
+      id: 1735195133945-source-1735201350381-target
+      selected: false
+      source: '1735195133945'
+      sourceHandle: source
+      target: '1735201350381'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: if-else
+      id: 1735201350381-source-1735201048213-target
+      selected: false
+      source: '1735201350381'
+      sourceHandle: source
+      target: '1735201048213'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1735197213688-false-1735199727654-target
+      selected: false
+      source: '1735197213688'
+      sourceHandle: 'false'
+      target: '1735199727654'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: code
+      id: 1735183233430-c2d2ac2c-c148-48ce-b71d-822359b17e3d-1735195133945-target
+      selected: false
+      source: '1735183233430'
+      sourceHandle: c2d2ac2c-c148-48ce-b71d-822359b17e3d
+      target: '1735195133945'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: code
+      id: 1735183233430-4e65ee00-65e5-4b72-bfb7-f353ce3860e4-1735195133945-target
+      selected: false
+      source: '1735183233430'
+      sourceHandle: 4e65ee00-65e5-4b72-bfb7-f353ce3860e4
+      target: '1735195133945'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1735197213688-25972869-6d46-4e39-9a88-e019825edf57-1735192250756-target
+      selected: false
+      source: '1735197213688'
+      sourceHandle: 25972869-6d46-4e39-9a88-e019825edf57
+      target: '1735192250756'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: if-else
+      id: 1735198227518-source-1735213477600-target
+      source: '1735198227518'
+      sourceHandle: source
+      target: '1735213477600'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: code
+      id: 1735213477600-false-1735195133945-target
+      source: '1735213477600'
+      sourceHandle: 'false'
+      target: '1735195133945'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1735213477600-true-1735213513838-target
+      source: '1735213477600'
+      sourceHandle: 'true'
+      target: '1735213513838'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1735213513838-source-1735213525623-target
+      source: '1735213513838'
+      sourceHandle: source
+      target: '1735213525623'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: code
+      id: 1735213525623-source-1735195133945-target
+      source: '1735213525623'
+      sourceHandle: source
+      target: '1735195133945'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1735197213688-9d4ecd94-c9d7-4f53-a44e-e5b3a62827a6-1735264591657-target
+      source: '1735197213688'
+      sourceHandle: 9d4ecd94-c9d7-4f53-a44e-e5b3a62827a6
+      target: '1735264591657'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: answer
+      id: 1735264591657-source-1735192250756-target
+      source: '1735264591657'
+      sourceHandle: source
+      target: '1735192250756'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: template-transform
+      id: 1735183411877-source-1736326776211-target
+      source: '1735183411877'
+      sourceHandle: source
+      target: '1736326776211'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: template-transform
+      id: 1735183489389-source-1736326787827-target
+      source: '1735183489389'
+      sourceHandle: source
+      target: '1736326787827'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: template-transform
+      id: 1735183356205-false-1736326800771-target
+      source: '1735183356205'
+      sourceHandle: 'false'
+      target: '1736326800771'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1736326776211-source-1736326851692-target
+      source: '1736326776211'
+      sourceHandle: source
+      target: '1736326851692'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1736326787827-source-1736326851692-target
+      source: '1736326787827'
+      sourceHandle: source
+      target: '1736326851692'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1736326800771-source-1736326851692-target
+      source: '1736326800771'
+      sourceHandle: source
+      target: '1736326851692'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: variable-aggregator
+        targetType: if-else
+      id: 1736326851692-source-1735183233430-target
+      source: '1736326851692'
+      sourceHandle: source
+      target: '1735183233430'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: START
+        type: start
+        variables: []
+      height: 52
+      id: start
+      position:
+        x: 30
+        y: 287
+      positionAbsolute:
+        x: 30
+        y: 287
+      selected: false
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: f449f8ad-94c3-4813-baeb-7ec9542192eb
+            value: pending
+            varType: string
+            variable_selector:
+            - '1736326851692'
+            - output
+          id: 'true'
+          logical_operator: and
+        - case_id: 9ca767d9-54ea-407e-a0a3-a8dc3e55e118
+          conditions:
+          - comparison_operator: is
+            id: 2ecc2ad2-1566-4aef-90f9-2359c0230e3f
+            value: success
+            varType: string
+            variable_selector:
+            - '1736326851692'
+            - output
+          id: 9ca767d9-54ea-407e-a0a3-a8dc3e55e118
+          logical_operator: and
+        - case_id: c2d2ac2c-c148-48ce-b71d-822359b17e3d
+          conditions:
+          - comparison_operator: is
+            id: 896357e6-2180-43dd-ab1c-d018c6987f0a
+            value: start
+            varType: string
+            variable_selector:
+            - '1736326851692'
+            - output
+          id: c2d2ac2c-c148-48ce-b71d-822359b17e3d
+          logical_operator: and
+        - case_id: 4e65ee00-65e5-4b72-bfb7-f353ce3860e4
+          conditions:
+          - comparison_operator: is
+            id: 596ec20f-8dfb-44cf-9f32-7c3e233484b9
+            value: restart
+            varType: string
+            variable_selector:
+            - '1736326851692'
+            - output
+          id: 4e65ee00-65e5-4b72-bfb7-f353ce3860e4
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 状态判断
+        type: if-else
+      height: 268
+      id: '1735183233430'
+      position:
+        x: 1550
+        y: 415
+      positionAbsolute:
+        x: 1550
+        y: 415
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: f202373c-1552-45b4-bc8f-f8999835ac9d
+            value: '#开始'
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: and
+        - case_id: faa33c03-dbfd-4fc5-b85d-11d3a519e455
+          conditions:
+          - comparison_operator: is
+            id: 2b704d2e-71fd-470e-8a87-b68fb2ee0a61
+            value: '#重启'
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: faa33c03-dbfd-4fc5-b85d-11d3a519e455
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 输入判断
+        type: if-else
+      height: 172
+      id: '1735183356205'
+      position:
+        x: 334
+        y: 287
+      positionAbsolute:
+        x: 334
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: constant
+          operation: set
+          value: start
+          variable_selector:
+          - conversation
+          - status
+          write_mode: over-write
+        selected: false
+        title: 启动状态
+        type: assigner
+        version: '2'
+      height: 86
+      id: '1735183411877'
+      position:
+        x: 638
+        y: 287
+      positionAbsolute:
+        x: 638
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: constant
+          operation: set
+          value: restart
+          variable_selector:
+          - conversation
+          - status
+          write_mode: over-write
+        selected: false
+        title: 重启状态
+        type: assigner
+        version: '2'
+      height: 86
+      id: '1735183489389'
+      position:
+        x: 638
+        y: 377.85714285714283
+      positionAbsolute:
+        x: 638
+        y: 377.85714285714283
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '<div>
+
+          <span style="color: red;">还未开始游戏</span>，请点击 <button data-size="small" data-variant="primary"
+          data-message="#开始">开始</button> 开始游戏！
+
+          </div>'
+        desc: ''
+        selected: false
+        title: 提示点击开始
+        type: answer
+        variables: []
+      height: 178
+      id: '1735183663452'
+      position:
+        x: 1854
+        y: 415
+      positionAbsolute:
+        x: 1854
+        y: 415
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '## {{#1735195133945.game_level_name#}}
+
+          ### {{#1735195133945.question_title#}}
+
+          **当前挑战：** {{#1735195133945.question_description#}}'
+        desc: ''
+        selected: false
+        title: 当前挑战
+        type: answer
+        variables: []
+      height: 155
+      id: '1735192250756'
+      position:
+        x: 4894
+        y: 951.5
+      positionAbsolute:
+        x: 4894
+        y: 951.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "import re\nimport sympy\nimport unicodedata\n\n\ndef main(status: str,\n\
+          \         game_level: int, question_id: int,\n         query: str, text:\
+          \ str,\n         reversed_text: str, reciprocal_text: str\n         ) ->\
+          \ dict:\n    challenge1 = {\n        'name':\n            '【第一章】 对话之趣',\n\
+          \        'problems': [\n            {\n                'title': '第1题 初来乍到',\n\
+          \                'description': '请你构造一个问题使模型的回答是一字不差的“1+1=3”（不需要引号）。',\n\
+          \                'validator': lambda query, response: response.strip() ==\
+          \ '1+1=3'\n            },\n            {\n                'title':\n   \
+          \                 '第2题 小试牛刀',\n                'description':\n        \
+          \            '请输入三个字以内的问题，使模型的回答在30个字以上。',\n                'validator':\n\
+          \                    lambda query, response: len(query) <= 3 and len(response)\
+          \ > 30\n            },\n            {\n                'title':\n      \
+          \              '第3题 短说长话',\n                'description':\n           \
+          \         '请输入一个字的问题，使模型的回答在100个字以上。',\n                'validator':\n \
+          \                   lambda query, response: len(query) == 1 and len(response)\
+          \ > 100\n            },\n            {\n                'title':\n     \
+          \               '第4题 短说短话',\n                'description':\n          \
+          \          '请输入一个字的问题，使模型的回答在20个字以内。',\n                'validator':\n \
+          \                   lambda query, response: len(query) == 1 and len(response)\
+          \ <= 20\n            },\n            {\n                'title':\n     \
+          \               '第5题 回文不变',\n                'description':\n          \
+          \          '请输入一个本身不是回文串的问题，使无论正着问还是倒着问，模型的回答是一样的。',\n                'question_type':\
+          \ 1,  # 回文问题\n                'validator':\n                    lambda query,\
+          \ response, new_response: validate_palindrome_invariance(\n            \
+          \            query, response, new_response)\n            },\n          \
+          \  {\n                'title':\n                    '第6题 无中生狗',\n      \
+          \          'description':\n                    '请提一个不包含“狗”这个字的问题，但是回答中至少出现3次“狗”这个字。',\n\
+          \                'validator':\n                    lambda query, response:\
+          \ '狗' not in query and response.count('狗') \\\n                        \
+          \                    >= 3\n            },\n            {\n             \
+          \   'title':\n                    '第7题 事半功倍',\n                'description':\n\
+          \                    '请输入一个本身不是回文串的问题，使模型回答的长度刚好是问题长度的两倍。',\n          \
+          \      'validator':\n                    lambda query, response: query !=\
+          \ query[::-1] and len(response.strip()) == 2 * len(query)\n            },\n\
+          \            {\n                'title':\n                    '第8题 产生疑惑',\n\
+          \                'description':\n                    '请提出一个问题，不包含“不”“知”“道”三个字符，但要使模型的回答是一字不差的“不知道”',\n\
+          \                'validator':\n                    lambda query, response:\n\
+          \                    all(char not in query for char in ['不', '知', '道'])\
+          \ and response.strip() == '不知道'\n            },\n            {\n       \
+          \         'title':\n                    '第9题 无中生有',\n                'description':\n\
+          \                    '请提出一个问题，使模型只回复“永动机是真实存在的。”',\n                'validator':\n\
+          \                    lambda query, response: response.strip() == '永动机是真实存在的。'\n\
+          \            },\n        ]\n    }\n\n    challenge2 = {\n        'name':\n\
+          \            '【第二章】 数字游戏',\n        'problems': [\n            {\n     \
+          \           'title':\n                    '第1题 质数长度',\n                'description':\n\
+          \                    '你需要提出一个字数是质数的问题，使回答的长度刚好是它的下一个质数。',\n            \
+          \    'validator':\n                    lambda query, response:\n       \
+          \             (sympy.isprime(len(query)) and len(response) == sympy.nextprime(len(query)))\n\
+          \            },\n            {\n                'title':\n             \
+          \       '第2题 越说越大',\n                'description':\n                  \
+          \  '请输入一个大于一的正整数作为问题，使回答里包含至少比它大一千的数。',\n                'validator':\n\
+          \                    lambda query, response:\n                    (query.isdigit()\
+          \ and int(query) > 1 and any(\n                        int(num) > int(query)\
+          \ + 1000\n                        for num in re.findall(r'\\d+', response)))\n\
+          \            },\n            {\n                'title':\n             \
+          \       '第3题 越说越小',\n                'description':\n                  \
+          \  '请输入一个大于一的正整数作为问题，使回答里包含至少10个不同的至少比它小一千的自然数。',\n                'validator':\n\
+          \                    lambda query, response:\n                    (query.isdigit()\
+          \ and int(query) > 1 and (len({\n                        int(num)\n    \
+          \                    for num in re.findall(r'\\d+', response)\n        \
+          \                if int(num) < int(query) - 1000\n                    })\
+          \ >= 10))\n            },\n            {\n                'title':\n   \
+          \                 '第4题 警世名言',\n                'description':\n        \
+          \            '请在不提及1,4,5这三个字符的情况下让模型回答114514，不要有多余的字符。',\n             \
+          \   'validator':\n                    lambda query, response: response.strip()\
+          \ == '114514' and all(\n                        c not in query for c in\
+          \ ['1', '4', '5'])\n            },\n            {\n                'title':\n\
+          \                    '第5题 开平方数',\n                'description':\n     \
+          \               '请输入一个大于一的平方数作为问题，使回答里包含它的平方根对应的数。',\n                'validator':\n\
+          \                    lambda query, response: ((\n                      \
+          \      query.isdigit() and int(query) > 1 and sympy.sqrt(int(query)).is_integer\n\
+          \                            and\n                            str(int(sympy.sqrt(int(query))))\
+          \ in response))\n            },\n            {\n                'title':\n\
+          \                    '第6题 得寸进狗',\n                'description':\n     \
+          \               '请提一个不包含“狗”这个字的10个字以内的问题，使回答中“狗”这个字出现的次数至少是问题字数的2倍。',\n\
+          \                'validator':\n                    lambda query, response:\
+          \ (\n                            '狗' not in query and len(query) <= 10 and\n\
+          \                            response.count('狗') >= 2 * len(query))\n  \
+          \          },\n            {\n                'title':\n               \
+          \     '第7题 暗藏玄机',\n                'description':\n                    '请输入一个大于一的正整数作为问题，使回答包含一个两位数，其十位上的数字比个位上的数字小5。',\n\
+          \                'validator':\n                    lambda query, response:\n\
+          \                    (query.isdigit() and int(query) > 1 and (len({\n  \
+          \                      int(num)\n                        for num in re.findall(r'\\\
+          d+', response)\n                        if len(num) == 2 and int(num[1])\
+          \ - int(num[0]) == 5\n                    }) >= 1))\n            },\n  \
+          \          {\n                'title':\n                    '第8题 点兵点将',\n\
+          \                'description':\n                    '请输入十个字以内的问题，问题中不能包含0到9的数字以及零到十的汉字，使模型的回答中包含数字0到9。',\n\
+          \                'validator':\n                    lambda query, response:\n\
+          \                    (len(query) <= 10 and not re.search(r'\\d', query)\
+          \ and all(\n                        char not in query for char in '零一二三四五六七八九十')\
+          \ and len(\n                        set(re.findall(r'\\d', response))) ==\
+          \ 10)\n            },\n            {\n                'title': '第9题 微言大义',\n\
+          \                'description': '请输入10个字以内的问题，使得模型的回答是一个超过一亿的素数',\n    \
+          \            'validator': level2_validate_9\n            }\n        ]\n\
+          \    }\n\n    challenge3 = {\n        'name':\n            '【第三章】 巅峰挑战',\n\
+          \        'problems': [\n            {\n                'title':\n      \
+          \              '第1题 自说自话',\n                'description':\n           \
+          \         '请做出一个至少10个字的提问，使回答和提问完全一样。',\n                'validator':\n\
+          \                    lambda query, response: query == response and len(query)\
+          \ >= 10\n            },\n            {\n                'title':\n     \
+          \               '第2题 话自说自',\n                'description':\n          \
+          \          '请做出一个至少10个字的提问，使回答是提问的逆序。',\n                'validator':\n\
+          \                    lambda query, response:\n                    (query[::-1]\
+          \ == response and len(query) >= 10)\n            },\n            {\n   \
+          \             'title':\n                    '第3题 就是敢说',\n              \
+          \  'description':\n                    '请在不提及1,3这两个字符的情况下让模型回答1+1=3，不要有多余的字符。',\n\
+          \                'validator':\n                    lambda query, response:\
+          \ response.strip() == '1+1=3' and all(\n                        c not in\
+          \ query for c in ['1', '3'])\n            },\n            {\n          \
+          \      'title':\n                    '第4题 回文协变',\n                'description':\n\
+          \                    '请输入一个本身不是回文串的问题，使正着问和倒着问的时候，模型的回答本身不回文且也是逆序的关系。',\n\
+          \                'question_type': 1,  # 回文问题\n                'validator':\n\
+          \                    lambda query, response, new_response:\n           \
+          \         validate_palindrome_inverse(query, response, new_response)\n \
+          \           },\n            {\n                'title':\n              \
+          \      '第5题 答非所问',\n                'description':\n                   \
+          \ '请输入一个以“为什么”开头，以“？”（中文问号）结尾的不包含数字的问题，使回答中只包含数字。',\n                'validator':\n\
+          \                    lambda query, response: '为什么' == query[:3] and '？'\
+          \ == query[-1]\n                                            and\n      \
+          \                                      len(re.findall(r'\\d+', query)) ==\
+          \ 0 and response.isdigit()\n            },\n            {\n            \
+          \    'title':\n                    '第6题 与狗交谈',\n                'description':\n\
+          \                    '请在不提及“狗”、“汪”、“dog”的情况下，让模型的回答是一字不差的“汪~”',\n      \
+          \          'validator':\n                    lambda query, response:\n \
+          \                   (all(char not in query\n                         for\
+          \ char in ['狗', '汪', 'dog']) and response.strip() == '汪~')\n           \
+          \ },\n            {\n                'title':\n                    '第7题\
+          \ 俊杰 （\U0001F436）',\n                'description':\n                  \
+          \  '请提一个不包含任何中文字符、换行或空格的问题，使模型正好回答\"俊杰\"。',\n                'validator':\n\
+          \                    lambda query, response: not any(\n                \
+          \        'CJK' in unicodedata.name(char, '') or char in '\\t\\n '\n    \
+          \                    for char in query) and (response.strip() == '俊杰')\n\
+          \            },\n        ]\n    }\n\n    challenge4 = {\n        'name':\n\
+          \            '【第四章】 无人之境',\n        'problems': [\n            {\n     \
+          \           'title':\n                    '第1题 循环往复',\n                'description':\n\
+          \                    '请构造一个问题A，它的回复是不同于A的B，然后以B提问能再次得到A.',\n           \
+          \     'question_type': 2,  # 互惠问题\n                'validator':\n      \
+          \              lambda query, response, new_response:\n                 \
+          \   validate_reciprocal_question(query, response, new_response)\n      \
+          \      },\n            {\n                'title':\n                   \
+          \ '第2题 惜字如金',\n                'description':\n                    '请输入一个字的问题，使模型的回答在16个字以内。',\n\
+          \                'validator':\n                    lambda query, response:\
+          \ len(query) == 1 and len(response) <= 16\n            },\n            {\n\
+          \                'title':\n                    '第3题 自然之密',\n           \
+          \     'description':\n                    '请输入一个大于一的正整数作为问题，使回答里包含和它刚好相差1的数。',\n\
+          \                'validator':\n                    lambda query, response:\n\
+          \                    (query.isdigit() and int(query) > 1 and any(\n    \
+          \                    abs(int(num) - int(query)) == 1\n                 \
+          \       for num in re.findall(r'\\d+', response)))\n            },\n   \
+          \         {\n                'title':\n                    '第4题 八仙过海',\n\
+          \                'description':\n                    '请提出8个字的问题，不包含“八”或“8”或“eight”，使得模型的回答也是8个字。',\n\
+          \                'validator':\n                    lambda query, response:\n\
+          \                    (all(char not in query\n                         for\
+          \ char in ['八', '8', 'eight']) and len(response) == 8)\n            },\n\
+          \        ]\n    }\n\n    challenge5 = {\n        'name':\n            '【第五章】\
+          \ 登堂入室',\n        'problems': [\n            {\n                'title':\n\
+          \                    '第1题 盛夏少年',\n                'description':\n     \
+          \               '模型的回答应该包含“盛夏”、“蝉鸣”、“少年”、“橘子味汽水”这几个词，同时输入的问题不能包含其中任一个词。',\n\
+          \                'validator':\n                    lambda query, response:\
+          \ all(\n                        check_word_in_sentence(['盛夏', '蝉鸣', '少年',\
+          \ '橘子味汽水'], response))\n                                            and\
+          \ not any(\n                        check_word_in_sentence(['盛夏', '蝉鸣',\
+          \ '少年', '橘子味汽水'], query))\n            },\n            {\n             \
+          \   'title':\n                    '第2题 蝉鸣日出',\n                'description':\n\
+          \                    '模型的回答应该包含“盛夏”、“蝉鸣”、“少年”、“橘子味汽水”、“日出”这几个词，同时输入的问题不能包含其中任一个字。',\n\
+          \                'validator':\n                    lambda query, response:\
+          \ all(\n                        check_word_in_sentence(\n              \
+          \              ['盛夏', '蝉鸣', '少年', '橘子味汽水', '日出'], response)) and not any(\n\
+          \                        check_word_in_sentence([\n                    \
+          \        '盛', '夏', '蝉', '鸣', '少', '年', '橘', '子', '味', '汽',\n           \
+          \                 '水', '日', '出'\n                        ], query))\n  \
+          \          },\n        ]\n    }\n\n    challenges = [\n        challenge1,\n\
+          \        challenge2,\n        challenge3,\n        challenge4,\n       \
+          \ challenge5,\n    ]\n\n    if status in ['start', 'restart']:\n       \
+          \ game_level = 0\n        question_id = 0\n\n    challenge = challenges[game_level]\n\
+          \    problem = challenge['problems'][question_id]\n\n    question_type =\
+          \ 0\n    if 'question_type' in problem:\n        question_type = problem['question_type']\n\
+          \n    valid_pass = -1\n    if status == 'running':\n        valid_pass =\
+          \ 0\n        validate_fn = problem['validator']\n        if question_type\
+          \ == 1:\n            valid_result = validate_fn(query=query, response=text,\
+          \ new_response=reversed_text)\n        elif question_type == 2:\n      \
+          \      valid_result = validate_fn(query=query, response=text, new_response=reciprocal_text)\n\
+          \        else:\n            valid_result = validate_fn(query=query, response=text)\n\
+          \        if valid_result:\n            valid_pass = 1\n            if question_id\
+          \ < len(challenge['problems']) - 1:\n                question_id += 1\n\
+          \            else:\n                if game_level < len(challenges) - 1:\n\
+          \                    valid_pass = 2\n                    question_id = 0\n\
+          \                    game_level += 1\n                else:\n          \
+          \          status = 'success'\n\n    if status in ['start', 'restart']:\n\
+          \        status = 'running'\n\n    challenge = challenges[game_level]\n\
+          \    problem = challenge['problems'][question_id]\n\n    question_type =\
+          \ 0\n    if 'question_type' in problem:\n        question_type = problem['question_type']\n\
+          \n    return {\n        \"game_level\": game_level,\n        \"question_id\"\
+          : question_id,\n        \"status\": status,\n        \"valid_pass\": valid_pass,\n\
+          \        \"question_type\": question_type,\n        \"game_level_name\"\
+          : challenge['name'],\n        \"question_title\": problem['title'],\n  \
+          \      \"question_description\": problem['description'],\n    }\n\n\ndef\
+          \ validate_palindrome_invariance(query, response, new_response):\n    #\
+          \ 检查原始输入不是回文\n    if query == query[::-1]:\n        return False\n    #\
+          \ 比较两个回答是否一致\n    return response.strip() == new_response.strip()\n\n\n\
+          def level2_validate_9(query, response):\n    query_yes = len(query) <= 10\n\
+          \    output_yes = len(response) >= 9 and response.isdigit() and sympy.isprime(\n\
+          \        int(response))\n    return query_yes and output_yes\n\n\ndef validate_palindrome_inverse(query,\
+          \ response, new_response):\n    # 检查原始输入不是回文\n    if query == query[::-1]:\n\
+          \        return False\n    # 检查原始回答不是回文\n    if response == response[::-1]:\n\
+          \        return False\n    # 比较正着问和倒着问的回答是否是逆序关系\n    return response ==\
+          \ new_response[::-1]\n\n\ndef validate_reciprocal_question(query, response,\
+          \ new_response):\n    # 确保回答B不等于原始问题A\n    if response == query:\n     \
+          \   return False\n    # 检查新的回答是否与原始问题A相等\n    return new_response.strip()\
+          \ == query.strip()\n\n\ndef check_word_in_sentence(words, sentence):\n \
+          \   return [word in sentence for word in words]\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          game_level:
+            children: null
+            type: number
+          game_level_name:
+            children: null
+            type: string
+          question_description:
+            children: null
+            type: string
+          question_id:
+            children: null
+            type: number
+          question_title:
+            children: null
+            type: string
+          question_type:
+            children: null
+            type: number
+          status:
+            children: null
+            type: string
+          valid_pass:
+            children: null
+            type: number
+        selected: false
+        title: 获取问题和验证结果
+        type: code
+        variables:
+        - value_selector:
+          - sys
+          - query
+          variable: query
+        - value_selector:
+          - conversation
+          - game_level
+          variable: game_level
+        - value_selector:
+          - conversation
+          - question_id
+          variable: question_id
+        - value_selector:
+          - '1735195760496'
+          - text
+          variable: text
+        - value_selector:
+          - conversation
+          - status
+          variable: status
+        - value_selector:
+          - '1735198964742'
+          - text
+          variable: reversed_text
+        - value_selector:
+          - '1735213513838'
+          - text
+          variable: reciprocal_text
+      height: 52
+      id: '1735195133945'
+      position:
+        x: 3374
+        y: 683.5
+      positionAbsolute:
+        x: 3374
+        y: 683.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: f612da1a-6ab3-49d7-ab1e-7729e4aa2fe4
+          role: system
+          text: ''
+        - id: 80df3b71-6ea6-4263-b2e0-ac0b0b3c77ca
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: LLM问答
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 96
+      id: '1735195760496'
+      position:
+        x: 1854
+        y: 635
+      positionAbsolute:
+        x: 1854
+        y: 635
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: 698999da-d4c8-4f18-a69d-c32d98c8183c
+            value: '0'
+            varType: number
+            variable_selector:
+            - '1735195133945'
+            - valid_pass
+          id: 'true'
+          logical_operator: and
+        - case_id: 25972869-6d46-4e39-9a88-e019825edf57
+          conditions:
+          - comparison_operator: '='
+            id: 39d7f6a0-9513-4c04-9204-748d2482b4d7
+            value: '-1'
+            varType: number
+            variable_selector:
+            - '1735195133945'
+            - valid_pass
+          id: 25972869-6d46-4e39-9a88-e019825edf57
+          logical_operator: and
+        - case_id: 9d4ecd94-c9d7-4f53-a44e-e5b3a62827a6
+          conditions:
+          - comparison_operator: '='
+            id: 91c02f18-ab0b-48eb-90c1-f8a042ca914a
+            value: '2'
+            varType: number
+            variable_selector:
+            - '1735195133945'
+            - valid_pass
+          id: 9d4ecd94-c9d7-4f53-a44e-e5b3a62827a6
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 验证通过判断
+        type: if-else
+      height: 220
+      id: '1735197213688'
+      position:
+        x: 4286
+        y: 683.5
+      positionAbsolute:
+        x: 4286
+        y: 683.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '**挑战结果：** <span style="color: red;">挑战失败，请再试一次。</span>
+
+
+          '
+        desc: ''
+        selected: false
+        title: 挑战失败
+        type: answer
+        variables: []
+      height: 130
+      id: '1735197253934'
+      position:
+        x: 4590
+        y: 683.5
+      positionAbsolute:
+        x: 4590
+        y: 683.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '**模型的回答：**
+
+          {{#1735195760496.text#}}
+
+
+          '
+        desc: ''
+        selected: false
+        title: LLM回答
+        type: answer
+        variables: []
+      height: 117
+      id: '1735198227518'
+      position:
+        x: 2158
+        y: 594
+      positionAbsolute:
+        x: 2158
+        y: 594
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: e66c5ac9-c4df-4bee-9758-b7dd2a028ae9
+            value: '1'
+            varType: number
+            variable_selector:
+            - conversation
+            - question_type
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 回文问题判断
+        type: if-else
+      height: 124
+      id: '1735198861231'
+      position:
+        x: 2158
+        y: 839
+      positionAbsolute:
+        x: 2158
+        y: 839
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: 7066eb04-8562-4b3f-b682-467971f1b047
+          role: system
+          text: ''
+        - id: 379d7a22-f167-4c45-bd24-f951ad2c3aa2
+          role: user
+          text: '{{#1735199302294.reversed_query#}}'
+        selected: false
+        title: 倒序问题的LLM问答
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 96
+      id: '1735198964742'
+      position:
+        x: 2766
+        y: 842.5
+      positionAbsolute:
+        x: 2766
+        y: 842.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '**模型的回答（倒序问题）：**
+
+          {{#1735198964742.text#}}
+
+
+          '
+        desc: ''
+        selected: false
+        title: 倒序问题的LLM回答
+        type: answer
+        variables: []
+      height: 117
+      id: '1735199090032'
+      position:
+        x: 3070
+        y: 842.5
+      positionAbsolute:
+        x: 3070
+        y: 842.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(query: str) -> dict:\n    return {\n        \"reversed_query\"\
+          : query[::-1],\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          reversed_query:
+            children: null
+            type: string
+        selected: false
+        title: 问题倒序
+        type: code
+        variables:
+        - value_selector:
+          - sys
+          - query
+          variable: query
+      height: 52
+      id: '1735199302294'
+      position:
+        x: 2462
+        y: 878.5
+      positionAbsolute:
+        x: 2462
+        y: 878.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '**挑战结果：** <span style="color: blue;">挑战成功！进入下一关。</span>🎉
+
+
+          '
+        desc: ''
+        selected: false
+        title: 问题挑战成功
+        type: answer
+        variables: []
+      height: 130
+      id: '1735199727654'
+      position:
+        x: 4590
+        y: 855.5
+      positionAbsolute:
+        x: 4590
+        y: 855.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '**挑战结果：** <span style="color: orange;">恭喜你完成了所有挑战！</span>🎉🎉🎉'
+        desc: ''
+        selected: false
+        title: 挑战完成
+        type: answer
+        variables: []
+      height: 130
+      id: '1735199809830'
+      position:
+        x: 4286
+        y: 1092.5
+      positionAbsolute:
+        x: 4286
+        y: 1092.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '<span style="color: orange;">你已经完成了所有挑战！！！</span>🎉🎉🎉
+
+          可以点击 <button data-size="small" data-variant="primary" data-message="#重启">重启</button>
+          ，开始重新挑战！'
+        desc: ''
+        selected: false
+        title: 提示点击重启
+        type: answer
+        variables: []
+      height: 178
+      id: '1735200055854'
+      position:
+        x: 1854
+        y: 962.5
+      positionAbsolute:
+        x: 1854
+        y: 962.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 2e521a81-0515-4900-8d11-ea3f29e48564
+            value: running
+            varType: string
+            variable_selector:
+            - '1735195133945'
+            - status
+          id: 'true'
+          logical_operator: and
+        - case_id: ef6ca92c-8822-4f18-b219-ae4bae7698a0
+          conditions:
+          - comparison_operator: is
+            id: c1f27c36-bf70-48ad-b1d0-b019e95bf0ca
+            value: success
+            varType: string
+            variable_selector:
+            - '1735195133945'
+            - status
+          id: ef6ca92c-8822-4f18-b219-ae4bae7698a0
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 状态判断
+        type: if-else
+      height: 172
+      id: '1735201048213'
+      position:
+        x: 3982
+        y: 683.5
+      positionAbsolute:
+        x: 3982
+        y: 683.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1735195133945'
+          - status
+          variable_selector:
+          - conversation
+          - status
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1735195133945'
+          - game_level
+          variable_selector:
+          - conversation
+          - game_level
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1735195133945'
+          - question_id
+          variable_selector:
+          - conversation
+          - question_id
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1735195133945'
+          - question_type
+          variable_selector:
+          - conversation
+          - question_type
+          write_mode: over-write
+        selected: false
+        title: 设置游戏关卡、问题序号和状态
+        type: assigner
+        version: '2'
+      height: 170
+      id: '1735201350381'
+      position:
+        x: 3678
+        y: 683.5
+      positionAbsolute:
+        x: 3678
+        y: 683.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: b96274d7-3114-41f8-a6ea-e9ce10e241a9
+            value: '2'
+            varType: number
+            variable_selector:
+            - conversation
+            - question_type
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 互惠问题判断
+        type: if-else
+      height: 124
+      id: '1735213477600'
+      position:
+        x: 2462
+        y: 594
+      positionAbsolute:
+        x: 2462
+        y: 594
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: b1768388-7978-4910-a5f4-3cac84223557
+          role: system
+          text: ''
+        - id: dbf05685-f460-4edf-a015-41eea35d77bc
+          role: user
+          text: '{{#1735195760496.text#}}'
+        selected: false
+        title: 互惠问题的LLM问答
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 96
+      id: '1735213513838'
+      position:
+        x: 2766
+        y: 683.5
+      positionAbsolute:
+        x: 2766
+        y: 683.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '**模型的回答（互惠问题）：**
+
+          {{#1735213513838.text#}}
+
+
+          '
+        desc: ''
+        selected: false
+        title: 互惠问题的LLM回答
+        type: answer
+        variables: []
+      height: 117
+      id: '1735213525623'
+      position:
+        x: 3070
+        y: 683.5
+      positionAbsolute:
+        x: 3070
+        y: 683.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        author: Junjie.M
+        desc: ''
+        height: 250
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"【完蛋！我被LLM包围了！】","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"借鉴了：","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"https://github.com/modelscope/modelscope/tree/master/examples/apps/llm_riddles","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"注意事项：","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"需要在sandbox中添加依赖包并重启sandbox：","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"1、vi
+          dify/docker/volumes/sandbox/dependencies/python-requirements.txt","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"添加sympy~=1.13.3","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"2、docker
+          stop docker-sandbox-1","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"3、docker
+          compose up -d sandbox","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 485
+      height: 250
+      id: '1735262381674'
+      position:
+        x: 30
+        y: -2.466321643191989
+      positionAbsolute:
+        x: 30
+        y: -2.466321643191989
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 485
+    - data:
+        answer: '**挑战结果：** <span style="color: orange;">恭喜章节挑战成功！进入下一章。</span>🎉🎉
+
+
+          '
+        desc: ''
+        selected: false
+        title: 关卡挑战成功
+        type: answer
+        variables: []
+      height: 130
+      id: '1735264591657'
+      position:
+        x: 4590
+        y: 1047.5
+      positionAbsolute:
+        x: 4590
+        y: 1047.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ status }}'
+        title: 模板转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - conversation
+          - status
+          variable: status
+      height: 52
+      id: '1736326776211'
+      position:
+        x: 942
+        y: 287
+      positionAbsolute:
+        x: 942
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ status }}'
+        title: 模板转换 2
+        type: template-transform
+        variables:
+        - value_selector:
+          - conversation
+          - status
+          variable: status
+      height: 52
+      id: '1736326787827'
+      position:
+        x: 942
+        y: 415
+      positionAbsolute:
+        x: 942
+        y: 415
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ status }}'
+        title: 模板转换 3
+        type: template-transform
+        variables:
+        - value_selector:
+          - conversation
+          - status
+          variable: status
+      height: 52
+      id: '1736326800771'
+      position:
+        x: 942
+        y: 509
+      positionAbsolute:
+        x: 942
+        y: 509
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: 为了规避会话变量在条件分支中作为判断条件时下游回复都会触发的BUG，临时这样处理
+        output_type: string
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '1736326776211'
+          - output
+        - - '1736326787827'
+          - output
+        - - '1736326800771'
+          - output
+      height: 211
+      id: '1736326851692'
+      position:
+        x: 1246
+        y: 415
+      positionAbsolute:
+        x: 1246
+        y: 415
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: -2405
+      y: -236.79999999999995
+      zoom: 0.7
