@@ -1,0 +1,327 @@
+app:
+  description: ''
+  icon: firecracker
+  icon_background: '#FFE4E8'
+  mode: workflow
+  name: 春联生成器
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1737014291474-source-1737014565681-target
+      source: '1737014291474'
+      sourceHandle: source
+      target: '1737014565681'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: template-transform
+      id: 1737014565681-source-1737015751556-target
+      source: '1737014565681'
+      sourceHandle: source
+      target: '1737015751556'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: end
+      id: 1737015751556-source-1737014987145-target
+      source: '1737015751556'
+      sourceHandle: source
+      target: '1737014987145'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1737014287710-source-1737014291474-target
+      source: '1737014287710'
+      sourceHandle: source
+      target: '1737014291474'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 主题
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: theme
+        - label: 上下联字数
+          max_length: 48
+          options:
+          - 五言
+          - 七言
+          - 九言
+          - 十一言
+          required: true
+          type: select
+          variable: count
+        - label: 一字总结
+          max_length: 48
+          options:
+          - 开启
+          - 不开启
+          required: false
+          type: select
+          variable: enabled_summary
+      height: 142
+      id: '1737014287710'
+      position:
+        x: 30
+        y: 258
+      positionAbsolute:
+        x: 30
+        y: 258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: c3d6f892-cf1f-4930-82b5-3a0d1d388363
+          role: system
+          text: "你是一个编写春联的专家，下面我将会给你一些要求，你帮我编写一幅春联，确保春联既符合传统格律，又富有新意，且需要有美好寓意，要求如下：\n\
+            \n主题：{{#1737014287710.theme#}}\n上下联字数：{{#1737014287710.count#}}\n\n创作要求：\n\
+            1. 必须体现春节喜庆祥和氛围；\n2. 上下联字数相等，结构对称；\n3. 可以典雅或通俗，但要有深意；\n4. 注意平仄韵律和对仗工整；\n\
+            5. 横批简洁有力，点明主题；\n\n以JSON格式返回，返回示例如下：\n{\n \"top\": (上联：确定主题和节奏; type:\
+            \ string),\n \"bottom\": (下联：严格对仗; type: string),\n \"banner\": (横批：点睛之笔;\
+            \ type: string),\n \"summary\": (一字总结; type: string)\n}\n\nAnswer:"
+        selected: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1737014291474'
+      position:
+        x: 334
+        y: 258
+      positionAbsolute:
+        x: 334
+        y: 258
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json\n\ndef main(text: str, enabled_summary: str) -> dict:\n\
+          \    json_obj = extract_json_response(text)\n    summary = '福'\n    if enabled_summary\
+          \ == '开启':\n        summary = json_obj['summary']\n    return {\n      \
+          \  \"banner\": json_obj['banner'],\n        \"reversed_banner\": json_obj['banner'][::-1],\n\
+          \        \"top\": json_obj['top'],\n        \"bottom\": json_obj['bottom'],\n\
+          \        \"summary\": summary,\n    }\n\ndef extract_json_response(text:\
+          \ str) -> dict:\n\n    def extract_json(text):\n        stack = []\n   \
+          \     for i, c in enumerate(text):\n            if c == \"{\":\n       \
+          \         stack.append(c)\n            elif c == \"}\":\n              \
+          \  if not stack:\n                    return text[:i]\n                if\
+          \ c == \"}\" and stack[-1] == \"{\":\n                    stack.pop()\n\
+          \                    if not stack:\n                        return text[:\
+          \ i + 1]\n                else:\n                    return text[:i]\n \
+          \       return None\n\n    for idx in range(len(text)):\n        if text[idx]\
+          \ == \"{\":\n            json_str = extract_json(text[idx:])\n         \
+          \   if json_str:\n                return json.loads(json_str)\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          banner:
+            children: null
+            type: string
+          bottom:
+            children: null
+            type: string
+          reversed_banner:
+            children: null
+            type: string
+          summary:
+            children: null
+            type: string
+          top:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1737014291474'
+          - text
+          variable: text
+        - value_selector:
+          - '1737014287710'
+          - enabled_summary
+          variable: enabled_summary
+      height: 54
+      id: '1737014565681'
+      position:
+        x: 638
+        y: 258
+      positionAbsolute:
+        x: 638
+        y: 258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1737015751556'
+          - output
+          variable: output
+        selected: false
+        title: 结束
+        type: end
+      height: 90
+      id: '1737014987145'
+      position:
+        x: 1246
+        y: 258
+      positionAbsolute:
+        x: 1246
+        y: 258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: "<div style=\"width: 600px 100%; margin: 0px auto; padding: 0px;\
+          \ font-family: '隶书'; font-size: 2rem; border-radius: 12px; text-align: center;\"\
+          >\r\n    <div style=\"background-color: red; text-align: center; background-size:\
+          \ 95px; background-repeat: repeat-x; margin: 0px auto; padding: 0px; display:\
+          \ inline-block; height: 45px;\">\r\n        <span style=\"margin-left: 15px;\
+          \ margin-right: 15px;\">{{ reversed_banner }}</span>\r\n    </div>\r\n \
+          \   <div style=\"position: absolute; top: 125px; left: 50%; margin: 10px\
+          \ auto; transform: translate(-50%, -50%) rotate(45deg); width: 45px; height:\
+          \ 45px; background-color: red; background-size: 95px;\">\r\n        <span\
+          \ style=\"position: absolute; top: 0px; left: 5px; transform: rotate(135deg);\"\
+          >{{ summary }}</span>\r\n    </div>\r\n    <div style=\"min-width: 200px;\
+          \ max-width: 500px; width: 35%; margin: 0px auto; padding: 0px;\">\r\n \
+          \       <div style=\"background-color: red; background-size: 95px; text-align:\
+          \ center; float: left; width: 45px;\">\r\n            {{ bottom }}\r\n \
+          \       </div>\r\n        <div style=\"background-color: red; background-size:\
+          \ 95px; text-align: center; float: right; width: 45px;\">\r\n          \
+          \  {{ top }}\r\n        </div>\r\n    </div>\r\n</div>"
+        title: 模板转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1737014565681'
+          - top
+          variable: top
+        - value_selector:
+          - '1737014565681'
+          - bottom
+          variable: bottom
+        - value_selector:
+          - '1737014565681'
+          - banner
+          variable: banner
+        - value_selector:
+          - '1737014565681'
+          - reversed_banner
+          variable: reversed_banner
+        - value_selector:
+          - '1737014565681'
+          - summary
+          variable: summary
+      height: 54
+      id: '1737015751556'
+      position:
+        x: 942
+        y: 258
+      positionAbsolute:
+        x: 942
+        y: 258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 235.4000000000001
+      y: 217.39999999999998
+      zoom: 0.7
