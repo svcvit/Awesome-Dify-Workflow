@@ -30,6 +30,11 @@ A：打开 /docker/volumes/sandbox/dependencies/python-requirements.txt 填入�
 </details>
 
 <details>
+<summary>定时任务可以如何处理？我希望定时执行某个流程。</summary>
+A：可以参考项目 https://github.com/leochen-g/dify-schedule
+</details>
+
+<details>
 <summary>节点间传递string数据，提示超限制，如何处理</summary>
 A：修改 .env 中的一段：
 CODE_MAX_STRING_LENGTH: 1000000
