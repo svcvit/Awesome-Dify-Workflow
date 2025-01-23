@@ -1,0 +1,456 @@
+app:
+  description: '人间不值得，请听我瞎说 ： 你瞎问，我瞎说
+
+    By i-jiaqi.li@outlook.com
+
+    v2版本，可用'
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 瞎说新语v2
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: llm-source-1732361957157-target
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: '1732361957157'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: template-transform
+      id: 1732361957157-source-1732362131496-target
+      selected: false
+      source: '1732361957157'
+      sourceHandle: source
+      target: '1732362131496'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: code
+      id: 1732362131496-source-1732362013203-target
+      selected: false
+      source: '1732362131496'
+      sourceHandle: source
+      target: '1732362013203'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: answer
+      id: 1732362013203-source-answer-target
+      selected: false
+      source: '1732362013203'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1732361572986-source-1732362896572-target
+      selected: false
+      source: '1732361572986'
+      sourceHandle: source
+      target: '1732362896572'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1732362896572-source-llm-target
+      selected: false
+      source: '1732362896572'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 53
+      id: '1732361572986'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt4o
+          provider: azure_openai
+        prompt_template:
+        - id: 171f37cf-a487-4486-b7a0-a51cb68f184c
+          role: system
+          text: '```xml
+
+            <instruction>
+
+            你是一个佛教禅师，
+
+            给你topic：{{#sys.query#}}，你需要生成一个20字内的有哲理的解释。
+
+            你需要不落俗套，即使给你的topic和例子完全一致，你也不应该回复一样的内容。
+
+
+            步骤：
+
+            1. 阅读输入的topic。
+
+            2. 根据topic，思考一个有哲理的解释。
+
+            3. 确保解释不超过20个字。
+
+            4. 确保解释有禅意，并且不落俗套。
+
+            5. 输出解释，不包含任何XML标签。
+
+
+            例如：
+
+            <example>
+
+            topic：中国股市
+
+            output：一个赌场，散户们总以为自己是庄家，实际上连筹码都不是
+
+
+            topic：中年危机
+
+            output：上有老，下有小，中间夹着一个，被生活反复锤打的自己。
+
+            </example>
+
+            </instruction>
+
+
+            <input>
+
+            {{topic}}
+
+            </input>
+
+
+            <output>
+
+            有哲理的解释，不超过20字，有禅意，不落俗套。
+
+            </output>
+
+            ```'
+        selected: false
+        title: 生成禅意解释
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: llm
+      position:
+        x: 382
+        y: 282
+      positionAbsolute:
+        x: 382
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '别着急，再等会，我正在努力瞎编中，你倒数 10 下就好了·····
+
+
+          ![{{#llm.text#}}]({{#1732362013203.result#}})
+
+
+          搞定了，要不考虑一下分享到朋友圈？👭
+
+
+          **小提示：点击图片后长按，即可下载或者分享哦。**'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 201
+      id: answer
+      position:
+        x: 1690
+        y: 282
+      positionAbsolute:
+        x: 1690
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import re\n\ndef split_to_tspan(text):\n    # 按标点符号分割句子\n    sentences\
+          \ = re.split(r'(，|。|！|？|；|：)', text)\n    # 去掉空字符串和重组句子\n    lines = [''.join(sentences[i:i+2]).strip()\
+          \ for i in range(0, len(sentences), 2) if sentences[i].strip()]\n    \n\
+          \    # 构造 <tspan> 标签\n    tspan_lines = []\n    for i, line in enumerate(lines):\n\
+          \        if i == 0:\n            tspan_lines.append(f'<tspan x=\"50%\" dy=\"\
+          0\">{line}</tspan>')\n        else:\n            tspan_lines.append(f'<tspan\
+          \ x=\"50%\" dy=\"1.2em\">{line}</tspan>')\n    return '\\n  '.join(tspan_lines)\n\
+          \ndef main(text: str) -> dict:\n    return {\n        \"result\": split_to_tspan(text),\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 分段填写
+        type: code
+        variables:
+        - value_selector:
+          - llm
+          - text
+          variable: text
+      height: 53
+      id: '1732361957157'
+      position:
+        x: 686
+        y: 282
+      positionAbsolute:
+        x: 686
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import base64\n\ndef main(svg_string: str) -> dict:\n    # 将SVG编码为Base64格式\n\
+          \    encoded_svg = base64.b64encode(svg_string.encode('utf-8')).decode('utf-8')\n\
+          \n    # 构建data URI\n    data_uri = f\"data:image/svg+xml;base64,{encoded_svg}\"\
+          \n    return {\n        \"result\": data_uri,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: SVG转换为Base64编码图片
+        type: code
+        variables:
+        - value_selector:
+          - '1732362131496'
+          - output
+          variable: svg_string
+      height: 53
+      id: '1732362013203'
+      position:
+        x: 1313
+        y: 282
+      positionAbsolute:
+        x: 1313
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        selected: false
+        template: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\r\n\
+          <svg width=\"800\" height=\"1732\" xmlns=\"http://www.w3.org/2000/svg\"\
+          \ viewBox=\"0 0 400 866\" style=\"background-color: #f9f9f9;\">\r\n  <!--\
+          \ 标题 -->\r\n  <text x=\"50%\" y=\"10%\" text-anchor=\"middle\" font-size=\"\
+          32\" font-family=\"Serif\" font-weight=\"bold\" fill=\"#000\">\r\n    {{topic}}\r\
+          \n  </text>\r\n  \r\n  <!-- 横线 -->\r\n  <line x1=\"10%\" x2=\"90%\" y1=\"\
+          15%\" y2=\"15%\" stroke=\"#aaa\" stroke-width=\"1\" />\r\n  \r\n  <!-- 副标题\
+          \ -->\r\n  <text x=\"50%\" y=\"20%\" text-anchor=\"middle\" font-size=\"\
+          16\" font-family=\"Arial\" fill=\"#555\">\r\n    {{text}}\r\n  </text>\r\
+          \n  \r\n  <!-- 描述文字 -->\r\n  <text x=\"50%\" y=\"35%\" text-anchor=\"middle\"\
+          \ font-size=\"18\" font-family=\"Serif\" font-style=\"italic\" fill=\"#000\"\
+          >\r\n    {{result}}\r\n  </text>\r\n\r\n  <!-- 波浪曲线 -->\r\n  <path d=\"\
+          M 30 400 Q 110 300 190 400 T 350 400\" fill=\"none\" stroke=\"red\" stroke-width=\"\
+          2\" />\r\n\r\n  <!-- 点 -->\r\n  <circle cx=\"80\" cy=\"350\" r=\"5\" fill=\"\
+          #555\" />\r\n  <circle cx=\"160\" cy=\"400\" r=\"5\" fill=\"#555\" />\r\n\
+          \  <circle cx=\"240\" cy=\"350\" r=\"5\" fill=\"#555\" />\r\n\r\n  <!--\
+          \ 方块 -->\r\n  <rect x=\"310\" y=\"380\" width=\"20\" height=\"20\" fill=\"\
+          #000\" />\r\n\r\n  \r\n  <!-- 图标占位符 -->\r\n  <!--<g transform=\"translate(50,\
+          \ 500)\">\r\n    <rect x=\"0\" y=\"0\" width=\"40\" height=\"40\" fill=\"\
+          #ddd\" />\r\n    <rect x=\"50\" y=\"0\" width=\"40\" height=\"40\" fill=\"\
+          #ddd\" />\r\n    <rect x=\"100\" y=\"0\" width=\"40\" height=\"40\" fill=\"\
+          #ddd\" />\r\n    <rect x=\"150\" y=\"0\" width=\"40\" height=\"40\" fill=\"\
+          #ddd\" />\r\n    <rect x=\"200\" y=\"0\" width=\"40\" height=\"40\" fill=\"\
+          #ddd\" />\r\n    <rect x=\"250\" y=\"0\" width=\"40\" height=\"40\" fill=\"\
+          #ddd\" />\r\n  </g>\r\n   -->\r\n  \r\n  <!-- 脚注 -->\r\n  <text x=\"50%\"\
+          \ y=\"95%\" text-anchor=\"middle\" font-size=\"12\" font-family=\"Arial\"\
+          \ fill=\"#888\">\r\n    瞎说新语 BY a@antior.cn\r\n  </text>\r\n</svg>\r\n"
+        title: 模板转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1732361957157'
+          - result
+          variable: result
+        - value_selector:
+          - sys
+          - query
+          variable: topic
+        - value_selector:
+          - '1732362896572'
+          - text
+          variable: text
+      height: 53
+      id: '1732362131496'
+      position:
+        x: 992
+        y: 282
+      positionAbsolute:
+        x: 992
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: azure_openai
+        prompt_template:
+        - id: a03d1895-c60d-4f48-ac1d-791ef8aed27b
+          role: system
+          text: "```xml\n<instruction>\n    <instructions>\n        1. 接收用户输入的汉语词语，并确保其格式正确。\n\
+            \        2. 将该汉语词语翻译成英文，确保翻译准确且符合语境。\n        3. 输出的结果应为英文翻译，不应包含任何XML标签或其他格式化符号。\n\
+            \        4. 在翻译过程中，注意词语的多义性和上下文，以提供最合适的翻译。\n        5. 如果遇到不常见的词语或短语，可以提供额外的解释或上下文信息，以帮助理解。\n\
+            \        6. 如果输入是动词，尝试返回名词的翻译。\n    </instructions>\n    \n    <examples>\n\
+            \        <example>\n            <input>你好</input>\n            <output>Hello</output>\n\
+            \        </example>\n        <example>\n            <input>谢谢</input>\n\
+            \            <output>Thank you</output>\n        </example>\n        <example>\n\
+            \            <input>再见</input>\n            <output>Goodbye</output>\n\
+            \        </example>\n    </examples>\n    <input>\n    {{#sys.query#}}\n\
+            \    </input>\n</instruction>\n```"
+        selected: false
+        title: 翻译topic到英文
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: '1732362896572'
+      position:
+        x: 382
+        y: 417
+      positionAbsolute:
+        x: 382
+        y: 417
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 29.5
+      y: 27.5
+      zoom: 1
