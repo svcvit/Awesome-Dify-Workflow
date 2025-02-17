@@ -1,0 +1,542 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Agent工具调用
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 5
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: agent
+      id: 1739781961838-source-1739781971571-target
+      source: '1739781961838'
+      sourceHandle: source
+      target: '1739781971571'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: agent
+        targetType: answer
+      id: 1739781971571-source-answer-target
+      source: '1739781971571'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1739781961838'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: 根据用户的需求，调用不同工具，回复用的内容。
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: gpt-4o-mini
+              model_type: llm
+              provider: langgenius/openai/openai
+              type: model-selector
+          query:
+            type: constant
+            value: '{{#sys.query#}}'
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: ''
+              parameters: {}
+              provider_name: time
+              schemas:
+              - auto_generate: null
+                default: '%Y-%m-%d %H:%M:%S'
+                form: form
+                human_description:
+                  en_US: Time format in strftime standard.
+                  ja_JP: Time format in strftime standard.
+                  pt_BR: Time format in strftime standard.
+                  zh_Hans: strftime 标准的时间格式。
+                label:
+                  en_US: Format
+                  ja_JP: Format
+                  pt_BR: Format
+                  zh_Hans: 格式
+                llm_description: null
+                max: null
+                min: null
+                name: format
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: UTC
+                form: form
+                human_description:
+                  en_US: Timezone
+                  ja_JP: Timezone
+                  pt_BR: Timezone
+                  zh_Hans: 时区
+                label:
+                  en_US: Timezone
+                  ja_JP: Timezone
+                  pt_BR: Timezone
+                  zh_Hans: 时区
+                llm_description: null
+                max: null
+                min: null
+                name: timezone
+                options:
+                - label:
+                    en_US: UTC
+                    ja_JP: UTC
+                    pt_BR: UTC
+                    zh_Hans: UTC
+                  value: UTC
+                - label:
+                    en_US: America/New_York
+                    ja_JP: America/New_York
+                    pt_BR: America/New_York
+                    zh_Hans: 美洲/纽约
+                  value: America/New_York
+                - label:
+                    en_US: America/Los_Angeles
+                    ja_JP: America/Los_Angeles
+                    pt_BR: America/Los_Angeles
+                    zh_Hans: 美洲/洛杉矶
+                  value: America/Los_Angeles
+                - label:
+                    en_US: America/Chicago
+                    ja_JP: America/Chicago
+                    pt_BR: America/Chicago
+                    zh_Hans: 美洲/芝加哥
+                  value: America/Chicago
+                - label:
+                    en_US: America/Sao_Paulo
+                    ja_JP: America/Sao_Paulo
+                    pt_BR: América/São Paulo
+                    zh_Hans: 美洲/圣保罗
+                  value: America/Sao_Paulo
+                - label:
+                    en_US: Asia/Shanghai
+                    ja_JP: Asia/Shanghai
+                    pt_BR: Asia/Shanghai
+                    zh_Hans: 亚洲/上海
+                  value: Asia/Shanghai
+                - label:
+                    en_US: Asia/Ho_Chi_Minh
+                    ja_JP: Asia/Ho_Chi_Minh
+                    pt_BR: Ásia/Ho Chi Minh
+                    zh_Hans: 亚洲/胡志明市
+                  value: Asia/Ho_Chi_Minh
+                - label:
+                    en_US: Asia/Tokyo
+                    ja_JP: Asia/Tokyo
+                    pt_BR: Asia/Tokyo
+                    zh_Hans: 亚洲/东京
+                  value: Asia/Tokyo
+                - label:
+                    en_US: Asia/Dubai
+                    ja_JP: Asia/Dubai
+                    pt_BR: Asia/Dubai
+                    zh_Hans: 亚洲/迪拜
+                  value: Asia/Dubai
+                - label:
+                    en_US: Asia/Kolkata
+                    ja_JP: Asia/Kolkata
+                    pt_BR: Asia/Kolkata
+                    zh_Hans: 亚洲/加尔各答
+                  value: Asia/Kolkata
+                - label:
+                    en_US: Asia/Seoul
+                    ja_JP: Asia/Seoul
+                    pt_BR: Asia/Seoul
+                    zh_Hans: 亚洲/首尔
+                  value: Asia/Seoul
+                - label:
+                    en_US: Asia/Singapore
+                    ja_JP: Asia/Singapore
+                    pt_BR: Asia/Singapore
+                    zh_Hans: 亚洲/新加坡
+                  value: Asia/Singapore
+                - label:
+                    en_US: Europe/London
+                    ja_JP: Europe/London
+                    pt_BR: Europe/London
+                    zh_Hans: 欧洲/伦敦
+                  value: Europe/London
+                - label:
+                    en_US: Europe/Berlin
+                    ja_JP: Europe/Berlin
+                    pt_BR: Europe/Berlin
+                    zh_Hans: 欧洲/柏林
+                  value: Europe/Berlin
+                - label:
+                    en_US: Europe/Moscow
+                    ja_JP: Europe/Moscow
+                    pt_BR: Europe/Moscow
+                    zh_Hans: 欧洲/莫斯科
+                  value: Europe/Moscow
+                - label:
+                    en_US: Australia/Sydney
+                    ja_JP: Australia/Sydney
+                    pt_BR: Australia/Sydney
+                    zh_Hans: 澳大利亚/悉尼
+                  value: Australia/Sydney
+                - label:
+                    en_US: Pacific/Auckland
+                    ja_JP: Pacific/Auckland
+                    pt_BR: Pacific/Auckland
+                    zh_Hans: 太平洋/奥克兰
+                  value: Pacific/Auckland
+                - label:
+                    en_US: Africa/Cairo
+                    ja_JP: Africa/Cairo
+                    pt_BR: Africa/Cairo
+                    zh_Hans: 非洲/开罗
+                  value: Africa/Cairo
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: select
+              settings:
+                format:
+                  value: '%Y-%m-%d %H:%M:%S'
+                timezone:
+                  value: UTC
+              tool_label: 获取当前时间
+              tool_name: current_time
+              type: builtin
+            - enabled: true
+              extra:
+                description: ''
+              parameters:
+                query:
+                  auto: 1
+                  value: null
+              provider_name: langgenius/duckduckgo/duckduckgo
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: The search query.
+                  ja_JP: The search query.
+                  pt_BR: The search query.
+                  zh_Hans: 搜索查询语句。
+                label:
+                  en_US: Query string
+                  ja_JP: Query string
+                  pt_BR: Query string
+                  zh_Hans: 查询语句
+                llm_description: Key words for searching
+                max: null
+                min: null
+                name: query
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: 5
+                form: form
+                human_description:
+                  en_US: The maximum number of results to return.
+                  ja_JP: The maximum number of results to return.
+                  pt_BR: The maximum number of results to return.
+                  zh_Hans: 最大结果数量
+                label:
+                  en_US: Max results
+                  ja_JP: Max results
+                  pt_BR: Max results
+                  zh_Hans: 最大结果数量
+                llm_description: ''
+                max: null
+                min: null
+                name: max_results
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: number
+              - auto_generate: null
+                default: 0
+                form: form
+                human_description:
+                  en_US: Whether to pass the search results to llm for summarization.
+                  ja_JP: Whether to pass the search results to llm for summarization.
+                  pt_BR: Whether to pass the search results to llm for summarization.
+                  zh_Hans: 是否需要将搜索结果传给大模型总结
+                label:
+                  en_US: Require Summary
+                  ja_JP: Require Summary
+                  pt_BR: Require Summary
+                  zh_Hans: 是否总结
+                llm_description: ''
+                max: null
+                min: null
+                name: require_summary
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: boolean
+              settings:
+                max_results:
+                  value: 5
+                require_summary:
+                  value: 0
+              tool_label: DuckDuckGo 搜索
+              tool_name: ddgo_search
+              type: builtin
+            - enabled: false
+              extra:
+                description: ''
+              parameters:
+                city:
+                  auto: 1
+                  value: null
+              provider_name: langgenius/openweather/openweather
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Target city for weather forecast query
+                  ja_JP: Target city for weather forecast query
+                  pt_BR: Cidade de destino para consulta de previsão do tempo
+                  zh_Hans: 天气预报查询的目标城市
+                label:
+                  en_US: city
+                  ja_JP: city
+                  pt_BR: cidade
+                  zh_Hans: 城市
+                llm_description: If you don't know you can extract the city name from
+                  the question or you can reply：Please tell me your city. You have
+                  to extract the Chinese city name from the question.If the input
+                  region is in Chinese characters for China, it should be replaced
+                  with the corresponding English name, such as '北京' for correct input
+                  is 'Beijing'
+                max: null
+                min: null
+                name: city
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: zh_cn
+                form: form
+                human_description:
+                  en_US: language
+                  ja_JP: language
+                  pt_BR: language
+                  zh_Hans: 语言
+                label:
+                  en_US: language
+                  ja_JP: language
+                  pt_BR: language
+                  zh_Hans: 语言
+                llm_description: ''
+                max: null
+                min: null
+                name: lang
+                options:
+                - label:
+                    en_US: cn
+                    ja_JP: cn
+                    pt_BR: cn
+                    zh_Hans: 中国
+                  value: zh_cn
+                - label:
+                    en_US: usa
+                    ja_JP: usa
+                    pt_BR: usa
+                    zh_Hans: 美国
+                  value: en_us
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: select
+              - auto_generate: null
+                default: metric
+                form: form
+                human_description:
+                  en_US: units for temperature
+                  ja_JP: units for temperature
+                  pt_BR: units for temperature
+                  zh_Hans: 温度单位
+                label:
+                  en_US: units
+                  ja_JP: units
+                  pt_BR: units
+                  zh_Hans: 单位
+                llm_description: ''
+                max: null
+                min: null
+                name: units
+                options:
+                - label:
+                    en_US: metric
+                    ja_JP: metric
+                    pt_BR: metric
+                    zh_Hans: ℃
+                  value: metric
+                - label:
+                    en_US: imperial
+                    ja_JP: imperial
+                    pt_BR: imperial
+                    zh_Hans: ℉
+                  value: imperial
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: select
+              settings:
+                lang:
+                  value: zh_cn
+                units:
+                  value: metric
+              tool_label: 天气查询
+              tool_name: weather
+              type: builtin
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        desc: ''
+        output_schema: null
+        plugin_unique_identifier: langgenius/agent:0.0.4@5eb03c08764cc37249f9ef18b89903a99493f6d02c4d5b8ffb40b9f7ef4e865c
+        selected: true
+        title: Agent
+        type: agent
+      height: 198
+      id: '1739781971571'
+      position:
+        x: 380
+        y: 282
+      positionAbsolute:
+        x: 380
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1739781971571.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 680
+        y: 282
+      positionAbsolute:
+        x: 680
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 4.833333333333201
+      y: -42.25
+      zoom: 0.8333333333333334
