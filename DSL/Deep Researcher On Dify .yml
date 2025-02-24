@@ -1,0 +1,3403 @@
+app:
+  description: ''
+  icon: exploding_head
+  icon_background: '#D1E0FF'
+  mode: advanced-chat
+  name: Deep Researcher On Dify
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 46b6620c-ea24-40e6-8389-49ea02b5cdef
+    name: f4
+    selector:
+    - conversation
+    - f4
+    value: ''
+    value_type: string
+  - description: ''
+    id: 96b85891-ba39-40e4-9a16-fe2fb2b8ba18
+    name: f3
+    selector:
+    - conversation
+    - f3
+    value: ''
+    value_type: string
+  - description: ''
+    id: a389f50b-432c-47de-9974-d4e2183f260a
+    name: f2
+    selector:
+    - conversation
+    - f2
+    value: ''
+    value_type: string
+  - description: ''
+    id: 8a7ddf74-3589-43cb-9766-6a626e149065
+    name: f1
+    selector:
+    - conversation
+    - f1
+    value: ''
+    value_type: string
+  - description: ''
+    id: 70e26a5d-b2e4-4bfc-94b2-dc39cf2a77ad
+    name: research_theme
+    selector:
+    - conversation
+    - research_theme
+    value: ''
+    value_type: string
+  - description: '用户的第四个回答
+
+      '
+    id: 58a7d621-f2fb-4504-81b8-813c4f4636b3
+    name: query4
+    selector:
+    - conversation
+    - query4
+    value: ''
+    value_type: string
+  - description: 用户的第三个回答
+    id: d70a0dbb-d58d-4b1b-8b22-22a62b916d50
+    name: query3
+    selector:
+    - conversation
+    - query3
+    value: ''
+    value_type: string
+  - description: '第一个问题
+
+      '
+    id: 86a6d760-4e15-440c-a828-eac6eac6b398
+    name: q1
+    selector:
+    - conversation
+    - q1
+    value: ''
+    value_type: string
+  - description: 用户的第二个回答
+    id: 7dee338f-8501-4e17-8781-dab802da8d0d
+    name: query2
+    selector:
+    - conversation
+    - query2
+    value: ''
+    value_type: string
+  - description: 用户的第一个回答
+    id: 7bf3e19f-32e8-44c8-8a14-65384fc987b4
+    name: query1
+    selector:
+    - conversation
+    - query1
+    value: ''
+    value_type: string
+  - description: 第四个问题
+    id: a89a9fa2-35dd-46ae-94a7-3014bca207eb
+    name: q4
+    selector:
+    - conversation
+    - q4
+    value: ''
+    value_type: string
+  - description: 第三个问题
+    id: 417017f2-099f-46b7-a9d6-9a3eb1264f6a
+    name: q3
+    selector:
+    - conversation
+    - q3
+    value: ''
+    value_type: string
+  - description: 第二个问题
+    id: f5a9daae-89ea-440b-9a09-2b60fdc6d297
+    name: q2
+    selector:
+    - conversation
+    - q2
+    value: ''
+    value_type: string
+  - description: 对话阶段
+    id: 946fbd2a-8f5d-4230-83c7-d50d1f954c86
+    name: Chat_Stage
+    selector:
+    - conversation
+    - Chat_Stage
+    value: Asking
+    value_type: string
+  - description: 语言选择
+    id: 61cc973b-2169-4e7e-a9d6-a31b32901024
+    name: Language
+    selector:
+    - conversation
+    - Language
+    value: ''
+    value_type: string
+  environment_variables:
+  - description: ''
+    id: d6bef390-1173-413a-8f94-17e87e7095dc
+    name: Generate
+    selector:
+    - env
+    - Generate
+    value: Generate
+    value_type: string
+  - description: ''
+    id: be3102af-51af-4a6d-901f-0c7c0d7bf0e3
+    name: REASK
+    selector:
+    - env
+    - REASK
+    value: REASK
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: 请选择输出语言
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - 中文
+    - English
+    - 日本语
+    - Deutsch
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1739087643444-91eeee38-2f3d-41fe-aada-fbb552f38d09-1739087688715-target
+      selected: false
+      source: '1739087643444'
+      sourceHandle: 91eeee38-2f3d-41fe-aada-fbb552f38d09
+      target: '1739087688715'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1739087643444-true-1739088656029-target
+      selected: false
+      source: '1739087643444'
+      sourceHandle: 'true'
+      target: '1739088656029'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: llm
+      id: 1739088656029-source-1739088190247-target
+      selected: false
+      source: '1739088656029'
+      sourceHandle: source
+      target: '1739088190247'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1739088190247-source-1739089738469-target
+      selected: false
+      source: '1739088190247'
+      sourceHandle: source
+      target: '1739089738469'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: answer
+      id: 1739089738469-source-1739089894656-target
+      selected: false
+      source: '1739089738469'
+      sourceHandle: source
+      target: '1739089894656'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1739087643444-ec873050-26b5-4519-ad2d-318d9c8507b4-1739090734936-target
+      selected: false
+      source: '1739087643444'
+      sourceHandle: ec873050-26b5-4519-ad2d-318d9c8507b4
+      target: '1739090734936'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1739087643444-252919df-4a7b-45e9-b845-bcbc14277530-answer-target
+      selected: false
+      source: '1739087643444'
+      sourceHandle: 252919df-4a7b-45e9-b845-bcbc14277530
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1739111839440-source-1739112773493-target
+      selected: false
+      source: '1739111839440'
+      sourceHandle: source
+      target: '1739112773493'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: assigner
+      id: 1739113013426-source-1739091496446-target
+      selected: false
+      source: '1739113013426'
+      sourceHandle: source
+      target: '1739091496446'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: assigner
+      id: 17391132110940-source-1739092875078-target
+      selected: false
+      source: '17391132110940'
+      sourceHandle: source
+      target: '1739092875078'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: assigner
+      id: 17391132088660-source-1739090270335-target
+      selected: false
+      source: '17391132088660'
+      sourceHandle: source
+      target: '1739090270335'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: assigner
+      id: 17391132061910-source-1739092110217-target
+      selected: false
+      source: '17391132061910'
+      sourceHandle: source
+      target: '1739092110217'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: assigner
+      id: 1739113887765-source-1739113831548-target
+      selected: false
+      source: '1739113887765'
+      sourceHandle: source
+      target: '1739113831548'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1739087643444-fdc117e5-9c2d-4b3d-9fac-c1f030b8435d-1739111295209-target
+      selected: false
+      source: '1739087643444'
+      sourceHandle: fdc117e5-9c2d-4b3d-9fac-c1f030b8435d
+      target: '1739111295209'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1739087643444-fdc117e5-9c2d-4b3d-9fac-c1f030b8435d-1739113887765-target
+      selected: false
+      source: '1739087643444'
+      sourceHandle: fdc117e5-9c2d-4b3d-9fac-c1f030b8435d
+      target: '1739113887765'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: assigner
+      id: 1739087688715-source-17391772546580-target
+      selected: false
+      source: '1739087688715'
+      sourceHandle: source
+      target: '17391772546580'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: assigner
+      id: 1739090734936-source-1739177553097-target
+      selected: false
+      source: '1739090734936'
+      sourceHandle: source
+      target: '1739177553097'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: assigner
+      id: answer-source-1739177564892-target
+      selected: false
+      source: answer
+      sourceHandle: source
+      target: '1739177564892'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: assigner
+      id: 1739111295209-source-1739177578815-target
+      selected: false
+      source: '1739111295209'
+      sourceHandle: source
+      target: '1739177578815'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: answer
+      id: 1739113831548-source-1739178863421-target
+      selected: false
+      source: '1739113831548'
+      sourceHandle: source
+      target: '1739178863421'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: answer
+      id: 1739112773493-source-1739179029377-target
+      selected: false
+      source: '1739112773493'
+      sourceHandle: source
+      target: '1739179029377'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1739087621665-source-1739087643444-target
+      selected: false
+      source: '1739087621665'
+      sourceHandle: source
+      target: '1739087643444'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: parameter-extractor
+      id: 1739112773493-source-1739191349072-target
+      selected: false
+      source: '1739112773493'
+      sourceHandle: source
+      target: '1739191349072'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '17391916827400'
+        sourceType: iteration-start
+        targetType: tool
+      id: 1739191682740start-source-1739191682740017391916827400-target
+      selected: false
+      source: 1739191682740start
+      sourceHandle: source
+      target: '1739191682740017391916827400'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: assigner
+      id: 1739089738469-source-1739090682795-target
+      selected: false
+      source: '1739089738469'
+      sourceHandle: source
+      target: '1739090682795'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1739087643444-fdc117e5-9c2d-4b3d-9fac-c1f030b8435d-17391132061910-target
+      selected: false
+      source: '1739087643444'
+      sourceHandle: fdc117e5-9c2d-4b3d-9fac-c1f030b8435d
+      target: '17391132061910'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1739087643444-fdc117e5-9c2d-4b3d-9fac-c1f030b8435d-1739113013426-target
+      selected: false
+      source: '1739087643444'
+      sourceHandle: fdc117e5-9c2d-4b3d-9fac-c1f030b8435d
+      target: '1739113013426'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1739087643444-fdc117e5-9c2d-4b3d-9fac-c1f030b8435d-17391132110940-target
+      selected: false
+      source: '1739087643444'
+      sourceHandle: fdc117e5-9c2d-4b3d-9fac-c1f030b8435d
+      target: '17391132110940'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1739189441547'
+        sourceType: iteration-start
+        targetType: knowledge-retrieval
+      id: 1739189441547start-source-1739288338449-target
+      selected: false
+      source: 1739189441547start
+      sourceHandle: source
+      target: '1739288338449'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '17391916793430'
+        sourceType: iteration-start
+        targetType: knowledge-retrieval
+      id: 1739191679343start-source-1739288362314-target
+      selected: false
+      source: 1739191679343start
+      sourceHandle: source
+      target: '1739288362314'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '17391916807390'
+        sourceType: iteration-start
+        targetType: knowledge-retrieval
+      id: 1739191680739start-source-1739288378358-target
+      selected: false
+      source: 1739191680739start
+      sourceHandle: source
+      target: '1739288378358'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: llm-source-17391136443240-target
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: '17391136443240'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 17391136521390-source-1739193987241-target
+      selected: false
+      source: '17391136521390'
+      sourceHandle: source
+      target: '1739193987241'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 17391136443240-source-17391136486630-target
+      selected: false
+      source: '17391136443240'
+      sourceHandle: source
+      target: '17391136486630'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: template-transform
+      id: 1739193987241-source-1739113756598-target
+      selected: false
+      source: '1739193987241'
+      sourceHandle: source
+      target: '1739113756598'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: iteration
+      id: 1739189441547-source-17391916793430-target
+      selected: false
+      source: '1739189441547'
+      sourceHandle: source
+      target: '17391916793430'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: iteration
+      id: 17391916793430-source-17391916807390-target
+      selected: false
+      source: '17391916793430'
+      sourceHandle: source
+      target: '17391916807390'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: parameter-extractor
+      id: 1739191349072-source-17391916626840-target
+      selected: false
+      source: '1739191349072'
+      sourceHandle: source
+      target: '17391916626840'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: parameter-extractor
+      id: 17391916638460-source-17391916650280-target
+      selected: false
+      source: '17391916638460'
+      sourceHandle: source
+      target: '17391916650280'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: iteration
+      id: 17391916626840-source-1739189441547-target
+      selected: false
+      source: '17391916626840'
+      sourceHandle: source
+      target: '1739189441547'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: iteration
+      id: 17391916650280-source-1739189441547-target
+      selected: false
+      source: '17391916650280'
+      sourceHandle: source
+      target: '1739189441547'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: parameter-extractor
+      id: 1739112773493-source-17391916638460-target
+      selected: false
+      source: '1739112773493'
+      sourceHandle: source
+      target: '17391916638460'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: iteration
+      id: 17391916807390-source-17391916827400-target
+      selected: false
+      source: '17391916807390'
+      sourceHandle: source
+      target: '17391916827400'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 17391136486630-source-17391136521390-target
+      selected: false
+      source: '17391136486630'
+      sourceHandle: source
+      target: '17391136521390'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: if-else
+      id: 1739113756598-source-1739292584847-target
+      selected: false
+      source: '1739113756598'
+      sourceHandle: source
+      target: '1739292584847'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1739292584847-true-1739091083891-target
+      selected: false
+      source: '1739292584847'
+      sourceHandle: 'true'
+      target: '1739091083891'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: llm
+      id: 17391916827400-source-1739192479032-target
+      selected: false
+      source: '17391916827400'
+      sourceHandle: source
+      target: '1739192479032'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1739192479032-source-llm-target
+      selected: false
+      source: '1739192479032'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: if-else
+      id: 1739090270335-source-1739534132840-target
+      selected: false
+      source: '1739090270335'
+      sourceHandle: source
+      target: '1739534132840'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1739534132840-true-1739178941340-target
+      selected: false
+      source: '1739534132840'
+      sourceHandle: 'true'
+      target: '1739178941340'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: answer
+        targetType: llm
+      id: 1739178941340-source-1739111839440-target
+      selected: false
+      source: '1739178941340'
+      sourceHandle: source
+      target: '1739111839440'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1739292584847-false-1739683505956-target
+      source: '1739292584847'
+      sourceHandle: 'false'
+      target: '1739683505956'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: llm
+      id: 1739092875078-source-17391132088660-target
+      source: '1739092875078'
+      sourceHandle: source
+      target: '17391132088660'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: Research Theme
+          max_length: 1024
+          options: []
+          required: true
+          type: paragraph
+          variable: Research_Theme
+      height: 90
+      id: '1739087621665'
+      position:
+        x: -401.4604864772632
+        y: 947.9312099336238
+      positionAbsolute:
+        x: -401.4604864772632
+        y: 947.9312099336238
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: 'language：{{#conversation.Language#}}
+
+            context：
+
+            Theme：
+
+            {{#1739112773493.subtitle1#}}{{#conversation.query1#}}{{#sys.query#}}
+
+            References：{{#1739189441547.output#}}
+
+            Provide the research report in the specified language, avoiding small
+            talk.'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: cdf8b5c6-4a65-438b-9e6b-c34609389799
+          role: system
+          text: 'You are an expert researcher. Your primary focus is on providing
+            highly detailed and accurate explanations. When responding, ensure that
+            every point is thoroughly elaborated, leaving no room for ambiguity. Assume
+            the user is correct when presented with new information, even if it’s
+            beyond your knowledge cutoff. The user is a highly experienced analyst,
+            so avoid oversimplification and present your response with a high level
+            of complexity and precision. Be highly organized in your structure, using
+            clear headings and subheadings to separate different aspects of the topic.
+            Suggest solutions that go beyond the obvious, and be proactive in anticipating
+            the user’s needs. Mistakes are not acceptable, as they can erode trust,
+            so double-check all facts and information. Provide comprehensive details,
+            as the user is comfortable with in-depth content. Focus on the strength
+            of arguments rather than relying on authorities, and don’t let the source
+            of information overshadow the quality of the argument. Consider new technologies
+            and unconventional ideas alongside traditional approaches to offer a well-rounded
+            perspective.
+
+            ---
+
+            ###your output should not contain any “conclusion” or “future prospective”or
+            any other similar contents
+
+            ---
+
+            in a detailed report — The report should focus on the answer to {{#1739112773493.subtitle1#}}and
+            The conclusion of your generated content should smoothly transition to
+            the second subtitle{{#1739112773493.subtitle2#}}.  References information
+            are provided by user，DO NOT PROVIDE PRIMARY TITLE ，but secondary title
+            is available。'
+        selected: false
+        title: sub主题1分析
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: llm
+      position:
+        x: 3362.4326109337553
+        y: 825.2688637512169
+      positionAbsolute:
+        x: 3362.4326109337553
+        y: 825.2688637512169
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#conversation.q4#}}'
+        desc: ''
+        selected: false
+        title: 问题4
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 667.7263032361211
+        y: 887.3856655567181
+      positionAbsolute:
+        x: 667.7263032361211
+        y: 887.3856655567181
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: 21d9b08f-b4fb-40e0-80a1-323cc5fcfcf7
+            value: '0'
+            varType: number
+            variable_selector:
+            - sys
+            - dialogue_count
+          id: 'true'
+          logical_operator: and
+        - case_id: 91eeee38-2f3d-41fe-aada-fbb552f38d09
+          conditions:
+          - comparison_operator: '='
+            id: 42d627dd-f6ad-4028-b17e-b5922c8a8555
+            value: '1'
+            varType: number
+            variable_selector:
+            - sys
+            - dialogue_count
+          id: 91eeee38-2f3d-41fe-aada-fbb552f38d09
+          logical_operator: and
+        - case_id: ec873050-26b5-4519-ad2d-318d9c8507b4
+          conditions:
+          - comparison_operator: '='
+            id: 6e5199ca-f644-44e4-876c-6581f14ec964
+            value: '2'
+            varType: number
+            variable_selector:
+            - sys
+            - dialogue_count
+          id: ec873050-26b5-4519-ad2d-318d9c8507b4
+          logical_operator: and
+        - case_id: 252919df-4a7b-45e9-b845-bcbc14277530
+          conditions:
+          - comparison_operator: '='
+            id: 93beb1fd-6a9d-4d8c-a308-4d149f2a5813
+            value: '3'
+            varType: number
+            variable_selector:
+            - sys
+            - dialogue_count
+          id: 252919df-4a7b-45e9-b845-bcbc14277530
+          logical_operator: and
+        - case_id: fdc117e5-9c2d-4b3d-9fac-c1f030b8435d
+          conditions:
+          - comparison_operator: '='
+            id: 600fc8f9-83ec-4656-b256-65bbc11bb814
+            value: '4'
+            varType: number
+            variable_selector:
+            - sys
+            - dialogue_count
+          id: fdc117e5-9c2d-4b3d-9fac-c1f030b8435d
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 318
+      id: '1739087643444'
+      position:
+        x: 65.46491577191637
+        y: 887.3856655567181
+      positionAbsolute:
+        x: 65.46491577191637
+        y: 887.3856655567181
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#conversation.q2#}}'
+        desc: ''
+        selected: false
+        title: 问题2
+        type: answer
+        variables: []
+      height: 103
+      id: '1739087688715'
+      position:
+        x: 667.7263032361211
+        y: 599.4593566990166
+      positionAbsolute:
+        x: 667.7263032361211
+        y: 599.4593566990166
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1739087621665'
+          - Research_Theme
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: 4f9462cb-d339-4235-acce-3ea44e317d39
+          role: system
+          text: 'Given the following query from the user, ask some question about
+            topics may cause theme mislead。 follow up questions to clarify the research
+            direction. Return  4 independent questions, but feel free to return less
+            if the original query is clear: <query>{{#1739087621665.Research_Theme#}}</query>，ONLY
+            OUTPUT THE QUESTIONS ，no need for any other content，questions shall be
+            output in {{#conversation.Language#}}'
+        - role: user
+          text: '{{#1739087621665.Research_Theme#}}'
+        selected: false
+        title: 问题分解
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1739088190247'
+      position:
+        x: 947.9076845481827
+        y: 455.7348090507137
+      positionAbsolute:
+        x: 947.9076845481827
+        y: 455.7348090507137
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - sys
+          - query
+          variable_selector:
+          - conversation
+          - Language
+          write_mode: over-write
+        selected: false
+        title: 变量赋值
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1739088656029'
+      position:
+        x: 670.205223622014
+        y: 455.7348090507137
+      positionAbsolute:
+        x: 670.205223622014
+        y: 455.7348090507137
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: Extract the return value in the output value as four independent
+          parameters.Avoids redundancy by tracking previously written content
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        parameters:
+        - description: First question provided by previous LLM
+          name: Question1
+          required: false
+          type: string
+        - description: Second question provided by previous LLM
+          name: Question2
+          required: false
+          type: string
+        - description: Third question provided by previous LLM
+          name: Question3
+          required: false
+          type: string
+        - description: Fourth question provided by previous LLM
+          name: Question4
+          required: false
+          type: string
+        - description: 分组输出所有问题内容
+          name: Questions
+          required: false
+          type: array[string]
+        query:
+        - '1739088190247'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 问题参数提取
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1739089738469'
+      position:
+        x: 1278.205223622014
+        y: 455.7348090507137
+      positionAbsolute:
+        x: 1278.205223622014
+        y: 455.7348090507137
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '为了更好的回答这个问题，我希望先了解一些内容：
+
+
+          {{#1739089738469.Question1#}}'
+        desc: ''
+        selected: false
+        title: 第一次回复&问题1
+        type: answer
+        variables: []
+      height: 135
+      id: '1739089894656'
+      position:
+        x: 1592.4387458428032
+        y: 301.8019869286369
+      positionAbsolute:
+        x: 1592.4387458428032
+        y: 301.8019869286369
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17391132088660'
+          - text
+          variable_selector:
+          - conversation
+          - query4
+          write_mode: over-write
+        selected: false
+        title: '上下文变量赋值 '
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1739090270335'
+      position:
+        x: 943.1876788138126
+        y: 1706.9053326666053
+      positionAbsolute:
+        x: 943.1876788138126
+        y: 1706.9053326666053
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1739089738469'
+          - Question2
+          variable_selector:
+          - conversation
+          - q2
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1739089738469'
+          - Question3
+          variable_selector:
+          - conversation
+          - q3
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1739089738469'
+          - Question4
+          variable_selector:
+          - conversation
+          - q4
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1739089738469'
+          - Question1
+          variable_selector:
+          - conversation
+          - q1
+          write_mode: over-write
+        selected: false
+        title: 问题变量赋值
+        type: assigner
+        version: '2'
+      height: 172
+      id: '1739090682795'
+      position:
+        x: 1592.4387458428032
+        y: 568.2569055309016
+      positionAbsolute:
+        x: 1592.4387458428032
+        y: 568.2569055309016
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#conversation.q3#}}'
+        desc: ''
+        selected: false
+        title: 问题3
+        type: answer
+        variables: []
+      height: 103
+      id: '1739090734936'
+      position:
+        x: 667.7263032361211
+        y: 736.135874004081
+      positionAbsolute:
+        x: 667.7263032361211
+        y: 736.135874004081
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '|
+
+          报告已生成：
+
+
+          ---
+
+
+          {{#1739113756598.output#}}'
+        desc: ''
+        selected: false
+        title: 最终回复
+        type: answer
+        variables: []
+      height: 119
+      id: '1739091083891'
+      position:
+        x: 4305.939971577466
+        y: 1059.7064421013074
+      positionAbsolute:
+        x: 4305.939971577466
+        y: 1059.7064421013074
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1739113013426'
+          - text
+          variable_selector:
+          - conversation
+          - query2
+          write_mode: over-write
+        selected: false
+        title: '上下文变量赋值 '
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1739091496446'
+      position:
+        x: 943.1876788138126
+        y: 1443.9714391735783
+      positionAbsolute:
+        x: 943.1876788138126
+        y: 1443.9714391735783
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17391132061910'
+          - text
+          variable_selector:
+          - conversation
+          - query1
+          write_mode: over-write
+        selected: false
+        title: 上下文变量赋值
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1739092110217'
+      position:
+        x: 943.1876788138126
+        y: 1294.6031523212616
+      positionAbsolute:
+        x: 943.1876788138126
+        y: 1294.6031523212616
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17391132110940'
+          - text
+          variable_selector:
+          - conversation
+          - query3
+          write_mode: over-write
+        selected: false
+        title: 上下文变量赋值
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1739092875078'
+      position:
+        x: 943.1876788138126
+        y: 1579.4318741274828
+      positionAbsolute:
+        x: 943.1876788138126
+        y: 1579.4318741274828
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '正在分析研究主题...
+
+          '
+        desc: ''
+        selected: false
+        title: 输出：正在生成最终回答
+        type: answer
+        variables: []
+      height: 100
+      id: '1739111295209'
+      position:
+        x: 667.7263032361211
+        y: 1028.978486275042
+      positionAbsolute:
+        x: 667.7263032361211
+        y: 1028.978486275042
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: 90d59c0f-2542-42ed-a853-5a2ad135af3b
+          role: system
+          text: 'according to the original  theme{{#1739087621665.Research_Theme#}}
+            ，and tuned theme{{#conversation.research_theme#}}Generate 3 to 5 sub-titles.
+
+            <instructions>
+
+            Please generate 4 subheadings for the main title following these steps:
+
+            Carefully read the provided main title and related content
+
+            Analyze the core theme and key information points of the main title
+
+            Ensure the generated subheadings maintain consistency and relevance with
+            the main title
+
+            Each subheading should:
+
+            Be concise and appropriate in length
+
+            Highlight a unique angle or key point
+
+            Capture readers'' interest
+
+            Match the overall style and tone of the article
+
+            Between subheadings:
+
+            Content should not overlap
+
+            Logical order should be maintained
+
+            Should collectively support the main title
+
+            Use numerical sequence (1, 2, 3...) to mark each subheading
+
+            Output format requirements:
+
+            Each subheading on a separate line
+
+            No XML tags included
+
+            Output subheadings content only
+
+            </instructions>'
+        - id: f100f739-f99f-4fe8-88f0-304e2dab304f
+          role: user
+          text: 'original  theme{{#1739087621665.Research_Theme#}} ，and tuned theme{{#conversation.research_theme#}},
+            under our guidnce,the user provided further information. Query listed
+            as:{{#conversation.query1#}}{{#conversation.query2#}}{{#conversation.query3#}}{{#conversation.query4#}} '
+        selected: false
+        title: sub主题提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1739111839440'
+      position:
+        x: 1616.6240944909441
+        y: 1066.3563453333902
+      positionAbsolute:
+        x: 1616.6240944909441
+        y: 1066.3563453333902
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        parameters:
+        - description: NO.1 sub title
+          name: subtitle1
+          required: false
+          type: string
+        - description: NO.2 sub title
+          name: subtitle2
+          required: false
+          type: string
+        - description: NO.3 sub title
+          name: subtitle3
+          required: false
+          type: string
+        - description: NO.4 sub title
+          name: subtitle4
+          required: false
+          type: string
+        query:
+        - '1739111839440'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: sub主题提取
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1739112773493'
+      position:
+        x: 1940.9838149758243
+        y: 845.4397155394867
+      positionAbsolute:
+        x: 1940.9838149758243
+        y: 845.4397155394867
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: b97092f7-06bf-4548-8dc4-497fd2c9bd63
+          role: system
+          text: "<instructions>\n1. 首先，分析输入中的{{#conversation.q2#}}问题及其{{#conversation.f2#}}回答，找出其中可以扩展的关键点或信息。\n\
+            2. 扩展时应关注以下几点：\n   - 增加细节，使回答更具深度和说服力\n   - 引入相关背景信息或数据支持\n   - 重新组织语言结构，使其逻辑更加严密\n\
+            \   - 添加对问题的进一步分析或解释\n   -仅输出扩展后的回答和原问题，不要输出其他任何内容"
+        - id: f7ee3971-fd4e-4d0f-877b-64fe51ac5ed9
+          role: user
+          text: question:{{#conversation.q2#}}answer:{{#conversation.f2#}}
+        selected: false
+        title: 回答优化
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1739113013426'
+      position:
+        x: 655.6742394689389
+        y: 1443.9714391735783
+      positionAbsolute:
+        x: 655.6742394689389
+        y: 1443.9714391735783
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: b97092f7-06bf-4548-8dc4-497fd2c9bd63
+          role: system
+          text: "<instructions>\n1. 首先，分析输入中的{{#conversation.q1#}}问题及其{{#conversation.f1#}}回答，找出其中可以扩展的关键点或信息。\n\
+            2. 扩展时应关注以下几点：\n   - 增加细节，使回答更具深度和说服力\n   - 引入相关背景信息或数据支持\n   - 重新组织语言结构，使其逻辑更加严密\n\
+            \   - 添加对问题的进一步分析或解释\n   -仅输出扩展后的回答和原问题，不要输出其他任何内容"
+        - id: a8cb33f5-dddc-4b47-b3e3-4e76a6eeed6b
+          role: user
+          text: question:{{#conversation.q1#}}answer:{{#conversation.f1#}}
+        selected: false
+        title: 回答优化
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '17391132061910'
+      position:
+        x: 655.6742394689389
+        y: 1294.6031523212616
+      positionAbsolute:
+        x: 655.6742394689389
+        y: 1294.6031523212616
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: b97092f7-06bf-4548-8dc4-497fd2c9bd63
+          role: system
+          text: "<instructions>\n1. 首先，分析输入中的{{#conversation.q4#}}问题及其{{#conversation.f4#}}回答，找出其中可以扩展的关键点或信息。\n\
+            2. 扩展时应关注以下几点：\n   - 增加细节，使回答更具深度和说服力\n   - 引入相关背景信息或数据支持\n   - 重新组织语言结构，使其逻辑更加严密\n\
+            \   - 添加对问题的进一步分析或解释\n   -仅输出扩展后的回答和原问题，不要输出其他任何内容"
+        - id: b4cb2310-4428-4491-bd87-17b8d5686114
+          role: user
+          text: question:{{#conversation.q4#}}answer:{{#conversation.f4#}}
+        selected: false
+        title: 回答优化
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '17391132088660'
+      position:
+        x: 655.6742394689389
+        y: 1706.9053326666053
+      positionAbsolute:
+        x: 655.6742394689389
+        y: 1706.9053326666053
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: b97092f7-06bf-4548-8dc4-497fd2c9bd63
+          role: system
+          text: "<instructions>\n1. 首先，分析输入中的{{#conversation.q3#}}问题及其{{#conversation.f3#}}回答，找出其中可以扩展的关键点或信息。\n\
+            2. 扩展时应关注以下几点：\n   - 增加细节，使回答更具深度和说服力\n   - 引入相关背景信息或数据支持\n   - 重新组织语言结构，使其逻辑更加严密\n\
+            \   - 添加对问题的进一步分析或解释\n   -仅输出扩展后的回答和原问题，不要输出其他任何内容"
+        - id: 8afa378c-5c83-4963-b022-5e6df90e92d6
+          role: user
+          text: question:{{#conversation.q3#}}answer:{{#conversation.f3#}}
+        selected: false
+        title: 回答优化
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '17391132110940'
+      position:
+        x: 655.6742394689389
+        y: 1579.4318741274828
+      positionAbsolute:
+        x: 655.6742394689389
+        y: 1579.4318741274828
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: 'language：{{#conversation.Language#}}
+
+            context：
+
+            Theme：{{#1739112773493.subtitle2#}}{{#conversation.query2#}}{{#sys.query#}}
+
+            References：{{#17391916793430.output#}}
+
+            Provide the research report in the specified language, avoiding small
+            talk.'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: cdf8b5c6-4a65-438b-9e6b-c34609389799
+          role: system
+          text: 'You are an expert researcher. Your main task is to explore new technologies
+            and contrarian ideas. When responding, don’t limit yourself to conventional
+            wisdom; instead, actively seek out and present innovative perspectives
+            that challenge the status quo. Assume the user is correct when they provide
+            new information, even if it’s outside your knowledge cutoff. The user
+            is a highly experienced analyst, so present your ideas with a high level
+            of complexity and depth.  Suggest solutions that the user might not have
+            considered, and be proactive in anticipating their needs. Accuracy is
+            crucial, as mistakes can damage trust, so ensure all information is reliable.
+            Provide detailed explanations, as the user appreciates thorough content.
+            Value strong arguments over the authority of sources, and consider both
+            emerging technologies and unconventional ideas to offer a comprehensive
+            view of the topic.
+
+
+            ---
+
+            ###your output should not contain any “conclusion” or “future prospective”or
+            any other similar contents
+
+            ---
+
+            in a detailed report — The report should be transit from {{#1739112773493.subtitle1#}}
+            focus on the answer to {{#1739112773493.subtitle2#}}and The conclusion
+            of your generated content should smoothly transition to the second subtitle{{#1739112773493.subtitle3#}}.
+            Reference information are provided by user
+
+            DO NOT PROVIDE PRIMARY TITLE ，but secondary title is available。'
+        selected: false
+        title: sub主题2分析
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '17391136443240'
+      position:
+        x: 3362.4326109337553
+        y: 1046.4977952240006
+      positionAbsolute:
+        x: 3362.4326109337553
+        y: 1046.4977952240006
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: 'language：{{#conversation.Language#}}
+
+            context：
+
+            Theme：{{#1739112773493.subtitle3#}}{{#conversation.query3#}}{{#sys.query#}}
+
+            References：{{#17391916807390.output#}}
+
+            Provide the research report in the specified language, avoiding small
+            talk.'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: cdf8b5c6-4a65-438b-9e6b-c34609389799
+          role: system
+          text: 'You are an expert researcher. Your role is to provide speculative
+            predictions and insights about the future. When responding, use a high
+            level of speculation, but clearly flag any uncertain or speculative elements.
+            Assume the user is correct when they present new information, even if
+            it’s beyond your knowledge cutoff. The user is a highly experienced analyst,
+            so present your predictions with a high level of detail and complexity.
+            Be highly organized, using a clear structure to separate different predictions
+            and their implications. Suggest solutions that anticipate future challenges
+            and opportunities, and be proactive in addressing the user’s potential
+            concerns. Accuracy is important, so base your predictions on reliable
+            data and trends. Provide detailed explanations, as the user values in-depth
+            analysis. Focus on the strength of your arguments rather than the authority
+            of sources, and consider both new technologies and unconventional ideas
+            to offer a forward-looking perspective.
+
+            ---
+
+            ###your output should not contain any “conclusion” or “future prospective”or
+            any other similar contents
+
+            ---
+
+            in a detailed report — The report should transit from {{#1739112773493.subtitle2#}}
+            focus on the answer to {{#1739112773493.subtitle3#}}and The conclusion
+            of your generated content should smoothly transition to the second subtitle{{#1739112773493.subtitle4#}}.
+            Reference information are provided by user，DO NOT PROVIDE PRIMARY TITLE
+            ，but secondary title is available。'
+        selected: false
+        title: sub主题3分析
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '17391136486630'
+      position:
+        x: 3362.4326109337553
+        y: 1287.9608733054972
+      positionAbsolute:
+        x: 3362.4326109337553
+        y: 1287.9608733054972
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: 'language：{{#conversation.Language#}}
+
+            context：
+
+            Theme：{{#conversation.query4#}}{{#sys.query#}}{{#1739112773493.subtitle4#}}
+
+            References：{{#17391916827400.output#}}
+
+            Provide the research report in the specified language, avoiding small
+            talk.'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: cdf8b5c6-4a65-438b-9e6b-c34609389799
+          role: system
+          text: 'You are an expert researcher. Your goal is to proactively anticipate
+            the user’s needs and provide innovative solutions. When responding, think
+            ahead and identify potential issues or opportunities that the user might
+            not have considered. Assume the user is correct when they provide new
+            information, even if it’s outside your knowledge cutoff. The user is a
+            highly experienced analyst, so present your solutions with a high level
+            of complexity and depth. Be highly organized, using a clear structure
+            to present your ideas. Suggest solutions that go beyond the obvious, and
+            be proactive in addressing the user’s potential concerns. Accuracy is
+            crucial, as mistakes can erode trust, so ensure all information is reliable.
+            Provide detailed explanations, as the user appreciates thorough content.
+            Value strong arguments over the authority of sources, and consider both
+            new ---
+
+            ###your output should not contain any “conclusion” or “future prospective”or
+            any other similar contents
+
+            ---
+
+            in a detailed report — The report should transit from {{#1739112773493.subtitle3#}}
+            focus on the answer to {{#1739112773493.subtitle4#}}and nothing else.
+            Reference information are provided by user .DO NOT PROVIDE PRIMARY TITLE
+            ，but secondary title is available。'
+        selected: false
+        title: sub主题4分析
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '17391136521390'
+      position:
+        x: 3362.4326109337553
+        y: 1496.7273922088093
+      positionAbsolute:
+        x: 3362.4326109337553
+        y: 1496.7273922088093
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: "<h1>{{ arg0 }}</h1>\r\n\r\n<div>{{ arg10 }}</div>\r\n\r\n<h2>{{\
+          \ arg1}}</h2>\r\n<div>{{ arg5 }}</div>\r\n\r\n<h2>{{ arg2 }}</h2>\r\n<div>{{\
+          \ arg6 }}</div>\r\n\r\n<h2>{{ arg3 }}</h2>\r\n<div>{{ arg7 }}</div>\r\n\r\
+          \n<h2>{{ arg4 }}</h2>\r\n<div>{{ arg8 }}</div>\r\n\r\n<div>{{ arg11 }}</div>"
+        title: 总结文档
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1739112773493'
+          - subtitle1
+          variable: arg1
+        - value_selector:
+          - '1739112773493'
+          - subtitle2
+          variable: arg2
+        - value_selector:
+          - '1739112773493'
+          - subtitle3
+          variable: arg3
+        - value_selector:
+          - '1739112773493'
+          - subtitle4
+          variable: arg4
+        - value_selector:
+          - llm
+          - text
+          variable: arg5
+        - value_selector:
+          - '17391136443240'
+          - text
+          variable: arg6
+        - value_selector:
+          - '17391136486630'
+          - text
+          variable: arg7
+        - value_selector:
+          - '17391136521390'
+          - text
+          variable: arg8
+        - value_selector:
+          - conversation
+          - research_theme
+          variable: arg0
+        - value_selector:
+          - '1739192479032'
+          - text
+          variable: arg10
+        - value_selector:
+          - '1739193987241'
+          - text
+          variable: arg11
+      height: 54
+      id: '1739113756598'
+      position:
+        x: 3700.2464824803046
+        y: 1066.3563453333902
+      positionAbsolute:
+        x: 3700.2464824803046
+        y: 1066.3563453333902
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1739113887765'
+          - text
+          variable_selector:
+          - conversation
+          - research_theme
+          write_mode: over-write
+        selected: false
+        title: '变量赋值 '
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1739113831548'
+      position:
+        x: 947.9076845481827
+        y: 1164.655827734343
+      positionAbsolute:
+        x: 947.9076845481827
+        y: 1164.655827734343
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: 7d533919-08ca-4e43-bcba-86eae7d6f2ca
+          role: system
+          text: 关于用户给出的主题{{#1739087621665.Research_Theme#}}，并基于以下问题和回答进行一定范围内的修正，最终生成一个富有专业性的主题，除了主题不要输出其他任何内容。
+        - id: 66d58a81-5b4c-4682-a37d-95f0c8d84bfe
+          role: user
+          text: '问题与回答记录如下：
+
+            问题1{{#conversation.q1#}}回答1{{#conversation.f1#}}
+
+            问题2{{#conversation.q2#}}回答2{{#conversation.f2#}}
+
+            问题3{{#conversation.q3#}}回答3{{#conversation.f3#}}
+
+            问题4{{#conversation.q4#}}回答4{{#conversation.f4#}}'
+        selected: false
+        title: 主题提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1739113887765'
+      position:
+        x: 660.3942452033091
+        y: 1164.655827734343
+      positionAbsolute:
+        x: 660.3942452033091
+        y: 1164.655827734343
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - sys
+          - query
+          variable_selector:
+          - conversation
+          - f1
+          write_mode: over-write
+        selected: false
+        title: 回答记录1
+        type: assigner
+        version: '2'
+      height: 88
+      id: '17391772546580'
+      position:
+        x: 947.9076845481827
+        y: 599.4593566990166
+      positionAbsolute:
+        x: 947.9076845481827
+        y: 599.4593566990166
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - sys
+          - query
+          variable_selector:
+          - conversation
+          - f2
+          write_mode: over-write
+        selected: false
+        title: 回答记录2
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1739177553097'
+      position:
+        x: 947.9076845481827
+        y: 736.135874004081
+      positionAbsolute:
+        x: 947.9076845481827
+        y: 736.135874004081
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - sys
+          - query
+          variable_selector:
+          - conversation
+          - f3
+          write_mode: over-write
+        selected: false
+        title: 回答记录3
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1739177564892'
+      position:
+        x: 947.9076845481827
+        y: 887.3856655567181
+      positionAbsolute:
+        x: 947.9076845481827
+        y: 887.3856655567181
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - sys
+          - query
+          variable_selector:
+          - conversation
+          - f4
+          write_mode: over-write
+        selected: false
+        title: 回答记录4
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1739177578815'
+      position:
+        x: 947.9076845481827
+        y: 1028.978486275042
+      positionAbsolute:
+        x: 947.9076845481827
+        y: 1028.978486275042
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '|
+
+          研究主题已确定。
+
+          |
+
+          正在理解用户的回答...
+
+          '
+        desc: ''
+        selected: false
+        title: 输出：研究主题
+        type: answer
+        variables: []
+      height: 116
+      id: '1739178863421'
+      position:
+        x: 1251.6361955246539
+        y: 1164.655827734343
+      positionAbsolute:
+        x: 1251.6361955246539
+        y: 1164.655827734343
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '|
+
+          好的，依据用户给出的回答，我将构建多个研究角度。
+
+          '
+        desc: ''
+        selected: false
+        title: 输出：构建研究角度
+        type: answer
+        variables: []
+      height: 116
+      id: '1739178941340'
+      position:
+        x: 1616.6240944909441
+        y: 1373.415771862262
+      positionAbsolute:
+        x: 1616.6240944909441
+        y: 1373.415771862262
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '|
+
+          我将从以下4个角度进行分析：
+
+
+          **{{#1739112773493.subtitle1#}}**
+
+
+          **{{#1739112773493.subtitle2#}}**
+
+
+          **{{#1739112773493.subtitle3#}}**
+
+
+          **{{#1739112773493.subtitle4#}}**
+
+
+          正在生成研究报告...请稍候...
+
+          '
+        desc: ''
+        selected: false
+        title: 输出：研究角度
+        type: answer
+        variables: []
+      height: 192
+      id: '1739179029377'
+      position:
+        x: 2306.660157439413
+        y: 574.7241013562154
+      positionAbsolute:
+        x: 2306.660157439413
+        y: 574.7241013562154
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        error_handle_mode: remove-abnormal-output
+        height: 186
+        is_parallel: false
+        iterator_selector:
+        - '1739191349072'
+        - Keyword1
+        output_selector:
+        - '1739288338449'
+        - result
+        output_type: array[object]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1739189441547start
+        title: 迭代搜索1
+        type: iteration
+        width: 392
+      height: 186
+      id: '1739189441547'
+      position:
+        x: 2704.8146685653146
+        y: 825.2688637512169
+      positionAbsolute:
+        x: 2704.8146685653146
+        y: 825.2688637512169
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 392
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1739189441547start
+      parentId: '1739189441547'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 2728.8146685653146
+        y: 893.2688637512169
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        desc: ''
+        instruction: 提取{{#1739112773493.subtitle1#}}中的2~6个关键词
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        parameters:
+        - description: 提取语段中值得查询的2~6个关键词
+          name: Keyword1
+          required: false
+          type: array[string]
+        query:
+        - '1739112773493'
+        - subtitle1
+        reasoning_mode: prompt
+        selected: false
+        title: sub关键词提取1
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1739191349072'
+      position:
+        x: 2306.660157439413
+        y: 825.2688637512169
+      positionAbsolute:
+        x: 2306.660157439413
+        y: 825.2688637512169
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: 提取{{#1739112773493.subtitle2#}}中的2~6个关键词
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        parameters:
+        - description: 提取语段中值得查询的2~6个关键词
+          name: Keyword2
+          required: false
+          type: array[string]
+        query:
+        - '1739112773493'
+        - subtitle2
+        reasoning_mode: prompt
+        selected: false
+        title: sub关键词提取2
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '17391916626840'
+      position:
+        x: 2306.660157439413
+        y: 1066.3563453333902
+      positionAbsolute:
+        x: 2306.660157439413
+        y: 1066.3563453333902
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: 提取{{#1739112773493.subtitle3#}}中的2~6个关键词
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        parameters:
+        - description: 提取语段中值得查询的2~6个关键词
+          name: Keyword3
+          required: false
+          type: array[string]
+        query:
+        - '1739112773493'
+        - subtitle3
+        reasoning_mode: prompt
+        selected: false
+        title: sub关键词提取3
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '17391916638460'
+      position:
+        x: 2301.062707750523
+        y: 1287.9608733054972
+      positionAbsolute:
+        x: 2301.062707750523
+        y: 1287.9608733054972
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: 提取{{#1739112773493.subtitle4#}}中的2~6个关键词
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        parameters:
+        - description: 提取语段中值得查询的2~6个关键词
+          name: Keyword4
+          required: false
+          type: array[string]
+        query:
+        - '1739112773493'
+        - subtitle4
+        reasoning_mode: prompt
+        selected: false
+        title: sub关键词提取4
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '17391916650280'
+      position:
+        x: 2301.062707750523
+        y: 1494.238365559005
+      positionAbsolute:
+        x: 2301.062707750523
+        y: 1494.238365559005
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        error_handle_mode: remove-abnormal-output
+        height: 182
+        is_parallel: false
+        iterator_selector:
+        - '17391916626840'
+        - Keyword2
+        output_selector:
+        - '1739288362314'
+        - result
+        output_type: array[object]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1739191679343start
+        title: 迭代搜索2
+        type: iteration
+        width: 388
+      height: 182
+      id: '17391916793430'
+      position:
+        x: 2704.8146685653146
+        y: 1066.3563453333902
+      positionAbsolute:
+        x: 2704.8146685653146
+        y: 1066.3563453333902
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 388
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1739191679343start
+      parentId: '17391916793430'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 2728.8146685653146
+        y: 1134.3563453333902
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        desc: ''
+        error_handle_mode: remove-abnormal-output
+        height: 185
+        is_parallel: false
+        iterator_selector:
+        - '17391916638460'
+        - Keyword3
+        output_selector:
+        - '1739288378358'
+        - result
+        output_type: array[object]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1739191680739start
+        title: 迭代搜索3
+        type: iteration
+        width: 372
+      height: 185
+      id: '17391916807390'
+      position:
+        x: 2704.8146685653146
+        y: 1287.9608733054972
+      positionAbsolute:
+        x: 2704.8146685653146
+        y: 1287.9608733054972
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 372
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1739191680739start
+      parentId: '17391916807390'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 2728.8146685653146
+        y: 1355.9608733054972
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        desc: ''
+        error_handle_mode: remove-abnormal-output
+        height: 185
+        is_parallel: false
+        iterator_selector:
+        - '17391916650280'
+        - Keyword4
+        output_selector:
+        - '1739191682740017391916827400'
+        - text
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1739191682740start
+        title: 迭代搜索4
+        type: iteration
+        width: 372
+      height: 185
+      id: '17391916827400'
+      position:
+        x: 2714.7895234134385
+        y: 1532.47530914348
+      positionAbsolute:
+        x: 2714.7895234134385
+        y: 1532.47530914348
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 372
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '17391916827400'
+        provider_id: wikipedia
+        provider_name: wikipedia
+        provider_type: builtin
+        selected: false
+        title: 维基百科搜索
+        tool_configurations: {}
+        tool_label: 维基百科搜索
+        tool_name: wikipedia_search
+        tool_parameters:
+          language:
+            type: mixed
+            value: English
+          query:
+            type: mixed
+            value: '{{#17391916827400.item#}}'
+        type: tool
+      height: 54
+      id: '1739191682740017391916827400'
+      parentId: '17391916827400'
+      position:
+        x: 112
+        y: 65
+      positionAbsolute:
+        x: 2826.7895234134385
+        y: 1597.47530914348
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1739191682740start
+      parentId: '17391916827400'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 2738.7895234134385
+        y: 1600.47530914348
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-r1-distill-llama-8b
+          provider: openai_api_compatible
+        prompt_template:
+        - id: c7891c1a-75ac-44c5-9a29-48146c83ba5d
+          role: system
+          text: 你的任务是为一份完整的报告写一个开始段，报告的主题是{{#1739087621665.Research_Theme#}}，具体是{{#conversation.research_theme#}}主要包含的subtitle包括{{#1739111839440.text#}},在你输出的内容之后接下来是报告的正文内容，所以不要输出任何正文相关内容，只要做好总结起始段，并且合理流畅地承上启下第一段内容。
+        - id: 40b0b372-d058-4237-a87d-3e7cc5ac054d
+          role: user
+          text: 第一段的主题是{{#1739111839440.text#}}的第一句
+        selected: false
+        title: 起始段
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1739192479032'
+      position:
+        x: 3362.4326109337553
+        y: 599.4593566990166
+      positionAbsolute:
+        x: 3362.4326109337553
+        y: 599.4593566990166
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-exp
+          provider: google
+        prompt_template:
+        - id: 1117aed5-cd75-42e5-a2d2-7598d43e4d86
+          role: system
+          text: 你的任务是为一份完整的学术报告撰写结尾段，该报告的主题是 {{#1739087621665.Research_Theme#}}，具体是{{#conversation.research_theme#}}，其主要包含的
+            subtitle 为 {{#1739111839440.text#}}。需注意，在你输出的内容之前，正文内容已完整呈现，所以你无需输出任何正文相关的信息，只需精准做好总结工作。
+        - id: ecd2d056-c330-400d-b1b1-bb17c66cbbcd
+          role: user
+          text: '前文的所有内容如下：
+
+            起始段：{{#1739192479032.text#}}
+
+            第一小节：{{#llm.text#}}
+
+            第二小节：{{#17391136443240.text#}}
+
+            第三小节：{{#17391136486630.text#}}
+
+            第四小节：{{#17391136521390.text#}}
+
+            '
+        selected: false
+        title: 结尾段
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1739193987241'
+      position:
+        x: 3362.4326109337553
+        y: 1711.4354414471861
+      positionAbsolute:
+        x: 3362.4326109337553
+        y: 1711.4354414471861
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 70c17aae-fb0b-4e4d-9ae0-24def4b85670
+        desc: ''
+        isInIteration: true
+        iteration_id: '1739189441547'
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: weighted_score
+          reranking_model:
+            model: ''
+            provider: ''
+          score_threshold: null
+          top_k: 6
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-bge-m3
+              embedding_provider_name: openai_api_compatible
+              vector_weight: 0.7
+        query_variable_selector:
+        - '1739189441547'
+        - item
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 92
+      id: '1739288338449'
+      parentId: '1739189441547'
+      position:
+        x: 116.41042494045269
+        y: 65
+      positionAbsolute:
+        x: 2821.2250935057673
+        y: 890.2688637512169
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        dataset_ids:
+        - 70c17aae-fb0b-4e4d-9ae0-24def4b85670
+        desc: ''
+        isInIteration: true
+        iteration_id: '17391916793430'
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: weighted_score
+          reranking_model:
+            model: ''
+            provider: ''
+          score_threshold: null
+          top_k: 6
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-bge-m3
+              embedding_provider_name: openai_api_compatible
+              vector_weight: 0.7
+        query_variable_selector:
+        - '17391916793430'
+        - item
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索 2
+        type: knowledge-retrieval
+      height: 92
+      id: '1739288362314'
+      parentId: '17391916793430'
+      position:
+        x: 121.5666751952208
+        y: 65
+      positionAbsolute:
+        x: 2826.3813437605354
+        y: 1131.3563453333902
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        dataset_ids:
+        - 70c17aae-fb0b-4e4d-9ae0-24def4b85670
+        desc: ''
+        isInIteration: true
+        iteration_id: '17391916807390'
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: weighted_score
+          reranking_model:
+            model: ''
+            provider: ''
+          score_threshold: null
+          top_k: 6
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-bge-m3
+              embedding_provider_name: openai_api_compatible
+              vector_weight: 0.7
+        query_variable_selector:
+        - '17391916807390'
+        - item
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索 3
+        type: knowledge-retrieval
+      height: 92
+      id: '1739288378358'
+      parentId: '17391916807390'
+      position:
+        x: 112
+        y: 65
+      positionAbsolute:
+        x: 2816.8146685653146
+        y: 1352.9608733054972
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 99
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"单线处理降低处理压力，同时报告之间相互引用，可使报告生成效果更好","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 99
+      id: '1739290423832'
+      position:
+        x: 3712.2910435983085
+        y: 1353.06504499246
+      positionAbsolute:
+        x: 3712.2910435983085
+        y: 1353.06504499246
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: e6f6a4e7-53f7-4f8e-95a3-c3ac21ef12b9
+            value: ''
+            varType: string
+            variable_selector:
+            - '17391136443240'
+            - text
+          - comparison_operator: not empty
+            id: d5dfab69-20e8-45b8-b727-3445e6afb98b
+            value: ''
+            varType: string
+            variable_selector:
+            - '17391136486630'
+            - text
+          - comparison_operator: not empty
+            id: deb174c0-8f96-43e6-b69c-a4d63a883437
+            value: ''
+            varType: string
+            variable_selector:
+            - '17391136521390'
+            - text
+          - comparison_operator: not empty
+            id: 3f5e218a-9d0c-4a3c-8434-e74238794536
+            value: ''
+            varType: string
+            variable_selector:
+            - llm
+            - text
+          - comparison_operator: not empty
+            id: 1a374e14-e3d5-4ff0-8c69-5c0b347ed0f6
+            value: ''
+            varType: string
+            variable_selector:
+            - '1739192479032'
+            - text
+          - comparison_operator: not empty
+            id: 2ee36e47-85cd-4e1d-88f3-2cd65a448407
+            value: ''
+            varType: string
+            variable_selector:
+            - '1739193987241'
+            - text
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支 2
+        type: if-else
+      height: 256
+      id: '1739292584847'
+      position:
+        x: 3994.346690998074
+        y: 1066.3563453333902
+      positionAbsolute:
+        x: 3994.346690998074
+        y: 1066.3563453333902
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 125
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"本地模型运行时可能出现超时报错，解决方法：更换线上高性能模型或放弃使用思考模型","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 125
+      id: '1739455523841'
+      position:
+        x: 3700.2464824803046
+        y: 825.2688637512169
+      positionAbsolute:
+        x: 3700.2464824803046
+        y: 825.2688637512169
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 96
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"判断内容有无缺失，避免提前生成最终回复","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 96
+      id: '1739455609222'
+      position:
+        x: 3994.346690998074
+        y: 963.6608061124673
+      positionAbsolute:
+        x: 3994.346690998074
+        y: 963.6608061124673
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 108
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"支持本地搜索与联网搜索","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"本地搜索前验证知识库模型参数","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 265
+      height: 108
+      id: '1739455696170'
+      position:
+        x: 2767.416729890918
+        y: 673.4282014507488
+      positionAbsolute:
+        x: 2767.416729890918
+        y: 673.4282014507488
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 265
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 112
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"尽可能获取反应速度与请求压力之间的平衡","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 112
+      id: '1739455754515'
+      position:
+        x: 2301.062707750523
+        y: 1621.9318987112752
+      positionAbsolute:
+        x: 2301.062707750523
+        y: 1621.9318987112752
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 116
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"这里用一个本地模型的原因是谷歌free请求为15RPM，为限制平均请求速度故在这里限时","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 116
+      id: '1739455772612'
+      position:
+        x: 3362.4326109337553
+        y: 430.0953336910093
+      positionAbsolute:
+        x: 3362.4326109337553
+        y: 430.0953336910093
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"在这里存储有利于下面快速反应","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1739455921823'
+      position:
+        x: 1841.6236802804503
+        y: 604.6331133592676
+      positionAbsolute:
+        x: 1841.6236802804503
+        y: 604.6331133592676
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 200
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"利用2>1来控制输出节奏，这一路有2个大模型节点进行减速，防止后面sub主题提取报错","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":4,"mode":"normal","style":"","text":"25.2.14尝试使用条件分支完成","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"25.2.16证实不可用，暂时恢复先前方案","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 242
+      height: 200
+      id: '1739456016685'
+      position:
+        x: 943.1876788138126
+        y: 1831.9108200678968
+      positionAbsolute:
+        x: 943.1876788138126
+        y: 1831.9108200678968
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 242
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"避开大模型处理，设计快速问答，方便用户使用，避免等待","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1739456609793'
+      position:
+        x: 1264.04671514597
+        y: 736.135874004081
+      positionAbsolute:
+        x: 1264.04671514597
+        y: 736.135874004081
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 98
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"基于用户问题query进行详细分析，输出报告","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 98
+      id: '1739533900527'
+      position:
+        x: 3118.343443893699
+        y: 825.2688637512169
+      positionAbsolute:
+        x: 3118.343443893699
+        y: 825.2688637512169
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: c6522221-60b5-4ed4-ac95-9fba1219de4a
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - query1
+          - comparison_operator: not empty
+            id: 90672f46-9537-4ebc-8872-0b8c019af081
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - query2
+          - comparison_operator: not empty
+            id: 735b492b-c7ef-4606-9dec-ed9d50110ce5
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - query3
+          - comparison_operator: not empty
+            id: 8fc10afe-c57d-4528-b727-93c768009959
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - query4
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支 3
+        type: if-else
+      height: 204
+      id: '1739534132840'
+      position:
+        x: 1610.1746681847733
+        y: 1706.9053326666053
+      positionAbsolute:
+        x: 1610.1746681847733
+        y: 1706.9053326666053
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"使用对话轮次标记自然推进对话进程","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1739534513721'
+      position:
+        x: 65.46491577191637
+        y: 1234.4374329134607
+      positionAbsolute:
+        x: 65.46491577191637
+        y: 1234.4374329134607
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 120
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"本地模型服务器为LM
+          Studio ，使用Docker Desktop搭建时导入API节点一般需修改为http://","type":"text","version":1},{"detail":0,"format":1,"mode":"normal","style":"","text":"host.docker.internal","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":":1234/v1","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 120
+      id: '1739534846498'
+      position:
+        x: 3625.529838705924
+        y: 430.0953336910093
+      positionAbsolute:
+        x: 3625.529838705924
+        y: 430.0953336910093
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 121
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"维基百科科学上网后可以直接使用","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"同理也可以换成google和bing的API进行搜索","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 121
+      id: '1739678721867'
+      position:
+        x: 2767.416729890918
+        y: 1753.2360898550216
+      positionAbsolute:
+        x: 2767.416729890918
+        y: 1753.2360898550216
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: Adam Platin
+        desc: ''
+        height: 101
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"多个迭代搜索单元方便配置，实测延迟没有明显增加","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 101
+      id: '1739683031164'
+      position:
+        x: 2769.991221428777
+        y: 1886.7536753229351
+      positionAbsolute:
+        x: 2769.991221428777
+        y: 1886.7536753229351
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        answer: 报告生成发生错误，请重试
+        desc: ''
+        selected: false
+        title: 直接回复 10
+        type: answer
+        variables: []
+      height: 100
+      id: '1739683505956'
+      position:
+        x: 4305.939971577466
+        y: 1278.3341960669402
+      positionAbsolute:
+        x: 4305.939971577466
+        y: 1278.3341960669402
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 30.160531594006443
+      y: -101.62290507873479
+      zoom: 0.30069748205686647
