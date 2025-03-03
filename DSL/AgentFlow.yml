@@ -1,0 +1,167 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: AgentFlow
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: agent
+      id: 1740638793787-source-1740645185279-target
+      selected: false
+      source: '1740638793787'
+      sourceHandle: source
+      target: '1740645185279'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: agent
+        targetType: answer
+      id: 1740645185279-source-answer-target
+      selected: false
+      source: '1740645185279'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 52
+      id: '1740638793787'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1740645185279.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 101
+      id: answer
+      position:
+        x: 707.4166600208597
+        y: 288.61610048493054
+      positionAbsolute:
+        x: 707.4166600208597
+        y: 288.61610048493054
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        agent_parameters:
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: gpt-4o-mini
+              model_type: llm
+              provider: langgenius/openai/openai
+              type: model-selector
+          query:
+            type: constant
+            value: '{{#sys.query#}}'
+          storage_key:
+            type: constant
+            value: '{{#sys.conversation_id#}}'
+          task_schema:
+            type: constant
+            value: "      {\n        \"fields\": [\n          {\n            \"name\"\
+              : \"destination\",\n            \"question\": \"请问您想去哪里旅行？\",\n    \
+              \        \"required\": true\n          },\n          {\n           \
+              \ \"name\": \"duration\",\n            \"question\": \"您计划旅行多长时间？\"\
+              ,\n            \"required\": true\n          },\n          {\n     \
+              \       \"name\": \"budget\",\n            \"question\": \"您的预算大约是多少？\"\
+              ,\n            \"required\": true\n          }\n        ]\n      }"
+        agent_strategy_label: 多轮对话
+        agent_strategy_name: TOD
+        agent_strategy_provider_name: afeaad50-3ca8-4d6b-8e95-ca6993bb2951/agent/agent
+        desc: ''
+        output_schema: null
+        plugin_unique_identifier: afeaad50-3ca8-4d6b-8e95-ca6993bb2951/agent:0.0.1@041f354ba09c869b9e16a69d6a5dfea1f46acdb24fedd355e26a93c9bbc3b531
+        selected: false
+        title: Agent
+        type: agent
+      height: 144
+      id: '1740645185279'
+      position:
+        x: 382.6767799030139
+        y: 282
+      positionAbsolute:
+        x: 382.6767799030139
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -41.014528411562424
+      y: 38.07301894574641
+      zoom: 0.8637955574370334
