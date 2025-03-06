@@ -99,8 +99,10 @@ A：执行下面的指令：docker exec -it docker-api-1 flask reset-password
 ## SANDBOX
 sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，可以使用我开发的另外一个简单版[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)，这些依赖已经测试可以使用。
 
-## DIFY 1.0 的插件
-这个仓库 https://github.com/svcvit/dify_plugin_collection 存放着 DIFY 的[官方市场](https://marketplace.dify.ai/) 插件安装包，方便离线用户自由选择，不定期更新。
+## DIFY 1.0 插件
+[dify_plugin_collection](https://github.com/svcvit/dify_plugin_collection) 仓库存放着 DIFY 的[官方市场](https://marketplace.dify.ai/) 插件安装包，方便离线用户自由选择，不定期更新。
+
+如果你希望开发插件，我有2个插件的源码 [google翻译](https://github.com/svcvit/dify-plugin-google_translate)、[对话Agent](https://github.com/svcvit/dify-plugin-tod_agent) 希望可以给你参考。
 
 ## 模型
 
