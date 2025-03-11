@@ -101,7 +101,7 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 
 ## 模型
 
-- DeepSeek满血版字节火山引擎免费领！通过邀请注册，你和我最高可获得 [https://volcengine.com/L/nRFPg8eRPCQ/](https://volcengine.com/L/nRFPg8eRPCQ/)  邀请码：XUUYD1HM
+- DeepSeek满血版字节火山引擎免费领！通过邀请注册，你和我最高可获得3625万token [https://volcengine.com/L/nRFPg8eRPCQ/](https://volcengine.com/L/nRFPg8eRPCQ/)  邀请码：XUUYD1HM
 - 如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用我搭建的服务 [CoffBox](https://one.coffbox.com/) 的服务
 配置方式参考 [如何在Dify中使用CoffBox的服务](https://blog.vcvit.me/2024/11/13/how-to-use-one-api-in-dify/)
 这个方式仅供个人使用，如果你需要大规模使用，[openrouter](https://openrouter.ai/)会是个更好的选择。
