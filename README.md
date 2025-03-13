@@ -16,6 +16,8 @@
 ## 常见问题
 这里总结了一些群里常见的问题，不定期更新，内容不会很多，希望对你有帮助。
 
+[AI 流程平台对比——Dify、Fastgpt、Ragflow](https://zerozzz.win/ai-%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0%E5%AF%B9%E6%AF%94dify%E3%80%81fastgpt%E3%80%81ragflow)
+
 <details>
 <summary>dify 有没有国内的镜像源配置呀?</summary>
 <img src="./images/Xnip2024-11-19_10-14-02.jpg" alt="示例图片" width="400">
