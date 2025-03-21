@@ -1,0 +1,302 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Demo-tod_agent
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.0.12@604c1a752a92633a354dc7eea717248314f23bab66a9ce48d33b1c57a0f9463e
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: agent
+      id: 1742523552659-source-1742523567258-target
+      source: '1742523552659'
+      sourceHandle: source
+      target: '1742523567258'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: agent
+        targetType: if-else
+      id: 1742523567258-source-1742523610643-target
+      source: '1742523567258'
+      sourceHandle: source
+      target: '1742523610643'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1742523610643-false-answer-target
+      source: '1742523610643'
+      sourceHandle: 'false'
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1742523610643-true-1742523618478-target
+      source: '1742523610643'
+      sourceHandle: 'true'
+      target: '1742523618478'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1742523618478-source-1742523717912-target
+      source: '1742523618478'
+      sourceHandle: source
+      target: '1742523717912'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1742523552659'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        agent_parameters:
+          information_schema:
+            type: constant
+            value: " {\n  \"fields\": [\n    {\n      \"name\": \"destination\",\n\
+              \      \"question\": \"请问您想去哪里旅行？\",\n      \"required\": true\n   \
+              \ },\n    {\n      \"name\": \"duration\",\n      \"question\": \"您计划旅行多长时间？\"\
+              ,\n      \"required\": true\n    },\n    {\n      \"name\": \"budget\"\
+              ,\n      \"question\": \"您的预算大约是多少？\",\n      \"required\": true\n \
+              \   }\n  ]\n}"
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: o1-mini
+              model_type: llm
+              provider: langgenius/openai/openai
+              type: model-selector
+          query:
+            type: constant
+            value: '{{#sys.query#}}'
+          storage_key:
+            type: constant
+            value: '{{#sys.conversation_id#}}'
+        agent_strategy_label: 信息收集
+        agent_strategy_name: TOD
+        agent_strategy_provider_name: svcvit/agent/agent
+        desc: ''
+        output_schema: null
+        plugin_unique_identifier: svcvit/agent:0.0.2@549846d9310c894b4879c475856b48cd224f35c078e3bd54dfceaefefb2f5c59
+        selected: false
+        title: Agent
+        type: agent
+      height: 146
+      id: '1742523567258'
+      position:
+        x: 380
+        y: 282
+      positionAbsolute:
+        x: 380
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1742523567258.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 105
+      id: answer
+      position:
+        x: 1006
+        y: 483
+      positionAbsolute:
+        x: 1006
+        y: 483
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: bc8f6624-b1b9-4432-a9e0-777c00df126a
+            value: InformationCollectionCompleted
+            varType: string
+            variable_selector:
+            - '1742523567258'
+            - text
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 126
+      id: '1742523610643'
+      position:
+        x: 683
+        y: 282
+      positionAbsolute:
+        x: 683
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: o1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: a6bad59f-9d54-4e83-bd88-ca39bbfdded3
+          role: system
+          text: '你是一个旅行规划大师，请根据下面的信息，安排用户的行程。
+
+
+            '
+        - id: 6dd2efbc-296b-48e7-ba74-f8ddb52ee829
+          role: user
+          text: '这是我的行程信息：
+
+
+            {{#1742523567258.text#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1742523618478'
+      position:
+        x: 1006
+        y: 243
+      positionAbsolute:
+        x: 1006
+        y: 243
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1742523618478.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 105
+      id: '1742523717912'
+      position:
+        x: 1310
+        y: 243
+      positionAbsolute:
+        x: 1310
+        y: 243
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -396
+      y: -79.5
+      zoom: 1
