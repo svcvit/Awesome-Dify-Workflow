@@ -1,0 +1,247 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 代码机器人
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/volcengine_maas:0.0.7@f8e44422cfa5b9a6ac1f2d3b43ef1069868efdad1e5cec2590de3f53ceac37b0
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1743487711747-source-1743487715951-target
+      source: '1743487711747'
+      sourceHandle: source
+      target: '1743487715951'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1743487715951-source-1743487762542-target
+      source: '1743487715951'
+      sourceHandle: source
+      target: '1743487762542'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1743487762542-source-1743487859465-target
+      source: '1743487762542'
+      sourceHandle: source
+      target: '1743487859465'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: 需求
+          max_length: 200
+          options: []
+          required: true
+          type: paragraph
+          variable: query
+      height: 89
+      id: '1743487711747'
+      position:
+        x: 79
+        y: 282
+      positionAbsolute:
+        x: 79
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1743487711747'
+          - query
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: deepseek-r1-250120
+          provider: langgenius/volcengine_maas/volcengine_maas
+        prompt_template:
+        - id: 154644b6-2feb-4f65-80b0-d47fb4695d1b
+          role: system
+          text: 你是我的代码助手，我的需求是{{#1743487711747.query#}}
+        - id: d7d2e362-36cf-49f2-8d5a-01b41fac36b7
+          role: user
+          text: "# Python代码生成AI功能需求说明文档生成系统提示\n\n## 系统目标\n通过结构化思维流程，生成包含需求分析、功能分解、模块设计和代码实现的完整技术文档\n\
+            \n## 处理流程\n### 1. 用户意图识别\n- 解析输入的自然语言描述\n- 确定代码应用场景和技术领域\n- 识别潜在技术约束和非功能性需求\n\
+            \n### 2. 需求分析\n\\| 需求类型 \\| 分析要素 \\| 输出示例 \\|\n\\|---------|---------|----------|\n\
+            \\| 功能性需求 | 核心功能/数据处理/用户交互 | [需实现实时数据可视化] |\n\\| 技术需求 | 框架选择/性能要求/兼容性\
+            \ | [需支持Pandas 2.0+] |\n\\| 环境约束 | Python版本/操作系统/硬件限制 | [需兼容ARM架构] |\n\
+            \n### 3. 功能模块分解\n\\| 模块名称 \\| 功能描述 \\| 输入输出 \\| 依赖关系 \\|\n\\|----------|----------|----------|----------|\n\
+            \\| [数据预处理] | [原始数据标准化] | 输入：[CSV文件] | 依赖：[Pandas模块] |\n\n### 4. 实现路径设计\n\
+            1. 技术选型流程图\n   ```mermaid\n   graph TD\n   A[用户需求] --> B{是否需要GUI?}\n \
+            \  B -->|是| C[Tkinter]\n   B -->|否| D[CLI设计]\n   ```\n\n2. 开发阶段分解\n  \
+            \ - 阶段一：核心算法实现（[示例：机器学习模型训练]）\n   - 阶段二：接口封装（[示例：Flask API开发]）\n   - 阶段三：异常处理机制（[示例：自定义错误类型设计]）\n\
+            \n### 5. 代码生成规范\n- 代码结构模板\n  ```python\n  # [模块名称].py\n  def core_function(input:\
+            \ [类型]) -> [返回类型]:\n      \"\"\"[功能说明]\"\"\"\n      # [算法实现]\n      #\
+            \ [异常处理]\n      return [结果]\n  ```\n\n- 文档字符串标准\n  ```markdown\n  ## 模块:\
+            \ [名称]\n  **功能**: \n  - 主要功能1\n  - 主要功能2\n\n  **参数说明**:\n  \\| 参数 \\|\
+            \ 类型 \\| 说明 \\|\n  ```\n\n## 输出格式要求\n1. 文档结构\n   ```markdown\n   # [项目名称]技术文档\n\
+            \   ## 需求分析\n   ## 功能模块\n   ## 实现方案\n   ## 代码实现\n   ```\n\n2. 代码展示规范\n\
+            \   - 每个功能模块独立代码块\n   - 包含类型注解和异常处理\n   - 重要算法需添加行内注释\n\n## 质量保障机制\n1.\
+            \ 完整性检查表\n   - [ ] 需求覆盖所有用户输入要素\n   - [ ] 模块依赖关系闭环\n   - [ ] 代码包含基础单元测试案例\n\
+            \n2. 验证流程\n   ```mermaid\n   graph LR\n   A[文档生成] --> B[模块接口验证]\n   B\
+            \ --> C[代码静态分析]\n   C --> D[示例运行测试]\n   ```\n\n请按此框架逐步生成完整技术文档，每个章节应包含具体实现细节和技术选型说明。当涉及复杂算法时，应先描述数学原理再给出代码实现。"
+        selected: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1743487715951'
+      position:
+        x: 383
+        y: 282
+      positionAbsolute:
+        x: 383
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1743487715951'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: deepseek-v3-250324
+          provider: langgenius/volcengine_maas/volcengine_maas
+        prompt_template:
+        - id: a382fea3-a02b-4f06-92eb-6687af3fdc12
+          role: system
+          text: '以上是我的文档和代码:{{#1743487715951.text#}}
+
+            请帮我检查我的文档和代码，并且帮我补充和优化，然后写上对应注释'
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1743487762542'
+      position:
+        x: 688
+        y: 282
+      positionAbsolute:
+        x: 688
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1743487762542'
+          - text
+          variable: text
+        selected: false
+        title: End
+        type: end
+      height: 89
+      id: '1743487859465'
+      position:
+        x: 991
+        y: 282
+      positionAbsolute:
+        x: 991
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -79
+      y: -58
+      zoom: 1
