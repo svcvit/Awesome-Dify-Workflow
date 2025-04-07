@@ -132,7 +132,7 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 ## 2025-03-26更新
 | 文件                               | 描述                                                                                                                                                                           | 来源                                                                |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| `MCP.yml`                |使用[MCP Agent 策略](https://marketplace.dify.ai/plugins/hjlarry/agent)进行MCP工具的调用示例，MCP使用[https://mcp.so/](https://mcp.so/server/amap-maps/amap) 提供的在线服务。 ![](./snapshots/Xnip2025-03-26_11-19-23.jpg) |   [@svcvit](https://vcvit.me/)   |
+| `MCP.yml`                |使用[MCP Agent 策略](https://marketplace.dify.ai/plugins/hjlarry/agent)进行MCP工具的调用示例，MCP使用[https://mcp.so/](https://mcp.so/server/amap-maps/amap) 提供的在线服务。 ![](./snapshots/Xnip2025-03-26_11-19-23.jpg) 这里还有一个官方示例[Dify MCP 插件指南：一键连接 Zapier，轻松调用 7000+ App 工具](https://mp.weixin.qq.com/s/CDhqmLO1JXSB__aUMqoGoQ) |   [@svcvit](https://vcvit.me/)   |
 
 
 
