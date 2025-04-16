@@ -23,7 +23,7 @@
 | ------------- | ------------ | ------------ |
 |01课 - DIFY的本地化部署与启动  | https://www.youtube.com/watch?v=6LnHVay289w |https://blog.vcvit.me/2025/04/09/01-dify-local-deployment-and-startup/ | 
 |02课 - DIFY模型配置          | https://www.youtube.com/watch?v=4I2DgPR3qDA | https://blog.vcvit.me/2025/04/10/02-dify-model-configuration/ |
-|03课 - chatflow和workfow的区别   | 待更新 | https://blog.vcvit.me/2025/04/11/03-dify-workflow-vs-chatflow/ |
+|03课 - chatflow和workfow的区别   | https://www.youtube.com/watch?v=quEA_7LVWA8 | https://blog.vcvit.me/2025/04/11/03-dify-workflow-vs-chatflow/ |
 
 
 
