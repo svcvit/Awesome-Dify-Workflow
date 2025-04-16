@@ -105,7 +105,7 @@ workflow:
             value: 通过amap的服务，进行必要的查询
           mcp_server:
             type: constant
-            value: https://mcp.amap.com/sse?key=e885352242081624a60c702a0879cc6c
+            value: https://mcp.amap.com/sse?key=
           model:
             type: constant
             value:
