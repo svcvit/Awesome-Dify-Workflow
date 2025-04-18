@@ -1,6 +1,13 @@
-# Awesome-Dify-Workflow
+<div align="center">
+
+# Awesome-Dify-Workflow 🚀
+<strong>Share & Discover Useful Dify Workflows! For personal use & learning. </strong>
 
 [English](README_EN.md) | [中文](README.md)
+
+<a href="https://trendshift.io/repositories/13476" target="_blank"><img src="https://trendshift.io/api/badge/repositories/13476" alt="svcvit%2FAwesome-Dify-Workflow | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+</div>
 
 Share some useful Dify workflows, suitable for both personal use and learning. Please use **Dify version 0.13.0 or above** to import. Features like **parallel tasks**, **session variables**, **forms**, and **echart rendering** are now supported. Agent nodes are a feature of version 1.0 and later, please use the latest version of DIFY for import whenever possible.
 
