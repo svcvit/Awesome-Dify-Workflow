@@ -21,18 +21,6 @@
 ![](./snapshots/Xnip2025-04-17_21-05-48.jpg)
 
 
-## 视频教程
-
-最近计划更新一个DIFY使用系列教程，基本上有手就会，里面包含很多我个人使用过程中的一些理解，相信不管你是新手小白，还是企业用户，都会有所收货。
-
-
-| 名称      | 视频     |  文字摘要版  | 
-| ------------- | ------------ | ------------ |
-|01课 - DIFY的本地化部署与启动  | https://www.youtube.com/watch?v=6LnHVay289w |https://blog.vcvit.me/2025/04/09/01-dify-local-deployment-and-startup/ | 
-|02课 - DIFY模型配置          | https://www.youtube.com/watch?v=4I2DgPR3qDA | https://blog.vcvit.me/2025/04/10/02-dify-model-configuration/ |
-|03课 - chatflow和workfow的区别   | https://www.youtube.com/watch?v=quEA_7LVWA8 | https://blog.vcvit.me/2025/04/11/03-dify-workflow-vs-chatflow/ |
-
-
 
 
 ## 常见问题
@@ -233,7 +221,7 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 
 | 文件                               | 描述                                                                                                                                                                           | 来源                                                                |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| `matplotlib.yml`                       | 使用matplotlib画图，将图片输出为base64，再通过回复渲染图片。注意，官方sandbox权限比较复杂，安装完matplotlib也无法使用，请使用[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)  ![](./snapshots/Xnip2024-11-21_09-35-09.jpg)                                                      |  [@svcvit](https://vcvit.me/)   |
+| `matplotlib.yml`                       | 使用matplotlib画图，将图片输出为base64，再通过回复渲染图片。注意，官方sandbox权限比较复杂，安装完matplotlib也无法使用，请使用[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py) 。如果使用dify1.0以上版本无法渲染图片，请查看 https://github.com/svcvit/dify-sandbox-py/issues/11 ![](./snapshots/Xnip2024-11-21_09-35-09.jpg)                                                      |  [@svcvit](https://vcvit.me/)   |
 | `jieba.yml`                       | jieba 分词示例，请使用[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)  ![](./snapshots/Xnip2024-11-22_13-44-07.jpg)                                                      |  [@svcvit](https://vcvit.me/)   |
 
 
