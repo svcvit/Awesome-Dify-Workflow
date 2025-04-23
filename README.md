@@ -135,7 +135,7 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 
 | 文件                               | 描述                                                                                                                                                                           | 来源                                                                |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| `Artifact.yml`                |这是我开发的一个[DIFY插件](https://marketplace.dify.ai/plugins/svcvit/artifacts)，类似claude的Artifact功能，可以渲染LLM生成的HTML代码和cavas。项目地址 https://github.com/svcvit/dify-plugin-artifacts 按照操作设置一下扩展即可使用。 ![](./snapshots/001.jpg) ![](./snapshots/005.jpg)|   [dify-plugin-artifacts](https://github.com/svcvit/dify-plugin-artifacts)   |
+| `Artifact.yml`                |需要搭配我开发的一个[DIFY插件](https://marketplace.dify.ai/plugins/svcvit/artifacts)使用，类似claude的Artifact功能，可以渲染LLM生成的HTML代码和cavas。项目地址 https://github.com/svcvit/dify-plugin-artifacts 按照操作设置一下扩展即可使用。 ![](./snapshots/001.jpg) ![](./snapshots/005.jpg)|   [dify-plugin-artifacts](https://github.com/svcvit/dify-plugin-artifacts)   |
 
 
 
