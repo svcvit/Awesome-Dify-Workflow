@@ -109,22 +109,37 @@ A：执行下面的指令：docker exec -it docker-api-1 flask reset-password
 </details>
 
 ## SANDBOX
-sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，可以使用我开发的另外一个简单版[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)，这些依赖已经测试可以使用。
+sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，例如`error: operation not permitted` ，你可以尝试使用我开发的另外一个简单版[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)，这些依赖已经测试可以使用。
 
 ## DIFY 1.0 插件
-[dify_plugin_collection](https://github.com/svcvit/dify_plugin_collection) 仓库存放着 DIFY 的[官方市场](https://marketplace.dify.ai/) 插件安装包，方便离线用户自由选择，不定期更新。
+插件功能是DIFY 1.0最大的更新，[dify_plugin_collection](https://github.com/svcvit/dify_plugin_collection) 仓库存放着 DIFY 的[官方市场](https://marketplace.dify.ai/) 插件安装包，方便批量下载，不定期更新。
 
-如果你希望开发插件，我有几个插件的源码，包含Agent strategy，Tool，Extension 希望可以给你参考。
+如果你希望 **开发插件**，我做了4款插件，都已上架插件商店。代码都已开源，包含Agent strategy，Tool，Extension 希望可以给你参考。
+
+![](./snapshots/Xnip2025-04-27_21-43-19.jpg)
 - [google翻译](https://github.com/svcvit/dify-plugin-google_translate)：这是Tool，代码很少，看完之后可以理解DIFY插件的文件结构
 - [对话Agent](https://github.com/svcvit/dify-plugin-tod_agent) ：这是Agent strategy，Agent策略抽象了Dify的很多能力，可以有很多玩法，但是对开发者要求比较高，你需要有产品思维，还需要一定的开发能力。
-- [Artifacts](https://github.com/svcvit/dify-plugin-artifacts) ：这是Extension，它借鉴了Anthropic的Artifacts功能，做HTML的渲染，你可以参考这份代码，做一个用户交互界面。
+- [Artifacts](https://github.com/svcvit/dify-plugin-artifacts) ：这是Extension，它借鉴了 Anthropic 的 Artifacts 功能，做HTML的渲染，你可以参考这份代码，做一个简单的用户交互界面。
 
 ## 模型
 
-- 你可以使用最近火热的deepseek-R1，硅基流动提供免费2000万Tokens，如果使用邀请注册，你和我都会获赠免费2000万token的额度：[https://cloud.siliconflow.cn/i/MwADckCi](https://cloud.siliconflow.cn/i/MwADckCi)
-- 如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用我搭建的服务 [CoffBox](https://one.coffbox.com/) 的服务
-配置方式参考 [如何在Dify中使用CoffBox的服务](https://blog.vcvit.me/2024/11/13/how-to-use-one-api-in-dify/)
+- 你可以使用最近火热的deepseek-R1，硅基流动提供免费2000万Tokens，如果使用邀请注册，你和我都会获赠免费2000万token的额度：[https://cloud.siliconflow.cn/i/MwADckCi](https://cloud.siliconflow.cn/i/MwADckCi)。 
+- 如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用我搭建的服务 [CoffBox](https://one.coffbox.com/) 的服务。配置方式参考 [如何在Dify中使用CoffBox的服务](https://blog.vcvit.me/2024/11/13/how-to-use-one-api-in-dify/)
 这个方式仅供个人使用，如果你需要大规模使用，[openrouter](https://openrouter.ai/)会是个更好的选择。
+
+> 注意：因为我的硅基流动账号，邀请额度来自大家的注册，如果你有需要，想使用免费额度进行一些翻译、研究、个人学习，可以私信我，我可以免费为你提供硅基流动的API KEY，大概有3000多元的共享余额。
+
+## DIFY 部署
+如果你知道熟悉 Docker环境，可以按照官方教程，使用Docker进行DIFY的本地部署。如果你懒得折腾，官方 [https://cloud.dify.ai/](https://cloud.dify.ai/) 也是个不错的选择，免费用户可以创建最多5个流程。后期可以直接充值使用。
+
+如果你希望找个免费的云服务器部署，也可以使用CLAWCLOUD的云服务，欢迎使用我的邀请链接[https://console.run.claw.cloud/signin?link=WHM8EK4T7FH9](https://console.run.claw.cloud/signin?link=WHM8EK4T7FH9) 注册，注意：
+- 注册的时候使用**Github登录**，如果你的github注册日期超过**180天**，无需绑定任何银行卡，即可获得每月5美金的免费额度，每月哦！！！
+- DIFY目前已经入驻应用商店，填入一个密码，即可完成安装。对于个人用户来讲，已经够用。
+- 因为支持新加坡、日本、美国服务区，所以天然翻墙，免除模型需要代理的困扰。
+
+![](./snapshots/Xnip2025-04-27_21-50-02.jpg)
+
+
 
 ## 参考截图
 
