@@ -15,11 +15,21 @@
 所有的 Workflow 基本都可以 **免费** 使用，更多 Workflow 收集整理中……
 
 ## 分享群
-开了一个分享群，有兴趣可以加入，如果你有关于 workflow 的问题也可以一起讨论。（2025/05/06 更新）
-- 主群都超200了，加群主好友，备注 dify，拉你到人多一些的群。不过微信风控，有时候加不上，可以稍后再试。
-- 当然，也可以加新群，目前人少一点，基本3-5天左右一个群就能满200.
-![](./snapshots/Xnip2025-05-06_10-55-31.jpg)
 
+### 共创群
+共创微信群已经超过30个，如果你有关于 workflow 的问题也可以一起讨论。
+- 1-7群都满500了，8-30群也都满200了，加群主好友，备注 dify，拉你到人多一些的群。
+- 当然，也可以加新群，目前人少一点，基本3-5天左右一个群就能满200.
+![](./snapshots/Xnip2025-05-08_10-18-20.jpg)
+
+### VIP群
+此外，我特地拉了2个资深小伙伴，组建了一个VIP群，此群为**付费**加入，目前试运行价格 365/年，预计3个月后会涨价。确保你的提问都可以被解答。群主为3人：
+- Ron：DIFY资深用户，发布有[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)、以及插件[对话Agent](https://github.com/svcvit/dify-plugin-tod_agent)、[Artifacts](https://github.com/svcvit/dify-plugin-artifacts)等。
+- [hjlarry](https://github.com/hjlarry)：Dify核心贡献者，累计贡献200+PR, 10万+代码。
+- [wwwzhouhui](https://github.com/wwwzhouhui/dify-for-dsl)：AI技术布道师，微信分享文章90余篇，工作流50+。
+
+扫描下方二维码，备注VIP，邀请入群
+![](./snapshots/Xnip2025-05-08_10-18-25.jpg)
 
 
 
