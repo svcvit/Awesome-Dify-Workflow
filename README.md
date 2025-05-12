@@ -28,9 +28,12 @@
 - [hjlarry](https://github.com/hjlarry)：Dify核心贡献者，累计贡献200+PR, 10万+代码。
 - [wwwzhouhui](https://github.com/wwwzhouhui/dify-for-dsl)：AI技术布道师，微信分享文章90余篇，工作流50+。
 
-扫描下方二维码，备注VIP，邀请入群
-![](./snapshots/Xnip2025-05-08_10-18-25.jpg)
-
+> 👑 加入VIP群你将获得：
+> - 不定期更新汇总的工作流分享。
+> - 解答关于流程设计，DIFY插件开发等等问题。
+> - 共享群主硅基流动的APIKEY，直接使用DeepSeek、Qwen3、Rerank、语音转文本各种模型用于学习和折腾。需要的入群后私信群主即可。
+> - 扫描下方二维码，备注VIP，邀请入群。![](./snapshots/Xnip2025-05-08_10-18-25.jpg)
+> - 下面是一些参考，如果你正在做DIFY相关的项目，设计DIFY流程或者开发插件，相信对你会有帮助 ![](./snapshots/group.jpeg)
 
 
 ## 常见问题
@@ -136,8 +139,6 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 - 你可以使用最近火热的deepseek-R1，硅基流动提供免费2000万Tokens，如果使用邀请注册，你和我都会获赠免费2000万token的额度：[https://cloud.siliconflow.cn/i/MwADckCi](https://cloud.siliconflow.cn/i/MwADckCi)。 
 - 如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用我搭建的服务 [CoffBox](https://one.coffbox.com/) 的服务。配置方式参考 [如何在Dify中使用CoffBox的服务](https://blog.vcvit.me/2024/11/13/how-to-use-one-api-in-dify/)
 这个方式仅供个人使用，如果你需要大规模使用，[openrouter](https://openrouter.ai/)会是个更好的选择。
-
-> 注意：因为我的硅基流动账号，邀请额度来自大家的注册，如果你有需要，想使用免费额度进行一些翻译、研究、个人学习，可以私信我，我可以免费为你提供硅基流动的API KEY，大概有3000多元的共享余额。
 
 ## DIFY 部署
 如果你知道熟悉 Docker环境，可以按照官方教程，使用Docker进行DIFY的本地部署。如果你懒得折腾，官方 [https://cloud.dify.ai/](https://cloud.dify.ai/) 也是个不错的选择，免费用户可以创建最多5个流程。后期可以直接充值使用。
