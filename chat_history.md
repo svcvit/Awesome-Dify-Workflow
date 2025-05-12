@@ -1444,7 +1444,7 @@ ppt生成助手，依赖的容器没标识[流泪]
 ---
 
 ### wxid_9pgkq8ic90d521 - 2025-05-12 17:42:49
-![image](images/3611747042969_.pic_thumb.jpg)
+![image](images/3611747042969_.pic.jpg)
 
 ---
 
