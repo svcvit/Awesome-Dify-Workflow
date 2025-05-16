@@ -1,0 +1,2299 @@
+app:
+  description: 'Need change environment variables API Secret key for KnowledgeDeepResearchLearn.'
+  icon: 🔁
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: KnowledgeDeepResearchChat
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables:
+  - description: 'This variable is used to store the original query.
+
+      这个变量用于存储原始查询。'
+    id: 4b6e3624-ee24-4375-94c9-f5c7f1f508d4
+    name: input_query
+    selector:
+    - conversation
+    - input_query
+    value: ''
+    value_type: string
+  - description: This value determines how many sources to explore.
+    id: b5170aa5-9a6c-442a-adac-d55fd74708d6
+    name: input_breadth
+    selector:
+    - conversation
+    - input_breadth
+    value: 0
+    value_type: number
+  - description: 'This value determines how many sub-queries to generate.
+
+      定义生成多少子查询。'
+    id: 96bbff12-2a59-4fcd-8feb-86e02c711658
+    name: input_depth
+    selector:
+    - conversation
+    - input_depth
+    value: 0
+    value_type: number
+  - description: 'This variable is used to store the user input state.
+
+      这个变量用于存储用户输入状态。'
+    id: d43d663a-f12a-42c6-8c64-8faed867de74
+    name: input_status
+    selector:
+    - conversation
+    - input_status
+    value: none
+    value_type: string
+  - description: 'Store user responses to clarifying questions.
+
+      存储用户对于澄清性问题的回答。'
+    id: 3a086a49-7c82-4325-96b6-bfca63af27f7
+    name: qa_answers
+    selector:
+    - conversation
+    - qa_answers
+    value: []
+    value_type: array[string]
+  - description: 'Store user clarifying questions.
+
+      存储用户澄清性问题。'
+    id: 6103c656-a4ea-4419-9f75-6ec6ed727d2c
+    name: qa_questions
+    selector:
+    - conversation
+    - qa_questions
+    value: []
+    value_type: array[string]
+  - description: 'This variable is used to store the data passed to and from the sub-workflow.
+
+      这个变量用于存储与子工作流程传递的数据。'
+    id: 7647629a-a55c-4aab-8943-8fbc17d8fe4d
+    name: data
+    selector:
+    - conversation
+    - data
+    value: {}
+    value_type: object
+  - description: 'This variable is used to store the current processing depth.
+
+      这个变量用于存储当前处理的深度。'
+    id: e5ba2e6e-d137-4531-934d-899f7e2b032b
+    name: loop_index
+    selector:
+    - conversation
+    - loop_index
+    value: 0
+    value_type: number
+  - description: 'This variable is used to store all the accumulated learnings.
+
+      这个变量用于存储总共学习到的信息。'
+    id: 48b08649-6341-4e91-9428-af556042a6b9
+    name: all_learnings
+    selector:
+    - conversation
+    - all_learnings
+    value: []
+    value_type: array[string]
+  environment_variables:
+  - description: 'This variable is used to store the API key.
+
+      这个变量用于存储 KnowledgeDeepResearchLearn 子流程的 API 密钥。'
+    id: a90cc464-087c-4af0-b35a-2564d0e9f79f
+    name: app_key
+    selector:
+    - env
+    - app_key
+    value: ''
+    value_type: secret
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: '```
+
+      DeepResearcher is a multi-step, recursive approach that leverages a knowledge
+      base to solve complex research tasks, accomplishing in tens of minutes what
+      would take a human many hours.
+
+      DeepResearcher 是一种多步骤、递归式的研究方法，利用知识库解决复杂的研究任务，能够在短短几十分钟内完成本需人类花费数小时的工作。
+
+
+      How to use: Please provide a short summary of your research topic and specify
+      how "deep" you want the workflow to explore. Note: The higher the depth value,
+      the more time and cost the research will require.
+
+      使用方法：请提供一段简短的研究摘要，并说明你希望工作流程调查的“深度”程度。注意：数值越高，研究所需的时间和成本也越高。
+
+
+      The workflow runs independently and, once completed, returns the research report
+      to the user in a conversational format.
+
+      此工作流程将自动独立完成任务，并在结束后将研究报告以对话方式返回给用户。
+
+      ```
+
+      # What would you like to research?
+
+      # 你希望调查什么？'
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - what is GPT
+    - GPT model
+    - 'yes'
+    - 'no'
+    - 什么是GPT
+    - GPT模型
+    - 是
+    - 否
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        sourceType: http-request
+        targetType: code
+      id: 1745465341610-source-1745465634000-target
+      selected: false
+      source: '1745465341610'
+      sourceHandle: source
+      target: '1745465634000'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        sourceType: loop-start
+        targetType: code
+      id: 1745465155033start-source-1745473937890-target
+      selected: false
+      source: 1745465155033start
+      sourceHandle: source
+      target: '1745473937890'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        sourceType: code
+        targetType: assigner
+      id: 1745465634000-source-1745483653822-target
+      selected: false
+      source: '1745465634000'
+      sourceHandle: source
+      target: '1745483653822'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        sourceType: assigner
+        targetType: code
+      id: 1745483653822-source-1745484387503-target
+      selected: false
+      source: '1745483653822'
+      sourceHandle: source
+      target: '1745484387503'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        sourceType: code
+        targetType: http-request
+      id: 1745473937890-source-1745465341610-target
+      selected: false
+      source: '1745473937890'
+      sourceHandle: source
+      target: '1745465341610'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1745487001858-source-1745465800375-target
+      selected: false
+      source: '1745487001858'
+      sourceHandle: source
+      target: '1745465800375'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 1745473648411-source-1745484937433-target
+      selected: false
+      source: '1745473648411'
+      sourceHandle: source
+      target: '1745484937433'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: answer
+      id: 1745484937433-source-1745487067459-target
+      selected: false
+      source: '1745484937433'
+      sourceHandle: source
+      target: '1745487067459'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: loop
+      id: 1745487067459-source-1745465155033-target
+      selected: false
+      source: '1745487067459'
+      sourceHandle: source
+      target: '1745465155033'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: loop
+        targetType: assigner
+      id: 1745465155033-source-1745466921653-target
+      selected: false
+      source: '1745465155033'
+      sourceHandle: source
+      target: '1745466921653'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: answer
+      id: 1745466921653-source-1745487269640-target
+      selected: false
+      source: '1745466921653'
+      sourceHandle: source
+      target: '1745487269640'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: llm
+      id: 1745487269640-source-1745487001858-target
+      selected: false
+      source: '1745487269640'
+      sourceHandle: source
+      target: '1745487001858'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 1745489088123-source-1745489153779-target
+      selected: false
+      source: '1745489088123'
+      sourceHandle: source
+      target: '1745489153779'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1745489241178-source-1745489202985-target
+      selected: false
+      source: '1745489241178'
+      sourceHandle: source
+      target: '1745489202985'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1745489202985-true-1745488861316-target
+      selected: false
+      source: '1745489202985'
+      sourceHandle: 'true'
+      target: '1745488861316'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: answer
+      id: 1745489153779-source-1745541413002-target
+      selected: false
+      source: '1745489153779'
+      sourceHandle: source
+      target: '1745541413002'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1745400665579-source-1745544523143-target
+      selected: false
+      source: '1745400665579'
+      sourceHandle: source
+      target: '1745544523143'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1745544523143-source-1745489241178-target
+      selected: false
+      source: '1745544523143'
+      sourceHandle: source
+      target: '1745489241178'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: code
+      id: 17455462171830-source-17455506606720-target
+      selected: false
+      source: '17455462171830'
+      sourceHandle: source
+      target: '17455506606720'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 17455506606720-source-17455507410080-target
+      selected: false
+      source: '17455506606720'
+      sourceHandle: source
+      target: '17455507410080'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1745489202985-false-17455462171830-target
+      selected: false
+      source: '1745489202985'
+      sourceHandle: 'false'
+      target: '17455462171830'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: code
+      id: 1745541413002-source-17455514095660-target
+      selected: false
+      source: '1745541413002'
+      sourceHandle: source
+      target: '17455514095660'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 17455514095660-source-1745489811927-target
+      selected: false
+      source: '17455514095660'
+      sourceHandle: source
+      target: '1745489811927'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 17455507410080-true-17455514095660-target
+      selected: false
+      source: '17455507410080'
+      sourceHandle: 'true'
+      target: '17455514095660'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 17455476744280-true-1745552469464-target
+      selected: false
+      source: '17455476744280'
+      sourceHandle: 'true'
+      target: '1745552469464'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: answer
+      id: 1745552469464-source-17455474346920-target
+      selected: false
+      source: '1745552469464'
+      sourceHandle: source
+      target: '17455474346920'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 17455476744280-eaad299a-bff2-4532-a764-88111d10bc01-1745549169044-target
+      selected: false
+      source: '17455476744280'
+      sourceHandle: eaad299a-bff2-4532-a764-88111d10bc01
+      target: '1745549169044'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: answer
+      id: 17455530115600-source-17455531494860-target
+      selected: false
+      source: '17455530115600'
+      sourceHandle: source
+      target: '17455531494860'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 17455476744280-af4c9162-219c-4ea5-b938-4a27b1902fe7-17455532204370-target
+      selected: false
+      source: '17455476744280'
+      sourceHandle: af4c9162-219c-4ea5-b938-4a27b1902fe7
+      target: '17455532204370'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 17455507410080-false-17455476744280-target
+      selected: false
+      source: '17455507410080'
+      sourceHandle: 'false'
+      target: '17455476744280'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: if-else
+      id: 1745549169044-source-1745560430026-target
+      selected: false
+      source: '1745549169044'
+      sourceHandle: source
+      target: '1745560430026'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1745560430026-true-17455474346920-target
+      selected: false
+      source: '1745560430026'
+      sourceHandle: 'true'
+      target: '17455474346920'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1745560430026-false-1745548872685-target
+      selected: false
+      source: '1745560430026'
+      sourceHandle: 'false'
+      target: '1745548872685'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: assigner
+      id: 1745548872685-source-17455530115600-target
+      selected: false
+      source: '1745548872685'
+      sourceHandle: source
+      target: '17455530115600'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: if-else
+      id: 17455532204370-source-17455605838530-target
+      selected: false
+      source: '17455532204370'
+      sourceHandle: source
+      target: '17455605838530'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 17455605838530-false-17455532600770-target
+      selected: false
+      source: '17455605838530'
+      sourceHandle: 'false'
+      target: '17455532600770'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: answer
+      id: 17455532600770-source-1745547317826-target
+      selected: false
+      source: '17455532600770'
+      sourceHandle: source
+      target: '1745547317826'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 17455605838530-true-17455531494860-target
+      selected: false
+      source: '17455605838530'
+      sourceHandle: 'true'
+      target: '17455531494860'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: answer
+        targetType: template-transform
+      id: 1745547317826-source-1745564378855-target
+      selected: false
+      source: '1745547317826'
+      sourceHandle: source
+      target: '1745564378855'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: code
+      id: 1745564378855-source-1745473648411-target
+      selected: false
+      source: '1745564378855'
+      sourceHandle: source
+      target: '1745473648411'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1745488861316-source-1745489088123-target
+      selected: false
+      source: '1745488861316'
+      sourceHandle: source
+      target: '1745489088123'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        sourceType: answer
+        targetType: assigner
+      id: 1745487085474-source-1745466752436-target
+      source: '1745487085474'
+      sourceHandle: source
+      target: '1745466752436'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        sourceType: code
+        targetType: answer
+      id: 1745484387503-source-1745487085474-target
+      source: '1745484387503'
+      sourceHandle: source
+      target: '1745487085474'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        author: xiaoyao9184
+        desc: ''
+        height: 160
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"1.
+          Let''s Research!","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Using
+          a chat workflow, each round of interaction modifies the session state, which
+          controls the flow direction of the process.","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"使用聊天工作流程，每轮交互都会更改会话状态，这些状态决定了流程的流转方向。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 2000
+      height: 160
+      id: '1745543351065'
+      position:
+        x: 0
+        y: 0
+      positionAbsolute:
+        x: 0
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 2000
+    - data:
+        author: xiaoyao9184
+        desc: ''
+        height: 1000
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"2.
+          Ask Clarifying Questions","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"To
+          handle the clarifying questions generated by the LLM, I adopted a conversation
+          state management technique.","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"This
+          process involves using session variables to manage the multi-turn dialogue
+          state in order to collect the user''s responses.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"为了处理由
+          LLM 生成的澄清性问题，我采用了会话状态管理技术。","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"这个过程涉及使用会话变量来管理多轮对话的状态，以收集用户的回答。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 1000
+      height: 1000
+      id: '1745541474608'
+      position:
+        x: 0
+        y: 160
+      positionAbsolute:
+        x: 0
+        y: 160
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 1000
+    - data:
+        author: xiaoyao9184
+        desc: ''
+        height: 1000
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"3.
+          Input depth and breadth","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"You
+          need to understand that selecting higher depth and breadth values may result
+          in longer wait times and higher costs.","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"你需要理解，选择较高的深度与广度值可能会导致更长的等待时间和更高的成本。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 1000
+      height: 1000
+      id: '1745553374613'
+      position:
+        x: 1000
+        y: 160
+      positionAbsolute:
+        x: 1000
+        y: 160
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 1000
+    - data:
+        author: xiaoyao9184
+        desc: ''
+        height: 700
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"4.
+          Perform DeepSearch Loop","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"The
+          key to the Deep Research workflow lies in its powerful data collection capability.
+          In this implementation, that capability is realized through a recursive
+          workflow loop that starts with the original query and is extended with AI-generated
+          sub-queries.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"The
+          number of sub-queries to generate is determined by the specified depth and
+          breadth parameters.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Each
+          sub-query produces a “learning,” which accumulates in each iteration of
+          the loop.When the loop reaches the depth limit, it ends, and all the learnings
+          are gathered to generate the final research report.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Deep
+          Research 流程的关键在于其强大的数据收集能力。在本实现中，该能力通过递归式的工作流程循环来体现，该循环从原始查询开始，并由 AI 生成的子查询不断扩展。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"生成多少个子查询由设定的深度和广度参数决定。
+          每个子查询都会产生“学习点（Learnings）”，并在每轮循环中累积。当循环达到深度限制时结束，此时所有的学习点将被收集，用于生成最终的研究报告。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 1735
+      height: 700
+      id: '1745543472680'
+      position:
+        x: 0
+        y: 1160
+      positionAbsolute:
+        x: 0
+        y: 1160
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 1735
+    - data:
+        author: xiaoyao9184
+        desc: ''
+        height: 700
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"5.
+          Generate DeepSearch Report using Learnings","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Finally!
+          After all learnings have been gathered — which may have taken up to an hour
+          or more on the higher settings! — they are given to our LLM to generate
+          the final research report in markdown format. Technically, the DeepResearch
+          ends here.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"终于到了这一步！在收集完所有学习成果之后（在较高深度设置下可能耗时一个小时甚至更久），我们会将这些信息交给
+          LLM，由它生成最终的研究报告，格式为 Markdown。技术上来说，DeepResearch 到此就完成了。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 265
+      height: 700
+      id: '1745566231248'
+      position:
+        x: 1735
+        y: 1160
+      positionAbsolute:
+        x: 1735
+        y: 1160
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 265
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 52
+      id: '1745400665579'
+      position:
+        x: 0
+        y: 80
+      positionAbsolute:
+        x: 0
+        y: 80
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        break_conditions:
+        - comparison_operator: ≥
+          id: b894a111-8a81-4fcb-a573-ff9ad6b1158d
+          numberVarType: variable
+          value: '{{#conversation.input_depth#}}'
+          varType: number
+          variable_selector:
+          - conversation
+          - loop_index
+        desc: ''
+        error_handle_mode: terminated
+        height: 490
+        logical_operator: and
+        loop_count: 100
+        loop_variables: []
+        selected: false
+        start_node_id: 1745465155033start
+        title: index@Loop
+        type: loop
+        width: 928
+      height: 490
+      id: '1745465155033'
+      position:
+        x: 337
+        y: 1304
+      positionAbsolute:
+        x: 337
+        y: 1304
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 928
+      zIndex: 1
+    - data:
+        desc: ''
+        isInLoop: true
+        selected: false
+        title: ''
+        type: loop-start
+      draggable: false
+      height: 48
+      id: 1745465155033start
+      parentId: '1745465155033'
+      position:
+        x: 60
+        y: 105
+      positionAbsolute:
+        x: 397
+        y: 1409
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-loop-start
+      width: 44
+      zIndex: 1002
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.app_key#}}'
+            type: bearer
+          type: api-key
+        body:
+          data:
+          - id: key-value-1333
+            key: ''
+            type: text
+            value: '{{#1745473937890.body#}}'
+          type: raw-text
+        desc: ''
+        headers: Content-Type:application/json
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: Subflow@HTTP Request
+        type: http-request
+        url: http://api:5001/v1/workflows/run
+        variables: []
+      height: 138
+      id: '1745465341610'
+      parentId: '1745465155033'
+      position:
+        x: 16
+        y: 294
+      positionAbsolute:
+        x: 353
+        y: 1599
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        code: "\ndef main(body: str) -> dict:\n    import json\n    json = json.loads(body)\n\
+          \    return {\n        \"data\": json['data']['outputs']['data'],\n    \
+          \    \"learnings\": json['data']['outputs']['data']['learnings'],\n    \
+          \    \"researchGoal\": json['data']['outputs']['data']['researchGoal']\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        outputs:
+          data:
+            children: null
+            type: object
+          learnings:
+            children: null
+            type: array[string]
+          researchGoal:
+            children: null
+            type: string
+        selected: false
+        title: learnings@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745465341610'
+          - body
+          variable: body
+      height: 52
+      id: '1745465634000'
+      parentId: '1745465155033'
+      position:
+        x: 329
+        y: 185
+      positionAbsolute:
+        x: 666
+        y: 1489
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        answer: '# --------------------
+
+
+          {{#1745487001858.text#}}'
+        desc: ''
+        selected: false
+        title: Report@Answer
+        type: answer
+        variables: []
+      height: 119
+      id: '1745465800375'
+      position:
+        x: 1735
+        y: 1604
+      positionAbsolute:
+        x: 1735
+        y: 1604
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: constant
+          operation: +=
+          value: 1
+          variable_selector:
+          - conversation
+          - loop_index
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1745484387503'
+          - data
+          variable_selector:
+          - conversation
+          - data
+          write_mode: over-write
+        loop_id: '1745465155033'
+        selected: false
+        title: index++@var
+        type: assigner
+        version: '2'
+      height: 114
+      id: '1745466752436'
+      parentId: '1745465155033'
+      position:
+        x: 670
+        y: 299
+      positionAbsolute:
+        x: 1007
+        y: 1603
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        desc: ''
+        items:
+        - input_type: constant
+          operation: set
+          value: 0
+          variable_selector:
+          - conversation
+          - loop_index
+          write_mode: over-write
+        selected: false
+        title: index=0@Var
+        type: assigner
+        version: '2'
+      height: 86
+      id: '1745466921653'
+      position:
+        x: 1338
+        y: 1484
+      positionAbsolute:
+        x: 1338
+        y: 1484
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(query: str, breadth) -> dict:\n    data = {\n        \"\
+          query\": query,\n        \"learnings\": [],\n        \"breadth\": breadth\n\
+          \    }\n    return {\n        \"data\": data\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          data:
+            children: null
+            type: object
+        selected: false
+        title: Initial Query@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745564378855'
+          - output
+          variable: query
+        - value_selector:
+          - conversation
+          - input_breadth
+          variable: breadth
+      height: 52
+      id: '1745473648411'
+      position:
+        x: 0
+        y: 1366
+      positionAbsolute:
+        x: 0
+        y: 1366
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "def main(data, user_id) -> dict:\n    import json\n    body = {\n \
+          \       \"inputs\": {\n            \"data\": json.dumps(data)\n        },\n\
+          \        \"response_mode\": \"blocking\",\n        \"user\": user_id\n \
+          \   }\n    s = json.dumps(body)\n    j = json.loads(s)\n    return {\n \
+          \       \"body\": s\n    }\n"
+        code_language: python3
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        outputs:
+          body:
+            children: null
+            type: string
+        selected: false
+        title: body|Code
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - data
+          variable: data
+        - value_selector:
+          - sys
+          - user_id
+          variable: user_id
+      height: 52
+      id: '1745473937890'
+      parentId: '1745465155033'
+      position:
+        x: 16
+        y: 184
+      positionAbsolute:
+        x: 353
+        y: 1489
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: variable
+          operation: extend
+          value:
+          - '1745465634000'
+          - learnings
+          variable_selector:
+          - conversation
+          - all_learnings
+          write_mode: over-write
+        loop_id: '1745465155033'
+        selected: false
+        title: all_learnings@var
+        type: assigner
+        version: '2'
+      height: 86
+      id: '1745483653822'
+      parentId: '1745465155033'
+      position:
+        x: 331
+        y: 294
+      positionAbsolute:
+        x: 668
+        y: 1598
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        code: "\ndef main(all_learnings, breadth, researchGoal) -> dict:\n    data\
+          \ = {\n        \"query\": \"Previous research goal: \" + researchGoal,\n\
+          \        # \"Follow-up research directions: {{ $json.followUpQuestions.map(q\
+          \ => `\\n${q}`).join('') }}\",\n        \"learnings\": all_learnings,\n\
+          \        \"breadth\": breadth\n    }\n    return {\n        \"data\": data\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        outputs:
+          data:
+            children: null
+            type: object
+        selected: false
+        title: Next Queries@Code
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - all_learnings
+          variable: all_learnings
+        - value_selector:
+          - conversation
+          - input_breadth
+          variable: breadth
+        - value_selector:
+          - '1745465634000'
+          - researchGoal
+          variable: researchGoal
+      height: 52
+      id: '1745484387503'
+      parentId: '1745465155033'
+      position:
+        x: 670
+        y: 65
+      positionAbsolute:
+        x: 1007
+        y: 1369
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        desc: ''
+        items:
+        - input_type: constant
+          operation: set
+          value: 0
+          variable_selector:
+          - conversation
+          - loop_index
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1745473648411'
+          - data
+          variable_selector:
+          - conversation
+          - data
+          write_mode: over-write
+        selected: false
+        title: index=0@Var
+        type: assigner
+        version: '2'
+      height: 114
+      id: '1745484937433'
+      position:
+        x: 0
+        y: 1484
+      positionAbsolute:
+        x: 0
+        y: 1484
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - conversation
+          - all_learnings
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: fd8c24c9-2e8d-4857-9ac4-17b7a641be08
+          role: system
+          text: ''
+        - id: 7a08cdcf-2be9-4f20-a947-236054a828dc
+          role: user
+          text: 'You are are an expert and insightful researcher.
+
+            * Given the following prompt from the user, write a final report on the
+            topic using the learnings from research.
+
+            * Make it as as detailed as possible, aim for 3 or more pages, include
+            ALL the learnings from research.
+
+            * Format the report in markdown. Use headings, lists and tables only and
+            where appropriate.
+
+
+            <prompt>{{#sys.query#}}</prompt>
+
+
+            Here are all the learnings from previous research:
+
+
+            <learnings>
+
+            {{#context#}}
+
+            </learnings>'
+        selected: false
+        title: Report@LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1745487001858'
+      position:
+        x: 1735
+        y: 1484
+      positionAbsolute:
+        x: 1735
+        y: 1484
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '## Research: start
+
+          '
+        desc: ''
+        selected: false
+        title: start@Answer
+        type: answer
+        variables: []
+      height: 100
+      id: '1745487067459'
+      position:
+        x: 0
+        y: 1604
+      positionAbsolute:
+        x: 0
+        y: 1604
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '...
+
+          '
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745465155033'
+        selected: false
+        title: index++@Answer
+        type: answer
+        variables: []
+      height: 100
+      id: '1745487085474'
+      parentId: '1745465155033'
+      position:
+        x: 670
+        y: 179
+      positionAbsolute:
+        x: 1007
+        y: 1484
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        answer: '## Research: end
+
+          '
+        desc: ''
+        selected: false
+        title: end@Answer
+        type: answer
+        variables: []
+      height: 100
+      id: '1745487269640'
+      position:
+        x: 1338
+        y: 1604
+      positionAbsolute:
+        x: 1338
+        y: 1604
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: f00b686c-96e7-4e68-a649-d5e254e90d09
+          role: system
+          text: "You are an expert researcher. Today is {{#1745544523143.date#}}.\
+            \ Follow these instructions when responding:\n  - You may be asked to\
+            \ research subjects that is after your knowledge cutoff, assume the user\
+            \ is right when presented with news.\n  - The user is a highly experienced\
+            \ analyst, no need to simplify it, be as detailed as possible and make\
+            \ sure your response is correct.\n  - Be highly organized.\n  - Suggest\
+            \ solutions that I didn't think about.\n  - Be proactive and anticipate\
+            \ my needs.\n  - Treat me as an expert in all subject matter.\n  - Mistakes\
+            \ erode my trust, so be accurate and thorough.\n  - Provide detailed explanations,\
+            \ I'm comfortable with lots of detail.\n  - Value good arguments over\
+            \ authorities, the source is irrelevant.\n  - Consider new technologies\
+            \ and contrarian ideas, not just the conventional wisdom.\n  - You may\
+            \ use high levels of speculation or prediction, just flag it for me.\n"
+        - id: dcacef80-1d86-4559-b87d-10f4d428471a
+          role: user
+          text: 'Given the following query from the user, ask some follow up questions
+            to clarify the research direction. Return a maximum of 3 questions, but
+            feel free to return less if the original query is clear: <query>{{#sys.query#}}</query>'
+        - id: 6e312ad0-eef5-4cef-a660-075eefd8e781
+          role: assistant
+          text: ''
+        selected: false
+        structured_output:
+          schema:
+            properties:
+              questions:
+                description: Follow up questions to clarify the research direction,
+                  max of 3.
+                items:
+                  type: string
+                type: array
+            required: []
+            type: object
+        structured_output_enabled: true
+        title: questions@LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1745488861316'
+      position:
+        x: 332
+        y: 340
+      positionAbsolute:
+        x: 332
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(structured_output) -> dict:\n    return {\n        \"qa_questions\"\
+          : structured_output['questions'],\n        \"qa_count\": len(structured_output['questions'])\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          qa_count:
+            children: null
+            type: number
+          qa_questions:
+            children: null
+            type: array[string]
+        selected: false
+        title: questions@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745488861316'
+          - structured_output
+          variable: structured_output
+      height: 52
+      id: '1745489088123'
+      position:
+        x: 332
+        y: 463
+      positionAbsolute:
+        x: 332
+        y: 463
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1745489088123'
+          - qa_questions
+          variable_selector:
+          - conversation
+          - qa_questions
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - sys
+          - query
+          variable_selector:
+          - conversation
+          - input_query
+          write_mode: over-write
+        selected: false
+        title: questions@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 114
+      id: '1745489153779'
+      position:
+        x: 332
+        y: 515
+      positionAbsolute:
+        x: 332
+        y: 515
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 6d016128-dee3-4e1a-8b01-260b4713ddf6
+            value: 'false'
+            varType: string
+            variable_selector:
+            - '1745489241178'
+            - qa_started
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: qa_started@IF/ELSE
+        type: if-else
+      height: 124
+      id: '1745489202985'
+      position:
+        x: 0
+        y: 390
+      positionAbsolute:
+        x: 0
+        y: 390
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(questions, answers) -> dict:\n    if len(questions) == 0\
+          \ and len(answers) == 0:\n        qa_started = 'false'\n    else:\n    \
+          \    qa_started = 'true'\n\n    return {\n        \"qa_started\": qa_started,\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          qa_started:
+            children: null
+            type: string
+        selected: false
+        title: qa_started@Code
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - qa_questions
+          variable: questions
+        - value_selector:
+          - conversation
+          - qa_answers
+          variable: answers
+      height: 52
+      id: '1745489241178'
+      position:
+        x: 0
+        y: 340
+      positionAbsolute:
+        x: 0
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#17455514095660.number#}}. {{#17455514095660.question#}}'
+        desc: ''
+        selected: false
+        title: 'next question@Answer '
+        type: answer
+        variables: []
+      height: 121
+      id: '1745489811927'
+      position:
+        x: 700
+        y: 715
+      positionAbsolute:
+        x: 700
+        y: 715
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '```
+
+          Answer the following clarification questions to assist the DeepResearcher
+          better under the research topic.
+
+          请回答以下澄清性问题，以帮助 DeepResearcher 更好地理解研究主题。
+
+          ```
+
+          Total {{#1745489088123.qa_count#}} questions.
+
+          总共 {{#1745489088123.qa_count#}} 问题。
+
+          '
+        desc: ''
+        selected: false
+        title: Ask Questions@Answer
+        type: answer
+        variables: []
+      height: 233
+      id: '1745541413002'
+      position:
+        x: 700
+        y: 340
+      positionAbsolute:
+        x: 700
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main() -> dict:\n    import time\n    current_time = time.strftime(\"\
+          %Y/%m/%d\", time.localtime())\n    return {\n        \"date\": current_time\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          date:
+            children: null
+            type: string
+        selected: false
+        title: date@Code
+        type: code
+        variables: []
+      height: 52
+      id: '1745544523143'
+      position:
+        x: 332
+        y: 80
+      positionAbsolute:
+        x: 332
+        y: 80
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: append
+          value:
+          - sys
+          - query
+          variable_selector:
+          - conversation
+          - qa_answers
+          write_mode: over-write
+        selected: false
+        title: qa_answers+=@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 86
+      id: '17455462171830'
+      position:
+        x: 332
+        y: 667
+      positionAbsolute:
+        x: 332
+        y: 667
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '# Your Report Is On Its Way!
+
+          > DeepResearcher will now conduct the research independently. Once completed,
+          the compiled report will be replied here.
+
+          # 你的报告正在生成中！
+
+          > DeepResearcher 现在将独立进行研究，完成后编写的报告将回复在此。
+
+
+          '
+        desc: ''
+        selected: false
+        title: input_end@Answer
+        type: answer
+        variables: []
+      height: 212
+      id: '1745547317826'
+      position:
+        x: 1735
+        y: 935
+      positionAbsolute:
+        x: 1735
+        y: 935
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '- Enter research depth(like `1`)
+
+          - 输入调查深度（例如 `1`）
+
+          > This value determines how many sub-queries to generate.
+
+          > 此数值决定将生成多少个子查询。'
+        desc: ''
+        selected: false
+        title: input_depth@Answer
+        type: answer
+        variables: []
+      height: 164
+      id: '17455474346920'
+      position:
+        x: 1735
+        y: 243
+      positionAbsolute:
+        x: 1735
+        y: 243
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 6d016128-dee3-4e1a-8b01-260b4713ddf6
+            value: none
+            varType: string
+            variable_selector:
+            - conversation
+            - input_status
+          id: 'true'
+          logical_operator: and
+        - case_id: eaad299a-bff2-4532-a764-88111d10bc01
+          conditions:
+          - comparison_operator: is
+            id: faf058ad-4356-4925-b449-9c6c474389b8
+            value: depth
+            varType: string
+            variable_selector:
+            - conversation
+            - input_status
+          id: eaad299a-bff2-4532-a764-88111d10bc01
+          logical_operator: and
+        - case_id: af4c9162-219c-4ea5-b938-4a27b1902fe7
+          conditions:
+          - comparison_operator: is
+            id: 9f6030c5-2932-437c-9279-d75918f90d4c
+            value: breadth
+            varType: string
+            variable_selector:
+            - conversation
+            - input_status
+          id: af4c9162-219c-4ea5-b938-4a27b1902fe7
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: input_status@IF/ELSE
+        type: if-else
+      height: 220
+      id: '17455476744280'
+      position:
+        x: 1000
+        y: 814
+      positionAbsolute:
+        x: 1000
+        y: 814
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1745549169044'
+          - depth
+          variable_selector:
+          - conversation
+          - input_depth
+          write_mode: over-write
+        selected: false
+        title: input_depth@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 86
+      id: '1745548872685'
+      position:
+        x: 1338
+        y: 547
+      positionAbsolute:
+        x: 1338
+        y: 547
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        parameters:
+        - description: search depth
+          name: depth
+          required: true
+          type: number
+        query:
+        - sys
+        - query
+        reasoning_mode: prompt
+        selected: false
+        title: input_depth@Parameter Extractor
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1745549169044'
+      position:
+        x: 1338
+        y: 340
+      positionAbsolute:
+        x: 1338
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(questions, answers) -> dict:\n    if len(questions) > len(answers):\n\
+          \        qa_completed = 'false'\n    elif len(questions) <= len(answers):\n\
+          \        qa_completed = 'true'\n\n    return {\n        \"qa_completed\"\
+          : qa_completed,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          qa_completed:
+            children: null
+            type: string
+        selected: false
+        title: qa_completed@Code
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - qa_questions
+          variable: questions
+        - value_selector:
+          - conversation
+          - qa_answers
+          variable: answers
+      height: 52
+      id: '17455506606720'
+      position:
+        x: 332
+        y: 751
+      positionAbsolute:
+        x: 332
+        y: 751
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 6d016128-dee3-4e1a-8b01-260b4713ddf6
+            value: 'false'
+            varType: string
+            variable_selector:
+            - '17455506606720'
+            - qa_completed
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: qa_completed@IF/ELSE
+        type: if-else
+      height: 124
+      id: '17455507410080'
+      position:
+        x: 332
+        y: 884
+      positionAbsolute:
+        x: 332
+        y: 884
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(questions, answers) -> dict:\n    index = len(answers)\n\
+          \    return {\n        \"number\": index + 1,\n        \"question\": questions[index],\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          number:
+            children: null
+            type: number
+          question:
+            children: null
+            type: string
+        selected: false
+        title: next question@Code
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - qa_questions
+          variable: questions
+        - value_selector:
+          - conversation
+          - qa_answers
+          variable: answers
+      height: 52
+      id: '17455514095660'
+      position:
+        x: 700
+        y: 667
+      positionAbsolute:
+        x: 700
+        y: 667
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: constant
+          operation: set
+          value: depth
+          variable_selector:
+          - conversation
+          - input_status
+          write_mode: over-write
+        selected: false
+        title: input_depth@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 86
+      id: '1745552469464'
+      position:
+        x: 1338
+        y: 243
+      positionAbsolute:
+        x: 1338
+        y: 243
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: constant
+          operation: set
+          value: breadth
+          variable_selector:
+          - conversation
+          - input_status
+          write_mode: over-write
+        selected: false
+        title: input_breadth@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 86
+      id: '17455530115600'
+      position:
+        x: 1338
+        y: 630
+      positionAbsolute:
+        x: 1338
+        y: 630
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '- Enter research breadth(like `2`)
+
+          - 请输入研究广度（例如 `2`）
+
+          > This value determines how many sources to explore.
+
+          > 该数值决定将探索多少个信息来源。'
+        desc: ''
+        selected: false
+        title: input_breadth@Answer
+        type: answer
+        variables: []
+      height: 164
+      id: '17455531494860'
+      position:
+        x: 1735
+        y: 630
+      positionAbsolute:
+        x: 1735
+        y: 630
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        parameters:
+        - description: search breadth
+          name: breadth
+          required: true
+          type: number
+        query:
+        - sys
+        - query
+        reasoning_mode: prompt
+        selected: false
+        title: input_breadth@Parameter Extractor
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '17455532204370'
+      position:
+        x: 1338
+        y: 725
+      positionAbsolute:
+        x: 1338
+        y: 725
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17455532204370'
+          - breadth
+          variable_selector:
+          - conversation
+          - input_breadth
+          write_mode: over-write
+        selected: false
+        title: input_breadth@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 86
+      id: '17455532600770'
+      position:
+        x: 1338
+        y: 940
+      positionAbsolute:
+        x: 1338
+        y: 940
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: ≤
+            id: aa18811f-2588-42ce-915c-4e23450cf2bd
+            value: '0'
+            varType: number
+            variable_selector:
+            - '1745549169044'
+            - depth
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: input_depth@IF/ELSE
+        type: if-else
+      height: 124
+      id: '1745560430026'
+      position:
+        x: 1338
+        y: 426.5
+      positionAbsolute:
+        x: 1338
+        y: 426.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: ≤
+            id: aa18811f-2588-42ce-915c-4e23450cf2bd
+            value: '0'
+            varType: number
+            variable_selector:
+            - '17455532204370'
+            - breadth
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: input_breadth@IF/ELSE
+        type: if-else
+      height: 124
+      id: '17455605838530'
+      position:
+        x: 1338
+        y: 814
+      positionAbsolute:
+        x: 1338
+        y: 814
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        selected: false
+        template: "Initial query: {{ query }}\r\nFollow-up Questions and Answers:\r\
+          \n{% for i in range(questions | length) %}\r\nquestion: {{ questions[i]\
+          \ }}\r\nanswer: {{ answers[i] }}\r\n{% endfor %}"
+        title: Initial Query@Template
+        type: template-transform
+        variables:
+        - value_selector:
+          - conversation
+          - input_query
+          variable: query
+        - value_selector:
+          - conversation
+          - qa_questions
+          variable: questions
+        - value_selector:
+          - conversation
+          - qa_answers
+          variable: answers
+      height: 52
+      id: '1745564378855'
+      position:
+        x: 0
+        y: 1304
+      positionAbsolute:
+        x: 0
+        y: 1304
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: 243
+      y: 6
+      zoom: 0.5

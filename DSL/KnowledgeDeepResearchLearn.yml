@@ -1,0 +1,838 @@
+app:
+  description: 'Need create API Secret key.
+
+      Need change Knowledge.
+
+      Need published.'
+  icon: 🔍
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: KnowledgeDeepResearchLearn
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1745464599926-source-1745464689052-target
+      source: '1745464599926'
+      sourceHandle: source
+      target: '1745464689052'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1745464689052-source-1745464728363-target
+      selected: false
+      source: '1745464689052'
+      sourceHandle: source
+      target: '1745464728363'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745464728363'
+        sourceType: iteration-start
+        targetType: code
+      id: 1745464728363start-source-1745464747083-target
+      source: 1745464728363start
+      sourceHandle: source
+      target: '1745464747083'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745464728363'
+        sourceType: code
+        targetType: knowledge-retrieval
+      id: 1745464747083-source-1745464774818-target
+      source: '1745464747083'
+      sourceHandle: source
+      target: '1745464774818'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745464728363'
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1745464774818-source-1745464838701-target
+      source: '1745464774818'
+      sourceHandle: source
+      target: '1745464838701'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1745462907503-source-1745467373762-target
+      source: '1745462907503'
+      sourceHandle: source
+      target: '1745467373762'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1745467373762-source-1745464599926-target
+      source: '1745467373762'
+      sourceHandle: source
+      target: '1745464599926'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 1745464728363-source-1745476323962-target
+      source: '1745464728363'
+      sourceHandle: source
+      target: '1745476323962'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1745476323962-source-1745464905427-target
+      source: '1745476323962'
+      sourceHandle: source
+      target: '1745464905427'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: breadth@Start
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: data
+          max_length: 80000
+          options: []
+          required: true
+          type: paragraph
+          variable: data
+      height: 88
+      id: '1745462907503'
+      position:
+        x: 80
+        y: 199
+      positionAbsolute:
+        x: 80
+        y: 199
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: ded2b384-c40f-4152-8050-942f7dc6d64d
+          role: system
+          text: "You are an expert researcher. Today is 2025年4月23日. Follow these instructions\
+            \ when responding:\n  - You may be asked to research subjects that is\
+            \ after your knowledge cutoff, assume the user is right when presented\
+            \ with news.\n  - The user is a highly experienced analyst, no need to\
+            \ simplify it, be as detailed as possible and make sure your response\
+            \ is correct.\n  - Be highly organized.\n  - Suggest solutions that I\
+            \ didn't think about.\n  - Be proactive and anticipate my needs.\n  -\
+            \ Treat me as an expert in all subject matter.\n  - Mistakes erode my\
+            \ trust, so be accurate and thorough.\n  - Provide detailed explanations,\
+            \ I'm comfortable with lots of detail.\n  - Value good arguments over\
+            \ authorities, the source is irrelevant.\n  - Consider new technologies\
+            \ and contrarian ideas, not just the conventional wisdom.\n  - You may\
+            \ use high levels of speculation or prediction, just flag it for me.\n"
+        - id: d11a8470-a0b5-4b7c-ac6e-1d76f7b62f82
+          role: user
+          text: 'Given the following prompt from the user, generate a list of SERP
+            queries to research the topic.
+
+            Reduce the number of words in each query to its keywords only.
+
+            Return a maximum of {{#1745467373762.breadth#}} queries, but feel free
+            to return less if the original prompt is clear. Make sure each query is
+            unique and not similar to each other: <prompt>{{#1745467373762.query#}}</prompt>
+
+
+            Here are some learnings from previous research, use them to generate more
+            specific queries:
+
+            {{#1745467373762.learnings#}}'
+        - id: 211c8fdc-80ec-488e-a7f4-ce7eee80263a
+          role: user
+          text: 'You must format your output as a JSON value that adheres to a given
+            "JSON Schema" instance.
+
+
+            "JSON Schema" is a declarative language that allows you to annotate and
+            validate JSON documents.
+
+
+            For example, the example "JSON Schema" instance {{"properties": {{"foo":
+            {{"description": "a list of test words", "type": "array", "items": {{"type":
+            "string"}}}}}}, "required": ["foo"]}}}}
+
+            would match an object with one required property, "foo". The "type" property
+            specifies "foo" must be an "array", and the "description" property semantically
+            describes it as "a list of test words". The items within "foo" must be
+            strings.
+
+            Thus, the object {{"foo": ["bar", "baz"]}} is a well-formatted instance
+            of this example "JSON Schema". The object {{"properties": {{"foo": ["bar",
+            "baz"]}}}} is not well-formatted.
+
+
+            Your output will be parsed and type-checked according to the provided
+            schema instance, so make sure all fields in your output match the schema
+            exactly and there are no trailing commas!
+
+
+            Here is the JSON Schema instance your output must adhere to. Include the
+            enclosing markdown codeblock:
+
+            ```json
+
+            {"type":"object","properties":{"output":{"type":"object","properties":{"queries":{"type":"array","items":{"type":"object","properties":{"query":{"type":"string","description":"The
+            SERP query"},"researchGoal":{"type":"string","description":"First talk
+            about the goal of the research that this query is meant to accomplish,
+            then go deeper into how to advance the research once the results are found,
+            mention additional research directions. Be as specific as possible, especially
+            for additional research directions."}},"additionalProperties":false}}},"additionalProperties":false}},"additionalProperties":false,"$schema":"http://json-schema.org/draft-07/schema#"}
+
+            ```'
+        selected: false
+        structured_output:
+          schema:
+            properties:
+              queries:
+                items:
+                  properties:
+                    query:
+                      description: The SERP query
+                      type: string
+                    researchGoal:
+                      description: First talk about the goal of the research that
+                        this query is meant to accomplish, then go deeper into how
+                        to advance the research once the results are found, mention
+                        additional research directions. Be as specific as possible,
+                        especially for additional research directions.
+                      type: string
+                  type: object
+                type: array
+            required: []
+            type: object
+        structured_output_enabled: true
+        title: queries@LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1745464599926'
+      position:
+        x: 666
+        y: 199
+      positionAbsolute:
+        x: 666
+        y: 199
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(structured_output) -> dict:\n    return {\n        \"queries\"\
+          : structured_output['output']['queries'],\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          queries:
+            children: null
+            type: array[object]
+        selected: false
+        title: querys@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745464599926'
+          - structured_output
+          variable: structured_output
+      height: 52
+      id: '1745464689052'
+      position:
+        x: 937
+        y: 199
+      positionAbsolute:
+        x: 937
+        y: 199
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 180
+        is_parallel: false
+        iterator_selector:
+        - '1745464689052'
+        - queries
+        output_selector:
+        - '1745464838701'
+        - structured_output
+        output_type: array[object]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1745464728363start
+        title: learnings@Iteration
+        type: iteration
+        width: 996
+      height: 180
+      id: '1745464728363'
+      position:
+        x: 80
+        y: 435
+      positionAbsolute:
+        x: 80
+        y: 435
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 996
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1745464728363start
+      parentId: '1745464728363'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 104
+        y: 503
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        code: "\ndef main(item) -> dict:\n    return {\n        \"query\": item['query'],\n\
+          \        \"researchGoal\": item['researchGoal'],\n    }\n"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745464728363'
+        outputs:
+          query:
+            children: null
+            type: string
+          researchGoal:
+            children: null
+            type: string
+        selected: false
+        title: query@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745464728363'
+          - item
+          variable: item
+      height: 52
+      id: '1745464747083'
+      parentId: '1745464728363'
+      position:
+        x: 126
+        y: 65
+      positionAbsolute:
+        x: 206
+        y: 500
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        dataset_ids:
+        - X09PrSYmY9FS2MDRpu8/ecnqNWlsjsRlfdZ35y/lJqMvTPJk5pg17pm7kv0Ni4o6
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745464728363'
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: weighted_score
+          reranking_model:
+            model: ''
+            provider: ''
+          score_threshold: null
+          top_k: 10
+          weights:
+            keyword_setting:
+              keyword_weight: 0
+            vector_setting:
+              embedding_model_name: nomic-embed-text:v1.5
+              embedding_provider_name: langgenius/ollama/ollama
+              vector_weight: 1
+        query_variable_selector:
+        - '1745464747083'
+        - query
+        retrieval_mode: multiple
+        selected: false
+        title: Knowledge Retrieval
+        type: knowledge-retrieval
+      height: 90
+      id: '1745464774818'
+      parentId: '1745464728363'
+      position:
+        x: 432
+        y: 65
+      positionAbsolute:
+        x: 512
+        y: 500
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1745464774818'
+          - result
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1745464728363'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: dffbb7a8-0aa0-4a5d-862e-5f5614572f6b
+          role: system
+          text: ''
+        - id: 6af304b0-b4dc-4c45-8361-77e143c60540
+          role: user
+          text: "You are an expert researcher. Today is 2025年4月23日. Follow these instructions\
+            \ when responding:\n  - You may be asked to research subjects that is\
+            \ after your knowledge cutoff, assume the user is right when presented\
+            \ with news.\n  - The user is a highly experienced analyst, no need to\
+            \ simplify it, be as detailed as possible and make sure your response\
+            \ is correct.\n  - Be highly organized.\n  - Suggest solutions that I\
+            \ didn't think about.\n  - Be proactive and anticipate my needs.\n  -\
+            \ Treat me as an expert in all subject matter.\n  - Mistakes erode my\
+            \ trust, so be accurate and thorough.\n  - Provide detailed explanations,\
+            \ I'm comfortable with lots of detail.\n  - Value good arguments over\
+            \ authorities, the source is irrelevant.\n  - Consider new technologies\
+            \ and contrarian ideas, not just the conventional wisdom.\n  - You may\
+            \ use high levels of speculation or prediction, just flag it for me.\n"
+        - id: bf8c367e-410a-4fb0-96b8-83d76314b47a
+          role: user
+          text: 'Given the following contents from a SERP search for the query <query>{{#1745467373762.query#}}</query>,
+            generate a list of learnings from the contents. Return a maximum of 3
+            learnings, but feel free to return less if the contents are clear. Make
+            sure each learning is unique and not similar to each other. The learnings
+            should be concise and to the point, as detailed and infromation dense
+            as possible. Make sure to include any entities like people, places, companies,
+            products, things, etc in the learnings, as well as any exact metrics,
+            numbers, or dates. The learnings will be used to research the topic further.
+
+
+            <contents>
+
+            {{#context#}}
+
+            </contents>'
+        - id: b31d1bee-56d5-4fa0-96b3-6c613df488d8
+          role: user
+          text: 'You must format your output as a JSON value that adheres to a given
+            "JSON Schema" instance.
+
+
+            "JSON Schema" is a declarative language that allows you to annotate and
+            validate JSON documents.
+
+
+            For example, the example "JSON Schema" instance {{"properties": {{"foo":
+            {{"description": "a list of test words", "type": "array", "items": {{"type":
+            "string"}}}}}}, "required": ["foo"]}}}}
+
+            would match an object with one required property, "foo". The "type" property
+            specifies "foo" must be an "array", and the "description" property semantically
+            describes it as "a list of test words". The items within "foo" must be
+            strings.
+
+            Thus, the object {{"foo": ["bar", "baz"]}} is a well-formatted instance
+            of this example "JSON Schema". The object {{"properties": {{"foo": ["bar",
+            "baz"]}}}} is not well-formatted.
+
+
+            Your output will be parsed and type-checked according to the provided
+            schema instance, so make sure all fields in your output match the schema
+            exactly and there are no trailing commas!
+
+
+            Here is the JSON Schema instance your output must adhere to. Include the
+            enclosing markdown codeblock:
+
+            ```json
+
+            {"type":"object","properties":{"output":{"type":"object","properties":{"learnings":{"type":"array","items":{"type":"string"},"description":"List
+            of learnings, max of 3."}},"additionalProperties":false}},"additionalProperties":false,"$schema":"http://json-schema.org/draft-07/schema#"}
+
+            ```'
+        selected: false
+        structured_output:
+          schema:
+            properties:
+              learnings:
+                description: List of learnings, max of 3.
+                items:
+                  type: string
+                type: array
+            required: []
+            type: object
+        structured_output_enabled: true
+        title: learnings@LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1745464838701'
+      parentId: '1745464728363'
+      position:
+        x: 738
+        y: 65
+      positionAbsolute:
+        x: 818
+        y: 500
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1745476323962'
+          - data
+          variable: data
+        selected: false
+        title: data@End
+        type: end
+      height: 88
+      id: '1745464905427'
+      position:
+        x: 383
+        y: 747
+      positionAbsolute:
+        x: 383
+        y: 747
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(data: str) -> dict:\n    import json\n    data = json.loads(data)\n\
+          \    return {\n        \"query\": data['query'],\n        \"learnings\"\
+          : data['learnings'],\n        \"breadth\": data['breadth']\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          breadth:
+            children: null
+            type: number
+          learnings:
+            children: null
+            type: array[string]
+          query:
+            children: null
+            type: string
+        selected: false
+        title: breadth@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745462907503'
+          - data
+          variable: data
+      height: 52
+      id: '1745467373762'
+      position:
+        x: 369
+        y: 199
+      positionAbsolute:
+        x: 369
+        y: 199
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(querys,output) -> dict:\n    import itertools\n    learnings\
+          \ = list(itertools.chain.from_iterable(\n        item[\"output\"][\"learnings\"\
+          ] for item in output\n    ))\n    return {\n        \"data\": {\n      \
+          \      \"researchGoal\": querys[0][\"researchGoal\"],\n            \"learnings\"\
+          : learnings\n        }\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          data:
+            children: null
+            type: object
+        selected: false
+        title: data@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745464689052'
+          - queries
+          variable: querys
+        - value_selector:
+          - '1745464728363'
+          - output
+          variable: output
+      height: 52
+      id: '1745476323962'
+      position:
+        x: 80
+        y: 747
+      positionAbsolute:
+        x: 80
+        y: 747
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        author: xiaoyao9184
+        desc: ''
+        height: 267
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"2.
+          Generate Search Queries","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Much
+          like a human researcher, the DeepResearcher will rely on web search and
+          content as the preferred source of information. To ensure it can cover a
+          wide range of sources, the AI can first generate relevant research queries
+          of which each can be explored separately.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"与人类研究者类似，DeepResearcher
+          将依赖网络搜索和内容作为主要的信息来源。为了确保能够覆盖广泛的来源，AI 会首先生成相关的研究查询，每个查询都可以被单独探索。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 584
+      height: 267
+      id: '1745574816284'
+      position:
+        x: 627
+        y: 52
+      positionAbsolute:
+        x: 627
+        y: 52
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 584
+    - data:
+        author: xiaoyao9184
+        desc: ''
+        height: 266
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"1.
+          Parse Parameters","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"At
+          this step, we need to parse the JSON string parameters passed from the parent
+          workflow, extracting the query, learning results, and breadth values.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"这里需要将父级工作流中传递来的json字符串参数解析查询、学习结果和宽度","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 547
+      height: 266
+      id: '1745575153531'
+      position:
+        x: 80
+        y: 52
+      positionAbsolute:
+        x: 80
+        y: 52
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 547
+    - data:
+        author: xiaoyao9184
+        desc: ''
+        height: 324
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"3.
+          Compile Learnings with Reasoning Model","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"it''s
+          now just a case of giving them to our LLM to compile a list of \"learnings.\"  ","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"The
+          \"learnings\" are then combined with the generated research goal to complete
+          one loop.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"在我们收集完相关信息后，接下来就是将其交给我们的
+          LLM 来整理出一份“学习成果”清单。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"这些“学习成果”随后将与预先设定的研究目标相结合，完成一次完整的循环过程。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 1133
+      height: 324
+      id: '1745575536850'
+      position:
+        x: 80
+        y: 319
+      positionAbsolute:
+        x: 80
+        y: 319
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 1133
+    - data:
+        author: xiaoyao9184
+        desc: ''
+        height: 223
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"4.
+          Render Results","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":"In
+          this step, the results from this workflow need to be converted into a JSON
+          string to be provided to the external parent workflow.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"这里需要将本工作流中的结果转为
+          JSON 字符串提供给外部父级工作流。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 1130
+      height: 223
+      id: '1745575627474'
+      position:
+        x: 80
+        y: 643
+      positionAbsolute:
+        x: 80
+        y: 643
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 1130
+    viewport:
+      x: 499
+      y: 264
+      zoom: 0.5
