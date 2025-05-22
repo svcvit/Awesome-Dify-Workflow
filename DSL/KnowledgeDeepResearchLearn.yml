@@ -1,9 +1,9 @@
 app:
-  description: 'Need create API Secret key.
+  description: 'Need change Knowledge.
 
-      Need change Knowledge.
-
-      Need published.'
+      Need published.
+      
+      Need create API Secret key.'
   icon: 🔍
   icon_background: '#FFEAD5'
   mode: workflow
@@ -222,7 +222,7 @@ workflow:
         prompt_template:
         - id: ded2b384-c40f-4152-8050-942f7dc6d64d
           role: system
-          text: "You are an expert researcher. Today is 2025年4月23日. Follow these instructions\
+          text: "You are an expert researcher. Today is {{#1745467373762.date#}}. Follow these instructions\
             \ when responding:\n  - You may be asked to research subjects that is\
             \ after your knowledge cutoff, assume the user is right when presented\
             \ with news.\n  - The user is a highly experienced analyst, no need to\
@@ -521,7 +521,7 @@ workflow:
           text: ''
         - id: 6af304b0-b4dc-4c45-8361-77e143c60540
           role: user
-          text: "You are an expert researcher. Today is 2025年4月23日. Follow these instructions\
+          text: "You are an expert researcher. Today is {{#1745467373762.date#}}. Follow these instructions\
             \ when responding:\n  - You may be asked to research subjects that is\
             \ after your knowledge cutoff, assume the user is right when presented\
             \ with news.\n  - The user is a highly experienced analyst, no need to\
@@ -645,12 +645,19 @@ workflow:
       type: custom
       width: 242
     - data:
-        code: "\ndef main(data: str) -> dict:\n    import json\n    data = json.loads(data)\n\
-          \    return {\n        \"query\": data['query'],\n        \"learnings\"\
-          : data['learnings'],\n        \"breadth\": data['breadth']\n    }\n"
+        code: "\ndef main(data: str) -> dict:\n    import time\n    import json\n\
+          \    current_time = time.strftime(\"%Y/%m/%d\", time.localtime())\n\
+          \    data = json.loads(data)\n\
+          \    return {\n        \"date\": current_time,\n\
+          \        \"query\": data['query'],\n\
+          \        \"learnings\": data['learnings'],\n\
+          \        \"breadth\": data['breadth']\n    }\n"
         code_language: python3
         desc: ''
         outputs:
+          date:
+            children: null
+            type: string
           breadth:
             children: null
             type: number
