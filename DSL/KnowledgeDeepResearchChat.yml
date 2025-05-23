@@ -14,6 +14,137 @@ kind: app
 version: 0.2.0
 workflow:
   conversation_variables:
+  - description: ''
+    id: ffb1ac8a-a243-4412-8e4d-d0c73798bf16
+    name: prompt_report_prompt
+    selector:
+    - conversation
+    - prompt_report_prompt
+    value: '* Given the following prompt from the user, write a final report on the
+      topic using the learnings from research.
+
+      * Make it as as detailed as possible, aim for 3 or more pages, include ALL the
+      learnings from research.
+
+      * Format the report in markdown. Use headings, lists and tables only and where
+      appropriate.'
+    value_type: string
+  - description: ''
+    id: 11560d84-01b7-475e-ac74-7b6c0b4a9e72
+    name: prompt_questions_query
+    selector:
+    - conversation
+    - prompt_questions_query
+    value: Given the following query from the user, ask some follow up questions to
+      clarify the research direction. Return a maximum of 3 questions, but feel free
+      to return less if the original query is clear
+    value_type: string
+  - description: ''
+    id: 6577820e-bff9-4044-be5e-2e0c23fc26a9
+    name: msg_report
+    selector:
+    - conversation
+    - msg_report
+    value: '# --------------------
+
+      '
+    value_type: string
+  - description: ''
+    id: 1bb7a3ee-3070-4a0a-872c-57ac123ff845
+    name: msg_index_next
+    selector:
+    - conversation
+    - msg_index_next
+    value: '...'
+    value_type: string
+  - description: ''
+    id: 17c688b1-a8ba-42c5-bfd7-e774638300f4
+    name: msg_index_end
+    selector:
+    - conversation
+    - msg_index_end
+    value: '## Research: end
+
+      '
+    value_type: string
+  - description: ''
+    id: 1b3ab9aa-e54e-4b7d-8501-1c259dc875c0
+    name: msg_index_start
+    selector:
+    - conversation
+    - msg_index_start
+    value: '## Research: start
+
+      '
+    value_type: string
+  - description: ''
+    id: 0b89332a-a998-48d3-bb10-e147c08a085d
+    name: msg_loop
+    selector:
+    - conversation
+    - msg_loop
+    value: '# Your Report Is On Its Way!
+
+      > DeepResearcher will now conduct the research independently. Once completed,
+      the compiled report will be replied here.
+
+      # 你的报告正在生成中！
+
+      > DeepResearcher 现在将独立进行研究，完成后编写的报告将回复在此。
+
+
+      '
+    value_type: string
+  - description: ''
+    id: 5ee34159-094f-4a93-a635-97cd214d519d
+    name: msg_breadth
+    selector:
+    - conversation
+    - msg_breadth
+    value: '- Enter research breadth(like `2`)
+
+      - 请输入研究广度（例如 `2`）
+
+      > This value determines how many sources to explore.
+
+      > 该数值决定将探索多少个信息来源。'
+    value_type: string
+  - description: ''
+    id: d6cac283-8b3c-474a-a0bc-b7935695870d
+    name: msg_depth
+    selector:
+    - conversation
+    - msg_depth
+    value: '- Enter research depth(like `1`)
+
+      - 输入调查深度（例如 `1`）
+
+      > This value determines how many sub-queries to generate.
+
+      > 此数值决定将生成多少个子查询。'
+    value_type: string
+  - description: ''
+    id: 88a84df1-39a9-4f86-9bde-87a8c8f08f5f
+    name: msg_questions
+    selector:
+    - conversation
+    - msg_questions
+    value: '```
+
+      Answer the following clarification questions to assist the DeepResearcher better
+      under the research topic.
+
+      请回答以下澄清性问题，以帮助 DeepResearcher 更好地理解研究主题。
+
+      ```
+
+      Total questions
+
+      总共问题
+
+
+      '
+    value_type: string
   - description: 'Flag for request var `sys.query` already use by someone step.
 
       这个变量用于存储用户对话输入是否被某些步骤使用。'
@@ -383,18 +514,6 @@ workflow:
       type: custom
       zIndex: 0
     - data:
-        isInLoop: false
-        sourceType: llm
-        targetType: code
-      id: 1745488861316-source-1745489088123-target
-      selected: false
-      source: '1745488861316'
-      sourceHandle: source
-      target: '1745489088123'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
         isInIteration: false
         isInLoop: true
         loop_id: '1745465155033'
@@ -494,18 +613,6 @@ workflow:
       source: '1747905349096'
       sourceHandle: source
       target: '1747905280642'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: start
-        targetType: assigner
-      id: 1745400665579-source-17479062175910-target
-      selected: false
-      source: '1745400665579'
-      sourceHandle: source
-      target: '17479062175910'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -933,18 +1040,6 @@ workflow:
       zIndex: 0
     - data:
         isInLoop: false
-        sourceType: code
-        targetType: llm
-      id: 1747904285787-source-1745488861316-target
-      selected: false
-      source: '1747904285787'
-      sourceHandle: source
-      target: '1745488861316'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
         sourceType: assigner
         targetType: code
       id: 1745489153779-source-1747905349096-target
@@ -988,6 +1083,51 @@ workflow:
       source: '17479705175960'
       sourceHandle: 'true'
       target: '1745541413002'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 17479889206140-source-17479062175910-target
+      source: '17479889206140'
+      sourceHandle: source
+      target: '17479062175910'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1745400665579-source-17479889206140-target
+      source: '1745400665579'
+      sourceHandle: source
+      target: '17479889206140'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1747904285787-source-1747996949638-target
+      source: '1747904285787'
+      sourceHandle: source
+      target: '1747996949638'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1747996949638-source-1745489088123-target
+      source: '1747996949638'
+      sourceHandle: source
+      target: '1745489088123'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -1080,7 +1220,7 @@ workflow:
         author: xiaoyao9184
         desc: ''
         height: 700
-        selected: true
+        selected: false
         showAuthor: true
         text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"4.
           Perform DeepSearch Loop","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"The
@@ -1107,7 +1247,7 @@ workflow:
       positionAbsolute:
         x: 0
         y: 1160
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom-note
@@ -1144,7 +1284,7 @@ workflow:
       width: 265
     - data:
         desc: ''
-        selected: false
+        selected: true
         title: Start
         type: start
         variables:
@@ -1178,7 +1318,13 @@ workflow:
           required: false
           type: paragraph
           variable: answers
-      height: 192
+        - label: settings
+          max_length: 80000
+          options: []
+          required: false
+          type: paragraph
+          variable: settings
+      height: 218
       id: '1745400665579'
       position:
         x: 0
@@ -1186,7 +1332,7 @@ workflow:
       positionAbsolute:
         x: 0
         y: -15.619827423325134
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -1282,7 +1428,7 @@ workflow:
         type: http-request
         url: http://api:5001/v1/workflows/run
         variables: []
-      height: 108
+      height: 138
       id: '1745465341610'
       parentId: '1745465155033'
       position:
@@ -1342,8 +1488,7 @@ workflow:
       width: 242
       zIndex: 1002
     - data:
-        answer: '# --------------------
-
+        answer: '{{#conversation.msg_report#}}
 
           {{#1745487001858.text#}}'
         desc: ''
@@ -1351,7 +1496,7 @@ workflow:
         title: Report@Answer
         type: answer
         variables: []
-      height: 119
+      height: 121
       id: '1745465800375'
       position:
         x: 1735
@@ -1642,25 +1787,20 @@ workflow:
         prompt_template:
         - id: fd8c24c9-2e8d-4857-9ac4-17b7a641be08
           role: system
-          text: ''
+          text: You are are an expert and insightful researcher.
         - id: 7a08cdcf-2be9-4f20-a947-236054a828dc
           role: user
-          text: 'You are are an expert and insightful researcher.
-
-            * Given the following prompt from the user, write a final report on the
-            topic using the learnings from research.
-
-            * Make it as as detailed as possible, aim for 3 or more pages, include
-            ALL the learnings from research.
-
-            * Format the report in markdown. Use headings, lists and tables only and
-            where appropriate.
+          text: '{{#conversation.prompt_report_prompt#}}
 
 
-            <prompt>{{#sys.query#}}</prompt>
+            <prompt>
 
+            {{#1745564378855.output#}}
 
-            Here are all the learnings from previous research:
+            </prompt>'
+        - id: 8f9e9064-faca-4868-8d30-b3b2d2292863
+          role: user
+          text: 'Here are all the learnings from previous research:
 
 
             <learnings>
@@ -1688,15 +1828,13 @@ workflow:
       type: custom
       width: 242
     - data:
-        answer: '## Research: start
-
-          '
+        answer: '{{#conversation.msg_index_start#}}'
         desc: ''
         selected: false
         title: index.start@Answer
         type: answer
         variables: []
-      height: 100
+      height: 103
       id: '1745487067459'
       position:
         x: 0
@@ -1710,9 +1848,7 @@ workflow:
       type: custom
       width: 242
     - data:
-        answer: '...
-
-          '
+        answer: '{{#conversation.msg_index_next#}}'
         desc: ''
         isInIteration: false
         isInLoop: true
@@ -1721,7 +1857,7 @@ workflow:
         title: index++@Answer
         type: answer
         variables: []
-      height: 100
+      height: 103
       id: '1745487085474'
       parentId: '1745465155033'
       position:
@@ -1737,15 +1873,13 @@ workflow:
       width: 242
       zIndex: 1002
     - data:
-        answer: '## Research: end
-
-          '
+        answer: '{{#conversation.msg_index_end#}}'
         desc: ''
         selected: false
         title: index.end@Answer
         type: answer
         variables: []
-      height: 100
+      height: 103
       id: '1745487269640'
       position:
         x: 1338
@@ -1753,72 +1887,6 @@ workflow:
       positionAbsolute:
         x: 1338
         y: 1604
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        context:
-          enabled: false
-          variable_selector: []
-        desc: ''
-        model:
-          completion_params:
-            temperature: 0.7
-          mode: chat
-          name: qwen2.5:7b
-          provider: langgenius/ollama/ollama
-        prompt_template:
-        - id: f00b686c-96e7-4e68-a649-d5e254e90d09
-          role: system
-          text: "You are an expert researcher. Today is {{#1747904285787.date#}}.\
-            \ Follow these instructions when responding:\n  - You may be asked to\
-            \ research subjects that is after your knowledge cutoff, assume the user\
-            \ is right when presented with news.\n  - The user is a highly experienced\
-            \ analyst, no need to simplify it, be as detailed as possible and make\
-            \ sure your response is correct.\n  - Be highly organized.\n  - Suggest\
-            \ solutions that I didn't think about.\n  - Be proactive and anticipate\
-            \ my needs.\n  - Treat me as an expert in all subject matter.\n  - Mistakes\
-            \ erode my trust, so be accurate and thorough.\n  - Provide detailed explanations,\
-            \ I'm comfortable with lots of detail.\n  - Value good arguments over\
-            \ authorities, the source is irrelevant.\n  - Consider new technologies\
-            \ and contrarian ideas, not just the conventional wisdom.\n  - You may\
-            \ use high levels of speculation or prediction, just flag it for me.\n"
-        - id: dcacef80-1d86-4559-b87d-10f4d428471a
-          role: user
-          text: 'Given the following query from the user, ask some follow up questions
-            to clarify the research direction. Return a maximum of 3 questions, but
-            feel free to return less if the original query is clear: <query>{{#conversation.param_topic#}}</query>'
-        - id: 6e312ad0-eef5-4cef-a660-075eefd8e781
-          role: assistant
-          text: ''
-        selected: false
-        structured_output:
-          schema:
-            properties:
-              questions:
-                description: Follow up questions to clarify the research direction,
-                  max of 3.
-                items:
-                  type: string
-                type: array
-            required: []
-            type: object
-        structured_output_enabled: true
-        title: questions.llm@LLM
-        type: llm
-        variables: []
-        vision:
-          enabled: false
-      height: 88
-      id: '1745488861316'
-      position:
-        x: 332
-        y: 565.8248967419413
-      positionAbsolute:
-        x: 332
-        y: 565.8248967419413
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1838,7 +1906,7 @@ workflow:
         type: code
         variables:
         - value_selector:
-          - '1745488861316'
+          - '1747996949638'
           - structured_output
           variable: llm_dict
       height: 52
@@ -1887,7 +1955,7 @@ workflow:
         answer: '{{#17479056620860.number#}}. {{#17479056620860.data#}}'
         desc: ''
         selected: false
-        title: 'answers.index@Answer'
+        title: 'answers.index@Answer '
         type: answer
         variables: []
       height: 121
@@ -1904,26 +1972,13 @@ workflow:
       type: custom
       width: 242
     - data:
-        answer: '```
-
-          Answer the following clarification questions to assist the DeepResearcher
-          better under the research topic.
-
-          请回答以下澄清性问题，以帮助 DeepResearcher 更好地理解研究主题。
-
-          ```
-
-          Total {{#1747961572801.count#}} questions.
-
-          总共 {{#1747961572801.count#}} 问题。
-
-          '
+        answer: "{{#conversation.msg_questions#}} {{#1747961572801.count#}} \n"
         desc: ''
         selected: false
         title: answers.count@Answer
         type: answer
         variables: []
-      height: 233
+      height: 121
       id: '1745541413002'
       position:
         x: 700
@@ -1937,23 +1992,13 @@ workflow:
       type: custom
       width: 242
     - data:
-        answer: '# Your Report Is On Its Way!
-
-          > DeepResearcher will now conduct the research independently. Once completed,
-          the compiled report will be replied here.
-
-          # 你的报告正在生成中！
-
-          > DeepResearcher 现在将独立进行研究，完成后编写的报告将回复在此。
-
-
-          '
+        answer: '{{#conversation.msg_loop#}}'
         desc: ''
         selected: false
         title: loop@Answer
         type: answer
         variables: []
-      height: 212
+      height: 103
       id: '1745547317826'
       position:
         x: 1735
@@ -1967,19 +2012,13 @@ workflow:
       type: custom
       width: 242
     - data:
-        answer: '- Enter research depth(like `1`)
-
-          - 输入调查深度（例如 `1`）
-
-          > This value determines how many sub-queries to generate.
-
-          > 此数值决定将生成多少个子查询。'
+        answer: '{{#conversation.msg_depth#}}'
         desc: ''
         selected: false
         title: depth@Answer
         type: answer
         variables: []
-      height: 164
+      height: 103
       id: '17455474346920'
       position:
         x: 1000
@@ -2067,19 +2106,13 @@ workflow:
       type: custom
       width: 242
     - data:
-        answer: '- Enter research breadth(like `2`)
-
-          - 请输入研究广度（例如 `2`）
-
-          > This value determines how many sources to explore.
-
-          > 该数值决定将探索多少个信息来源。'
+        answer: '{{#conversation.msg_breadth#}}'
         desc: ''
         selected: false
         title: breadth@Answer
         type: answer
         variables: []
-      height: 164
+      height: 103
       id: '17455531494860'
       position:
         x: 1338
@@ -2281,10 +2314,10 @@ workflow:
       id: '1747904032886'
       position:
         x: 0
-        y: 515.2632007002027
+        y: 763.2415890557712
       positionAbsolute:
         x: 0
-        y: 515.2632007002027
+        y: 763.2415890557712
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2325,10 +2358,10 @@ workflow:
       id: '1747904083764'
       position:
         x: 0
-        y: 651.8927168608907
+        y: 885.2122971507797
       positionAbsolute:
         x: 0
-        y: 651.8927168608907
+        y: 885.2122971507797
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2363,10 +2396,10 @@ workflow:
       id: '1747904179988'
       position:
         x: 0
-        y: 702.116822326466
+        y: 935
       positionAbsolute:
         x: 0
-        y: 702.116822326466
+        y: 935
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2618,18 +2651,108 @@ workflow:
           - conversation
           - query_used
           write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479889206140'
+          - msg_questions
+          variable_selector:
+          - conversation
+          - msg_questions
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479889206140'
+          - msg_depth
+          variable_selector:
+          - conversation
+          - msg_depth
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479889206140'
+          - msg_breadth
+          variable_selector:
+          - conversation
+          - msg_breadth
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479889206140'
+          - msg_loop
+          variable_selector:
+          - conversation
+          - msg_loop
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479889206140'
+          - msg_index_start
+          variable_selector:
+          - conversation
+          - msg_index_start
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479889206140'
+          - msg_index_end
+          variable_selector:
+          - conversation
+          - msg_index_end
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479889206140'
+          - msg_index_next
+          variable_selector:
+          - conversation
+          - msg_index_next
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479889206140'
+          - msg_report
+          variable_selector:
+          - conversation
+          - msg_report
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479889206140'
+          - prompt_questions_query
+          variable_selector:
+          - conversation
+          - prompt_questions_query
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479889206140'
+          - prompt_report_prompt
+          variable_selector:
+          - conversation
+          - prompt_report_prompt
+          write_mode: over-write
         selected: false
-        title: start@Variable Assigner
+        title: setting@Variable Assigner
         type: assigner
         version: '2'
-      height: 86
+      height: 366
       id: '17479062175910'
       position:
         x: 0
-        y: 207.88410586291968
+        y: 258.3841058629197
       positionAbsolute:
         x: 0
-        y: 207.88410586291968
+        y: 258.3841058629197
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -3135,7 +3258,180 @@ workflow:
       targetPosition: left
       type: custom
       width: 242
+    - data:
+        code: "\ndef main(req_text, msg_questions, msg_depth, msg_breadth, msg_loop,\
+          \ msg_index_start, msg_index_end, msg_index_next, msg_report, prompt_questions_query,\
+          \ prompt_report_prompt) -> dict:\n    data = {\n        \"msg_questions\"\
+          : msg_questions,\n        \"msg_depth\": msg_depth,\n        \"msg_breadth\"\
+          : msg_breadth,\n        \"msg_loop\": msg_loop,\n        \"msg_index_start\"\
+          : msg_index_start,\n        \"msg_index_end\": msg_index_end,\n        \"\
+          msg_index_next\": msg_index_next,\n        \"msg_report\": msg_report,\n\
+          \        \"prompt_questions_query\": prompt_questions_query,\n        \"\
+          prompt_report_prompt\": prompt_report_prompt\n    }\n    if req_text:\n\
+          \        import json\n        json = json.loads(req_text)\n        for key\
+          \ in json:\n            data[key] = json[key]\n    return data\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          msg_breadth:
+            children: null
+            type: string
+          msg_depth:
+            children: null
+            type: string
+          msg_index_end:
+            children: null
+            type: string
+          msg_index_next:
+            children: null
+            type: string
+          msg_index_start:
+            children: null
+            type: string
+          msg_loop:
+            children: null
+            type: string
+          msg_questions:
+            children: null
+            type: string
+          msg_report:
+            children: null
+            type: string
+          prompt_questions_query:
+            children: null
+            type: string
+          prompt_report_prompt:
+            children: null
+            type: string
+        selected: false
+        title: setting@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745400665579'
+          - settings
+          variable: req_text
+        - value_selector:
+          - conversation
+          - msg_questions
+          variable: msg_questions
+        - value_selector:
+          - conversation
+          - msg_depth
+          variable: msg_depth
+        - value_selector:
+          - conversation
+          - msg_breadth
+          variable: msg_breadth
+        - value_selector:
+          - conversation
+          - msg_loop
+          variable: msg_loop
+        - value_selector:
+          - conversation
+          - msg_index_start
+          variable: msg_index_start
+        - value_selector:
+          - conversation
+          - msg_index_end
+          variable: msg_index_end
+        - value_selector:
+          - conversation
+          - msg_index_next
+          variable: msg_index_next
+        - value_selector:
+          - conversation
+          - msg_report
+          variable: msg_report
+        - value_selector:
+          - conversation
+          - prompt_questions_query
+          variable: prompt_questions_query
+        - value_selector:
+          - conversation
+          - prompt_report_prompt
+          variable: prompt_report_prompt
+      height: 52
+      id: '17479889206140'
+      position:
+        x: 0
+        y: 207.88410586291968
+      positionAbsolute:
+        x: 0
+        y: 207.88410586291968
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: f3c6a0b2-a572-4e76-93a5-bee4084d1509
+          role: system
+          text: ''
+        - id: 845bbd51-2370-4136-afcf-ebaa4e31be70
+          role: user
+          text: "You are an expert researcher. Today is {{#1747904285787.date#}}.\
+            \ Follow these instructions when responding:\n  - You may be asked to\
+            \ research subjects that is after your knowledge cutoff, assume the user\
+            \ is right when presented with news.\n  - The user is a highly experienced\
+            \ analyst, no need to simplify it, be as detailed as possible and make\
+            \ sure your response is correct.\n  - Be highly organized.\n  - Suggest\
+            \ solutions that I didn't think about.\n  - Be proactive and anticipate\
+            \ my needs.\n  - Treat me as an expert in all subject matter.\n  - Mistakes\
+            \ erode my trust, so be accurate and thorough.\n  - Provide detailed explanations,\
+            \ I'm comfortable with lots of detail.\n  - Value good arguments over\
+            \ authorities, the source is irrelevant.\n  - Consider new technologies\
+            \ and contrarian ideas, not just the conventional wisdom.\n  - You may\
+            \ use high levels of speculation or prediction, just flag it for me.\n"
+        - id: d03e1ae1-c4d3-41a5-91af-44bacad684a9
+          role: user
+          text: ''
+        - id: 540fea6a-06cd-486f-b770-d2c0bff89c9f
+          role: user
+          text: '{{#conversation.prompt_questions_query#}}: <query>{{#conversation.param_topic#}}</query>'
+        selected: false
+        structured_output:
+          schema:
+            properties:
+              questions:
+                description: Follow up questions to clarify the research direction,
+                  max of 3.
+                items:
+                  type: string
+                type: array
+            required: []
+            type: object
+        structured_output_enabled: true
+        title: questions.llm@LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1747996949638'
+      position:
+        x: 332
+        y: 563.1716640676908
+      positionAbsolute:
+        x: 332
+        y: 563.1716640676908
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
     viewport:
-      x: 379.1096408041632
-      y: 334.0116070844606
-      zoom: 0.448166051351523
+      x: 325.9705121661773
+      y: 313.32174604738503
+      zoom: 0.6943255802071142
