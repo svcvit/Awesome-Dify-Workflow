@@ -1,5 +1,5 @@
 app:
-  description: 'Need change environment variables API Secret key for KnowledgeDeepResearchLearn.'
+  description: Need change environment variables API Secret key for KnowledgeDeepResearchLearn.
   icon: 🔁
   icon_background: '#FFEAD5'
   mode: advanced-chat
@@ -14,72 +14,72 @@ kind: app
 version: 0.2.0
 workflow:
   conversation_variables:
+  - description: 'Flag for request var `sys.query` already use by someone step.
+
+      这个变量用于存储用户对话输入是否被某些步骤使用。'
+    id: eb23e109-7c3d-4730-b9d5-6c2c07029f4d
+    name: query_used
+    selector:
+    - conversation
+    - query_used
+    value: 'false'
+    value_type: string
   - description: 'This variable is used to store the original query.
 
       这个变量用于存储原始查询。'
     id: 4b6e3624-ee24-4375-94c9-f5c7f1f508d4
-    name: input_query
+    name: param_topic
     selector:
     - conversation
-    - input_query
+    - param_topic
     value: ''
     value_type: string
   - description: This value determines how many sources to explore.
     id: b5170aa5-9a6c-442a-adac-d55fd74708d6
-    name: input_breadth
+    name: param_breadth
     selector:
     - conversation
-    - input_breadth
+    - param_breadth
     value: 0
     value_type: number
   - description: 'This value determines how many sub-queries to generate.
 
       定义生成多少子查询。'
     id: 96bbff12-2a59-4fcd-8feb-86e02c711658
-    name: input_depth
+    name: param_depth
     selector:
     - conversation
-    - input_depth
+    - param_depth
     value: 0
     value_type: number
-  - description: 'This variable is used to store the user input state.
-
-      这个变量用于存储用户输入状态。'
-    id: d43d663a-f12a-42c6-8c64-8faed867de74
-    name: input_status
-    selector:
-    - conversation
-    - input_status
-    value: none
-    value_type: string
   - description: 'Store user responses to clarifying questions.
 
       存储用户对于澄清性问题的回答。'
     id: 3a086a49-7c82-4325-96b6-bfca63af27f7
-    name: qa_answers
+    name: param_answers
     selector:
     - conversation
-    - qa_answers
+    - param_answers
     value: []
     value_type: array[string]
   - description: 'Store user clarifying questions.
 
       存储用户澄清性问题。'
     id: 6103c656-a4ea-4419-9f75-6ec6ed727d2c
-    name: qa_questions
+    name: param_questions
     selector:
     - conversation
-    - qa_questions
+    - param_questions
     value: []
     value_type: array[string]
   - description: 'This variable is used to store the data passed to and from the sub-workflow.
 
       这个变量用于存储与子工作流程传递的数据。'
     id: 7647629a-a55c-4aab-8943-8fbc17d8fe4d
-    name: data
+    name: loop_data
     selector:
     - conversation
-    - data
+    - loop_data
     value: {}
     value_type: object
   - description: 'This variable is used to store the current processing depth.
@@ -96,16 +96,14 @@ workflow:
 
       这个变量用于存储总共学习到的信息。'
     id: 48b08649-6341-4e91-9428-af556042a6b9
-    name: all_learnings
+    name: loop_learnings
     selector:
     - conversation
-    - all_learnings
+    - loop_learnings
     value: []
     value_type: array[string]
   environment_variables:
-  - description: 'This variable is used to store the API key.
-
-      这个变量用于存储 KnowledgeDeepResearchLearn 子流程的 API 密钥。'
+  - description: ''
     id: a90cc464-087c-4af0-b35a-2564d0e9f79f
     name: app_key
     selector:
@@ -361,311 +359,6 @@ workflow:
     - data:
         isInIteration: false
         isInLoop: false
-        sourceType: code
-        targetType: if-else
-      id: 1745489241178-source-1745489202985-target
-      selected: false
-      source: '1745489241178'
-      sourceHandle: source
-      target: '1745489202985'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: if-else
-        targetType: llm
-      id: 1745489202985-true-1745488861316-target
-      selected: false
-      source: '1745489202985'
-      sourceHandle: 'true'
-      target: '1745488861316'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: assigner
-        targetType: answer
-      id: 1745489153779-source-1745541413002-target
-      selected: false
-      source: '1745489153779'
-      sourceHandle: source
-      target: '1745541413002'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: start
-        targetType: code
-      id: 1745400665579-source-1745544523143-target
-      selected: false
-      source: '1745400665579'
-      sourceHandle: source
-      target: '1745544523143'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: code
-        targetType: code
-      id: 1745544523143-source-1745489241178-target
-      selected: false
-      source: '1745544523143'
-      sourceHandle: source
-      target: '1745489241178'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: assigner
-        targetType: code
-      id: 17455462171830-source-17455506606720-target
-      selected: false
-      source: '17455462171830'
-      sourceHandle: source
-      target: '17455506606720'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: code
-        targetType: if-else
-      id: 17455506606720-source-17455507410080-target
-      selected: false
-      source: '17455506606720'
-      sourceHandle: source
-      target: '17455507410080'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: if-else
-        targetType: assigner
-      id: 1745489202985-false-17455462171830-target
-      selected: false
-      source: '1745489202985'
-      sourceHandle: 'false'
-      target: '17455462171830'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: answer
-        targetType: code
-      id: 1745541413002-source-17455514095660-target
-      selected: false
-      source: '1745541413002'
-      sourceHandle: source
-      target: '17455514095660'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: code
-        targetType: answer
-      id: 17455514095660-source-1745489811927-target
-      selected: false
-      source: '17455514095660'
-      sourceHandle: source
-      target: '1745489811927'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: if-else
-        targetType: code
-      id: 17455507410080-true-17455514095660-target
-      selected: false
-      source: '17455507410080'
-      sourceHandle: 'true'
-      target: '17455514095660'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: if-else
-        targetType: assigner
-      id: 17455476744280-true-1745552469464-target
-      selected: false
-      source: '17455476744280'
-      sourceHandle: 'true'
-      target: '1745552469464'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: assigner
-        targetType: answer
-      id: 1745552469464-source-17455474346920-target
-      selected: false
-      source: '1745552469464'
-      sourceHandle: source
-      target: '17455474346920'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: if-else
-        targetType: parameter-extractor
-      id: 17455476744280-eaad299a-bff2-4532-a764-88111d10bc01-1745549169044-target
-      selected: false
-      source: '17455476744280'
-      sourceHandle: eaad299a-bff2-4532-a764-88111d10bc01
-      target: '1745549169044'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: assigner
-        targetType: answer
-      id: 17455530115600-source-17455531494860-target
-      selected: false
-      source: '17455530115600'
-      sourceHandle: source
-      target: '17455531494860'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: if-else
-        targetType: parameter-extractor
-      id: 17455476744280-af4c9162-219c-4ea5-b938-4a27b1902fe7-17455532204370-target
-      selected: false
-      source: '17455476744280'
-      sourceHandle: af4c9162-219c-4ea5-b938-4a27b1902fe7
-      target: '17455532204370'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: if-else
-        targetType: if-else
-      id: 17455507410080-false-17455476744280-target
-      selected: false
-      source: '17455507410080'
-      sourceHandle: 'false'
-      target: '17455476744280'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: parameter-extractor
-        targetType: if-else
-      id: 1745549169044-source-1745560430026-target
-      selected: false
-      source: '1745549169044'
-      sourceHandle: source
-      target: '1745560430026'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: if-else
-        targetType: answer
-      id: 1745560430026-true-17455474346920-target
-      selected: false
-      source: '1745560430026'
-      sourceHandle: 'true'
-      target: '17455474346920'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: if-else
-        targetType: assigner
-      id: 1745560430026-false-1745548872685-target
-      selected: false
-      source: '1745560430026'
-      sourceHandle: 'false'
-      target: '1745548872685'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: assigner
-        targetType: assigner
-      id: 1745548872685-source-17455530115600-target
-      selected: false
-      source: '1745548872685'
-      sourceHandle: source
-      target: '17455530115600'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: parameter-extractor
-        targetType: if-else
-      id: 17455532204370-source-17455605838530-target
-      selected: false
-      source: '17455532204370'
-      sourceHandle: source
-      target: '17455605838530'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: if-else
-        targetType: assigner
-      id: 17455605838530-false-17455532600770-target
-      selected: false
-      source: '17455605838530'
-      sourceHandle: 'false'
-      target: '17455532600770'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: assigner
-        targetType: answer
-      id: 17455532600770-source-1745547317826-target
-      selected: false
-      source: '17455532600770'
-      sourceHandle: source
-      target: '1745547317826'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: if-else
-        targetType: answer
-      id: 17455605838530-true-17455531494860-target
-      selected: false
-      source: '17455605838530'
-      sourceHandle: 'true'
-      target: '17455531494860'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
         sourceType: answer
         targetType: template-transform
       id: 1745547317826-source-1745564378855-target
@@ -708,6 +401,7 @@ workflow:
         sourceType: answer
         targetType: assigner
       id: 1745487085474-source-1745466752436-target
+      selected: false
       source: '1745487085474'
       sourceHandle: source
       target: '1745466752436'
@@ -721,17 +415,587 @@ workflow:
         sourceType: code
         targetType: answer
       id: 1745484387503-source-1745487085474-target
+      selected: false
       source: '1745484387503'
       sourceHandle: source
       target: '1745487085474'
       targetHandle: target
       type: custom
       zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 1747904083764-source-1747904179988-target
+      selected: false
+      source: '1747904083764'
+      sourceHandle: source
+      target: '1747904179988'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1747904032886-true-1747904083764-target
+      selected: false
+      source: '1747904032886'
+      sourceHandle: 'true'
+      target: '1747904083764'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1747904032886-false-1747904237660-target
+      selected: false
+      source: '1747904032886'
+      sourceHandle: 'false'
+      target: '1747904237660'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: if-else
+      id: 1747904179988-source-1747904237660-target
+      selected: false
+      source: '1747904179988'
+      sourceHandle: source
+      target: '1747904237660'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1747904237660-false-1747905349096-target
+      selected: false
+      source: '1747904237660'
+      sourceHandle: 'false'
+      target: '1747905349096'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1747905349096-source-1747905280642-target
+      selected: false
+      source: '1747905349096'
+      sourceHandle: source
+      target: '1747905280642'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: assigner
+      id: 1745400665579-source-17479062175910-target
+      selected: false
+      source: '1745400665579'
+      sourceHandle: source
+      target: '17479062175910'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: if-else
+      id: 17479062175910-source-1747904032886-target
+      selected: false
+      source: '17479062175910'
+      sourceHandle: source
+      target: '1747904032886'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 17479056620860-source-1747906475038-target
+      selected: false
+      source: '17479056620860'
+      sourceHandle: source
+      target: '1747906475038'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 1747961572801-source-17479056046560-target
+      selected: false
+      source: '1747961572801'
+      sourceHandle: source
+      target: '17479056046560'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1747904237660-true-17479043918630-target
+      selected: false
+      source: '1747904237660'
+      sourceHandle: 'true'
+      target: '17479043918630'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 17479669221900-true-1747905349096-target
+      selected: false
+      source: '17479669221900'
+      sourceHandle: 'true'
+      target: '1747905349096'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 17479669221900-false-1747904285787-target
+      selected: false
+      source: '17479669221900'
+      sourceHandle: 'false'
+      target: '1747904285787'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 17479043918630-source-17479675191400-target
+      selected: false
+      source: '17479043918630'
+      sourceHandle: source
+      target: '17479675191400'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: if-else
+      id: 17479675191400-source-17479669221900-target
+      selected: false
+      source: '17479675191400'
+      sourceHandle: source
+      target: '17479669221900'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1747906475038-true-17479065742040-target
+      selected: false
+      source: '1747906475038'
+      sourceHandle: 'true'
+      target: '17479065742040'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: code
+      id: 17479056046560-source-17479056620860-target
+      selected: false
+      source: '17479056046560'
+      sourceHandle: source
+      target: '17479056620860'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1747906475038-false-17479705175960-target
+      selected: false
+      source: '1747906475038'
+      sourceHandle: 'false'
+      target: '17479705175960'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 17479719574710-source-17479722129480-target
+      selected: false
+      source: '17479719574710'
+      sourceHandle: source
+      target: '17479722129480'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: if-else
+      id: 17479722129480-source-17479721227890-target
+      selected: false
+      source: '17479722129480'
+      sourceHandle: source
+      target: '17479721227890'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 17479721227890-true-17479076230340-target
+      selected: false
+      source: '17479721227890'
+      sourceHandle: 'true'
+      target: '17479076230340'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 17479076230340-false-17479725750040-target
+      selected: false
+      source: '17479076230340'
+      sourceHandle: 'false'
+      target: '17479725750040'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 17479065742040-true-17479076230340-target
+      selected: false
+      source: '17479065742040'
+      sourceHandle: 'true'
+      target: '17479076230340'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 17479065742040-false-17479719574710-target
+      selected: false
+      source: '17479065742040'
+      sourceHandle: 'false'
+      target: '17479719574710'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 17479725750040-source-17479726239150-target
+      selected: false
+      source: '17479725750040'
+      sourceHandle: source
+      target: '17479726239150'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: if-else
+      id: 17479726239150-source-17479726291950-target
+      selected: false
+      source: '17479726239150'
+      sourceHandle: source
+      target: '17479726291950'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1747905280642-true-17479065742040-target
+      selected: false
+      source: '1747905280642'
+      sourceHandle: 'true'
+      target: '17479065742040'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1747905280642-false-1747961572801-target
+      selected: false
+      source: '1747905280642'
+      sourceHandle: 'false'
+      target: '1747961572801'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 17479066918870-source-1745548872685-target
+      selected: false
+      source: '17479066918870'
+      sourceHandle: source
+      target: '1745548872685'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: if-else
+      id: 1745548872685-source-1745560430026-target
+      selected: false
+      source: '1745548872685'
+      sourceHandle: source
+      target: '1745560430026'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1745560430026-false-17455474346920-target
+      selected: false
+      source: '1745560430026'
+      sourceHandle: 'false'
+      target: '17455474346920'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 17479721227890-false-1745549169044-target
+      selected: false
+      source: '17479721227890'
+      sourceHandle: 'false'
+      target: '1745549169044'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: code
+      id: 1745549169044-source-17479066918870-target
+      selected: false
+      source: '1745549169044'
+      sourceHandle: source
+      target: '17479066918870'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 17479726291950-false-17455532204370-target
+      selected: false
+      source: '17479726291950'
+      sourceHandle: 'false'
+      target: '17455532204370'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: code
+      id: 17455532204370-source-17479074750780-target
+      selected: false
+      source: '17455532204370'
+      sourceHandle: source
+      target: '17479074750780'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 17479074750780-source-17455532600770-target
+      selected: false
+      source: '17479074750780'
+      sourceHandle: source
+      target: '17455532600770'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: if-else
+      id: 17455532600770-source-17455605838530-target
+      selected: false
+      source: '17455532600770'
+      sourceHandle: source
+      target: '17455605838530'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 17455605838530-true-1745547317826-target
+      selected: false
+      source: '17455605838530'
+      sourceHandle: 'true'
+      target: '1745547317826'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 17455605838530-false-17455531494860-target
+      selected: false
+      source: '17455605838530'
+      sourceHandle: 'false'
+      target: '17455531494860'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 17479726291950-true-1745547317826-target
+      selected: false
+      source: '17479726291950'
+      sourceHandle: 'true'
+      target: '1745547317826'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 17479076230340-true-1745547317826-target
+      selected: false
+      source: '17479076230340'
+      sourceHandle: 'true'
+      target: '1745547317826'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1745560430026-true-17479076230340-target
+      selected: false
+      source: '1745560430026'
+      sourceHandle: 'true'
+      target: '17479076230340'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1747904285787-source-1745488861316-target
+      selected: false
+      source: '1747904285787'
+      sourceHandle: source
+      target: '1745488861316'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: code
+      id: 1745489153779-source-1747905349096-target
+      selected: false
+      source: '1745489153779'
+      sourceHandle: source
+      target: '1747905349096'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: answer
+      id: 1745541413002-source-1745489811927-target
+      selected: false
+      source: '1745541413002'
+      sourceHandle: source
+      target: '1745489811927'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 17479705175960-false-1745489811927-target
+      selected: false
+      source: '17479705175960'
+      sourceHandle: 'false'
+      target: '1745489811927'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 17479705175960-true-1745541413002-target
+      selected: false
+      source: '17479705175960'
+      sourceHandle: 'true'
+      target: '1745541413002'
+      targetHandle: target
+      type: custom
+      zIndex: 0
     nodes:
     - data:
         author: xiaoyao9184
         desc: ''
-        height: 160
+        height: 1323
         selected: false
         showAuthor: true
         text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"1.
@@ -741,24 +1005,24 @@ workflow:
         theme: blue
         title: ''
         type: ''
-        width: 2000
-      height: 160
+        width: 331
+      height: 1323
       id: '1745543351065'
       position:
         x: 0
-        y: 0
+        y: -163.4058633868344
       positionAbsolute:
         x: 0
-        y: 0
+        y: -163.4058633868344
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom-note
-      width: 2000
+      width: 331
     - data:
         author: xiaoyao9184
         desc: ''
-        height: 1000
+        height: 1323
         selected: false
         showAuthor: true
         text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"2.
@@ -771,24 +1035,24 @@ workflow:
         theme: blue
         title: ''
         type: ''
-        width: 1000
-      height: 1000
+        width: 667
+      height: 1323
       id: '1745541474608'
       position:
-        x: 0
-        y: 160
+        x: 332
+        y: -163.4058633868344
       positionAbsolute:
-        x: 0
-        y: 160
+        x: 332
+        y: -163.4058633868344
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom-note
-      width: 1000
+      width: 667
     - data:
         author: xiaoyao9184
         desc: ''
-        height: 1000
+        height: 1323
         selected: false
         showAuthor: true
         text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"3.
@@ -799,14 +1063,14 @@ workflow:
         title: ''
         type: ''
         width: 1000
-      height: 1000
+      height: 1323
       id: '1745553374613'
       position:
         x: 1000
-        y: 160
+        y: -163.4058633868344
       positionAbsolute:
         x: 1000
-        y: 160
+        y: -163.4058633868344
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -816,7 +1080,7 @@ workflow:
         author: xiaoyao9184
         desc: ''
         height: 700
-        selected: false
+        selected: true
         showAuthor: true
         text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"4.
           Perform DeepSearch Loop","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"The
@@ -843,7 +1107,7 @@ workflow:
       positionAbsolute:
         x: 0
         y: 1160
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom-note
@@ -883,15 +1147,45 @@ workflow:
         selected: false
         title: Start
         type: start
-        variables: []
-      height: 52
+        variables:
+        - label: breadth
+          max_length: 48
+          options: []
+          required: false
+          type: number
+          variable: breadth
+        - label: depth
+          max_length: 48
+          options: []
+          required: false
+          type: number
+          variable: depth
+        - label: topic
+          max_length: 256
+          options: []
+          required: false
+          type: text-input
+          variable: topic
+        - label: questions
+          max_length: 8000
+          options: []
+          required: false
+          type: paragraph
+          variable: questions
+        - label: answers
+          max_length: 8000
+          options: []
+          required: false
+          type: paragraph
+          variable: answers
+      height: 192
       id: '1745400665579'
       position:
         x: 0
-        y: 80
+        y: -15.619827423325134
       positionAbsolute:
         x: 0
-        y: 80
+        y: -15.619827423325134
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -902,7 +1196,7 @@ workflow:
         - comparison_operator: ≥
           id: b894a111-8a81-4fcb-a573-ff9ad6b1158d
           numberVarType: variable
-          value: '{{#conversation.input_depth#}}'
+          value: '{{#conversation.param_depth#}}'
           varType: number
           variable_selector:
           - conversation
@@ -988,7 +1282,7 @@ workflow:
         type: http-request
         url: http://api:5001/v1/workflows/run
         variables: []
-      height: 138
+      height: 108
       id: '1745465341610'
       parentId: '1745465155033'
       position:
@@ -996,7 +1290,7 @@ workflow:
         y: 294
       positionAbsolute:
         x: 353
-        y: 1599
+        y: 1598
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1089,11 +1383,11 @@ workflow:
           - data
           variable_selector:
           - conversation
-          - data
+          - loop_data
           write_mode: over-write
         loop_id: '1745465155033'
         selected: false
-        title: index++@var
+        title: index++@Variable Assigner
         type: assigner
         version: '2'
       height: 114
@@ -1122,7 +1416,7 @@ workflow:
           - loop_index
           write_mode: over-write
         selected: false
-        title: index=0@Var
+        title: index.end@Variable Assigner
         type: assigner
         version: '2'
       height: 86
@@ -1149,7 +1443,7 @@ workflow:
             children: null
             type: object
         selected: false
-        title: Initial Query@Code
+        title: loop@Code
         type: code
         variables:
         - value_selector:
@@ -1158,7 +1452,7 @@ workflow:
           variable: query
         - value_selector:
           - conversation
-          - input_breadth
+          - param_breadth
           variable: breadth
       height: 52
       id: '1745473648411'
@@ -1194,7 +1488,7 @@ workflow:
         variables:
         - value_selector:
           - conversation
-          - data
+          - loop_data
           variable: data
         - value_selector:
           - sys
@@ -1208,7 +1502,7 @@ workflow:
         y: 184
       positionAbsolute:
         x: 353
-        y: 1489
+        y: 1488
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1227,11 +1521,11 @@ workflow:
           - learnings
           variable_selector:
           - conversation
-          - all_learnings
+          - loop_learnings
           write_mode: over-write
         loop_id: '1745465155033'
         selected: false
-        title: all_learnings@var
+        title: learnings@Variable Assigner
         type: assigner
         version: '2'
       height: 86
@@ -1250,10 +1544,10 @@ workflow:
       width: 242
       zIndex: 1002
     - data:
-        code: "\ndef main(all_learnings, breadth, researchGoal) -> dict:\n    data\
+        code: "\ndef main(loop_learnings, breadth, researchGoal) -> dict:\n    data\
           \ = {\n        \"query\": \"Previous research goal: \" + researchGoal,\n\
           \        # \"Follow-up research directions: {{ $json.followUpQuestions.map(q\
-          \ => `\\n${q}`).join('') }}\",\n        \"learnings\": all_learnings,\n\
+          \ => `\\n${q}`).join('') }}\",\n        \"learnings\": loop_learnings,\n\
           \        \"breadth\": breadth\n    }\n    return {\n        \"data\": data\n\
           \    }\n"
         code_language: python3
@@ -1271,11 +1565,11 @@ workflow:
         variables:
         - value_selector:
           - conversation
-          - all_learnings
-          variable: all_learnings
+          - loop_learnings
+          variable: loop_learnings
         - value_selector:
           - conversation
-          - input_breadth
+          - param_breadth
           variable: breadth
         - value_selector:
           - '1745465634000'
@@ -1313,10 +1607,10 @@ workflow:
           - data
           variable_selector:
           - conversation
-          - data
+          - loop_data
           write_mode: over-write
         selected: false
-        title: index=0@Var
+        title: index.start@Variable Assigner
         type: assigner
         version: '2'
       height: 114
@@ -1337,7 +1631,7 @@ workflow:
           enabled: true
           variable_selector:
           - conversation
-          - all_learnings
+          - loop_learnings
         desc: ''
         model:
           completion_params:
@@ -1388,7 +1682,7 @@ workflow:
       positionAbsolute:
         x: 1735
         y: 1484
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -1399,7 +1693,7 @@ workflow:
           '
         desc: ''
         selected: false
-        title: start@Answer
+        title: index.start@Answer
         type: answer
         variables: []
       height: 100
@@ -1435,7 +1729,7 @@ workflow:
         y: 179
       positionAbsolute:
         x: 1007
-        y: 1484
+        y: 1483
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1448,7 +1742,7 @@ workflow:
           '
         desc: ''
         selected: false
-        title: end@Answer
+        title: index.end@Answer
         type: answer
         variables: []
       height: 100
@@ -1478,7 +1772,7 @@ workflow:
         prompt_template:
         - id: f00b686c-96e7-4e68-a649-d5e254e90d09
           role: system
-          text: "You are an expert researcher. Today is {{#1745544523143.date#}}.\
+          text: "You are an expert researcher. Today is {{#1747904285787.date#}}.\
             \ Follow these instructions when responding:\n  - You may be asked to\
             \ research subjects that is after your knowledge cutoff, assume the user\
             \ is right when presented with news.\n  - The user is a highly experienced\
@@ -1495,7 +1789,7 @@ workflow:
           role: user
           text: 'Given the following query from the user, ask some follow up questions
             to clarify the research direction. Return a maximum of 3 questions, but
-            feel free to return less if the original query is clear: <query>{{#sys.query#}}</query>'
+            feel free to return less if the original query is clear: <query>{{#conversation.param_topic#}}</query>'
         - id: 6e312ad0-eef5-4cef-a660-075eefd8e781
           role: assistant
           text: ''
@@ -1512,7 +1806,7 @@ workflow:
             required: []
             type: object
         structured_output_enabled: true
-        title: questions@LLM
+        title: questions.llm@LLM
         type: llm
         variables: []
         vision:
@@ -1521,44 +1815,40 @@ workflow:
       id: '1745488861316'
       position:
         x: 332
-        y: 340
+        y: 565.8248967419413
       positionAbsolute:
         x: 332
-        y: 340
+        y: 565.8248967419413
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 242
     - data:
-        code: "\ndef main(structured_output) -> dict:\n    return {\n        \"qa_questions\"\
-          : structured_output['questions'],\n        \"qa_count\": len(structured_output['questions'])\n\
-          \    }\n"
+        code: "\ndef main(llm_dict) -> dict:\n    data = llm_dict['questions']\n \
+          \   return {\n        \"data\": data\n    }\n"
         code_language: python3
         desc: ''
         outputs:
-          qa_count:
-            children: null
-            type: number
-          qa_questions:
+          data:
             children: null
             type: array[string]
         selected: false
-        title: questions@Code
+        title: questions.llm@Code
         type: code
         variables:
         - value_selector:
           - '1745488861316'
           - structured_output
-          variable: structured_output
+          variable: llm_dict
       height: 52
       id: '1745489088123'
       position:
         x: 332
-        y: 463
+        y: 651.8927168608907
       positionAbsolute:
         x: 332
-        y: 463
+        y: 651.8927168608907
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1571,118 +1861,43 @@ workflow:
           operation: over-write
           value:
           - '1745489088123'
-          - qa_questions
+          - data
           variable_selector:
           - conversation
-          - qa_questions
-          write_mode: over-write
-        - input_type: variable
-          operation: over-write
-          value:
-          - sys
-          - query
-          variable_selector:
-          - conversation
-          - input_query
+          - param_questions
           write_mode: over-write
         selected: false
-        title: questions@Variable Assigner
+        title: questions.llm@Variable Assigner
         type: assigner
         version: '2'
-      height: 114
+      height: 86
       id: '1745489153779'
       position:
         x: 332
-        y: 515
+        y: 702.116822326466
       positionAbsolute:
         x: 332
-        y: 515
+        y: 702.116822326466
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 242
     - data:
-        cases:
-        - case_id: 'true'
-          conditions:
-          - comparison_operator: is
-            id: 6d016128-dee3-4e1a-8b01-260b4713ddf6
-            value: 'false'
-            varType: string
-            variable_selector:
-            - '1745489241178'
-            - qa_started
-          id: 'true'
-          logical_operator: and
+        answer: '{{#17479056620860.number#}}. {{#17479056620860.data#}}'
         desc: ''
         selected: false
-        title: qa_started@IF/ELSE
-        type: if-else
-      height: 124
-      id: '1745489202985'
-      position:
-        x: 0
-        y: 390
-      positionAbsolute:
-        x: 0
-        y: 390
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        code: "\ndef main(questions, answers) -> dict:\n    if len(questions) == 0\
-          \ and len(answers) == 0:\n        qa_started = 'false'\n    else:\n    \
-          \    qa_started = 'true'\n\n    return {\n        \"qa_started\": qa_started,\n\
-          \    }\n"
-        code_language: python3
-        desc: ''
-        outputs:
-          qa_started:
-            children: null
-            type: string
-        selected: false
-        title: qa_started@Code
-        type: code
-        variables:
-        - value_selector:
-          - conversation
-          - qa_questions
-          variable: questions
-        - value_selector:
-          - conversation
-          - qa_answers
-          variable: answers
-      height: 52
-      id: '1745489241178'
-      position:
-        x: 0
-        y: 340
-      positionAbsolute:
-        x: 0
-        y: 340
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        answer: '{{#17455514095660.number#}}. {{#17455514095660.question#}}'
-        desc: ''
-        selected: false
-        title: 'next question@Answer '
+        title: 'answers.index@Answer'
         type: answer
         variables: []
       height: 121
       id: '1745489811927'
       position:
         x: 700
-        y: 715
+        y: 991.3415809224315
       positionAbsolute:
         x: 700
-        y: 715
+        y: 991.3415809224315
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1698,80 +1913,24 @@ workflow:
 
           ```
 
-          Total {{#1745489088123.qa_count#}} questions.
+          Total {{#1747961572801.count#}} questions.
 
-          总共 {{#1745489088123.qa_count#}} 问题。
+          总共 {{#1747961572801.count#}} 问题。
 
           '
         desc: ''
         selected: false
-        title: Ask Questions@Answer
+        title: answers.count@Answer
         type: answer
         variables: []
       height: 233
       id: '1745541413002'
       position:
         x: 700
-        y: 340
+        y: 763.2415890557712
       positionAbsolute:
         x: 700
-        y: 340
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        code: "\ndef main() -> dict:\n    import time\n    current_time = time.strftime(\"\
-          %Y/%m/%d\", time.localtime())\n    return {\n        \"date\": current_time\n\
-          \    }\n"
-        code_language: python3
-        desc: ''
-        outputs:
-          date:
-            children: null
-            type: string
-        selected: false
-        title: date@Code
-        type: code
-        variables: []
-      height: 52
-      id: '1745544523143'
-      position:
-        x: 332
-        y: 80
-      positionAbsolute:
-        x: 332
-        y: 80
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        desc: ''
-        items:
-        - input_type: variable
-          operation: append
-          value:
-          - sys
-          - query
-          variable_selector:
-          - conversation
-          - qa_answers
-          write_mode: over-write
-        selected: false
-        title: qa_answers+=@Variable Assigner
-        type: assigner
-        version: '2'
-      height: 86
-      id: '17455462171830'
-      position:
-        x: 332
-        y: 667
-      positionAbsolute:
-        x: 332
-        y: 667
+        y: 763.2415890557712
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1791,7 +1950,7 @@ workflow:
           '
         desc: ''
         selected: false
-        title: input_end@Answer
+        title: loop@Answer
         type: answer
         variables: []
       height: 212
@@ -1817,69 +1976,17 @@ workflow:
           > 此数值决定将生成多少个子查询。'
         desc: ''
         selected: false
-        title: input_depth@Answer
+        title: depth@Answer
         type: answer
         variables: []
       height: 164
       id: '17455474346920'
       position:
-        x: 1735
-        y: 243
-      positionAbsolute:
-        x: 1735
-        y: 243
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        cases:
-        - case_id: 'true'
-          conditions:
-          - comparison_operator: is
-            id: 6d016128-dee3-4e1a-8b01-260b4713ddf6
-            value: none
-            varType: string
-            variable_selector:
-            - conversation
-            - input_status
-          id: 'true'
-          logical_operator: and
-        - case_id: eaad299a-bff2-4532-a764-88111d10bc01
-          conditions:
-          - comparison_operator: is
-            id: faf058ad-4356-4925-b449-9c6c474389b8
-            value: depth
-            varType: string
-            variable_selector:
-            - conversation
-            - input_status
-          id: eaad299a-bff2-4532-a764-88111d10bc01
-          logical_operator: and
-        - case_id: af4c9162-219c-4ea5-b938-4a27b1902fe7
-          conditions:
-          - comparison_operator: is
-            id: 9f6030c5-2932-437c-9279-d75918f90d4c
-            value: breadth
-            varType: string
-            variable_selector:
-            - conversation
-            - input_status
-          id: af4c9162-219c-4ea5-b938-4a27b1902fe7
-          logical_operator: and
-        desc: ''
-        selected: false
-        title: input_status@IF/ELSE
-        type: if-else
-      height: 220
-      id: '17455476744280'
-      position:
         x: 1000
-        y: 814
+        y: 935
       positionAbsolute:
         x: 1000
-        y: 814
+        y: 935
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1891,24 +1998,33 @@ workflow:
         - input_type: variable
           operation: over-write
           value:
-          - '1745549169044'
-          - depth
+          - '17479066918870'
+          - data
           variable_selector:
           - conversation
-          - input_depth
+          - param_depth
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479066918870'
+          - used
+          variable_selector:
+          - conversation
+          - query_used
           write_mode: over-write
         selected: false
-        title: input_depth@Variable Assigner
+        title: depth.llm@Variable Assigner
         type: assigner
         version: '2'
-      height: 86
+      height: 114
       id: '1745548872685'
       position:
-        x: 1338
-        y: 547
+        x: 1000
+        y: 651.8927168608907
       positionAbsolute:
-        x: 1338
-        y: 547
+        x: 1000
+        y: 651.8927168608907
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1932,7 +2048,7 @@ workflow:
         - query
         reasoning_mode: prompt
         selected: false
-        title: input_depth@Parameter Extractor
+        title: depth.llm@Parameter Extractor
         type: parameter-extractor
         variables: []
         vision:
@@ -1940,169 +2056,11 @@ workflow:
       height: 88
       id: '1745549169044'
       position:
-        x: 1338
-        y: 340
+        x: 1000
+        y: 515.2632007002027
       positionAbsolute:
-        x: 1338
-        y: 340
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        code: "\ndef main(questions, answers) -> dict:\n    if len(questions) > len(answers):\n\
-          \        qa_completed = 'false'\n    elif len(questions) <= len(answers):\n\
-          \        qa_completed = 'true'\n\n    return {\n        \"qa_completed\"\
-          : qa_completed,\n    }\n"
-        code_language: python3
-        desc: ''
-        outputs:
-          qa_completed:
-            children: null
-            type: string
-        selected: false
-        title: qa_completed@Code
-        type: code
-        variables:
-        - value_selector:
-          - conversation
-          - qa_questions
-          variable: questions
-        - value_selector:
-          - conversation
-          - qa_answers
-          variable: answers
-      height: 52
-      id: '17455506606720'
-      position:
-        x: 332
-        y: 751
-      positionAbsolute:
-        x: 332
-        y: 751
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        cases:
-        - case_id: 'true'
-          conditions:
-          - comparison_operator: is
-            id: 6d016128-dee3-4e1a-8b01-260b4713ddf6
-            value: 'false'
-            varType: string
-            variable_selector:
-            - '17455506606720'
-            - qa_completed
-          id: 'true'
-          logical_operator: and
-        desc: ''
-        selected: false
-        title: qa_completed@IF/ELSE
-        type: if-else
-      height: 124
-      id: '17455507410080'
-      position:
-        x: 332
-        y: 884
-      positionAbsolute:
-        x: 332
-        y: 884
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        code: "\ndef main(questions, answers) -> dict:\n    index = len(answers)\n\
-          \    return {\n        \"number\": index + 1,\n        \"question\": questions[index],\n\
-          \    }\n"
-        code_language: python3
-        desc: ''
-        outputs:
-          number:
-            children: null
-            type: number
-          question:
-            children: null
-            type: string
-        selected: false
-        title: next question@Code
-        type: code
-        variables:
-        - value_selector:
-          - conversation
-          - qa_questions
-          variable: questions
-        - value_selector:
-          - conversation
-          - qa_answers
-          variable: answers
-      height: 52
-      id: '17455514095660'
-      position:
-        x: 700
-        y: 667
-      positionAbsolute:
-        x: 700
-        y: 667
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        desc: ''
-        items:
-        - input_type: constant
-          operation: set
-          value: depth
-          variable_selector:
-          - conversation
-          - input_status
-          write_mode: over-write
-        selected: false
-        title: input_depth@Variable Assigner
-        type: assigner
-        version: '2'
-      height: 86
-      id: '1745552469464'
-      position:
-        x: 1338
-        y: 243
-      positionAbsolute:
-        x: 1338
-        y: 243
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        desc: ''
-        items:
-        - input_type: constant
-          operation: set
-          value: breadth
-          variable_selector:
-          - conversation
-          - input_status
-          write_mode: over-write
-        selected: false
-        title: input_breadth@Variable Assigner
-        type: assigner
-        version: '2'
-      height: 86
-      id: '17455530115600'
-      position:
-        x: 1338
-        y: 630
-      positionAbsolute:
-        x: 1338
-        y: 630
+        x: 1000
+        y: 515.2632007002027
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2118,17 +2076,17 @@ workflow:
           > 该数值决定将探索多少个信息来源。'
         desc: ''
         selected: false
-        title: input_breadth@Answer
+        title: breadth@Answer
         type: answer
         variables: []
       height: 164
       id: '17455531494860'
       position:
-        x: 1735
-        y: 630
+        x: 1338
+        y: 935
       positionAbsolute:
-        x: 1735
-        y: 630
+        x: 1338
+        y: 935
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2152,7 +2110,7 @@ workflow:
         - query
         reasoning_mode: prompt
         selected: false
-        title: input_breadth@Parameter Extractor
+        title: breadth.llm@Parameter Extractor
         type: parameter-extractor
         variables: []
         vision:
@@ -2161,10 +2119,10 @@ workflow:
       id: '17455532204370'
       position:
         x: 1338
-        y: 725
+        y: 515.2632007002027
       positionAbsolute:
         x: 1338
-        y: 725
+        y: 515.2632007002027
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2176,24 +2134,33 @@ workflow:
         - input_type: variable
           operation: over-write
           value:
-          - '17455532204370'
-          - breadth
+          - '17479074750780'
+          - data
           variable_selector:
           - conversation
-          - input_breadth
+          - param_breadth
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479074750780'
+          - used
+          variable_selector:
+          - conversation
+          - query_used
           write_mode: over-write
         selected: false
-        title: input_breadth@Variable Assigner
+        title: breadth.llm@Variable Assigner
         type: assigner
         version: '2'
-      height: 86
+      height: 114
       id: '17455532600770'
       position:
         x: 1338
-        y: 940
+        y: 651.8927168608907
       positionAbsolute:
         x: 1338
-        y: 940
+        y: 651.8927168608907
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2203,27 +2170,27 @@ workflow:
         cases:
         - case_id: 'true'
           conditions:
-          - comparison_operator: ≤
+          - comparison_operator: '>'
             id: aa18811f-2588-42ce-915c-4e23450cf2bd
             value: '0'
             varType: number
             variable_selector:
-            - '1745549169044'
-            - depth
+            - '17479066918870'
+            - data
           id: 'true'
           logical_operator: and
         desc: ''
         selected: false
-        title: input_depth@IF/ELSE
+        title: depth.llm@IF/ELSE
         type: if-else
       height: 124
       id: '1745560430026'
       position:
-        x: 1338
-        y: 426.5
+        x: 1000
+        y: 763.2415890557712
       positionAbsolute:
-        x: 1338
-        y: 426.5
+        x: 1000
+        y: 763.2415890557712
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2233,27 +2200,27 @@ workflow:
         cases:
         - case_id: 'true'
           conditions:
-          - comparison_operator: ≤
+          - comparison_operator: '>'
             id: aa18811f-2588-42ce-915c-4e23450cf2bd
             value: '0'
             varType: number
             variable_selector:
-            - '17455532204370'
-            - breadth
+            - '17479074750780'
+            - data
           id: 'true'
           logical_operator: and
         desc: ''
         selected: false
-        title: input_breadth@IF/ELSE
+        title: breadth.llm@IF/ELSE
         type: if-else
       height: 124
       id: '17455605838530'
       position:
         x: 1338
-        y: 814
+        y: 763.2415890557712
       positionAbsolute:
         x: 1338
-        y: 814
+        y: 763.2415890557712
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2265,20 +2232,20 @@ workflow:
         template: "Initial query: {{ query }}\r\nFollow-up Questions and Answers:\r\
           \n{% for i in range(questions | length) %}\r\nquestion: {{ questions[i]\
           \ }}\r\nanswer: {{ answers[i] }}\r\n{% endfor %}"
-        title: Initial Query@Template
+        title: loop@Template
         type: template-transform
         variables:
         - value_selector:
           - conversation
-          - input_query
+          - param_topic
           variable: query
         - value_selector:
           - conversation
-          - qa_questions
+          - param_questions
           variable: questions
         - value_selector:
           - conversation
-          - qa_answers
+          - param_answers
           variable: answers
       height: 52
       id: '1745564378855'
@@ -2293,7 +2260,882 @@ workflow:
       targetPosition: left
       type: custom
       width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: e5643e82-5563-4ddf-a004-174a7cd96b7a
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - param_topic
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: topic.empty@IF
+        type: if-else
+      height: 124
+      id: '1747904032886'
+      position:
+        x: 0
+        y: 515.2632007002027
+      positionAbsolute:
+        x: 0
+        y: 515.2632007002027
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(req_text, query_used, query_text) -> dict:\n    data = ''\n\
+          \    used = query_used\n    if req_text:\n        data = req_text\n    else:\n\
+          \        if query_used == 'false':\n            data = query_text\n    \
+          \        used = 'true'\n    return {\n        \"data\": data,\n        \"\
+          used\": used\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          data:
+            children: null
+            type: string
+          used:
+            children: null
+            type: string
+        selected: false
+        title: topic@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745400665579'
+          - topic
+          variable: req_text
+        - value_selector:
+          - conversation
+          - query_used
+          variable: query_used
+        - value_selector:
+          - sys
+          - query
+          variable: query_text
+      height: 52
+      id: '1747904083764'
+      position:
+        x: 0
+        y: 651.8927168608907
+      positionAbsolute:
+        x: 0
+        y: 651.8927168608907
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1747904083764'
+          - data
+          variable_selector:
+          - conversation
+          - param_topic
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1747904083764'
+          - used
+          variable_selector:
+          - conversation
+          - query_used
+          write_mode: over-write
+        selected: false
+        title: topic@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 114
+      id: '1747904179988'
+      position:
+        x: 0
+        y: 702.116822326466
+      positionAbsolute:
+        x: 0
+        y: 702.116822326466
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: a389899a-c7c4-4fc1-b8d2-2847c5e5b52d
+            value: ''
+            varType: array[string]
+            variable_selector:
+            - conversation
+            - param_questions
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: questions.empty@IF
+        type: if-else
+      height: 124
+      id: '1747904237660'
+      position:
+        x: 332
+        y: 34.960743946862635
+      positionAbsolute:
+        x: 332
+        y: 34.960743946862635
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main() -> dict:\n    import time\n    current_time = time.strftime(\"\
+          %Y/%m/%d\", time.localtime())\n    return {\n        \"date\": current_time\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          date:
+            children: null
+            type: string
+        selected: false
+        title: questions.llm@Var
+        type: code
+        variables: []
+      height: 52
+      id: '1747904285787'
+      position:
+        x: 332
+        y: 515.2632007002027
+      positionAbsolute:
+        x: 332
+        y: 515.2632007002027
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(req_text) -> dict:\n    data = []\n    if req_text:\n  \
+          \      data = req_text.splitlines()\n    return {\n        \"data\": data,\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          data:
+            children: null
+            type: array[string]
+        selected: false
+        title: questions.req@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745400665579'
+          - questions
+          variable: req_text
+      height: 52
+      id: '17479043918630'
+      position:
+        x: 332
+        y: 207.88410586291968
+      positionAbsolute:
+        x: 332
+        y: 207.88410586291968
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 962c1382-0e68-47d0-b422-a53c9e2a61cf
+            value: 'true'
+            varType: string
+            variable_selector:
+            - '1747905349096'
+            - enough
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: answers.enough@IF
+        type: if-else
+      height: 124
+      id: '1747905280642'
+      position:
+        x: 700
+        y: 34.960743946862635
+      positionAbsolute:
+        x: 700
+        y: 34.960743946862635
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(answers, questions) -> dict:\n    if len(answers) >= len(questions):\n\
+          \        enough = 'true'\n    else:\n        enough = 'false'\n    return\
+          \ {\n        \"enough\": enough\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          enough:
+            children: null
+            type: string
+        selected: false
+        title: answers.enough@Code
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - param_answers
+          variable: answers
+        - value_selector:
+          - conversation
+          - param_questions
+          variable: questions
+      height: 52
+      id: '1747905349096'
+      position:
+        x: 700
+        y: -15.619827423325134
+      positionAbsolute:
+        x: 700
+        y: -15.619827423325134
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1747961572801'
+          - data
+          variable_selector:
+          - conversation
+          - param_answers
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1747961572801'
+          - used
+          variable_selector:
+          - conversation
+          - query_used
+          write_mode: over-write
+        selected: false
+        title: answers@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 114
+      id: '17479056046560'
+      position:
+        x: 700
+        y: 258.3841058629197
+      positionAbsolute:
+        x: 700
+        y: 258.3841058629197
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(questions, answers, count) -> dict:\n    index_start = len(questions)\
+          \ - count\n    if len(questions) > len(answers):\n        index = len(answers)\n\
+          \        number = index - index_start + 1\n        return {\n          \
+          \  \"data\": questions[index],\n            \"number\": number\n       \
+          \ }\n    else:\n        return {\n            \"data\": '',\n          \
+          \  \"number\": -1\n        }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          data:
+            children: null
+            type: string
+          number:
+            children: null
+            type: number
+        selected: false
+        title: answers.number@Code
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - param_questions
+          variable: questions
+        - value_selector:
+          - conversation
+          - param_answers
+          variable: answers
+        - value_selector:
+          - '1747961572801'
+          - count
+          variable: count
+      height: 52
+      id: '17479056620860'
+      position:
+        x: 700
+        y: 465.2093487318335
+      positionAbsolute:
+        x: 700
+        y: 465.2093487318335
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: constant
+          operation: set
+          value: 'false'
+          variable_selector:
+          - conversation
+          - query_used
+          write_mode: over-write
+        selected: false
+        title: start@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 86
+      id: '17479062175910'
+      position:
+        x: 0
+        y: 207.88410586291968
+      positionAbsolute:
+        x: 0
+        y: 207.88410586291968
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: ≤
+            id: f4a1a2ba-0fae-460f-b2ff-c4e423023af8
+            value: '0'
+            varType: number
+            variable_selector:
+            - '17479056620860'
+            - number
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: answers.number@IF
+        type: if-else
+      height: 124
+      id: '1747906475038'
+      position:
+        x: 700
+        y: 515.2632007002027
+      positionAbsolute:
+        x: 700
+        y: 515.2632007002027
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '>'
+            id: e5643e82-5563-4ddf-a004-174a7cd96b7a
+            value: '0'
+            varType: number
+            variable_selector:
+            - conversation
+            - param_depth
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: depth@IF
+        type: if-else
+      height: 124
+      id: '17479065742040'
+      position:
+        x: 1000
+        y: 34.960743946862635
+      positionAbsolute:
+        x: 1000
+        y: 34.960743946862635
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(query_used, query_number, query_success) -> dict:\n    data\
+          \ = 0\n    used = query_used\n    if query_used == 'false' and isinstance(query_number,\
+          \ int):\n        data = query_number\n        used = 'true'\n    return\
+          \ {\n        \"data\": data,\n        \"used\": used\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          data:
+            children: null
+            type: number
+          used:
+            children: null
+            type: string
+        selected: false
+        title: depth.llm@Code
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - query_used
+          variable: query_used
+        - value_selector:
+          - '1745549169044'
+          - depth
+          variable: query_number
+        - value_selector:
+          - '1745549169044'
+          - __is_success
+          variable: query_success
+      height: 52
+      id: '17479066918870'
+      position:
+        x: 1000
+        y: 601.6088972940868
+      positionAbsolute:
+        x: 1000
+        y: 601.6088972940868
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(query_used, query_number, query_success) -> dict:\n    data\
+          \ = 0\n    used = query_used\n    if query_used == 'false' and isinstance(query_number,\
+          \ int):\n        data = query_number\n        used = 'true'\n    return\
+          \ {\n        \"data\": data,\n        \"used\": used\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          data:
+            children: null
+            type: number
+          used:
+            children: null
+            type: string
+        selected: false
+        title: breadth.llm@Code
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - query_used
+          variable: query_used
+        - value_selector:
+          - '17455532204370'
+          - breadth
+          variable: query_number
+        - value_selector:
+          - '1745549169044'
+          - __is_success
+          variable: query_success
+      height: 52
+      id: '17479074750780'
+      position:
+        x: 1338
+        y: 601.6088972940868
+      positionAbsolute:
+        x: 1338
+        y: 601.6088972940868
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '>'
+            id: e5643e82-5563-4ddf-a004-174a7cd96b7a
+            value: '0'
+            varType: number
+            variable_selector:
+            - conversation
+            - param_breadth
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: breadth@IF
+        type: if-else
+      height: 124
+      id: '17479076230340'
+      position:
+        x: 1338
+        y: 34.960743946862635
+      positionAbsolute:
+        x: 1338
+        y: 34.960743946862635
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(answers, req_text, questions, query_used, query_text) ->\
+          \ dict:\n    data = answers\n    used = query_used\n    count = len(questions)\n\
+          \    if req_text:\n        data = req_text.splitlines()\n        count =\
+          \ len(questions) - len(data) \n    if len(questions) > len(data):\n    \
+          \    if query_used == 'false':\n            data.append(query_text)\n  \
+          \          used = 'true'\n    return {\n        \"data\": data,\n      \
+          \  \"used\": used,\n        \"count\": count\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          count:
+            children: null
+            type: number
+          data:
+            children: null
+            type: array[string]
+          used:
+            children: null
+            type: string
+        selected: false
+        title: answers@Code
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - param_answers
+          variable: answers
+        - value_selector:
+          - '1745400665579'
+          - answers
+          variable: req_text
+        - value_selector:
+          - conversation
+          - param_questions
+          variable: questions
+        - value_selector:
+          - conversation
+          - query_used
+          variable: query_used
+        - value_selector:
+          - sys
+          - query
+          variable: query_text
+      height: 52
+      id: '1747961572801'
+      position:
+        x: 700
+        y: 207.88410586291968
+      positionAbsolute:
+        x: 700
+        y: 207.88410586291968
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: f4a1a2ba-0fae-460f-b2ff-c4e423023af8
+            value: ''
+            varType: array[string]
+            variable_selector:
+            - '17479043918630'
+            - data
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: questions.req@IF
+        type: if-else
+      height: 124
+      id: '17479669221900'
+      position:
+        x: 332
+        y: 342.1347590742219
+      positionAbsolute:
+        x: 332
+        y: 342.1347590742219
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479043918630'
+          - data
+          variable_selector:
+          - conversation
+          - param_questions
+          write_mode: over-write
+        selected: false
+        title: questions.req@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 86
+      id: '17479675191400'
+      position:
+        x: 332
+        y: 258.3841058629197
+      positionAbsolute:
+        x: 332
+        y: 258.3841058629197
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: 9331baf8-814e-4b17-9815-edf1742dffc8
+            value: '1'
+            varType: number
+            variable_selector:
+            - '17479056620860'
+            - number
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: answers.number@IF
+        type: if-else
+      height: 124
+      id: '17479705175960'
+      position:
+        x: 700
+        y: 640.0868637717357
+      positionAbsolute:
+        x: 700
+        y: 640.0868637717357
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(req_number) -> dict:\n    data = 0\n    if req_number:\n\
+          \        data = req_number\n    return {\n        \"data\": data\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          data:
+            children: null
+            type: number
+        selected: false
+        title: depth.req@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745400665579'
+          - depth
+          variable: req_number
+      height: 52
+      id: '17479719574710'
+      position:
+        x: 1000
+        y: 207.88410586291968
+      positionAbsolute:
+        x: 1000
+        y: 207.88410586291968
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '>'
+            id: e5643e82-5563-4ddf-a004-174a7cd96b7a
+            value: '0'
+            varType: number
+            variable_selector:
+            - '17479719574710'
+            - data
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: depth.req@IF
+        type: if-else
+      height: 124
+      id: '17479721227890'
+      position:
+        x: 1000
+        y: 342.1347590742219
+      positionAbsolute:
+        x: 1000
+        y: 342.1347590742219
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479719574710'
+          - data
+          variable_selector:
+          - conversation
+          - param_depth
+          write_mode: over-write
+        selected: false
+        title: depth.req@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 86
+      id: '17479722129480'
+      position:
+        x: 1000
+        y: 258.3841058629197
+      positionAbsolute:
+        x: 1000
+        y: 258.3841058629197
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\ndef main(req_number) -> dict:\n    data = 0\n    if req_number:\n\
+          \        data = req_number\n    return {\n        \"data\": data\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          data:
+            children: null
+            type: number
+        selected: false
+        title: breadth.req@Code
+        type: code
+        variables:
+        - value_selector:
+          - '1745400665579'
+          - breadth
+          variable: req_number
+      height: 52
+      id: '17479725750040'
+      position:
+        x: 1338
+        y: 207.88410586291968
+      positionAbsolute:
+        x: 1338
+        y: 207.88410586291968
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '17479725750040'
+          - data
+          variable_selector:
+          - conversation
+          - param_breadth
+          write_mode: over-write
+        selected: false
+        title: breadth.req@Variable Assigner
+        type: assigner
+        version: '2'
+      height: 86
+      id: '17479726239150'
+      position:
+        x: 1338
+        y: 258.3841058629197
+      positionAbsolute:
+        x: 1338
+        y: 258.3841058629197
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '>'
+            id: e5643e82-5563-4ddf-a004-174a7cd96b7a
+            value: '0'
+            varType: number
+            variable_selector:
+            - '17479725750040'
+            - data
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: breadth.req@IF
+        type: if-else
+      height: 124
+      id: '17479726291950'
+      position:
+        x: 1338
+        y: 342.1347590742219
+      positionAbsolute:
+        x: 1338
+        y: 342.1347590742219
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
     viewport:
-      x: 243
-      y: 6
-      zoom: 0.5
+      x: 379.1096408041632
+      y: 334.0116070844606
+      zoom: 0.448166051351523
