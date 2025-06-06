@@ -17,8 +17,8 @@
 
 ### VIP群
 此外，我特地拉了2个资深小伙伴，组建了一个VIP群，此群为**付费**加入，目前试运行价格 365/年，预计3个月后会涨价。确保你的提问都可以被解答。群主为3人：
-- Ron：DIFY资深用户，发布有[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)、以及插件[对话Agent](https://github.com/svcvit/dify-plugin-tod_agent)、[Artifacts](https://github.com/svcvit/dify-plugin-artifacts)等。
-- [hjlarry](https://github.com/hjlarry)：Dify核心贡献者，累计贡献200+PR, 10万+代码。
+- [svcvit](https://github.com/svcvit)：[Dify官方认证核心贡献者](https://dify.ai/blog/100k-stars-on-github-thank-you-to-our-amazing-open-source-community)，发布有[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)、以及插件[对话Agent](https://github.com/svcvit/dify-plugin-tod_agent)、[Artifacts](https://github.com/svcvit/dify-plugin-artifacts)等。
+- [hjlarry](https://github.com/hjlarry)：[Dify官方认证核心贡献者](https://dify.ai/blog/100k-stars-on-github-thank-you-to-our-amazing-open-source-community)，累计贡献200+PR, 10万+代码。
 - [wwwzhouhui](https://github.com/wwwzhouhui/dify-for-dsl)：AI技术布道师，微信分享文章90余篇，工作流50+。
 
 > 👑 加入VIP群你将获得：
