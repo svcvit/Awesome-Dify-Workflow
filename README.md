@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/svcvit-awesome-dify-workflow-badge.png)](https://mseep.ai/app/svcvit-awesome-dify-workflow)
+
 <div align="center">
 
 # Awesome-Dify-Workflow 🚀
