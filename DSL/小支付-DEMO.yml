@@ -1,0 +1,606 @@
+app:
+  description: 使用支付流程的DEMO示例
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 小支付-DEMO
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.0.23@5b670a358c9d1293a4d74e34835f25578d301e61f8c0a506b5d83b8e8e9945bd
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: hjlarry/small_pay:0.0.1@962d2776f1ebc4056e1bb872f59ea868ec0d6abc5b8771aa3912f9e76005dde4
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 63221d0a-0a62-489f-957c-376d77fad0f6
+    name: status
+    selector:
+    - conversation
+    - status
+    value: 0
+    value_type: number
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1748919463196-true-1748921921613-target
+      source: '1748919463196'
+      sourceHandle: 'true'
+      target: '1748921921613'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: answer
+      id: 1748921921613-source-1748919164057-target
+      source: '1748921921613'
+      sourceHandle: source
+      target: '1748919164057'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1748916923525-source-1748922016458-target
+      source: '1748916923525'
+      sourceHandle: source
+      target: '1748922016458'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1748922016458-c6813c2a-53a5-47ef-bcaf-69561e5f8a15-1748922190710-target
+      source: '1748922016458'
+      sourceHandle: c6813c2a-53a5-47ef-bcaf-69561e5f8a15
+      target: '1748922190710'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1748922190710-source-1748922214985-target
+      source: '1748922190710'
+      sourceHandle: source
+      target: '1748922214985'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1748922016458-false-1748922224347-target
+      source: '1748922016458'
+      sourceHandle: 'false'
+      target: '1748922224347'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1748922016458-true-1749220945757-target
+      source: '1748922016458'
+      sourceHandle: 'true'
+      target: '1749220945757'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1749220945757-source-answer-target
+      source: '1749220945757'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: tool
+      id: answer-source-1749221017459-target
+      source: answer
+      sourceHandle: source
+      target: '1749221017459'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: 1749221017459-source-1748919463196-target
+      source: '1749221017459'
+      sourceHandle: source
+      target: '1748919463196'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 52
+      id: '1748916923525'
+      position:
+        x: 30
+        y: 336
+      positionAbsolute:
+        x: 30
+        y: 336
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '请使用微信扫描以下二维码，并在2分钟内完成支付，支付成功后即可开始对话。
+
+
+          {{#1749220945757.files#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 135
+      id: answer
+      position:
+        x: 939
+        y: 336
+      positionAbsolute:
+        x: 939
+        y: 336
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_team_authorization: false
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: The unit is Yuan, between 1 and 200.
+            ja_JP: The unit is Yuan, between 1 and 200.
+            pt_BR: The unit is Yuan, between 1 and 200.
+            zh_Hans: 以元为单位，1元至200元之间。例如1.25
+          label:
+            en_US: Order Price
+            ja_JP: Order Price
+            pt_BR: Order Price
+            zh_Hans: 订单价格
+          llm_description: ''
+          max: 200
+          min: 1
+          name: money
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: Choose a friendly order title is helpful for pay
+            ja_JP: Choose a friendly order title is helpful for pay
+            pt_BR: Choose a friendly order title is helpful for pay
+            zh_Hans: 选择一个友好的订单标题，用户更容易付款
+          label:
+            en_US: Order Title
+            ja_JP: Order Title
+            pt_BR: Order Title
+            zh_Hans: 订单标题
+          llm_description: ''
+          max: null
+          min: null
+          name: title
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: The order's description
+            ja_JP: The order's description
+            pt_BR: The order's description
+            zh_Hans: 订单的详细信息描述
+          label:
+            en_US: Order Description
+            ja_JP: Order Description
+            pt_BR: Order Description
+            zh_Hans: 订单描述
+          llm_description: ''
+          max: null
+          min: null
+          name: desc
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          desc: ''
+          money: ''
+          title: ''
+        provider_id: hjlarry/small_pay/small_pay
+        provider_name: hjlarry/small_pay/small_pay
+        provider_type: builtin
+        selected: true
+        title: 创建订单
+        tool_configurations:
+          desc: null
+          money: 1.12
+          title: DIFY workflow
+        tool_description: 使用此工具创建订单并获取支付二维码
+        tool_label: 创建订单
+        tool_name: create_order
+        tool_parameters: {}
+        type: tool
+      height: 140
+      id: '1749220945757'
+      position:
+        x: 636
+        y: 336
+      positionAbsolute:
+        x: 636
+        y: 336
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: Cool，支付成功，本次付款可以进行3轮对话，尽情的使用吧！
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 116
+      id: '1748919164057'
+      position:
+        x: 939
+        y: 867.2847845587512
+      positionAbsolute:
+        x: 939
+        y: 867.2847845587512
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 73cf2577-14fa-4410-8113-0bf878aad09c
+            value: 支付成功
+            varType: string
+            variable_selector:
+            - '1749221017459'
+            - text
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 判断支付成功
+        type: if-else
+      height: 124
+      id: '1748919463196'
+      position:
+        x: 939
+        y: 607.9974734343846
+      positionAbsolute:
+        x: 939
+        y: 607.9974734343846
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_team_authorization: false
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional. If not filled, it will try to query the order number
+              according to the conversation ID.
+            ja_JP: Optional. If not filled, it will try to query the order number
+              according to the conversation ID.
+            pt_BR: Optional. If not filled, it will try to query the order number
+              according to the conversation ID.
+            zh_Hans: 选填。如果不填写，则会尝试根据会话ID查询订单号。
+          label:
+            en_US: Order Number
+            ja_JP: Order Number
+            pt_BR: Order Number
+            zh_Hans: 订单号
+          llm_description: ''
+          max: null
+          min: null
+          name: order_no
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          order_no: ''
+        provider_id: hjlarry/small_pay/small_pay
+        provider_name: hjlarry/small_pay/small_pay
+        provider_type: builtin
+        selected: false
+        title: 查询订单
+        tool_configurations: {}
+        tool_description: 使用此工具查询订单状态
+        tool_label: 查询订单
+        tool_name: query_order
+        tool_parameters:
+          order_no:
+            type: mixed
+            value: '{{#1749220945757.text#}}'
+        type: tool
+      height: 52
+      id: '1749221017459'
+      position:
+        x: 939
+        y: 515
+      positionAbsolute:
+        x: 939
+        y: 515
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        items:
+        - input_type: constant
+          operation: set
+          value: 1
+          variable_selector:
+          - conversation
+          - status
+          write_mode: over-write
+        selected: false
+        title: 变量赋值
+        type: assigner
+        version: '2'
+      height: 86
+      id: '1748921921613'
+      position:
+        x: 939
+        y: 747.8092588445822
+      positionAbsolute:
+        x: 939
+        y: 747.8092588445822
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: cc5cc3e9-68b9-44da-978c-85185de516fb
+            value: '0'
+            varType: number
+            variable_selector:
+            - conversation
+            - status
+          id: 'true'
+          logical_operator: and
+        - case_id: c6813c2a-53a5-47ef-bcaf-69561e5f8a15
+          conditions:
+          - comparison_operator: '='
+            id: 0e4c976e-d1c5-41a1-a025-3e814abc4e53
+            value: '1'
+            varType: number
+            variable_selector:
+            - conversation
+            - status
+          - comparison_operator: ≤
+            id: 6676a122-f52f-42e6-a676-f681e9faabf2
+            value: '3'
+            varType: number
+            variable_selector:
+            - sys
+            - dialogue_count
+          id: c6813c2a-53a5-47ef-bcaf-69561e5f8a15
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 判断支付状态和对话轮次
+        type: if-else
+      height: 198
+      id: '1748922016458'
+      position:
+        x: 333
+        y: 336
+      positionAbsolute:
+        x: 333
+        y: 336
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 37ff8ada-68eb-4ec8-b906-ca3981723f85
+          role: system
+          text: 你是一个聊天机器人
+        - id: 064d0167-2cc0-46c8-a505-ef84a519aae8
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: 付款后提供的服务
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 88
+      id: '1748922190710'
+      position:
+        x: 636
+        y: 515
+      positionAbsolute:
+        x: 636
+        y: 515
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1748922190710.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 103
+      id: '1748922214985'
+      position:
+        x: 640.3111857145777
+        y: 630.6624770211636
+      positionAbsolute:
+        x: 640.3111857145777
+        y: 630.6624770211636
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: Sorry，目前对话超过3轮，本次付费服务已结，如需继续，请点击左侧开启新会话吧～
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 132
+      id: '1748922224347'
+      position:
+        x: 333
+        y: 579.7202046809119
+      positionAbsolute:
+        x: 333
+        y: 579.7202046809119
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 129.88673616076767
+      y: -161.49772400553974
+      zoom: 0.8807336782542179
