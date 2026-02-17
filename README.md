@@ -121,13 +121,6 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 ## DIFY 部署
 如果你知道熟悉 Docker环境，可以按照官方教程，使用Docker进行DIFY的本地部署。如果你懒得折腾，官方 [https://cloud.dify.ai/](https://cloud.dify.ai/) 也是个不错的选择，免费用户可以创建最多5个流程。后期可以直接充值使用。
 
-如果你希望找个免费的云服务器部署，也可以使用CLAWCLOUD的云服务，欢迎使用我的邀请链接[https://console.run.claw.cloud/signin?link=WHM8EK4T7FH9](https://console.run.claw.cloud/signin?link=WHM8EK4T7FH9) 注册，注意：
-- 注册的时候使用**Github登录**，如果你的github注册日期超过**180天**，无需绑定任何银行卡，即可获得每月5美金的免费额度，每月哦！！！
-- DIFY目前已经入驻应用商店，填入一个密码，即可完成安装。对于个人用户来讲，已经够用。
-- 因为支持新加坡、日本、美国服务区，所以天然翻墙，免除模型需要代理的困扰。
-
-![](./snapshots/Xnip2025-04-27_21-50-02.jpg)
-
 
 
 ## 参考截图
