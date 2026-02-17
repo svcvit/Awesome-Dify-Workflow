@@ -15,21 +15,6 @@
 所有的 Workflow 基本都可以 **免费** 使用，更多 Workflow 收集整理中……
 
 
-### VIP群
-此外，我特地拉了2个资深小伙伴，组建了一个VIP群，此群为**付费**加入，目前试运行价格 365/年，预计3个月后会涨价。确保你的提问都可以被解答。群主为3人：
-- [svcvit](https://github.com/svcvit)：[Dify官方认证核心贡献者](https://dify.ai/blog/100k-stars-on-github-thank-you-to-our-amazing-open-source-community)，发布有[dify-sandbox-py](https://github.com/svcvit/dify-sandbox-py)、以及插件[对话Agent](https://github.com/svcvit/dify-plugin-tod_agent)、[Artifacts](https://github.com/svcvit/dify-plugin-artifacts)等。
-- [hjlarry](https://github.com/hjlarry)：[Dify官方认证核心贡献者](https://dify.ai/blog/100k-stars-on-github-thank-you-to-our-amazing-open-source-community)，累计贡献200+PR, 10万+代码。
-- [wwwzhouhui](https://github.com/wwwzhouhui/dify-for-dsl)：AI技术布道师，微信分享文章90余篇，工作流50+。
-
-> 👑 加入VIP群你将获得：
-> - 一个知识库，不定期更新文章、工作流、插件教程等。
-> - 解答关于流程设计，DIFY插件开发等等问题。
-> - 共享群主硅基流动的APIKEY，直接使用DeepSeek、Qwen3、Rerank、语音转文本各种模型用于学习和折腾。需要的入群后私信群主即可。
-> - 这是目前的聊天记录，供参考：[聊天记录](chat_history.md)
-> - 扫描下方二维码，备注 VIP，支付 365/年，邀请入群。![](./snapshots/Xnip2025-05-15_18-48-29.jpg)
-
-
-
 ## 常见问题
 这里总结了一些群里常见的问题，不定期更新，内容不会很多，希望对你有帮助。
 
@@ -130,9 +115,8 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 
 ## 模型
 
-- 你可以使用最近火热的deepseek-R1，硅基流动提供免费2000万Tokens，如果使用邀请注册，你和我都会获赠免费2000万token的额度：[https://cloud.siliconflow.cn/i/MwADckCi](https://cloud.siliconflow.cn/i/MwADckCi)。 
-- 如果你希望体验 OpenAI 或 Anthropic 的模型，可以使用我搭建的服务 [CoffBox](https://one.coffbox.com/) 的服务。配置方式参考 [如何在Dify中使用CoffBox的服务](https://blog.vcvit.me/2024/11/13/how-to-use-one-api-in-dify/)
-这个方式仅供个人使用，如果你需要大规模使用，[openrouter](https://openrouter.ai/)会是个更好的选择。
+- 最近火热的智谱GLM-4.7模型有邀请计划，邀请好友，赚取积分——最高可享20%奖励，无上限：[https://z.ai/subscribe?ic=C28EMM98TG](https://z.ai/subscribe?ic=C28EMM98TG)。 
+- 硅基流动提供一些开源模型，例如Deepseek-R1、qwen等模型，可以使用后面的链接邀请注册：[https://cloud.siliconflow.cn/i/MwADckCi](https://cloud.siliconflow.cn/i/MwADckCi)。 
 
 ## DIFY 部署
 如果你知道熟悉 Docker环境，可以按照官方教程，使用Docker进行DIFY的本地部署。如果你懒得折腾，官方 [https://cloud.dify.ai/](https://cloud.dify.ai/) 也是个不错的选择，免费用户可以创建最多5个流程。后期可以直接充值使用。
