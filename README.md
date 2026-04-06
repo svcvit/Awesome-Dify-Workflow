@@ -15,6 +15,7 @@
 所有的 Workflow 基本都可以 **免费** 使用，更多 Workflow 收集整理中……
 
 
+- [guardian-agent-prompts](https://github.com/milkomida77/guardian-agent-prompts) - 49 production-tested AI agent system prompts for multi-agent workflow orchestration with task delegation, quality gates, and automated coordination. MIT licensed.
 ## ❤️赞助商
 
 <details open>
