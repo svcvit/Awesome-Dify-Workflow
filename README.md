@@ -15,6 +15,7 @@
 所有的 Workflow 基本都可以 **免费** 使用，更多 Workflow 收集整理中……
 
 
+- [Gitstar](https://dev.gitstar.ai?utm_medium=github_readme&utm_source=awesome_list&utm_campaign=svcvit_Awesome-Dify-Workflow) - Follow developers on GitHub and see what repos they star. Like a social feed for repo discovery.
 ## ❤️赞助商
 
 <details open>
