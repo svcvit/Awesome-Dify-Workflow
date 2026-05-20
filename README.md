@@ -1,6 +1,9 @@
 <div align="center">
 
 # Awesome-Dify-Workflow 🚀
+
+* [Ano](https://ano.chat) - A collaborative shell with built-in AI integration (Claude Code) and custom CLI/MCP automations designed for elite devs.
+
 <strong>Share & Discover Useful Dify Workflows! For personal use & learning. </strong>
 
 [English](README_EN.md) | [中文](README.md)
