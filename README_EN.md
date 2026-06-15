@@ -115,6 +115,11 @@ All DSLs are in workflow mode, which can be conveniently published as tools and 
 
 You can refer to the description of each yml below to find the Workflow you need, then locate the corresponding file in the DSL folder, copy the file's URL, and import it into your Dify account.
 
+## 2025-06-15 Update
+| File                               | Description                                                                                                                                                                           | Source                                                                |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `Web Search with Superhighway.yml` | Web search workflow: takes a user query, calls the [Superhighway](https://superhighway.walls.sh/) `/search` endpoint via an HTTP Request node for real-time web search, then uses an LLM node to summarize the results with inline source links. Superhighway is a web search API for AI agents — use a free API key, or pay per call in USDC via x402 with no signup. Replace the API key after importing. | [Superhighway](https://superhighway.walls.sh/) |
+
 ## 2025-04-17 Update
 | File                               | Description                                                                                                                                                                           | Source                                                                |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |

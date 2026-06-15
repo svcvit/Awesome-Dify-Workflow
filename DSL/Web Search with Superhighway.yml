@@ -1,0 +1,236 @@
+app:
+  description: Search the web using the Superhighway API and summarize the results with an LLM. Takes a user query, calls the /search endpoint over HTTP, then has an LLM produce a clear, cited answer.
+  icon: 🔍
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: Web Search with Superhighway
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: http-request
+      id: start-source-http-target
+      source: start
+      sourceHandle: source
+      target: http-request
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: llm
+      id: http-source-llm-target
+      source: http-request
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: llm-source-end-target
+      source: llm
+      sourceHandle: source
+      target: end
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: Ask anything — the query is sent to Superhighway web search.
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: Query
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: query
+      height: 90
+      id: start
+      position:
+        x: 30
+        y: 282
+      positionAbsolute:
+        x: 30
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config:
+            api_key: Bearer YOUR_SUPERHIGHWAY_API_KEY
+            header: Authorization
+            type: bearer
+          type: api-key
+        body:
+          data: ''
+          type: none
+        desc: Call the Superhighway /search endpoint. Replace the API key, or pay per call via x402/USDC on Base.
+        headers: 'Accept:application/json'
+        method: get
+        params: 'q:{{#start.query#}}
+          limit:5'
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: Superhighway Search
+        type: http-request
+        url: https://superhighway.walls.sh/search
+        variables: []
+      height: 158
+      id: http-request
+      position:
+        x: 334
+        y: 282
+      positionAbsolute:
+        x: 334
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: Summarize the search results into a clear, cited answer.
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: system-prompt
+          role: system
+          text: 'You are a helpful research assistant. You are given JSON search results
+            from a web search API. Read the results and write a clear, concise answer
+            to the user''s query. Cite the source links you used inline as Markdown links.
+            If the results do not contain the answer, say so honestly.'
+        - id: user-prompt
+          role: user
+          text: 'Query: {{#start.query#}}
+
+
+            Search results (JSON):
+
+            {{#http-request.body#}}
+
+
+            Write the answer now, citing sources.'
+        selected: false
+        title: Summarize Results
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: llm
+      position:
+        x: 638
+        y: 282
+      positionAbsolute:
+        x: 638
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: Return the LLM answer.
+        outputs:
+        - value_selector:
+          - llm
+          - text
+          variable: answer
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: end
+      position:
+        x: 942
+        y: 282
+      positionAbsolute:
+        x: 942
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 0
+      y: 0
+      zoom: 1
