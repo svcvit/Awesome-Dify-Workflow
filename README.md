@@ -329,6 +329,12 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 | -------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `Python Coding Prompt.yml` | 通过聊天对话方式生成 Python 代码 | [Sonnet 3.5 for Coding 😍 - System Prompt](https://www.reddit.com/r/ClaudeAI/comments/1dwra38/sonnet_35_for_coding_system_prompt/) |
 
+## 相关项目
+
+| 项目 | 描述 |
+| ---- | ---- |
+| [IHUI-AI](https://github.com/IHUI-INF-AI/IHUI-AI) | 八端全栈 AI 操作系统，统一 176 个 LLM（LangGraph + MCP + A2A），包含 RAG 知识库、智能体市场、多租户 RLS（340 表）。可作为 Dify 工作流的编排与运行平台，Live demo: https://ihui.ai |
+
 ## 使用方法
 
 注册 [Dify](https://cloud.dify.ai/) 账号，添加模型。
