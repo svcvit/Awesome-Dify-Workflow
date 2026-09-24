@@ -115,6 +115,12 @@ All DSLs are in workflow mode, which can be conveniently published as tools and 
 
 You can refer to the description of each yml below to find the Workflow you need, then locate the corresponding file in the DSL folder, copy the file's URL, and import it into your Dify account.
 
+## 2026-09-24 Update
+
+| File | Description | Source |
+| --- | --- | --- |
+| `Customer Feedback Triage.yml` | A model-free customer-feedback triage Workflow with no plugin, dataset, credential, or external API dependency. It demonstrates input validation, priority routing, invalid/follow-up/standard branches, and Variable Aggregator convergence. Target: Dify 1.17.1 / App DSL 0.7.0. ![](./snapshots/customer-feedback-triage.png) | [dify-dsl-skill](https://github.com/LeeHoo29/dify-dsl-skill/tree/main/showcase/customer-feedback-triage) |
+
 ## 2025-04-17 Update
 | File                               | Description                                                                                                                                                                           | Source                                                                |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |

@@ -148,6 +148,12 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 
 你可以参考下面每个 yml 的描述，找到你需要的 Workflow，然后在 DSL 文件夹中找到对应的文件，复制文件的 URL，导入自己的 Dify 账号即可。
 
+## 2026-09-24更新
+
+| 文件 | 描述 | 来源 |
+| --- | --- | --- |
+| `Customer Feedback Triage.yml` | 无需模型、插件、Dataset 或外部 API 的客户反馈分流 Workflow。包含输入校验、优先级判断、无效/优先跟进/标准归档三条分支，以及 Variable Aggregator 汇合。目标格式为 Dify 1.17.1 / App DSL 0.7.0。 ![](./snapshots/customer-feedback-triage.png) | [dify-dsl-skill](https://github.com/LeeHoo29/dify-dsl-skill/tree/main/showcase/customer-feedback-triage) |
+
 ## 2025-06-06更新
 
 | 文件                               | 描述                                                                                                                                                                           | 来源                                                                |
