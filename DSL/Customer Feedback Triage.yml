@@ -1,0 +1,677 @@
+version: 0.7.0
+kind: app
+app:
+  name: Customer Feedback Triage
+  mode: workflow
+  icon: 📨
+  icon_background: "#E8F8F5"
+  icon_type: emoji
+  description: Validate and route customer feedback without a model provider.
+  use_icon_as_answer_icon: false
+dependencies: []
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features: {}
+  graph:
+    edges:
+      - id: start-source-analyze_feedback-target
+        source: start
+        sourceHandle: source
+        target: analyze_feedback
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: start
+          targetType: code
+      - id: analyze_feedback-source-validate_feedback-target
+        source: analyze_feedback
+        sourceHandle: source
+        target: validate_feedback
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: code
+          targetType: if-else
+      - id: validate_feedback-true-route_feedback-target
+        source: validate_feedback
+        sourceHandle: "true"
+        target: route_feedback
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: if-else
+          targetType: if-else
+      - id: validate_feedback-false-format_invalid-target
+        source: validate_feedback
+        sourceHandle: "false"
+        target: format_invalid
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: if-else
+          targetType: code
+      - id: route_feedback-true-format_follow_up-target
+        source: route_feedback
+        sourceHandle: "true"
+        target: format_follow_up
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: if-else
+          targetType: code
+      - id: route_feedback-false-format_archive-target
+        source: route_feedback
+        sourceHandle: "false"
+        target: format_archive
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: if-else
+          targetType: code
+      - id: format_follow_up-source-aggregate_result-target
+        source: format_follow_up
+        sourceHandle: source
+        target: aggregate_result
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: code
+          targetType: variable-aggregator
+      - id: format_archive-source-aggregate_result-target
+        source: format_archive
+        sourceHandle: source
+        target: aggregate_result
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: code
+          targetType: variable-aggregator
+      - id: format_invalid-source-aggregate_result-target
+        source: format_invalid
+        sourceHandle: source
+        target: aggregate_result
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: code
+          targetType: variable-aggregator
+      - id: format_follow_up-source-aggregate_action-target
+        source: format_follow_up
+        sourceHandle: source
+        target: aggregate_action
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: code
+          targetType: variable-aggregator
+      - id: format_archive-source-aggregate_action-target
+        source: format_archive
+        sourceHandle: source
+        target: aggregate_action
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: code
+          targetType: variable-aggregator
+      - id: format_invalid-source-aggregate_action-target
+        source: format_invalid
+        sourceHandle: source
+        target: aggregate_action
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: code
+          targetType: variable-aggregator
+      - id: aggregate_result-source-end-target
+        source: aggregate_result
+        sourceHandle: source
+        target: end
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: variable-aggregator
+          targetType: end
+      - id: aggregate_action-source-end-target
+        source: aggregate_action
+        sourceHandle: source
+        target: end
+        targetHandle: target
+        type: custom
+        zIndex: 0
+        data:
+          isInIteration: false
+          isInLoop: false
+          sourceType: variable-aggregator
+          targetType: end
+    nodes:
+      - id: start
+        type: custom
+        position:
+          x: 80
+          y: 80
+        positionAbsolute:
+          x: 80
+          y: 80
+        sourcePosition: right
+        targetPosition: left
+        width: 244
+        height: 174
+        selected: false
+        data:
+          type: start
+          title: Feedback
+          desc: Customer identifier, rating, and feedback text.
+          variables:
+            - variable: customer_id
+              label: Customer ID
+              type: text-input
+              required: true
+              max_length: 100
+              options: []
+            - variable: rating
+              label: Rating
+              type: number
+              required: true
+              options: []
+            - variable: feedback
+              label: Feedback
+              type: paragraph
+              required: true
+              max_length: 4000
+              options: []
+      - id: analyze_feedback
+        type: custom
+        position:
+          x: 424
+          y: 80
+        positionAbsolute:
+          x: 424
+          y: 80
+        sourcePosition: right
+        targetPosition: left
+        width: 244
+        height: 174
+        selected: false
+        data:
+          type: code
+          title: Analyze Feedback
+          desc: |-
+            Validate inputs and assign category and priority.
+
+            Canonical Python is available from the linked source repository.
+          code_language: python3
+          code: |
+            # Dify input variables:
+            # - customer_id (String, required): Customer or ticket identifier.
+            # - feedback (String, required): Customer feedback text.
+            # - rating (Number, required): Rating from 1 to 5.
+            #
+            # Dify output variables:
+            # - can_continue (Boolean): Whether all required inputs are valid.
+            # - category (String): Deterministic feedback category.
+            # - error_message (String): Validation failure reason.
+            # - needs_follow_up (Boolean): Whether the feedback needs priority handling.
+            # - normalized_feedback (String): Cleaned feedback text.
+            # - priority (String): high, medium, or normal.
+            from typing import Any
+
+
+            NEGATIVE_TERMS = (
+                "broken",
+                "cancel",
+                "damaged",
+                "late",
+                "missing",
+                "refund",
+                "unusable",
+            )
+
+
+            def main(customer_id: str, feedback: str, rating: Any) -> dict:
+                customer = str(customer_id or "").strip()
+                text = " ".join(str(feedback or "").split())
+                try:
+                    score = int(float(rating))
+                except (TypeError, ValueError):
+                    score = 0
+
+                if not customer:
+                    return {
+                        "can_continue": False,
+                        "category": "invalid",
+                        "error_message": "customer_id is required",
+                        "needs_follow_up": False,
+                        "normalized_feedback": text,
+                        "priority": "normal",
+                    }
+                if not text:
+                    return {
+                        "can_continue": False,
+                        "category": "invalid",
+                        "error_message": "feedback is required",
+                        "needs_follow_up": False,
+                        "normalized_feedback": "",
+                        "priority": "normal",
+                    }
+                if score < 1 or score > 5:
+                    return {
+                        "can_continue": False,
+                        "category": "invalid",
+                        "error_message": "rating must be between 1 and 5",
+                        "needs_follow_up": False,
+                        "normalized_feedback": text,
+                        "priority": "normal",
+                    }
+
+                lowered = text.lower()
+                negative_match = any(term in lowered for term in NEGATIVE_TERMS)
+                needs_follow_up = score <= 2 or negative_match
+                priority = "high" if score == 1 or negative_match else "medium" if score <= 3 else "normal"
+                category = "service_recovery" if needs_follow_up else "positive" if score >= 4 else "general"
+
+                return {
+                    "can_continue": True,
+                    "category": category,
+                    "error_message": "",
+                    "needs_follow_up": needs_follow_up,
+                    "normalized_feedback": text,
+                    "priority": priority,
+                }
+          variables:
+            - variable: customer_id
+              value_selector:
+                - start
+                - customer_id
+              value_type: string
+            - variable: feedback
+              value_selector:
+                - start
+                - feedback
+              value_type: string
+            - variable: rating
+              value_selector:
+                - start
+                - rating
+              value_type: number
+          outputs:
+            can_continue:
+              type: boolean
+              children: null
+            category:
+              type: string
+              children: null
+            error_message:
+              type: string
+              children: null
+            needs_follow_up:
+              type: boolean
+              children: null
+            normalized_feedback:
+              type: string
+              children: null
+            priority:
+              type: string
+              children: null
+      - id: validate_feedback
+        type: custom
+        position:
+          x: 768
+          y: 92
+        positionAbsolute:
+          x: 768
+          y: 92
+        sourcePosition: right
+        targetPosition: left
+        width: 244
+        height: 150
+        selected: false
+        data:
+          type: if-else
+          title: Valid Input?
+          desc: Reject incomplete or invalid submissions.
+          cases:
+            - id: "true"
+              case_id: "true"
+              logical_operator: and
+              conditions:
+                - id: valid-input-condition
+                  variable_selector:
+                    - analyze_feedback
+                    - can_continue
+                  comparison_operator: is
+                  value: true
+                  varType: boolean
+      - id: route_feedback
+        type: custom
+        position:
+          x: 1112
+          y: 327
+        positionAbsolute:
+          x: 1112
+          y: 327
+        sourcePosition: right
+        targetPosition: left
+        width: 244
+        height: 150
+        selected: false
+        data:
+          type: if-else
+          title: Needs Follow-up?
+          desc: Route urgent feedback to priority handling.
+          cases:
+            - id: "true"
+              case_id: "true"
+              logical_operator: and
+              conditions:
+                - id: needs-follow-up-condition
+                  variable_selector:
+                    - analyze_feedback
+                    - needs_follow_up
+                  comparison_operator: is
+                  value: true
+                  varType: boolean
+      - id: format_invalid
+        type: custom
+        position:
+          x: 1456
+          y: 117
+        positionAbsolute:
+          x: 1456
+          y: 117
+        sourcePosition: right
+        targetPosition: left
+        width: 244
+        height: 150
+        selected: false
+        data:
+          type: code
+          title: Invalid Submission
+          desc: |-
+            Prepare a safe validation response.
+
+            Canonical Python is available from the linked source repository.
+          code_language: python3
+          code: |
+            # Dify input variables:
+            # - customer_id (String, required): Customer or ticket identifier.
+            # - error_message (String, required): Validation failure reason.
+            #
+            # Dify output variables:
+            # - action (String): Recommended correction action.
+            # - result (String): Human-readable validation result.
+            def main(customer_id: str, error_message: str) -> dict:
+                customer = str(customer_id or "unknown").strip() or "unknown"
+                reason = str(error_message or "invalid feedback input").strip()
+                action = "Correct the input fields and submit the feedback again."
+                result = f"INPUT REJECTED | customer={customer} | reason={reason}"
+                return {"action": action, "result": result}
+          variables:
+            - variable: customer_id
+              value_selector:
+                - start
+                - customer_id
+              value_type: string
+            - variable: error_message
+              value_selector:
+                - analyze_feedback
+                - error_message
+              value_type: string
+          outputs:
+            action:
+              type: string
+              children: null
+            result:
+              type: string
+              children: null
+      - id: format_follow_up
+        type: custom
+        position:
+          x: 1456
+          y: 587
+        positionAbsolute:
+          x: 1456
+          y: 587
+        sourcePosition: right
+        targetPosition: left
+        width: 244
+        height: 160
+        selected: false
+        data:
+          type: code
+          title: Priority Follow-up
+          desc: |-
+            Prepare the priority handling result.
+
+            Canonical Python is available from the linked source repository.
+          code_language: python3
+          code: |
+            # Dify input variables:
+            # - category (String, required): Feedback category.
+            # - customer_id (String, required): Customer or ticket identifier.
+            # - feedback (String, required): Normalized feedback text.
+            # - priority (String, required): Triage priority.
+            #
+            # Dify output variables:
+            # - action (String): Recommended handling action.
+            # - result (String): Human-readable triage summary.
+            def main(category: str, customer_id: str, feedback: str, priority: str) -> dict:
+                action = "Contact the customer within four business hours and open a service-recovery ticket."
+                result = (
+                    f"PRIORITY FOLLOW-UP | customer={customer_id} | priority={priority} | "
+                    f"category={category} | feedback={feedback}"
+                )
+                return {"action": action, "result": result}
+          variables:
+            - variable: category
+              value_selector:
+                - analyze_feedback
+                - category
+              value_type: string
+            - variable: customer_id
+              value_selector:
+                - start
+                - customer_id
+              value_type: string
+            - variable: feedback
+              value_selector:
+                - analyze_feedback
+                - normalized_feedback
+              value_type: string
+            - variable: priority
+              value_selector:
+                - analyze_feedback
+                - priority
+              value_type: string
+          outputs:
+            action:
+              type: string
+              children: null
+            result:
+              type: string
+              children: null
+      - id: format_archive
+        type: custom
+        position:
+          x: 1456
+          y: 347
+        positionAbsolute:
+          x: 1456
+          y: 347
+        sourcePosition: right
+        targetPosition: left
+        width: 244
+        height: 160
+        selected: false
+        data:
+          type: code
+          title: Standard Review
+          desc: |-
+            Prepare the standard review result.
+
+            Canonical Python is available from the linked source repository.
+          code_language: python3
+          code: |
+            # Dify input variables:
+            # - category (String, required): Feedback category.
+            # - customer_id (String, required): Customer or ticket identifier.
+            # - feedback (String, required): Normalized feedback text.
+            # - priority (String, required): Triage priority.
+            #
+            # Dify output variables:
+            # - action (String): Recommended handling action.
+            # - result (String): Human-readable triage summary.
+            def main(category: str, customer_id: str, feedback: str, priority: str) -> dict:
+                action = "Add the feedback to the weekly product-insights review."
+                result = (
+                    f"STANDARD REVIEW | customer={customer_id} | priority={priority} | "
+                    f"category={category} | feedback={feedback}"
+                )
+                return {"action": action, "result": result}
+          variables:
+            - variable: category
+              value_selector:
+                - analyze_feedback
+                - category
+              value_type: string
+            - variable: customer_id
+              value_selector:
+                - start
+                - customer_id
+              value_type: string
+            - variable: feedback
+              value_selector:
+                - analyze_feedback
+                - normalized_feedback
+              value_type: string
+            - variable: priority
+              value_selector:
+                - analyze_feedback
+                - priority
+              value_type: string
+          outputs:
+            action:
+              type: string
+              children: null
+            result:
+              type: string
+              children: null
+      - id: aggregate_result
+        type: custom
+        position:
+          x: 1800
+          y: 330.33333333333337
+        positionAbsolute:
+          x: 1800
+          y: 330.33333333333337
+        sourcePosition: right
+        targetPosition: left
+        width: 244
+        height: 140
+        selected: false
+        data:
+          type: variable-aggregator
+          title: Merge Result
+          desc: Merge the active branch result.
+          output_type: string
+          variables:
+            - - format_follow_up
+              - result
+            - - format_archive
+              - result
+            - - format_invalid
+              - result
+      - id: aggregate_action
+        type: custom
+        position:
+          x: 1800
+          y: 588.6666666666666
+        positionAbsolute:
+          x: 1800
+          y: 588.6666666666666
+        sourcePosition: right
+        targetPosition: left
+        width: 244
+        height: 140
+        selected: false
+        data:
+          type: variable-aggregator
+          title: Merge Action
+          desc: Merge the active branch action.
+          output_type: string
+          variables:
+            - - format_follow_up
+              - action
+            - - format_archive
+              - action
+            - - format_invalid
+              - action
+      - id: end
+        type: custom
+        position:
+          x: 2144
+          y: 347
+        positionAbsolute:
+          x: 2144
+          y: 347
+        sourcePosition: right
+        targetPosition: left
+        width: 244
+        height: 160
+        selected: false
+        data:
+          type: end
+          title: Triage Result
+          desc: Final outputs are result and action for the selected route.
+          outputs:
+            - variable: result
+              value_selector:
+                - aggregate_result
+                - output
+            - variable: action
+              value_selector:
+                - aggregate_action
+                - output
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.8
