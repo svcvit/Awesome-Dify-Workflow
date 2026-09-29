@@ -222,6 +222,7 @@ You can refer to the description of each yml below to find the Workflow you need
 | `dify_course_demo.yml`     | Automatically generate a full course tutorial set. ![](./snapshots/GZvTSh3aYAEMAQ5.jpeg)   | [dify_course](https://github.com/pekingmuge/dify_course)  |
 | `simple-kimi.yml`     | Simple self-made Kimi-like workflow ![](./snapshots/Xnip2024-10-31_17-33-34.jpg)   | [aws-samples](https://github.com/aws-samples/dify-aws-tool/tree/main/workflow)  |
 | `Claude3 Code Translation.yml`     | Workflow for translating code between different programming languages ![](./snapshots/Xnip2024-10-31_17-38-34.jpg)   | [aws-samples](https://github.com/aws-samples/dify-aws-tool/tree/main/workflow)  |
+| `China-Enterprise-Calendar-Guard.yml` | Detects Chinese public holidays and 调休 make-up workdays so meetings are never booked on a "fake weekend". Give it a date in plain language and it returns whether that day is bookable — six weekend days in 2026 (01-04, 02-14, 02-28, 05-09, 09-20, 10-10) are official working days. ![](./snapshots/Calendar-Guard.png) | [@danialkassa](https://github.com/danialkassa) |
 
 ## Chatbots
 
