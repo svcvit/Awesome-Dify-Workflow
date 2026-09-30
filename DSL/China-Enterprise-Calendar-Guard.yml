@@ -1,0 +1,537 @@
+app:
+  description: Detects Chinese public holidays and 调休 makeup workdays so meetings
+    are never booked on fake weekends.
+  icon: a7527d6b-525b-49f7-b192-a5888018ee85
+  icon_background: null
+  icon_type: image
+  mode: workflow
+  name: China Enterprise Calendar Guard
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.24@9e12eef09973667f0eaf4f082af883167e1de88740b22e71e71488d020c3778a
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload: {}
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: start
+        targetType: llm
+      id: 1790690816193-source-1790691443517-target
+      selected: false
+      source: '1790690816193'
+      sourceHandle: source
+      target: '1790691443517'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: llm
+        targetType: code
+      id: 1790691443517-source-1790694358509-target
+      selected: false
+      source: '1790691443517'
+      sourceHandle: source
+      target: '1790694358509'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: code
+        targetType: if-else
+      id: 1790694358509-source-1790703623359-target
+      source: '1790694358509'
+      sourceHandle: source
+      target: '1790703623359'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: if-else
+        targetType: template-transform
+      id: 1790703623359-false-1790704821350-target
+      source: '1790703623359'
+      sourceHandle: 'false'
+      target: '1790704821350'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: if-else
+        targetType: template-transform
+      id: 1790703623359-true-1790704398733-target
+      source: '1790703623359'
+      sourceHandle: 'true'
+      target: '1790704398733'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1790704398733-source-1790705109748-target
+      source: '1790704398733'
+      sourceHandle: source
+      target: '1790705109748'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1790704821350-source-1790705109748-target
+      source: '1790704821350'
+      sourceHandle: source
+      target: '1790705109748'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: variable-aggregator
+        targetType: end
+      id: 1790705109748-source-1790705520821-target
+      source: '1790705109748'
+      sourceHandle: source
+      target: '1790705520821'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: User input
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: Meeting request
+          max_length: 256
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: user_request
+        - default: ''
+          hint: ''
+          label: Who is asking
+          max_length: 64
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: requester
+        - default: ''
+          hint: ''
+          label: Today's date
+          max_length: 10
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: today
+      height: 160
+      id: '1790690816193'
+      position:
+        x: 0
+        y: 0
+      positionAbsolute:
+        x: 0
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-flash
+          provider: langgenius/deepseek/deepseek
+        model_selector: null
+        prompt_template:
+        - edition_type: basic
+          id: a50b35fd-6e24-45c1-a9d5-b75766e098f9
+          role: system
+          text: "You are a date extraction engine for a Chinese enterprise scheduling\
+            \ system.\n\nThe user will give you a sentence mentioning a meeting time.\
+            \ Extract the single calendar date.\n\nRules:\n1. Today's date is [today]\
+            \ . Resolve all relative expressions (\"next Saturday\",\n   \"明天\", \"\
+            下周三\") against it.\n2. Output ONLY a JSON object. No explanation, no markdown,\
+            \ no code fences.\n3. If you cannot determine a specific date, set \"\
+            date\" to null and \"confidence\" to \"low\".\n4. \"confidence\" is \"\
+            high\" only when the sentence names an explicit date.\n\nOutput schema\
+            \ (all keys required):\n{\"date\": \"YYYY-MM-DD\", \"confidence\": \"\
+            high|low\", \"reason\": \"one short sentence\"}\n{{#1790690816193.user_request#}}\n"
+        selected: false
+        structured_output:
+          schema:
+            additionalProperties: false
+            properties:
+              confidence:
+                type: string
+              date:
+                type: string
+              reason:
+                type: string
+            required:
+            - date
+            - confidence
+            - reason
+            type: object
+        structured_output_enabled: true
+        title: Extract Date
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1790691443517'
+      position:
+        x: 342
+        y: 63.16666666666667
+      positionAbsolute:
+        x: 342
+        y: 63.16666666666667
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        code: "from datetime import date, timedelta\n\n# Official 2026 public-holiday\
+          \ schedule, 国办发明电〔2025〕7号 (published 2025-11-04).\n# Each entry: (start,\
+          \ end, english_name)\nHOLIDAY_RANGES_2026 = [\n    (\"2026-01-01\", \"2026-01-03\"\
+          , \"New Year's Day\"),\n    (\"2026-02-15\", \"2026-02-23\", \"Spring Festival\"\
+          ),\n    (\"2026-04-04\", \"2026-04-06\", \"Qingming Festival\"),\n    (\"\
+          2026-05-01\", \"2026-05-05\", \"Labour Day\"),\n    (\"2026-06-19\", \"\
+          2026-06-21\", \"Dragon Boat Festival\"),\n    (\"2026-09-25\", \"2026-09-27\"\
+          , \"Mid-Autumn Festival\"),\n    (\"2026-10-01\", \"2026-10-07\", \"National\
+          \ Day\"),\n]\n\n# 调休 makeup workdays: calendar weekend days that are official\
+          \ working days in 2026.\nMAKEUP_WORKDAYS_2026 = [\n    \"2026-01-04\", \
+          \ # Sun  - swapped for New Year\n    \"2026-02-14\",  # Sat  - swapped for\
+          \ Spring Festival\n    \"2026-02-28\",  # Sat  - swapped for Spring Festival\n\
+          \    \"2026-05-09\",  # Sat  - swapped for Labour Day\n    \"2026-09-20\"\
+          ,  # Sun  - swapped for National Day\n    \"2026-10-10\",  # Sat  - swapped\
+          \ for National Day\n]\n\n\ndef main(date_text: str, confidence: str) ->\
+          \ dict:\n    # --- 1. Defensive parse: never let a bad LLM output crash\
+          \ the workflow.\n    raw = (date_text or \"\").strip().strip('\"').strip(\"\
+          '\")\n    if not raw or raw.lower() in (\"none\", \"null\"):\n        return\
+          \ {\n            \"is_valid_meeting_day\": False,\n            \"date\"\
+          : None,\n            \"day_kind\": \"unresolved\",\n            \"message\"\
+          : \"Could not determine a specific date. Please restate it as YYYY-MM-DD.\"\
+          ,\n        }\n\n    try:\n        target = date.fromisoformat(raw)\n   \
+          \ except ValueError:\n        return {\n            \"is_valid_meeting_day\"\
+          : False,\n            \"date\": raw,\n            \"day_kind\": \"unparseable\"\
+          ,\n            \"message\": f\"'{raw}' is not a valid YYYY-MM-DD date.\"\
+          ,\n        }\n\n    iso = target.isoformat()\n    is_weekend_day = target.weekday()\
+          \ >= 5  # Sat=5, Sun=6\n\n    # --- 2. Is it an official holiday?\n    holiday_name\
+          \ = None\n    for start_s, end_s, name in HOLIDAY_RANGES_2026:\n       \
+          \ if date.fromisoformat(start_s) <= target <= date.fromisoformat(end_s):\n\
+          \            holiday_name = name\n            break\n\n    # --- 3. The\
+          \ whole point: a calendar weekend that is actually a working day.\n    is_makeup_workday\
+          \ = iso in MAKEUP_WORKDAYS_2026\n\n    # --- 4. Decide.\n    if is_makeup_workday:\n\
+          \        day_kind = \"makeup_workday\"\n        ok = False\n        message\
+          \ = (\n            f\"{iso} is a Saturday/Sunday but a 调休 makeup working\
+          \ day. \"\n            f\"It LOOKS like a weekend and is NOT. Do not book.\"\
+          \n        )\n    elif holiday_name is not None:\n        day_kind = \"public_holiday\"\
+          \n        ok = False\n        message = f\"{iso} falls in the {holiday_name}\
+          \ public holiday. Office is closed.\"\n    elif is_weekend_day:\n      \
+          \  day_kind = \"weekend\"\n        ok = False\n        message = f\"{iso}\
+          \ is a regular weekend. Do not book.\"\n    else:\n        day_kind = \"\
+          workday\"\n        ok = True\n        message = f\"{iso} is a normal working\
+          \ day. Safe to schedule.\"\n\n    # --- 5. Surface low confidence so the\
+          \ caller can double-check.\n    needs_review = str(confidence).strip().lower()\
+          \ != \"high\"\n\n    return {\n        \"is_valid_meeting_day\": ok,\n \
+          \       \"date\": iso,\n        \"weekday\": target.strftime(\"%A\"),\n\
+          \        \"day_kind\": day_kind,\n        \"holiday_name\": holiday_name\
+          \ or \"\",\n        \"is_makeup_workday\": is_makeup_workday,\n        \"\
+          needs_human_review\": needs_review,\n        \"message\": message,\n   \
+          \ }\n"
+        code_language: python3
+        outputs:
+          date:
+            children: null
+            type: string
+          day_kind:
+            children: null
+            type: string
+          holiday_name:
+            children: null
+            type: string
+          is_makeup_workday:
+            children: null
+            type: boolean
+          is_valid_meeting_day:
+            children: null
+            type: boolean
+          message:
+            children: null
+            type: string
+          needs_human_review:
+            children: null
+            type: boolean
+          weekday:
+            children: null
+            type: string
+        retry_config:
+          max_retries: 3
+          retry_enabled: false
+          retry_interval: 1000
+        selected: false
+        title: Calendar Guard
+        type: code
+        variables:
+        - value_selector:
+          - '1790691443517'
+          - structured_output
+          - date
+          value_type: object
+          variable: date_text
+        - value_selector:
+          - '1790691443517'
+          - structured_output
+          - confidence
+          value_type: object
+          variable: confidence
+      height: 51
+      id: '1790694358509'
+      position:
+        x: 683
+        y: 95.66666666666667
+      positionAbsolute:
+        x: 683
+        y: 95.66666666666667
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 6cf5b478-6e1a-4c23-ae14-1a75efc0f218
+            value: true
+            varType: boolean
+            variable_selector:
+            - '1790694358509'
+            - is_valid_meeting_day
+          logical_operator: and
+        selected: false
+        title: Is Bookable?
+        type: if-else
+      height: 147
+      id: '1790703623359'
+      position:
+        x: 1024
+        y: 56.16666666666667
+      positionAbsolute:
+        x: 1024
+        y: 56.16666666666667
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        selected: false
+        template: "✅ {{ date }} ({{ weekday }}) is a normal working day.\r\n\r\n{{\
+          \ message }}"
+        title: Answer Valid
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1790694358509'
+          - date
+          value_type: string
+          variable: date
+        - value_selector:
+          - '1790694358509'
+          - weekday
+          value_type: string
+          variable: weekday
+        - value_selector:
+          - '1790694358509'
+          - message
+          value_type: string
+          variable: message
+      height: 51
+      id: '1790704398733'
+      position:
+        x: 1385
+        y: 68.06666666666666
+      positionAbsolute:
+        x: 1385
+        y: 68.06666666666666
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        selected: false
+        template: "⛔ Do not schedule this meeting.\r\n{{ date }} ({{ weekday }}) —\
+          \ reason: {{ day_kind }}\r\n\r\n{{ message }}"
+        title: Answer Invalid
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1790694358509'
+          - date
+          value_type: string
+          variable: date
+        - value_selector:
+          - '1790694358509'
+          - weekday
+          value_type: string
+          variable: weekday
+        - value_selector:
+          - '1790694358509'
+          - day_kind
+          value_type: string
+          variable: day_kind
+        - value_selector:
+          - '1790694358509'
+          - message
+          value_type: string
+          variable: message
+      height: 51
+      id: '1790704821350'
+      position:
+        x: 1385
+        y: 199.06666666666666
+      positionAbsolute:
+        x: 1385
+        y: 199.06666666666666
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        output_type: string
+        selected: false
+        title: Final Answer
+        type: variable-aggregator
+        variables:
+        - - '1790704398733'
+          - output
+        - - '1790704821350'
+          - output
+      height: 135
+      id: '1790705109748'
+      position:
+        x: 1746
+        y: 100.06666666666666
+      positionAbsolute:
+        x: 1746
+        y: 100.06666666666666
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1790705109748'
+          - output
+          value_type: string
+          variable: final_answer
+        - value_selector:
+          - '1790694358509'
+          - date
+          value_type: string
+          variable: date_checked
+        - value_selector:
+          - '1790694358509'
+          - day_kind
+          value_type: string
+          variable: day_kind
+        - value_selector:
+          - '1790694358509'
+          - is_valid_meeting_day
+          value_type: boolean
+          variable: is_bookable
+        selected: false
+        title: Output
+        type: end
+      height: 167
+      id: '1790705520821'
+      position:
+        x: 2087
+        y: 106.56666666666666
+      positionAbsolute:
+        x: 2087
+        y: 106.56666666666666
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    viewport:
+      x: 112.9284577546295
+      y: 493.134189188298
+      zoom: 0.803755144032922
+  rag_pipeline_variables: []

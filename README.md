@@ -314,6 +314,7 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 | `dify_course_demo.yml`     | 自动化生成全套教程。 ![](./snapshots/GZvTSh3aYAEMAQ5.jpeg)   | [dify_course](https://github.com/pekingmuge/dify_course)  |
 | `simple-kimi.yml`     | 简易自制 Kimi ![](./snapshots/Xnip2024-10-31_17-33-34.jpg)   | [aws-samples](https://github.com/aws-samples/dify-aws-tool/tree/main/workflow)  |
 | `Claude3 Code Translation.yml`     | 不同代码种类之间的翻译工作流 ![](./snapshots/Xnip2024-10-31_17-38-34.jpg)   | [aws-samples](https://github.com/aws-samples/dify-aws-tool/tree/main/workflow)  |
+| `China-Enterprise-Calendar-Guard.yml` | 识别中国法定节假日与调休补班日，避免把会议约在“假周末”。输入一句自然语言即可判断某天是否可约——2026 年的 01-04、02-14、02-28、05-09、09-20、10-10 六天虽是周末，却是法定上班日。![](./snapshots/Calendar-Guard.png) | [@danialkassa](https://github.com/danialkassa) |
 
 ## 聊天机器人
 
