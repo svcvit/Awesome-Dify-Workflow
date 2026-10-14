@@ -1,0 +1,185 @@
+# ============================================================
+# ShannonAPI · 科研论文深度精读工作流 (Dify DSL v0.1.5)
+# 功能：科研论文 PDF 分段精读 + 公式解析 + 中文总结
+# LLM 端点：https://shannonapi.xyz/v1 （OpenAI 兼容）
+#
+# 使用前必读：
+# 1. 在 Dify「模型供应商」中配置 OpenAI 兼容模型（Custom/兼容模式）
+#    自定义 API Base URL = https://shannonapi.xyz/v1
+# 2. 满血 API 密钥请在 https://shannonapi.xyz 获取并填入该模型凭证
+# 3. 下方 model.name 需与你在 Dify 中注册的模型名一致
+#    （例如 claude-sonnet-4-20250514 / gpt-4o，按套餐选择）
+# ============================================================
+app:
+  description: 科研论文 PDF 分段精读、公式解析与中文总结
+  icon: 📄
+  icon_background: '#EFF7FF'
+  mode: workflow
+  name: 科研论文深度精读助手
+  version: 0.1.5
+dependencies: []
+kind: app
+version: 0.1.5
+workflow:
+  graph:
+    edges:
+      - id: edge-start-extractor
+        source: start
+        sourceHandle: source
+        target: extractor
+        targetHandle: target
+      - id: edge-extractor-splitter
+        source: extractor
+        sourceHandle: source
+        target: splitter
+        targetHandle: target
+      - id: edge-splitter-iteration
+        source: splitter
+        sourceHandle: source
+        target: iteration1
+        targetHandle: target
+      - id: edge-iteration-end
+        source: iteration1
+        sourceHandle: source
+        target: end
+        targetHandle: target
+    nodes:
+      - data:
+          title: 开始
+          type: start
+          variables:
+            - label: 论文PDF
+              max_length: 48
+              options: []
+              required: true
+              type: file
+              variable: paper_pdf
+        id: start
+        position:
+          x: 80
+          y: 280
+        type: start
+      - data:
+          advanced_settings:
+            enabled: true
+            mode: page
+          inputs:
+            document: '{{#start.paper_pdf#}}'
+          title: 提取PDF文本
+          type: document-extractor
+          version: 1
+        id: extractor
+        position:
+          x: 320
+          y: 280
+        type: document-extractor
+      - data:
+          code: |-
+            def main(text: str) -> dict:
+                """按段落与字数将论文正文切分为可精读的分段"""
+                if not text:
+                    return {"segments": []}
+                import re
+                # 去掉参考文献区域
+                text = re.split(r'\n(参考文献|References)\s*\n', text)[0]
+                # 按空行分块，再按约 1500 字合并为一段
+                raw_blocks = [b.strip() for b in re.split(r'\n\s*\n', text) if b.strip()]
+                segments, buf = [], ""
+                for b in raw_blocks:
+                    if len(buf) + len(b) > 1500 and buf:
+                        segments.append(buf)
+                        buf = b
+                    else:
+                        buf = (buf + "\n\n" + b).strip()
+                if buf:
+                    segments.append(buf)
+                # 保序去重
+                seen, out = set(), []
+                for s in segments:
+                    if s not in seen:
+                        seen.add(s)
+                        out.append(s)
+                return {"segments": out}
+          code_language: python
+          inputs:
+            text:
+              type: paragraph
+              value: '{{#extractor.text#}}'
+          outputs:
+            - variable: segments
+              type: array[string]
+          title: 论文文本分段
+          type: code
+          version: 1
+        id: splitter
+        position:
+          x: 560
+          y: 280
+        type: code
+      - data:
+          children:
+            - data:
+                completion_params:
+                  temperature: 0.3
+                context:
+                  enabled: false
+                memory:
+                  role_prefix: ''
+                  window:
+                    enabled: false
+                model:
+                  mode: chat
+                  name: claude-sonnet-4-20250514
+                  provider: langgenius/openai/openai
+                prompt_template:
+                  - role: system
+                    text: |-
+                      你是一位严谨的科研论文审稿人与科普作者。请逐段精读论文，准确解析公式与专业术语，输出中文总结。
+                  - role: user
+                    text: |-
+                      请精读以下论文段落，输出结构化中文总结：
+                      1. 本段核心观点（2-3句）
+                      2. 关键方法与公式解析（LaTeX 保留，逐符号解释）
+                      3. 数据与结论
+                      4. 与前后文的衔接点
+                      5. 可质疑之处
+
+                      段落原文：
+                      {{#iteration1.segment#}}
+                title: Claude 精读段落
+                type: llm
+                version: 1
+              id: llm_deep_read
+              position:
+                x: 180
+                y: 40
+              type: llm
+          description: 逐段精读并汇总
+          items: '{{#splitter.segments#}}'
+          iterator: segment
+          output: result
+          title: 逐段精读
+          type: iteration
+          version: 1
+        id: iteration1
+        position:
+          x: 800
+          y: 280
+        type: iteration
+      - data:
+          outputs:
+            - value: '{{#iteration1.result#}}'
+              variable: summary
+          title: 结束
+          type: end
+          version: 1
+        id: end
+        position:
+          x: 1040
+          y: 280
+        type: end
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.8
+  version: 0.1.5
