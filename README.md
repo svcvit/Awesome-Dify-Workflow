@@ -302,6 +302,7 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 
 | 文件                             | 描述                                                                                                      | 来源                                                      |
 | -------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [Arcmira YouTube transcript search](./DSL/arcmira-transcript-search.yml) | 按主题和发布日期搜索 YouTube 字幕片段，返回时间戳、来源链接及覆盖范围说明。需安装 Arcmira 插件并配置自己的 API Key；无需大语言模型。提供免费套餐，用量受账户限制。 | [Arcmira](https://arcmira.com) · [Setup and API docs](https://github.com/arcmira/integrations/tree/master/examples/dify-transcript-search) · [Apache-2.0](./DSL/arcmira-transcript-search.LICENSE) |
 | `SEO Slug Generator.yml`         | 给自己的博文生成 url slug，参考来源于宝玉的 X ![](./snapshots/Xnip2024-07-24_13-06-35.jpg)   | [twitter](https://x.com/dotey/status/1801280536125608265) |
 | `Document_chat_template.yml`     | 一个通过知识库聊天的模版 ![](./snapshots/Xnip2024-07-24_13-08-49.jpg)                        | [Winson-030](https://github.com/Winson-030/dify-DSL)      |
 | `搜索大师.yml`                   | 通过 SearXNG 进行搜索，再通过 jina 获取搜索内容 ![](./snapshots/Xnip2024-07-24_13-07-55.jpg) | [Winson-030](https://github.com/Winson-030/dify-DSL)      |

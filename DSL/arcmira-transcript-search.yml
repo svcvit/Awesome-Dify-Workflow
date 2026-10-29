@@ -1,0 +1,212 @@
+{
+  "app": {
+    "description": "Find timestamped YouTube transcript passages for research and clip discovery. Returns the complete source and coverage response without a language model. Requires the Arcmira plugin and your own Arcmira API key.",
+    "icon": "🔎",
+    "icon_background": "#E4FBCC",
+    "mode": "workflow",
+    "name": "Arcmira YouTube transcript search",
+    "use_icon_as_answer_icon": false
+  },
+  "kind": "app",
+  "version": "0.3.1",
+  "dependencies": [],
+  "workflow": {
+    "conversation_variables": [],
+    "environment_variables": [],
+    "features": {
+      "file_upload": {
+        "enabled": false
+      },
+      "opening_statement": "",
+      "retriever_resource": {
+        "enabled": true
+      },
+      "sensitive_word_avoidance": {
+        "enabled": false
+      },
+      "speech_to_text": {
+        "enabled": false
+      },
+      "suggested_questions": [],
+      "suggested_questions_after_answer": {
+        "enabled": false
+      },
+      "text_to_speech": {
+        "enabled": false
+      }
+    },
+    "graph": {
+      "nodes": [
+        {
+          "id": "start",
+          "type": "custom",
+          "position": {
+            "x": 30,
+            "y": 200
+          },
+          "positionAbsolute": {
+            "x": 30,
+            "y": 200
+          },
+          "width": 244,
+          "height": 110,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "selected": false,
+          "data": {
+            "type": "start",
+            "title": "Research scope",
+            "desc": "",
+            "selected": false,
+            "variables": [
+              {
+                "variable": "query",
+                "label": "Topic or phrase",
+                "type": "text-input",
+                "required": true,
+                "max_length": 500,
+                "options": []
+              },
+              {
+                "variable": "after",
+                "label": "Published on or after (YYYY-MM-DD)",
+                "type": "text-input",
+                "required": true,
+                "max_length": 40,
+                "options": []
+              },
+              {
+                "variable": "before",
+                "label": "Published before (YYYY-MM-DD)",
+                "type": "text-input",
+                "required": true,
+                "max_length": 40,
+                "options": []
+              }
+            ]
+          }
+        },
+        {
+          "id": "search",
+          "type": "custom",
+          "position": {
+            "x": 334,
+            "y": 200
+          },
+          "positionAbsolute": {
+            "x": 334,
+            "y": 200
+          },
+          "width": 244,
+          "height": 110,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "selected": false,
+          "data": {
+            "type": "tool",
+            "title": "YouTube transcript search",
+            "desc": "",
+            "selected": false,
+            "provider_id": "arcmira/arcmira/arcmira",
+            "provider_name": "arcmira/arcmira/arcmira",
+            "provider_type": "builtin",
+            "plugin_id": "arcmira/arcmira",
+            "tool_name": "search",
+            "tool_label": "YouTube transcript search",
+            "tool_node_version": "2",
+            "tool_configurations": {},
+            "tool_parameters": {
+              "q": {
+                "type": "mixed",
+                "value": "{{#start.query#}}"
+              },
+              "after": {
+                "type": "mixed",
+                "value": "{{#start.after#}}"
+              },
+              "before": {
+                "type": "mixed",
+                "value": "{{#start.before#}}"
+              },
+              "limit": {
+                "type": "constant",
+                "value": 3
+              }
+            },
+            "is_team_authorization": true
+          }
+        },
+        {
+          "id": "end",
+          "type": "custom",
+          "position": {
+            "x": 638,
+            "y": 200
+          },
+          "positionAbsolute": {
+            "x": 638,
+            "y": 200
+          },
+          "width": 244,
+          "height": 110,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "selected": false,
+          "data": {
+            "type": "end",
+            "title": "Timestamped sources",
+            "desc": "",
+            "selected": false,
+            "outputs": [
+              {
+                "variable": "transcript_results",
+                "value_type": "array[object]",
+                "value_selector": [
+                  "search",
+                  "json"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "start-source-search-target",
+          "source": "start",
+          "sourceHandle": "source",
+          "target": "search",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0,
+          "data": {
+            "sourceType": "start",
+            "targetType": "tool",
+            "isInIteration": false,
+            "isInLoop": false
+          }
+        },
+        {
+          "id": "search-source-end-target",
+          "source": "search",
+          "sourceHandle": "source",
+          "target": "end",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0,
+          "data": {
+            "sourceType": "tool",
+            "targetType": "end",
+            "isInIteration": false,
+            "isInLoop": false
+          }
+        }
+      ],
+      "viewport": {
+        "x": 0,
+        "y": 0,
+        "zoom": 0.8
+      }
+    }
+  }
+}
