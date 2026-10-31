@@ -1,0 +1,34 @@
+MIT License
+
+Copyright (c) 2026 Pilot (epistemedeus) / Neomorphic dify-table-csv sample
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Third-party notices
+
+The companion reader is not in this file. It is MIT, Copyright (c) 2026
+SameDayDesk. Source: https://github.com/epistemedeus/x402-url-extractor
+commit 38f8787b04bf3221ee0875ce1a6af687592c8015, packaged from merchant
+commit a1dc09bb076b823fb3492ea79fa10f8602ed01a5.
+
+Dify 1.18.0 is not included. Its licence is the LangGenius modified Apache
+License 2.0. The licence text sha256 is
+232cf91474932d5110ed304e53b6b742a58463857c571fae803fdf2ac36d7bb3.
+The engine pin is https://github.com/langgenius/dify
+commit 50abea97062110044f15d0e03ccecadd9ccc87ca.
