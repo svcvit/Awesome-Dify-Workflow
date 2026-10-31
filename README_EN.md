@@ -115,6 +115,18 @@ All DSLs are in workflow mode, which can be conveniently published as tools and 
 
 You can refer to the description of each yml below to find the Workflow you need, then locate the corresponding file in the DSL folder, copy the file's URL, and import it into your Dify account.
 
+## 2026-10-31 Update
+
+| File | Description | Source |
+| --- | --- | --- |
+| `public-document-table-csv.yml` | Read one public HTTP(S) document into checked CSV, provenance and a short handoff, without a model node. Self-hosted Dify 1.18.0 (DSL 0.7.0), with an operator-run companion reader; not a Dify Cloud recipe. Page 1 and rectangular tables only. [Setup](#public-document-table-csv-setup). | [Companion checker/direct CLI 0.1.1](https://github.com/epistemedeus/dify-table-csv/tree/46db1d779fb662b598c592bc04d7b237998fd52d) · [MIT](./DSL/public-document-table-csv.LICENSE) |
+
+### Public document table CSV setup
+
+Import `DSL/public-document-table-csv.yml` from this repository, not the older workflow bundled with the companion 0.1.1 source. Start the companion reader using its pinned [README](https://github.com/epistemedeus/dify-table-csv/blob/46db1d779fb662b598c592bc04d7b237998fd52d/README.md). In the imported workflow's **Free reader** HTTP node, set the full reader URL reachable from your Dify worker/SSRF proxy. The default is `http://host.docker.internal:8765/v1/read`; that hostname is not automatically available in every Linux deployment. Configure only the intended reader route under your deployment's network policy. Keep TLS checks and unrelated network restrictions intact.
+
+Supply the public document URL, requested fields as a JSON array (for example `["Item","Qty"]`), markdown limit `40000`, and page `1`. Missing fields, combined spans and pages other than 1 produce no CSV. A reader HTTP503 is reported as a failed read with empty CSV, not a successful empty table. After restoring the reader, run the workflow again; automatic HTTP retry is off.
+
 ## 2025-04-17 Update
 | File                               | Description                                                                                                                                                                           | Source                                                                |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
