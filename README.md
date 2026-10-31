@@ -152,11 +152,11 @@ sandbox 运行pandas，numpy>2.0，matplotlib，scikit-learn 代码老报错，�
 
 | 文件 | 描述 | 来源 |
 | --- | --- | --- |
-| `public-document-table-csv.yml` | 将一份公开的 HTTP(S) 文档转换为经检查的 CSV、来源记录和简短交接说明，不使用模型节点。适用于自托管 Dify 1.18.0（DSL 0.7.0），需要自行运行配套 reader，不是 Dify Cloud 配方。仅支持第 1 页和矩形表格。[设置说明](#public-document-table-csv-setup)。 | [配套检查器及直接命令 0.1.1](https://github.com/epistemedeus/dify-table-csv/tree/46db1d779fb662b598c592bc04d7b237998fd52d) · [MIT](./DSL/public-document-table-csv.LICENSE) |
+| `public-document-table-csv.yml` | 将一份公开的 HTTP(S) 文档转换为经检查的 CSV、来源记录和简短交接说明，不使用模型节点。适用于自托管 Dify 1.18.0（DSL 0.7.0），需要自行运行配套 reader，不是 Dify Cloud 配方。仅支持第 1 页和矩形表格。[设置说明](#public-document-table-csv-setup)。 | [配套检查器及直接命令 0.1.2](https://github.com/epistemedeus/dify-table-csv/tree/a31b79541838c3d0023ee1af6150fae8a7e1cb8d) · [MIT](./DSL/public-document-table-csv.LICENSE) |
 
 ### Public document table CSV setup
 
-请导入本仓库的 `DSL/public-document-table-csv.yml`，不要导入配套 0.1.1 源码中较旧的工作流。按固定版本的 [README](https://github.com/epistemedeus/dify-table-csv/blob/46db1d779fb662b598c592bc04d7b237998fd52d/README.md) 启动配套 reader。在导入工作流的 **Free reader** HTTP 节点中，填写 Dify worker/SSRF proxy 能访问的完整 reader URL。默认值为 `http://host.docker.internal:8765/v1/read`，但并非所有 Linux 部署都自动提供该主机名。请按自己的网络策略，仅配置所需的 reader 访问路径，保留 TLS 校验及其他网络限制。
+请导入本仓库的 `DSL/public-document-table-csv.yml`。配套 0.1.2 发布版包含相同的工作流。按固定版本的 [README](https://github.com/epistemedeus/dify-table-csv/blob/a31b79541838c3d0023ee1af6150fae8a7e1cb8d/README.md) 启动配套 reader。在导入工作流的 **Free reader** HTTP 节点中，填写 Dify worker/SSRF proxy 能访问的完整 reader URL。默认值为 `http://host.docker.internal:8765/v1/read`，但并非所有 Linux 部署都自动提供该主机名。请按自己的网络策略，仅配置所需的 reader 访问路径，保留 TLS 校验及其他网络限制。
 
 输入公开文档 URL、JSON 数组格式的字段名（例如 `["Item","Qty"]`）、markdown 上限 `40000` 和页码 `1`。缺少字段、合并单元格及其他页码均不生成 CSV。reader 返回 HTTP503 时，工作流报告读取失败并返回空 CSV，不会将其视为成功的空表。reader 恢复后请重新运行；HTTP 节点不自动重试。
 
